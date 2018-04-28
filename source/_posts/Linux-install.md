@@ -1,6 +1,7 @@
 ---
 title: Linux 安装
 tags: Linux
+date: 2018-4-16
 ---
 # 制作启动盘
     UItraISO软件将iso镜像文件刻入进u盘

@@ -1,7 +1,7 @@
 ---
 title: 机器学习3
 tags: python 机器学习
-data: 2018-0031 0:37:00
+date: 2018-0031 0:37:00
 ---
 # 小疑问
 ## 1、 Expected n_neighbors <= n_samples,  but n_samples = 4, n_neighbors = 5  ？

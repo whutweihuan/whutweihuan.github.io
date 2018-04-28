@@ -1,5 +1,6 @@
 ---
 title: git-命令
+date: 2018-4-17
 ---
 ```python
 git  init                            #初始化仓库

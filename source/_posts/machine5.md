@@ -1,6 +1,7 @@
 ---
 title: SVM
 tags: 机器学习
+date: 2018-4-03
 ---
 SVM
 1、分类

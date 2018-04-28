@@ -1,6 +1,7 @@
 ---
 title: KNN
 tags: 机器学习
+date: 2018-4-9
 ---
 ```python
     from sklearn.neighbors import  KNeighborsClassifier

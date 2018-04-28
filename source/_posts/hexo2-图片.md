@@ -1,6 +1,7 @@
 ---
 title: hexo2-图片
 tags: hexo搭建
+date: 2018-4-15
 ---
 安装插件：
 ```
