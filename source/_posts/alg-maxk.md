@@ -1,6 +1,6 @@
 ---
 title: 最大k相乘
-tags：算法
+tags: 算法
 date: 2018-5-1
 ---
 
