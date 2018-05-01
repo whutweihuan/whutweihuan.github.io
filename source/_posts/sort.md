@@ -24,3 +24,54 @@ void sort (int a[],int n){
 
 
 ```
+---
+## 快速排序
+```c
+
+#include<stdlib.h>
+#include<stdio.h>
+
+int cmp(const void *a,const void *b){
+	return (*(int *)a-*(int *)b);
+
+}
+
+int main(){
+	int i=0;
+	int a[]={4,3,2,1};
+	qsort(a,4,sizeof(a[0]),cmp);
+	for(i=0;i<4;i++){
+		printf("%d",a[i]);
+	}
+
+}
+
+
+```
+---
+## 冒泡排序
+```py
+def maosort(a):
+    n=len(a)
+    for i in range(0,n):
+        for j in range(0,n-i-1):
+            if a[j]>a[j+1]:
+                a[j],a[j+1]=a[j+1],a[j]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
