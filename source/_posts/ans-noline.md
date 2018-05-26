@@ -76,10 +76,12 @@ if __name__=="__main__":
 ```
 ---
 ## 牛顿迭代法
+迭代公式 
+![](./ans-noline/niudun.gif)
 ```py
 ## 牛顿迭代法
 ## f(x)=0
-## x(n+1) = x(n) - f(x(n))/f'(x(n))
+
 
 ## 求解 x^3 -2x -55 = 0 在区间 [3,4] 的根,以4为初值
 
@@ -114,8 +116,11 @@ if __name__=="__main__":
 ```
 ---
 ## 艾特金加速法
+<div style="float:left;">
+![](./ans-noline/2.jpg)
+</div>
+</br></br></br></br>
 ```py
-
 ## 艾特金加速迭代法
 ## yn = x(n+1)
 ## zn = x(n+2)
