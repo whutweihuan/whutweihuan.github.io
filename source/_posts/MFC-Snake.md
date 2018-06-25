@@ -107,6 +107,18 @@ CPoint point =body.GetNext(p);
 	dc.Rectangle(m_ptFood.x*LENGTH, m_ptFood.y*LENGTH, (m_ptFood.x + 1)*LENGTH, (m_ptFood.y + 1)*LENGTH);
 
 ```
+# 画直线
+```c++
+	CClientDC dc(this);
+	CPen pen;
+
+	pen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+	CPen *oldPen = dc.SelectObject(&pen);
+	dc.MoveTo(0, 0);//起点
+	dc.LineTo(0, 600);//终点
+	dc.SelectObject(oldPen);
+
+```
 # OnPaint
 什么时候调用？
 1、由其他窗口遮挡、移动窗口等动作的时候系统会发送
@@ -124,6 +136,24 @@ CPoint point =body.GetNext(p);
 6、添加碰撞检测(比较两个点是否相同)
 7、重绘蛇和食物
 
+# 遇到的bug
+1、消除边界
+原因:消除蛇尾巴的时候清除
+纠正方法:重画边界
+
+2、蛇撞到自己的身体
+原因:按键速度和蛇移动速度不匹配
+纠正方法:当按下键的时候，键盘控制蛇移动，其他时候定时器控制
+
+3、按键一直咚咚咚亮
+改正方法:
+```
+return CDialogEx::PreTranslateMessage(pMsg);
+```
+换成
+```
+return false;
+```
 
 
 学习于:kekehui
