@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MFC," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="窗口大小123456//添加到OnInitDialog函数中去GetWindowRect(window);//GetClientRect(client);//int width = window.Width() - client.Width() + LENGTH * SIZE_H;int height = window.Height() - client.Height() + LENGTH * S">
+<meta name="keywords" content="MFC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MFC贪吃蛇">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/MFC-Snake/index.html">
+<meta property="og:site_name" content="welcome">
+<meta property="og:description" content="窗口大小123456//添加到OnInitDialog函数中去GetWindowRect(window);//GetClientRect(client);//int width = window.Width() - client.Width() + LENGTH * SIZE_H;int height = window.Height() - client.Height() + LENGTH * S">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-08T04:41:58.801Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MFC贪吃蛇">
+<meta name="twitter:description" content="窗口大小123456//添加到OnInitDialog函数中去GetWindowRect(window);//GetClientRect(client);//int width = window.Width() - client.Width() + LENGTH * SIZE_H;int height = window.Height() - client.Height() + LENGTH * S">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'GSN98568S8',
+      apiKey: '29d8f0155bbe4222dfa69a1000d403f0',
+      indexName: 'yougood',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键词","hits_empty":"没有找到相关内容.-_-.","hits_stats":"${hits} 条相关记录,共耗时 ${time} ms."}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/13/MFC-Snake/"/>
+
+
+
+
+
+  <title>MFC贪吃蛇 | welcome</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">welcome</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+			<!--增加的代码 start-->
+
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/MFC-Snake/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MFC贪吃蛇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T00:00:00+08:00">
+                2018-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加到OnInitDialog函数中去</span></span><br><span class="line">GetWindowRect(window);<span class="comment">//</span></span><br><span class="line">GetClientRect(client);<span class="comment">//</span></span><br><span class="line"><span class="keyword">int</span> width = window.Width() - client.Width() + LENGTH * SIZE_H;</span><br><span class="line"><span class="keyword">int</span> height = window.Height() - client.Height() + LENGTH * SIZE_H;</span><br><span class="line">MoveWindow(<span class="number">0</span>, <span class="number">0</span>, width, height);</span><br></pre></td></tr></table></figure>
+<h1 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h1><p>打开某个类类向导，添加消息,OnTimer编辑代码，写入按照计时器运行的内容<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CSnake2Dlg::OnTimer(UINT_PTR nIDEvent)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (nIDEvent)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:   <span class="comment">//定时器1处理函数，定时发送数据进行更新</span></span><br><span class="line">        &#123;</span><br><span class="line">            snakeMove();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:   <span class="comment">//定时器2位为状态栏时间信息</span></span><br><span class="line">        &#123;</span><br><span class="line">	    snakeMove();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    CDialogEx::OnTimer(nIDEvent);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//开始1号计时器</span></span><br><span class="line">SetTimer(<span class="number">1</span>, <span class="number">200</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//结束1号计时器</span></span><br><span class="line">KillTimer(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<h1 id="按键控制"><a href="#按键控制" class="headerlink" title="按键控制"></a>按键控制</h1><p>类向导-&gt;虚函数-&gt;pretranslate实现控制<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">BOOL CSnake2Dlg::PreTranslateMessage(MSG* pMsg)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">if</span> (pMsg-&gt;message == WM_KEYDOWN)</span><br><span class="line">      &#123;</span><br><span class="line">            <span class="keyword">switch</span> (pMsg-&gt;wParam)</span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">case</span> VK_UP:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">0</span>,<span class="number">-1</span>));</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_DOWN:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">0</span>, <span class="number">1</span>));</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_LEFT:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">-1</span>, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_RIGHT:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> CDialogEx::PreTranslateMessage(pMsg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CList &lt;CPoint&gt; body;<span class="comment">//链表类型</span></span><br><span class="line">body.GetHead();<span class="comment">//得到头节点</span></span><br><span class="line">body.GetTail();<span class="comment">//得到尾节点</span></span><br><span class="line">body.GetHeadPosition();<span class="comment">//返回位置</span></span><br><span class="line"></span><br><span class="line">body.Add</span><br><span class="line">POSITION p;<span class="comment">//感觉有点向迭代器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//得到下一个节点</span></span><br><span class="line">CPoint point =body.GetNext(p);</span><br></pre></td></tr></table></figure>
+<h1 id="画矩形"><a href="#画矩形" class="headerlink" title="画矩形"></a>画矩形</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">CBrush red(RGB(255, 0, 0));</span><br><span class="line">dc.SelectObject(red);</span><br><span class="line">dc.Rectangle(m_ptFood.x*LENGTH, m_ptFood.y*LENGTH, (m_ptFood.x + <span class="number">1</span>)*LENGTH, (m_ptFood.y + <span class="number">1</span>)*LENGTH);</span><br></pre></td></tr></table></figure>
+<h1 id="画直线"><a href="#画直线" class="headerlink" title="画直线"></a>画直线</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">CPen pen;</span><br><span class="line"></span><br><span class="line">pen.CreatePen(PS_SOLID, <span class="number">1</span>, RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">CPen *oldPen = dc.SelectObject(&amp;pen);</span><br><span class="line">dc.MoveTo(<span class="number">0</span>, <span class="number">0</span>);<span class="comment">//起点</span></span><br><span class="line">dc.LineTo(<span class="number">0</span>, <span class="number">600</span>);<span class="comment">//终点</span></span><br><span class="line">dc.SelectObject(oldPen);</span><br></pre></td></tr></table></figure>
+<h1 id="OnPaint"><a href="#OnPaint" class="headerlink" title="OnPaint"></a>OnPaint</h1><p>什么时候调用？<br>1、由其他窗口遮挡、移动窗口等动作的时候系统会发送<br>2、你自己想更新某个区域可以发送Invalidate或InvalidRect，再加上UpdateWindow()也可以触发</p>
+<h1 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h1><p>1、建立一个对话框<br>2、创建Point类型变量代表食物，并且作为对话框的成员变量<br>3、随机生成食物，绘制食物<br>4、建立蛇类，作为对话框类的成员<br>5、添加蛇类CList<cpoint>成员变量,以及代表方向CPoint成员变量<br>&emsp;&emsp;(CPoint类型的坐标含义为到下一方向作加法,(0,-1)代表纵坐标减1，即向上移动)<br>6、添加碰撞检测(比较两个点是否相同)<br>7、重绘蛇和食物</cpoint></p>
+<h1 id="遇到的bug"><a href="#遇到的bug" class="headerlink" title="遇到的bug"></a>遇到的bug</h1><p>1、消除边界<br>原因:消除蛇尾巴的时候清除<br>纠正方法:重画边界</p>
+<p>2、蛇撞到自己的身体<br>原因:按键速度和蛇移动速度不匹配<br>纠正方法:当按下键的时候，键盘控制蛇移动，其他时候定时器控制</p>
+<p>3、按键一直咚咚咚亮<br>改正方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return CDialogEx::PreTranslateMessage(pMsg);</span><br></pre></td></tr></table></figure></p>
+<p>换成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return false;</span><br></pre></td></tr></table></figure></p>
+<p>学习于:kekehui</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MFC/" rel="tag"># MFC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/13/alg_quickSort/" rel="next" title="快速排序">
+                <i class="fa fa-chevron-left"></i> 快速排序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/16/alg_comprexOn/" rel="prev" title="时间复杂度">
+                时间复杂度 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="weihuan" />
+          <p class="site-author-name" itemprop="name">weihuan</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#窗口大小"><span class="nav-number">1.</span> <span class="nav-text">窗口大小</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计时器"><span class="nav-number">2.</span> <span class="nav-text">计时器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#按键控制"><span class="nav-number">3.</span> <span class="nav-text">按键控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#链表"><span class="nav-number">4.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#画矩形"><span class="nav-number">5.</span> <span class="nav-text">画矩形</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#画直线"><span class="nav-number">6.</span> <span class="nav-text">画直线</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OnPaint"><span class="nav-number">7.</span> <span class="nav-text">OnPaint</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计思想"><span class="nav-number">8.</span> <span class="nav-text">设计思想</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的bug"><span class="nav-number">9.</span> <span class="nav-text">遇到的bug</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">weihuan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
