@@ -310,6 +310,128 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/2018-9-10-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/10/2018-9-10-blog/" itemprop="url">2018年9月10日</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T00:00:00+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="添加了七牛-极简图床"><a href="#添加了七牛-极简图床" class="headerlink" title="添加了七牛+极简图床"></a>添加了七牛+极简图床</h2><p>登录<a href="https://jiantuku.com" target="_blank" rel="noopener">极简图床</a>，这个网站有较详细的<a href="https://jiantuku.com/help/faq.html?src=settings_head" target="_blank" rel="noopener">教程</a></p>
+<h2 id="algolia搜索出现Record-is-too-big-错误"><a href="#algolia搜索出现Record-is-too-big-错误" class="headerlink" title="algolia搜索出现Record is too big 错误"></a>algolia搜索出现Record is too big 错误</h2><p>将command.js中的<code>var storedPost =</code>替换<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var storedPost = _.pick(data, ['title', 'date', 'slug', 'path', 'content', 'excerpt', 'objectID']);</span></span><br><span class="line"> <span class="keyword">var</span> storedPost = _.pick(data, [<span class="string">'title'</span>, <span class="string">'date'</span>, <span class="string">'slug'</span>, <span class="string">'path'</span>, <span class="string">'objectID'</span>]);</span><br></pre></td></tr></table></figure></p>
+<p>注释的为未修改时的代码,<a href="http://yangq.me/post/4a3fe015.html" target="_blank" rel="noopener">参考文章</a><br>这样的缺点是只能搜索标题和标签。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/09/2018-9-9-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1325,125 +1447,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/python-search/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/05/python-search/" itemprop="url">查找文档内容</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T00:00:00+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  os</span><br><span class="line">target = input(<span class="string">"please input the search word:"</span>)</span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(<span class="string">"."</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="string">"."</span> <span class="keyword">in</span> filename:</span><br><span class="line">        <span class="keyword">with</span> open (filename,<span class="string">'r'</span>,encoding=<span class="string">'UTF-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">if</span> target <span class="keyword">in</span> f.read():</span><br><span class="line">                print(os.path.basename(filename))</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/python-rename/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1602,7 +1605,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
