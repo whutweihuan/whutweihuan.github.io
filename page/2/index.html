@@ -310,6 +310,131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/07/2018-9-7-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/07/2018-9-7-blog/" itemprop="url">2018年9月7日</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-07T00:00:00+08:00">
+                2018-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近看了一些大佬的博客，真是太牛逼了。</p>
+<p>参加了数学建模，发现自己编程实力实在菜的一匹。</p>
+<p>数据结构是真的重要，需要好好复习一下。</p>
+<p>遇到一些问题，不能太钻牛角尖，有很多东西是不必要那么认真的。这样就会有够多的时间了。</p>
+<p>一个人的力量总是渺小的，需要向优秀的人学习询问方法，不要闭门造车。</p>
+<p>要开阔眼界，多看书，多看技术书，要养成看技术书的习惯.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/MFC_LLK_progress/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1406,144 +1531,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/28/mfc-combobox/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/28/mfc-combobox/" itemprop="url">MFC 下拉列表</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T00:00:00+08:00">
-                2018-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>&nbsp;&emsp; 利用mfc要完成效果如图：<br><br><br><img src="/2018/05/28/mfc-combobox/./mfc-combobox/hobby.JPG" alt=""></p>
-<ul>
-<li>创建mfc工程，选择对话框项目，选择资源文件的xxxx.rc2，进入后选择dialog,之后利用添加控件combobox</li>
-<li>右键控件，添加变量m_cbox</li>
-<li><p>添加控件Item,在OnInitDialog()中添加：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m_cList1.AddString(<span class="string">L"jack1"</span>);</span><br><span class="line">m_cList1.AddString(<span class="string">L"jack2"</span>);</span><br></pre></td></tr></table></figure>
-<p>  或者直接在属性中data中添加，注意两个变量间要以;(分号)隔开</p>
-</li>
-<li><p>获取变量内容：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CString msg;</span><br><span class="line">m_cList1.GetLBText(m_cList1.GetCurSel(), msg);</span><br></pre></td></tr></table></figure>
-<p>  msg 是一个全局变量用于传递消息</p>
-</li>
-<li><p>button 设置显示内容:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UpdateData(TRUE);</span><br><span class="line">m_edit = msg+<span class="string">L"爱好"</span>+msg2;</span><br><span class="line">UpdateData(FALSE);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Done</p>
-</li>
-</ul>
-<p>&amp;nbsp ;&amp;emsp ; 为空格,.=_=.(去掉分号与字母间的空格才可以)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1594,7 +1581,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">66</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
