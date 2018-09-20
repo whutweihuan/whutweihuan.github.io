@@ -448,6 +448,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/28/LLK-bmp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/28/LLK-bmp/" itemprop="url">《连连看》- 位图、文字输出</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T00:00:00+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="显示文字"><a href="#显示文字" class="headerlink" title="显示文字"></a>显示文字</h2><p><img src="/2018/05/28/LLK-bmp/./LLK-bmp/showFont.JPG" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建字体</span></span><br><span class="line">   CFont font;</span><br><span class="line">   font.CreatePointFont(<span class="number">200</span>, <span class="string">L"Cambria"</span>);</span><br><span class="line">   CFont * oldFont;</span><br><span class="line">   oldFont = dc.SelectObject(&amp;font);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//设置字体颜色</span></span><br><span class="line">   dc.SetTextColor(RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>));</span><br><span class="line"></span><br><span class="line">   <span class="comment">//获取字体位置</span></span><br><span class="line">   CRect rect;</span><br><span class="line">   GetClientRect(&amp;rect);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//字体内容</span></span><br><span class="line">   CString strText = <span class="string">L"Welcom to LLK-GAME!"</span>;</span><br><span class="line">   CSize size;</span><br><span class="line">   size = dc.GetTextExtent(strText, strText.GetAllocLength());</span><br><span class="line"></span><br><span class="line">   <span class="comment">//居中显示</span></span><br><span class="line">   <span class="keyword">int</span> x = (rect.Width() - size.cx) / <span class="number">2</span>;</span><br><span class="line">   <span class="keyword">int</span> y = (rect.Height() - size.cy) / <span class="number">2</span>;</span><br><span class="line">   dc.TextOut(x, y, strText);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><hr></p>
+<h2 id="显示位图"><a href="#显示位图" class="headerlink" title="显示位图"></a>显示位图</h2><p><img src="/2018/05/28/LLK-bmp/./LLK-bmp/loadBmp.JPG" alt=""><br><img src="/2018/05/28/LLK-bmp/./LLK-bmp/loadBmp2.png" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="comment">//额外添加在自动生成的else里面</span></span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将内存DC复制到视频DC，内存DC在头文件类中定义</span></span><br><span class="line">   dc.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_DCMem, <span class="number">0</span>, <span class="number">0</span>, SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//此函数为自定义函数，在头文件中添加</span></span><br><span class="line"><span class="keyword">void</span> CLLKDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//加载位图</span></span><br><span class="line">   CBitmap bmpmain;</span><br><span class="line">   bmpmain.LoadBitmap(IDB_MAIN_BG);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建兼容dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">   m_DCMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图选进dc</span></span><br><span class="line">   m_DCMem.SelectObject(&amp;bmpmain);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以下方式能完成功能<br>1、保存背景图片在m_dcBG<br>2、以后可以利用m_dcBG完成对m_dcMem的刷新，进而刷新视频dc<br>发现m_dcMem和m_dcBG是为同一个视频dc创建的兼容dc<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGameDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//::是调用API，加载位图</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">//获得当前视频dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//加载bmp图片</span></span><br><span class="line">   HANDLE bmp = ::LoadImage(<span class="literal">NULL</span>, _T(<span class="string">"res\\theme\\picture\\game_bg.bmp"</span>), IMAGE_BITMAP, <span class="number">0</span>, <span class="number">0</span>,     LR_LOADFROMFILE);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建与视频内存兼容DC</span></span><br><span class="line">   m_dcBG.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图资源选进DC</span></span><br><span class="line">   m_dcBG.SelectObject(bmp);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//初始化内存DC</span></span><br><span class="line">   m_dcMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line">   CBitmap bmpMem;</span><br><span class="line">   bmpMem.CreateCompatibleBitmap(&amp;dc,<span class="number">800</span>,<span class="number">600</span>);</span><br><span class="line">   m_dcMem.SelectObject(bmpMem);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//绘制背景到内存中</span></span><br><span class="line">   m_dcMem.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_dcBG, <span class="number">0</span>, <span class="number">0</span>,SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CGameDlg::UpDateMap()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">int</span> nTop = m_ptGameTop.y;</span><br><span class="line">   <span class="keyword">int</span> nLeft = m_ptGameTop.x;</span><br><span class="line">   <span class="keyword">int</span> nElemW = m_sizeElement.cx;</span><br><span class="line">   <span class="keyword">int</span> nElemH = m_sizeElement.cy;</span><br><span class="line"></span><br><span class="line">   m_dcMem.BitBlt(m_rtGameRect.left, m_rtGameRect.top, m_rtGameRect.Width(), m_rtGameRect.Height(), &amp;m_dcBG, m_rtGameRect.left, m_rtGameRect.top, SRCCOPY);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</span><br><span class="line">	   &#123;</span><br><span class="line">	      <span class="keyword">if</span> (m_anMap[i][j] != <span class="number">-1</span>)</span><br><span class="line">	  	  &#123;</span><br><span class="line">		  m_dcMem.BitBlt(nLeft + j * nElemW, nTop + i * nElemH, nElemW, nElemH, &amp;m_dcElement, <span class="number">0</span>, m_anMap[i][j] * nElemH, SRCCOPY);</span><br><span class="line">		  &#125;</span><br><span class="line">	   &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>另外注意利用vs2017加载资源文件时有可能在文件中看不到bmp文件，此时把列表中文件类型改为所有文件即可。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/27/English-font/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -928,6 +1052,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/python-turtle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/11/python-turtle/" itemprop="url">Python-turtle</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T00:00:00+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> turtle <span class="keyword">as</span> t</span><br><span class="line"></span><br><span class="line">t.setup(width,height,startx,starty)</span><br><span class="line"></span><br><span class="line">t.goto(x,y)</span><br><span class="line">t.fd(<span class="number">100</span>)  <span class="comment">#前进</span></span><br><span class="line">t.bk(<span class="number">100</span>)  <span class="comment">#后退</span></span><br><span class="line"></span><br><span class="line">t.circle(R,<span class="number">180</span>)           <span class="comment">#半径，左边角度</span></span><br><span class="line">t.seth(<span class="number">180</span>)</span><br><span class="line"></span><br><span class="line">t.colormode()</span><br><span class="line">t.pu()      <span class="comment">#抬起画笔</span></span><br><span class="line">t.pd()     <span class="comment">#放下画笔</span></span><br><span class="line">t.opensize(<span class="number">7</span>)</span><br><span class="line">t.pencolor(<span class="string">'red'</span>)</span><br><span class="line">t.ht()       <span class="comment">#隐藏</span></span><br><span class="line">t.st()       <span class="comment">#显示</span></span><br><span class="line"></span><br><span class="line">t.trace(<span class="keyword">False</span>)  <span class="comment">#轨迹</span></span><br><span class="line">t.setup()</span><br><span class="line">t.clear()</span><br><span class="line"></span><br><span class="line">t.rt(<span class="number">144</span>)   <span class="comment">#右转</span></span><br><span class="line">t.lt(<span class="number">144</span>)   <span class="comment">#左转</span></span><br><span class="line"></span><br><span class="line">t.begin_fill()</span><br><span class="line">t.end_fill()</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/python-tkinter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1168,126 +1412,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/python-turtle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/11/python-turtle/" itemprop="url">Python-turtle</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T00:00:00+08:00">
-                2018-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> turtle <span class="keyword">as</span> t</span><br><span class="line"></span><br><span class="line">t.setup(width,height,startx,starty)</span><br><span class="line"></span><br><span class="line">t.goto(x,y)</span><br><span class="line">t.fd(<span class="number">100</span>)  <span class="comment">#前进</span></span><br><span class="line">t.bk(<span class="number">100</span>)  <span class="comment">#后退</span></span><br><span class="line"></span><br><span class="line">t.circle(R,<span class="number">180</span>)           <span class="comment">#半径，左边角度</span></span><br><span class="line">t.seth(<span class="number">180</span>)</span><br><span class="line"></span><br><span class="line">t.colormode()</span><br><span class="line">t.pu()      <span class="comment">#抬起画笔</span></span><br><span class="line">t.pd()     <span class="comment">#放下画笔</span></span><br><span class="line">t.opensize(<span class="number">7</span>)</span><br><span class="line">t.pencolor(<span class="string">'red'</span>)</span><br><span class="line">t.ht()       <span class="comment">#隐藏</span></span><br><span class="line">t.st()       <span class="comment">#显示</span></span><br><span class="line"></span><br><span class="line">t.trace(<span class="keyword">False</span>)  <span class="comment">#轨迹</span></span><br><span class="line">t.setup()</span><br><span class="line">t.clear()</span><br><span class="line"></span><br><span class="line">t.rt(<span class="number">144</span>)   <span class="comment">#右转</span></span><br><span class="line">t.lt(<span class="number">144</span>)   <span class="comment">#左转</span></span><br><span class="line"></span><br><span class="line">t.begin_fill()</span><br><span class="line">t.end_fill()</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/01/alg-maxk/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1395,134 +1519,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/30/ans-noline/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/30/ans-noline/" itemprop="url">非线性方程求根</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-30T00:00:00+08:00">
-                2018-04-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="二分法搜索根"><a href="#二分法搜索根" class="headerlink" title="二分法搜索根"></a>二分法搜索根</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span> <span class="params">(x)</span>:</span></span><br><span class="line">    x=float(x)</span><br><span class="line">    c= pow(x,<span class="number">4</span>)+<span class="number">2</span>*pow(x,<span class="number">3</span>)+pow(x,<span class="number">2</span>)<span class="number">-5</span></span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">()</span>:</span></span><br><span class="line">    ep = input(<span class="string">"输入精度"</span>)</span><br><span class="line">    ep =float(ep)</span><br><span class="line">    a=input(<span class="string">"输入区间a,b"</span>)</span><br><span class="line">    a=float(a)</span><br><span class="line">    b=input()</span><br><span class="line">    b=float(b)</span><br><span class="line">    <span class="keyword">if</span> f(a)==<span class="number">0</span>:</span><br><span class="line">        x=a</span><br><span class="line">    <span class="keyword">elif</span> f(b)==<span class="number">0</span>:</span><br><span class="line">        x=b</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">while</span> (b-a)/<span class="number">2</span>&gt;ep:</span><br><span class="line">            m=(a+b)/<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> f(a)*f(m)&gt;<span class="number">0</span>:</span><br><span class="line">                a=m</span><br><span class="line">            <span class="keyword">elif</span> f(b)*f(m)&gt;<span class="number">0</span>:</span><br><span class="line">                b=m;</span><br><span class="line">        x=(a+b)/<span class="number">2</span></span><br><span class="line">    print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    search()</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="简单迭代法"><a href="#简单迭代法" class="headerlink" title="简单迭代法"></a>简单迭代法</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## 求解 x^5 + 5x^4 -41 = 0 在[1,3]的单根</span></span><br><span class="line"><span class="comment">## 注意 x = (-x^5 +41)/5 不收敛</span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">-5</span>*x+<span class="number">41</span>)**<span class="number">0.2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x=input(<span class="string">"输入迭代初值: "</span>)</span><br><span class="line">    x= float(x) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    x1=x</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x1 = x</span><br><span class="line">        x = f(x1)</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="牛顿迭代法"><a href="#牛顿迭代法" class="headerlink" title="牛顿迭代法"></a>牛顿迭代法</h2><p>迭代公式<br><img src="/2018/04/30/ans-noline/./ans-noline/niudun.gif" alt=""><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 牛顿迭代法</span></span><br><span class="line"><span class="comment">## f(x)=0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 求解 x^3 -2x -55 = 0 在区间 [3,4] 的根,以4为初值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x - (x**<span class="number">3</span><span class="number">-2</span>*x<span class="number">-55</span>)/(<span class="number">3</span>*x**<span class="number">2</span><span class="number">-2</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x=input(<span class="string">"输入迭代初值: "</span>)</span><br><span class="line">    x= float(x) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    x1=x</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x1 = x</span><br><span class="line">        x = f(x1)</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="艾特金加速法"><a href="#艾特金加速法" class="headerlink" title="艾特金加速法"></a>艾特金加速法</h2><p><div style="float:left;"><br><img src="/2018/04/30/ans-noline/./ans-noline/2.jpg" alt=""><br></div><br><br><br><br><br><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 艾特金加速迭代法</span></span><br><span class="line"><span class="comment">## yn = x(n+1)</span></span><br><span class="line"><span class="comment">## zn = x(n+2)</span></span><br><span class="line"><span class="comment">## x(n+1) = x(n) - (yn - x(n))^2/(zn - 2y + x)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## 求解 x^5 - 3x^4 -1 = 0 在3附近的单根</span></span><br><span class="line"><span class="comment">## 变形为 x = 3 + 1/x^4</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span> + <span class="number">1</span>/x**<span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    y = f1(x)</span><br><span class="line">    z = f1(y)</span><br><span class="line">    <span class="keyword">return</span> x - (y-x)**<span class="number">2</span>/(z<span class="number">-2</span>*y+x)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x=input(<span class="string">"输入迭代初值: "</span>)</span><br><span class="line">    x= float(x) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    x1=x</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x1 = x</span><br><span class="line">        x = f(x1)</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="变形双点截弦法"><a href="#变形双点截弦法" class="headerlink" title="变形双点截弦法"></a>变形双点截弦法</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">##变形的双点弦截法</span></span><br><span class="line"><span class="comment">## x(n+1) = x(n) - ((x(n)-x(n-1))/f(x(n))-f(x(n-1)))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## x^4 + 2x^3 + x^2 -5 =0 在[0,2]范围内单根,取x0=0,x1 =2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x**<span class="number">4</span> + <span class="number">2</span>*x**<span class="number">3</span> + x**<span class="number">2</span> <span class="number">-5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x0=input(<span class="string">"输入迭代初值x0: "</span>)</span><br><span class="line">    x1=input(<span class="string">"输入迭代初值x1: "</span>)</span><br><span class="line">    x0= float(x0) </span><br><span class="line">    x1= float(x1) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    f0 = f(x0)</span><br><span class="line">    f1 = f(x1)</span><br><span class="line">    n =<span class="number">0</span>    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x = x1 - f1*(x1 - x0)/(f1 - f0)</span><br><span class="line">        y = f(x)</span><br><span class="line"></span><br><span class="line">        x0 = x1</span><br><span class="line">        f0 = f1</span><br><span class="line">        x1 = x</span><br><span class="line">        f1 = y</span><br><span class="line">        <span class="keyword">if</span> (y==<span class="number">0</span>):</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x0-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1573,7 +1569,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
