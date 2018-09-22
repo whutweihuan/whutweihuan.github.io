@@ -310,6 +310,137 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/21/2018-9-21-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/21/2018-9-21-blog/" itemprop="url">2018年9月21日</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-21T09:43:12+08:00">
+                2018-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><p>描述：</p>
+<ul>
+<li>n个物品，有不同的重量<code>weight[n]</code>,有不同的价值<code>price[n]</code></li>
+<li>你有一个能承载重量为<code>A</code>的背包，问能带走的最大价值是多少。</li>
+</ul>
+<p><strong>暴力搜索</strong><br>每一个物品都有可能带走或者不带走，枚举出所有情况，此时可以采用深度优先搜索。</p>
+<p><em>notes:price+0代表最后一个节点的价值，dfs+price中price表示保存当前价值，再看看加上后续的点会不会更优解，可以用二叉树理解。</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i == n) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j &lt; weight[i]) &#123;</span><br><span class="line">        <span class="comment">//can not take the item</span></span><br><span class="line">        <span class="keyword">return</span> dfs(i+<span class="number">1</span>,j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//can take the item or not take it</span></span><br><span class="line">        <span class="keyword">return</span> max(dfs(i+<span class="number">1</span>,j), dfs(i + <span class="number">1</span>, j - weight[i]) + price[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>记忆搜索1</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dp1[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (dp1[i][j] != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> dp1[i][j];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i == n) &#123;</span><br><span class="line">        res =  <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (j &lt; weight[i]) &#123;</span><br><span class="line">        <span class="comment">//can not take the item</span></span><br><span class="line">        res =  dfs2(i + <span class="number">1</span>, j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//can take the item or not take it</span></span><br><span class="line">        res =  max(dfs2(i + <span class="number">1</span>, j), dfs2(i + <span class="number">1</span>, j - weight[i]) + price[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp1[i][j] = res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>记忆搜索2</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp2(n+<span class="number">1</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(A+<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= A; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j &lt; weight[i]) &#123;</span><br><span class="line">                dp2[i][j] = dp2[i + <span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                dp2[i][j] = max(dp2[i + <span class="number">1</span>][j], dp2[i + <span class="number">1</span>][j - weight[i]] + price[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp2[<span class="number">0</span>][A];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>递推法</strong><br><code>dp[i+1][j]</code>为前i个物品负重为j的最大价值。<br>当<code>i=0</code>时，为<code>dp[0+1][j]</code>代表的含义为一个物品重量为<code>j</code>的最大价值。<br><code>dp[2][10] = max{dp[1][10],dp[1][10-weight[1]]+price[1]};</code><br>物品和价值都是从0开始的，也就是说<code>weight[1]</code>实际上代表的就是第二个的重量。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;dp3(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(A + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= A; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j &lt; weight[i]) &#123;</span><br><span class="line">                dp3[i + <span class="number">1</span>][j] = dp3[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                dp3[i + <span class="number">1</span>][j] = max(dp3[i][j], dp3[i][j - weight[i]] + price[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp3[n][A];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>转移状态</strong><br>一个物品的选用和不选用两种状态，也就是会影响前<code>i+1</code>个物品最大负重量为<code>j</code>(不选中)和<code>j-weight[i+1]</code>(选中)。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp4(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(A + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= A; j++) &#123;</span><br><span class="line">            dp4[i + <span class="number">1</span>][j] = max(dp4[i + <span class="number">1</span>][j], dp4[i][j]);</span><br><span class="line">            <span class="keyword">if</span> (j + weight[i] &lt;= A) &#123;</span><br><span class="line">                dp4[i + <span class="number">1</span>][j + weight[i]] = max(dp4[i + <span class="number">1</span>][j + weight[i]], dp4[i][j] + price[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp4[n][A];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/20/2018-9-20-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1457,132 +1588,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/09/2018-9-9-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/09/2018-9-9-blog/" itemprop="url">2018年9月9日</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-09T00:00:00+08:00">
-                2018-09-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="细胞生命游戏"><a href="#细胞生命游戏" class="headerlink" title="细胞生命游戏"></a>细胞生命游戏</h2><p>简介：<br>“人口过少”：任何活细胞如果活邻居少于2个，则死掉。<br>“正常”：任何活细胞如果活邻居为2个或3个，则继续活。<br>“人口过多”：任何活细胞如果活邻居大于3个，则死掉。<br>“繁殖”：任何死细胞如果活邻居正好是3个，则活过来。<br>这里假设领域为3*3的大小<br><img src="/2018/09/09/2018-9-9-blog/life_game.png" alt=""></p>
-<p>利用java实现,三个类</p>
-<h3 id="Main-java"><a href="#Main-java" class="headerlink" title="Main.java"></a>Main.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> life_game3;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String []args)</span> </span>&#123;</span><br><span class="line">	    Paint ptPaint = <span class="keyword">new</span> Paint();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Logic-java"><a href="#Logic-java" class="headerlink" title="Logic.java"></a>Logic.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logic</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ROWS = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> COLS = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> WIDTH = <span class="number">40</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HIGHT = <span class="number">40</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> map[][] = <span class="keyword">new</span> <span class="keyword">int</span>[][] &#123;</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Logic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		 ;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span>  <span class="keyword">int</span>[][] newmap(<span class="keyword">int</span> [][] map)&#123;</span><br><span class="line">		<span class="comment">// copy new 2d array</span></span><br><span class="line">		<span class="keyword">int</span> [][] map0 = <span class="keyword">new</span> <span class="keyword">int</span> [ROWS][COLS];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ROWS;i++) &#123;</span><br><span class="line">			map0[i] =map[i].clone();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//go through the map</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ROWS;i++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;COLS;j++) &#123;</span><br><span class="line">				<span class="keyword">int</span> count =<span class="number">0</span>;</span><br><span class="line">				<span class="keyword">if</span>(i-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; j-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; map[i-<span class="number">1</span>][j-<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line">				<span class="keyword">if</span>(i-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span> &amp;&amp; map[i-<span class="number">1</span>][j]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line">				<span class="keyword">if</span>(i-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; j+<span class="number">1</span>&lt;COLS &amp;&amp; map[i-<span class="number">1</span>][j+<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(i&gt;=<span class="number">0</span> &amp;&amp; j-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; map[i][j-<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line">				<span class="keyword">if</span>(i&gt;=<span class="number">0</span> &amp;&amp; j+<span class="number">1</span>&lt;COLS &amp;&amp; map[i][j+<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(i+<span class="number">1</span>&lt;ROWS &amp;&amp; j-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; map[i+<span class="number">1</span>][j-<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line">				<span class="keyword">if</span>(i+<span class="number">1</span>&lt;ROWS &amp;&amp; j&gt;=<span class="number">0</span> &amp;&amp; map[i+<span class="number">1</span>][j]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line">				<span class="keyword">if</span>(i+<span class="number">1</span>&lt;ROWS &amp;&amp; j+<span class="number">1</span>&lt;COLS &amp;&amp; map[i+<span class="number">1</span>][j+<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(! (count==<span class="number">2</span> || count==<span class="number">3</span>)) &#123;</span><br><span class="line">					map0[i][j]=<span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>( count==<span class="number">3</span> ) &#123;</span><br><span class="line">					map0[i][j]=<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> map0;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[][] getMap()&#123;</span><br><span class="line">		<span class="keyword">return</span> map;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">updateMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.map = newmap(map);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Paint-java"><a href="#Paint-java" class="headerlink" title="Paint.java"></a>Paint.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> life_game3;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Paint</span>  <span class="keyword">extends</span> <span class="title">JPanel</span></span>&#123;</span><br><span class="line">	Logic gamelogic = <span class="keyword">new</span> Logic();</span><br><span class="line">	<span class="keyword">int</span> blank =<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Paint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		JFrame frame = <span class="keyword">new</span> JFrame(<span class="string">"生命游戏"</span>);</span><br><span class="line">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line"></span><br><span class="line">		frame.setBounds(<span class="number">800</span>, <span class="number">400</span>, <span class="number">420</span>,<span class="number">445</span>);</span><br><span class="line"></span><br><span class="line">		 <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">			   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">			     <span class="keyword">try</span> &#123;</span><br><span class="line">			      Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			     &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			    	 e.printStackTrace();</span><br><span class="line">			     &#125;</span><br><span class="line">			     repaint();</span><br><span class="line">			    &#125;</span><br><span class="line">			   &#125;</span><br><span class="line">			  &#125;).start();</span><br><span class="line">		frame.setResizable(<span class="keyword">false</span>);</span><br><span class="line">		frame.add(<span class="keyword">this</span>);</span><br><span class="line">		frame.setVisible(<span class="keyword">true</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paint</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.paint(g);</span><br><span class="line">		<span class="keyword">int</span> map[][] = gamelogic.getMap();</span><br><span class="line">		gamelogic.updateMap();</span><br><span class="line">	    g.setColor(Color.black);</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;gamelogic.ROWS;i++) &#123;</span><br><span class="line">	    	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;gamelogic.COLS;j++) &#123;</span><br><span class="line">	    		<span class="keyword">if</span>(map[i][j]==<span class="number">1</span>) &#123;</span><br><span class="line">	    			g.fillRect( j*gamelogic.WIDTH+blank,i*gamelogic.HIGHT, gamelogic.WIDTH, gamelogic.HIGHT);</span><br><span class="line">	    		&#125;</span><br><span class="line">	    		<span class="keyword">else</span> <span class="keyword">if</span>(map[i][j]==<span class="number">0</span>)&#123;</span><br><span class="line">	    			g.drawRect(j*gamelogic.WIDTH+blank,i*gamelogic.HIGHT,  gamelogic.WIDTH, gamelogic.HIGHT);</span><br><span class="line">	    		&#125;</span><br><span class="line">	    	&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="遇到的一个小问题"><a href="#遇到的一个小问题" class="headerlink" title="遇到的一个小问题"></a>遇到的一个小问题</h3><p>JFrame挡住了界面<br>解决方法：不要直接在JFrame中画，在JPannel中画，然后将其添加到JFrame里面去。</p>
-<p>参考文章:<a href="https://blog.csdn.net/xsgoing/article/details/47253621" target="_blank" rel="noopener">paint定时刷新</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1633,7 +1638,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
