@@ -310,6 +310,132 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/2018-9-13-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/13/2018-9-13-blog/" itemprop="url">2018年9月13日</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T00:00:00+08:00">
+                2018-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><h2 id="415-Add-Strings"><a href="#415-Add-Strings" class="headerlink" title="415. Add Strings"></a>415. Add Strings</h2><p><a href="https://leetcode.com/problems/add-strings/description/" target="_blank" rel="noopener">原题链接</a><br>大意:将两个字符相加，两个字符代表大整数，有5100多位，不能用int表示。<br><strong>我的解法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">addStrings</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> len1 = num1.size();</span><br><span class="line">		<span class="keyword">int</span> len2 = num2.size();</span><br><span class="line">		<span class="keyword">int</span> maxlen = len1 &gt; len2 ? len1 : len2;</span><br><span class="line">		<span class="built_in">string</span> str_sum =<span class="string">""</span>;</span><br><span class="line">		<span class="keyword">int</span> overflow = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxlen; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> sumtemp = <span class="number">0</span>;</span><br><span class="line">			<span class="comment">//common partion</span></span><br><span class="line">			<span class="keyword">if</span> (i &lt; len1 &amp;&amp; i &lt; len2) &#123;</span><br><span class="line">				sumtemp = (num1[len1 - i - <span class="number">1</span>]-<span class="string">'0'</span>) + (num2[len2 - i - <span class="number">1</span>] -<span class="string">'0'</span>);</span><br><span class="line">				<span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">					sumtemp ++;</span><br><span class="line">					overflow = <span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">					overflow = <span class="number">1</span>;</span><br><span class="line">					sumtemp -= <span class="number">10</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (len1 &gt; len2) &#123;</span><br><span class="line">				sumtemp = num1[len1-i<span class="number">-1</span>]-<span class="string">'0'</span>;</span><br><span class="line">				<span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">					overflow = <span class="number">0</span>;</span><br><span class="line">					sumtemp++;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">					sumtemp -= <span class="number">10</span>;</span><br><span class="line">					overflow = <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (len1 &lt; len2) &#123;</span><br><span class="line">				sumtemp = num2[len2 - i<span class="number">-1</span>]-<span class="string">'0'</span>;</span><br><span class="line">				<span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">					overflow = <span class="number">0</span>;</span><br><span class="line">					sumtemp++;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">					sumtemp -= <span class="number">10</span>;</span><br><span class="line">					overflow = <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			str_sum=to_string(sumtemp)+str_sum;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123; str_sum= <span class="string">"1"</span> + str_sum; &#125;</span><br><span class="line">		<span class="keyword">return</span> str_sum;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>更佳的解法</strong><br>引用值得学习，overflow的产生值得学习，求余的方式值得学习，采用short和long值得学习。<br><a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/addStrings/AddStrings.cpp" target="_blank" rel="noopener">参考链接</a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">addStrings</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">		<span class="built_in">string</span> &amp; longstr = (num1.size() &gt; num2.size()) ? num1:num2;</span><br><span class="line">		<span class="built_in">string</span> &amp; shortstr = (num1.size() &lt;= num2.size()) ? num1:num2;</span><br><span class="line">		<span class="built_in">string</span> result = <span class="string">""</span>;</span><br><span class="line">		<span class="keyword">int</span> overflow = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = longstr.size() - <span class="number">1</span>,  j = shortstr.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--, j--) &#123;</span><br><span class="line">			<span class="keyword">int</span> tempsum = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span> (j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">				tempsum = longstr[i] - <span class="string">'0'</span> + shortstr[j] - <span class="string">'0'</span>+ overflow;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				tempsum = longstr[i] - <span class="string">'0'</span> + overflow;</span><br><span class="line">			&#125;</span><br><span class="line">			overflow = tempsum / <span class="number">10</span>;</span><br><span class="line">			result = <span class="keyword">char</span>(tempsum % <span class="number">10</span>+<span class="string">'0'</span>) + result;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (overflow) &#123;</span><br><span class="line">			result = <span class="string">'1'</span> + result;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="414-Third-Maximum-Number"><a href="#414-Third-Maximum-Number" class="headerlink" title="414. Third Maximum Number"></a>414. Third Maximum Number</h2><p><a href="https://leetcode.com/problems/third-maximum-number/description/" target="_blank" rel="noopener">原题</a><br>描述:返回第三大的数<br>note:[1,2,2,3] 返回的1<br>&lt;(￣︶￣)↗[GO!],这个题目好简单啊!排序完，再调用一下unique就ok了。然而效率是硬伤。<br><strong>我的解法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">thirdMax</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">		sort(nums.begin(), nums.end(),greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">		<span class="keyword">if</span> (nums.size() &lt; <span class="number">3</span>) &#123; <span class="keyword">return</span> nums[<span class="number">0</span>]; &#125;</span><br><span class="line">		<span class="keyword">auto</span> uend = unique(nums.begin(), nums.end());</span><br><span class="line">		<span class="keyword">if</span> (uend - nums.begin() &lt; <span class="number">3</span>) &#123; <span class="keyword">return</span> nums[<span class="number">0</span>]; &#125;</span><br><span class="line">		<span class="keyword">return</span> nums[<span class="number">2</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>另一个解法</strong><br>set的运用，消除重复值<br>set与vector的区别:首先，vector是序列式容器而set是关联式容器。set包含0个或多个不重复不排序的元素。也就是说set能够保证它里面所有的元素都是不重复的。另外对set容器进行插入时可以指定插入位置或者不指定插入位置。如insert(v.begin(),1),也可以直接用insert(1)。<br>set默认从小到大排序。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">thirdMax</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; nums)</span> </span>&#123;</span><br><span class="line">		<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; numsets;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> n : nums) &#123;</span><br><span class="line">			numsets.insert(n);</span><br><span class="line">			<span class="keyword">if</span> (numsets.size() &gt; <span class="number">3</span>) &#123;</span><br><span class="line">				numsets.erase(numsets.begin());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> numsets.size() &gt;= <span class="number">3</span> ?  *numsets.begin() : *numsets.rbegin();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><hr></p>
+<h1 id="《编程之美》"><a href="#《编程之美》" class="headerlink" title="《编程之美》"></a>《编程之美》</h1><h2 id="2-7最大公因数"><a href="#2-7最大公因数" class="headerlink" title="2.7最大公因数"></a>2.7最大公因数</h2><p><strong>辗转相除</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (b == <span class="number">0</span>) ? a : gcd(b, a%b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>另一种方法</strong><br>需要实现大整数类，其中大整数可以用string或者数组保存。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd2</span><span class="params">(BigInt a, BigInt b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (a &lt; b) &#123; <span class="keyword">return</span> gcd2(b, a); &#125;</span><br><span class="line">	<span class="keyword">if</span> (b == <span class="number">0</span>) &#123; <span class="keyword">return</span>  a; &#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;	<span class="keyword">return</span> gcd2(a - b, b);	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/2018-9-12-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1342,138 +1468,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/MFC-Snake/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/13/MFC-Snake/" itemprop="url">MFC贪吃蛇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T00:00:00+08:00">
-                2018-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加到OnInitDialog函数中去</span></span><br><span class="line">GetWindowRect(window);<span class="comment">//</span></span><br><span class="line">GetClientRect(client);<span class="comment">//</span></span><br><span class="line"><span class="keyword">int</span> width = window.Width() - client.Width() + LENGTH * SIZE_H;</span><br><span class="line"><span class="keyword">int</span> height = window.Height() - client.Height() + LENGTH * SIZE_H;</span><br><span class="line">MoveWindow(<span class="number">0</span>, <span class="number">0</span>, width, height);</span><br></pre></td></tr></table></figure>
-<h1 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h1><p>打开某个类类向导，添加消息,OnTimer编辑代码，写入按照计时器运行的内容<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CSnake2Dlg::OnTimer(UINT_PTR nIDEvent)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (nIDEvent)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:   <span class="comment">//定时器1处理函数，定时发送数据进行更新</span></span><br><span class="line">        &#123;</span><br><span class="line">            snakeMove();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:   <span class="comment">//定时器2位为状态栏时间信息</span></span><br><span class="line">        &#123;</span><br><span class="line">	    snakeMove();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    CDialogEx::OnTimer(nIDEvent);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//开始1号计时器</span></span><br><span class="line">SetTimer(<span class="number">1</span>, <span class="number">200</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//结束1号计时器</span></span><br><span class="line">KillTimer(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
-<h1 id="按键控制"><a href="#按键控制" class="headerlink" title="按键控制"></a>按键控制</h1><p>类向导-&gt;虚函数-&gt;pretranslate实现控制<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">BOOL CSnake2Dlg::PreTranslateMessage(MSG* pMsg)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">if</span> (pMsg-&gt;message == WM_KEYDOWN)</span><br><span class="line">      &#123;</span><br><span class="line">            <span class="keyword">switch</span> (pMsg-&gt;wParam)</span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">case</span> VK_UP:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">0</span>,<span class="number">-1</span>));</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_DOWN:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">0</span>, <span class="number">1</span>));</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_LEFT:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">-1</span>, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_RIGHT:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> CDialogEx::PreTranslateMessage(pMsg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CList &lt;CPoint&gt; body;<span class="comment">//链表类型</span></span><br><span class="line">body.GetHead();<span class="comment">//得到头节点</span></span><br><span class="line">body.GetTail();<span class="comment">//得到尾节点</span></span><br><span class="line">body.GetHeadPosition();<span class="comment">//返回位置</span></span><br><span class="line"></span><br><span class="line">body.Add</span><br><span class="line">POSITION p;<span class="comment">//感觉有点向迭代器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//得到下一个节点</span></span><br><span class="line">CPoint point =body.GetNext(p);</span><br></pre></td></tr></table></figure>
-<h1 id="画矩形"><a href="#画矩形" class="headerlink" title="画矩形"></a>画矩形</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">CBrush red(RGB(255, 0, 0));</span><br><span class="line">dc.SelectObject(red);</span><br><span class="line">dc.Rectangle(m_ptFood.x*LENGTH, m_ptFood.y*LENGTH, (m_ptFood.x + <span class="number">1</span>)*LENGTH, (m_ptFood.y + <span class="number">1</span>)*LENGTH);</span><br></pre></td></tr></table></figure>
-<h1 id="画直线"><a href="#画直线" class="headerlink" title="画直线"></a>画直线</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">CPen pen;</span><br><span class="line"></span><br><span class="line">pen.CreatePen(PS_SOLID, <span class="number">1</span>, RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">CPen *oldPen = dc.SelectObject(&amp;pen);</span><br><span class="line">dc.MoveTo(<span class="number">0</span>, <span class="number">0</span>);<span class="comment">//起点</span></span><br><span class="line">dc.LineTo(<span class="number">0</span>, <span class="number">600</span>);<span class="comment">//终点</span></span><br><span class="line">dc.SelectObject(oldPen);</span><br></pre></td></tr></table></figure>
-<h1 id="OnPaint"><a href="#OnPaint" class="headerlink" title="OnPaint"></a>OnPaint</h1><p>什么时候调用？<br>1、由其他窗口遮挡、移动窗口等动作的时候系统会发送<br>2、你自己想更新某个区域可以发送Invalidate或InvalidRect，再加上UpdateWindow()也可以触发</p>
-<h1 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h1><p>1、建立一个对话框<br>2、创建Point类型变量代表食物，并且作为对话框的成员变量<br>3、随机生成食物，绘制食物<br>4、建立蛇类，作为对话框类的成员<br>5、添加蛇类CList<cpoint>成员变量,以及代表方向CPoint成员变量<br>&emsp;&emsp;(CPoint类型的坐标含义为到下一方向作加法,(0,-1)代表纵坐标减1，即向上移动)<br>6、添加碰撞检测(比较两个点是否相同)<br>7、重绘蛇和食物</cpoint></p>
-<h1 id="遇到的bug"><a href="#遇到的bug" class="headerlink" title="遇到的bug"></a>遇到的bug</h1><p>1、消除边界<br>原因:消除蛇尾巴的时候清除<br>纠正方法:重画边界</p>
-<p>2、蛇撞到自己的身体<br>原因:按键速度和蛇移动速度不匹配<br>纠正方法:当按下键的时候，键盘控制蛇移动，其他时候定时器控制</p>
-<p>3、按键一直咚咚咚亮<br>改正方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return CDialogEx::PreTranslateMessage(pMsg);</span><br></pre></td></tr></table></figure></p>
-<p>换成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return false;</span><br></pre></td></tr></table></figure></p>
-<p>学习于:kekehui</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/alg_quickSort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1632,7 +1626,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
