@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="二分法来自《挑战程序设计竞赛》  描述: n条绳子，每条长度为a[i],切割成相同长度的k段，求最大的长度 input: 1n = 4;  k =11 a = &amp;#123;8.02,7.43,4.57,5.39&amp;#125;;  output: 12.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)  思路：缩小解的范围，这题要满足 C(x) 的最大的 x,搜索下界个是个较小的可行">
+<meta name="description" content="二分法来自《挑战程序设计竞赛》  描述: n条绳子，第i条绳子长度为a[i],切割成长度相同的k段，求能切割出最大的长度 input: 1n = 4;  k =11 a = &amp;#123;8.02,7.43,4.57,5.39&amp;#125;;  output: 12.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)  思路：将这题转化为求满足 C(x) 的最大的 x,解范围下界是个较">
 <meta name="keywords" content="学习日志">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018-9月26日">
 <meta property="og:url" content="http://yoursite.com/2018/09/26/2018-9-26-blog/index.html">
 <meta property="og:site_name" content="welcome">
-<meta property="og:description" content="二分法来自《挑战程序设计竞赛》  描述: n条绳子，每条长度为a[i],切割成相同长度的k段，求最大的长度 input: 1n = 4;  k =11 a = &amp;#123;8.02,7.43,4.57,5.39&amp;#125;;  output: 12.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)  思路：缩小解的范围，这题要满足 C(x) 的最大的 x,搜索下界个是个较小的可行">
+<meta property="og:description" content="二分法来自《挑战程序设计竞赛》  描述: n条绳子，第i条绳子长度为a[i],切割成长度相同的k段，求能切割出最大的长度 input: 1n = 4;  k =11 a = &amp;#123;8.02,7.43,4.57,5.39&amp;#125;;  output: 12.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)  思路：将这题转化为求满足 C(x) 的最大的 x,解范围下界是个较">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-26T15:00:02.334Z">
+<meta property="og:updated_time" content="2018-09-28T01:43:43.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018-9月26日">
-<meta name="twitter:description" content="二分法来自《挑战程序设计竞赛》  描述: n条绳子，每条长度为a[i],切割成相同长度的k段，求最大的长度 input: 1n = 4;  k =11 a = &amp;#123;8.02,7.43,4.57,5.39&amp;#125;;  output: 12.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)  思路：缩小解的范围，这题要满足 C(x) 的最大的 x,搜索下界个是个较小的可行">
+<meta name="twitter:description" content="二分法来自《挑战程序设计竞赛》  描述: n条绳子，第i条绳子长度为a[i],切割成长度相同的k段，求能切割出最大的长度 input: 1n = 4;  k =11 a = &amp;#123;8.02,7.43,4.57,5.39&amp;#125;;  output: 12.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)  思路：将这题转化为求满足 C(x) 的最大的 x,解范围下界是个较">
 
 
 
@@ -382,14 +382,14 @@
       
         <h1 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h1><p>来自《挑战程序设计竞赛》</p>
 <ul>
-<li>描述: n条绳子，每条长度为a[i],切割成相同长度的k段，求最大的长度</li>
+<li>描述: n条绳子，第i条绳子长度为a[i],切割成长度相同的k段，求能切割出最大的长度</li>
 <li><p>input:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n = 4;  k =11 a = &#123;8.02,7.43,4.57,5.39&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>output:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>思路：缩小解的范围，这题要满足 C(x) 的最大的 x,搜索下界个是个较小的可行解，上界一个较大的不可行，逐步缩小，关键还是构造 C(x) 。</p>
+<li><p>思路：将这题转化为求满足 C(x) 的最大的 x,解范围下界是个较小的可行解，上界是一个较大的不可行解，每次取中间值缩小解范围。</p>
 </li>
 </ul>
 <p><strong>代码</strong></p>
