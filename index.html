@@ -310,6 +310,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/2018-9-30-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/30/2018-9-30-blog/" itemprop="url">2018年9月30日</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-30T16:28:48+08:00">
+                2018-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><p>考虑将一个二维数组表示成一维的形式，比如 <code>a[3][4]</code> 最后的一个下标为 <code>a[11]</code><br><code>i * 4 + j</code> 就是计算下标的，以最后一个数字的下标11为例，`row = 11/4’ ‘col = 11%4’</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/29/2018-9-29-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -392,7 +512,7 @@
 </ul>
 <p>思路1：累加得到序列b[n],其中b[i] = a[0]+a[1]+…+a[i],i&gt;=0,再利用二分搜索从 i 到 n-1 查找第一个大于 S 的值。<br>思路2：像虫子一样向前挪动。</p>
 <blockquote>
-<p><em>notes: lower_bound(b+i,b+n, S + b[i]) 返回的是地址，减去 b 的首地址，即得到下表</em></p>
+<p><em>notes: lower_bound(b+i,b+n, S + b[i]) 返回的是地址，减去 b 的首地址，即得到下标</em></p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n,<span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        b[i + <span class="number">1</span>] = a[i] + b[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (b[n] &lt; S) &#123; <span class="keyword">return</span> <span class="number">-1</span>; &#125;</span><br><span class="line">    <span class="keyword">int</span> res = n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; b[n] - b[i] &gt;= S; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> t = lower_bound(b+i,b+n, S + b[i]) - b;</span><br><span class="line">        res = min(res, t-i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>尺取法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve3</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, t = <span class="number">0</span>, sum = <span class="number">0</span>, res = n + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="keyword">while</span> (sum &lt; S &amp;&amp; t &lt; n) &#123;</span><br><span class="line">            sum += a[t++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (sum &lt; S) &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">        res = res &lt; t - s  ? res : t - s ;</span><br><span class="line">        sum -= a[s++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (res &lt;= n) &#123; <span class="keyword">return</span> res; &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -1472,134 +1592,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/2018-9-18-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/18/2018-9-18-blog/" itemprop="url">2018年9月18日</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-18T22:10:45+08:00">
-                2018-09-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="《编程之美》"><a href="#《编程之美》" class="headerlink" title="《编程之美》"></a>《编程之美》</h1><h2 id="1-15-构造数独"><a href="#1-15-构造数独" class="headerlink" title="1.15 构造数独"></a>1.15 构造数独</h2><p><strong>深度优先搜索</strong><br>dfs(0,0)开始直到d(8,8),就完成了，可以参考:</p>
-<ul>
-<li><a href="https://www.cnblogs.com/heaad/archive/2010/08/01/1789952.html" target="_blank" rel="noopener">数独算法</a></li>
-<li><a href="https://ladit.me/use-dfs-and-backtracking-algorithm-to-generate-sudoku/" target="_blank" rel="noopener">深度优先搜索和回溯法生成数独</a></li>
-</ul>
-<p><em>notes:<code>int maxrow = (irow/3)+3</code>得到的是每一个宫里面的行数目最大值。</em></p>
-<p><strong>直接构造</strong><br>这种方法有较大的局限性，生成的数独有规律，但是很快。<br>大致思路是，在中间的宫5里面随机生成数字，之后调行换位置形成左边宫4的位置，以及右边6的位置。持续将上2,下8一并完成了。<br>之后利用4补全1和7，利用6补全3和9，简单粗暴。<br><img src="/2018/09/18/2018-9-18-blog/sudu.png" width="30%" height="30%"></p>
-<p><em>notes:<code>&lt;img src=&quot;2018-9-18-blog/sudu.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;</code>可以实现调整图片大小。</em></p>
-<h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><h2 id="410-Split-Array-Largest-Sum"><a href="#410-Split-Array-Largest-Sum" class="headerlink" title="410. Split Array Largest Sum"></a>410. Split Array Largest Sum</h2><p><a href="hhttps://leetcode.com/problems/split-array-largest-sum/description/" target="_blank" rel="noopener">题目链接</a><br>题目描述：给一个字符串，然后你重新组合，求组成回文数的最大字符数目。<br>解题思路：利用map数据结构保存每个字符出现的次数，显然偶数可以直接加2。为奇数的话，需要判断这个奇数是否大于1，大于1的话需要加上cnt(奇数)-1。又因为奇数可以放在中间，所以有奇数的话可以在最终的结果上再加上1。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; chmap;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> ch : s) &#123;</span><br><span class="line">            chmap[ch]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> single = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> iter : chmap) &#123;</span><br><span class="line">            <span class="keyword">if</span> (iter.second &amp; <span class="number">1</span>) &#123;</span><br><span class="line">                single = <span class="literal">true</span>;</span><br><span class="line">                sum += iter.second - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;    sum += iter.second;    &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (single) &#123; sum++; &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1650,7 +1642,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-count">75</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
