@@ -310,6 +310,249 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/23/2018-10-23-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/23/2018-10-23-blog/" itemprop="url">2018-10-23-blog</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T16:24:22+08:00">
+                2018-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/23/2018-10-22-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/23/2018-10-22-blog/" itemprop="url">2018年10月22日</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T16:24:02+08:00">
+                2018-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="404-Sum-of-Left-Leaves"><a href="#404-Sum-of-Left-Leaves" class="headerlink" title="404 Sum of Left Leaves"></a>404 Sum of Left Leaves</h2><p><a href="https://leetcode.com/problems/sum-of-left-leaves/" target="_blank" rel="noopener">原题链接</a></p>
+<p><strong>描述</strong><br>累加一棵树的左叶子结点的值。</p>
+<p><strong>输入</strong><br><img src="/2018/10/23/2018-10-22-blog/tree.png" width="150" align="left"><br><br><br><br><br><strong>输出</strong><br>  24 (9+15)</p>
+<p><strong>解决思路</strong><br>root-&gt;left &amp;&amp; !(root-&gt;left-&gt;right) &amp;&amp; !(root-&gt;left-&gt;left)用来判断是否是左叶子结点。递归函数返回的为<br>f(该节点左孩子)+ f(该节点右孩子)的形式。</p>
+<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sumOfLeftLeaves</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) &#123; <span class="keyword">return</span> <span class="number">0</span>; &#125;  </span><br><span class="line">        <span class="comment">//left leave.</span></span><br><span class="line">        <span class="keyword">if</span> (root-&gt;left &amp;&amp; !(root-&gt;left-&gt;left) &amp;&amp; !(root-&gt;left-&gt;right)) &#123;</span><br><span class="line">            res = root-&gt;left-&gt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        res += sumOfLeftLeaves(root-&gt;left) + sumOfLeftLeaves(root-&gt;right);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/2018-10-15-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -393,7 +636,8 @@
 <p><em>note:负数的补码处理可以采用 <code>unsigned int x = num</code> 和 <code>x /= 16</code>处理。 也可以采用 <code>num = ~(-num)+1</code> 加上 <code>x &gt;&gt; 4</code> 处理，int 是32位的，每次移动 4 位，一共可以移动 8 次。 </em></p>
 </blockquote>
 <p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">toHex</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>) &#123; <span class="keyword">return</span> <span class="string">"0"</span>; &#125;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> x = num;</span><br><span class="line">        <span class="comment">//int x = num &gt; 0 ? num : ~(-num) + 1;</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">string</span> res = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> ret = x % <span class="number">16</span>;</span><br><span class="line">            x /= <span class="number">16</span>;</span><br><span class="line">            <span class="keyword">if</span> (ret &lt; <span class="number">10</span>) &#123; res = to_string(ret) + res; &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; res = <span class="keyword">char</span>(<span class="string">'a'</span>+ret%<span class="number">10</span>)+res; &#125;</span><br><span class="line">        &#125; <span class="keyword">while</span> (x);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-
+<h1 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h1><pre><code>时序图（Sequence Diagram）是显示对象之间交互的图，这些对象是按时间顺序排列的。顺序图中显示的是参与交互的对象及其对象之间消息交互的顺序。时序图中包括的建模元素主要有：对象（Actor）、生命线（Lifeline）、控制焦点（Focus of control）、消息（Message）等等。
+</code></pre><h1 id="状态图"><a href="#状态图" class="headerlink" title="状态图"></a>状态图</h1><h1 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h1>
           
         
       
@@ -1326,274 +1570,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/21/2018-9-21-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/21/2018-9-21-blog/" itemprop="url">2018年9月21日</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-21T09:43:12+08:00">
-                2018-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><p>描述：</p>
-<ul>
-<li>n个物品，有不同的重量<code>weight[n]</code>,有不同的价值<code>price[n]</code></li>
-<li>你有一个能承载重量为<code>A</code>的背包，问能带走的最大价值是多少。</li>
-</ul>
-<p><strong>暴力搜索</strong><br>每一个物品都有可能带走或者不带走，枚举出所有情况，此时可以采用深度优先搜索。</p>
-<p><em>notes:price+0代表最后一个节点的价值，dfs+price中price表示保存当前价值，再看看加上后续的点会不会更优解，可以用二叉树理解。</em></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i == n) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j &lt; weight[i]) &#123;</span><br><span class="line">        <span class="comment">//can not take the item</span></span><br><span class="line">        <span class="keyword">return</span> dfs(i+<span class="number">1</span>,j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//can take the item or not take it</span></span><br><span class="line">        <span class="keyword">return</span> max(dfs(i+<span class="number">1</span>,j), dfs(i + <span class="number">1</span>, j - weight[i]) + price[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>记忆搜索1</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dp1[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (dp1[i][j] != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> dp1[i][j];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i == n) &#123;</span><br><span class="line">        res =  <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (j &lt; weight[i]) &#123;</span><br><span class="line">        <span class="comment">//can not take the item</span></span><br><span class="line">        res =  dfs2(i + <span class="number">1</span>, j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//can take the item or not take it</span></span><br><span class="line">        res =  max(dfs2(i + <span class="number">1</span>, j), dfs2(i + <span class="number">1</span>, j - weight[i]) + price[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp1[i][j] = res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>记忆搜索2</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp2(n+<span class="number">1</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(A+<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= A; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j &lt; weight[i]) &#123;</span><br><span class="line">                dp2[i][j] = dp2[i + <span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                dp2[i][j] = max(dp2[i + <span class="number">1</span>][j], dp2[i + <span class="number">1</span>][j - weight[i]] + price[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp2[<span class="number">0</span>][A];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>递推法</strong><br><code>dp[i+1][j]</code>为前i个物品负重为j的最大价值。<br>当<code>i=0</code>时，为<code>dp[0+1][j]</code>代表的含义为一个物品重量为<code>j</code>的最大价值。<br><code>dp[2][10] = max{dp[1][10],dp[1][10-weight[1]]+price[1]};</code><br>物品和价值都是从0开始的，也就是说<code>weight[1]</code>实际上代表的就是第二个的重量。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;dp3(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(A + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= A; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j &lt; weight[i]) &#123;</span><br><span class="line">                dp3[i + <span class="number">1</span>][j] = dp3[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                dp3[i + <span class="number">1</span>][j] = max(dp3[i][j], dp3[i][j - weight[i]] + price[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp3[n][A];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>转移状态</strong><br>一个物品的选用和不选用两种状态，也就是会影响前<code>i+1</code>个物品最大负重量为<code>j</code>(不选中)和<code>j-weight[i+1]</code>(选中)。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp4(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(A + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= A; j++) &#123;</span><br><span class="line">            dp4[i + <span class="number">1</span>][j] = max(dp4[i + <span class="number">1</span>][j], dp4[i][j]);</span><br><span class="line">            <span class="keyword">if</span> (j + weight[i] &lt;= A) &#123;</span><br><span class="line">                dp4[i + <span class="number">1</span>][j + weight[i]] = max(dp4[i + <span class="number">1</span>][j + weight[i]], dp4[i][j] + price[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp4[n][A];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/20/2018-9-20-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/20/2018-9-20-blog/" itemprop="url">2018年9月20日</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-20T22:23:06+08:00">
-                2018-09-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><h2 id="406-Queue-Reconstruction-by-Height"><a href="#406-Queue-Reconstruction-by-Height" class="headerlink" title="406    Queue Reconstruction by Height"></a>406    Queue Reconstruction by Height</h2><p><a href="https://leetcode.com/problems/queue-reconstruction-by-height/" target="_blank" rel="noopener">原题链接</a></p>
-<p>题目描述：给定一些数字，要求重新排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">input:</span><br><span class="line">[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]</span><br></pre></td></tr></table></figure></p>
-<p>每一组数据有两个数字组成，要求每组数据第二个数据为排在它前面大于等于它的数字的个数。<br>比如[5,2]在它前面有两个数据都大于等于它。</p>
-<p>初始数据<code>[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]</code></p>
-<p>解题思路：</p>
-<ol>
-<li>找出最大的数，再对它根据第二个数排序，得到<code>[[7,0],[7,1]]</code></li>
-<li>找出第二大的数，同样的排序，得到<code>[6,1]</code></li>
-<li>将<code>[6,1]</code>插入，得到<code>[[7,0],[6,1],[7,1]]</code></li>
-<li>找出第三大数，<code>[[5,0],[5,1]]</code>插入得到<code>[[5,0],[5,1],[7,0],[6,1],[7,1]]</code></li>
-<li>找出第四大数，<code>[4,4],插入得到[[5,0],[5,1],[7,0],[6,1],[4,1],[7,1]]</code></li>
-<li>DONE。</li>
-</ol>
-<blockquote>
-<p>vector没有自带的find(),set和map有<br>map&lt;int,vector&lt;int&gt;&gt;后面的不会自动排序，而改成map&lt;int,set&lt;int&gt;&gt;可以排序<br>markdowm中的<code>&lt;</code>和<code>&gt;</code>需要转义，利用<code>&amp;it;</code>和<code>&amp;gt;</code><br>map插入数据<code>mymap.insert({1,1})</code>,加入大括号，或者<code>mymap.insert(std::pair&lt;int,int&gt;(1,1))</code></p>
-</blockquote>
-<p><strong>我的代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; reconstructQueue(<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&amp; people) &#123;</span><br><span class="line">        <span class="built_in">map</span> &lt;<span class="keyword">int</span>, <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;&gt; peo;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; people.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">auto</span> p = people[i];</span><br><span class="line">            peo[p.first].insert(p.second);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> iter = peo.rbegin(); iter!= peo.rend(); iter++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> iter2 = iter-&gt;second.begin(); iter2 != iter-&gt;second.end(); iter2++) &#123;</span><br><span class="line">                result.insert(result.begin() + *iter2, &#123; iter-&gt;first,&#123;*iter2&#125; &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>值得学习的代码</strong><br><a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/queueReconstructionByHeight/QueueReconstructionByHeight.cpp" target="_blank" rel="noopener">原文链接</a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; reconstructQueue(<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&amp; people) &#123;</span><br><span class="line">        <span class="keyword">auto</span> comp = [](<span class="keyword">const</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; p1, <span class="keyword">const</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; p2)</span><br><span class="line">        &#123; <span class="keyword">return</span> p1.first == p2.first ? p1.second &lt; p2.second : p1.first &gt; p2.first; &#125;;</span><br><span class="line">        sort(people.begin(), people.end(), comp);</span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; p : people) &#123;</span><br><span class="line">            res.insert(res.begin() + p.second, p);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1644,7 +1620,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
