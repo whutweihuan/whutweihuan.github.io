@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/10/23/2018-10-22-blog/</loc>
+    
+    <lastmod>2018-10-24T02:31:58.075Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/baidu_verify_kO4SZjV9HD.html</loc>
     
     <lastmod>2018-10-24T02:26:40.328Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/2018/10/23/2018-10-23-blog/</loc>
     
     <lastmod>2018-10-23T10:48:34.089Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/10/23/2018-10-22-blog/</loc>
-    
-    <lastmod>2018-10-23T08:51:31.828Z</lastmod>
     
   </url>
   
@@ -177,7 +177,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/04/27/sort/</loc>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2018-09-08T04:41:58.863Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/05/11/python-tkinter/</loc>
     
     <lastmod>2018-09-08T04:41:58.863Z</lastmod>
     
@@ -198,13 +205,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2018-09-08T04:41:58.863Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2018/06/05/python-search/</loc>
     
     <lastmod>2018-09-08T04:41:58.863Z</lastmod>
@@ -212,7 +212,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/05/11/python-tkinter/</loc>
+    <loc>http://yoursite.com/2018/04/30/python-swap/</loc>
     
     <lastmod>2018-09-08T04:41:58.863Z</lastmod>
     
@@ -226,7 +226,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/04/30/python-swap/</loc>
+    <loc>http://yoursite.com/2018/04/27/sort/</loc>
     
     <lastmod>2018-09-08T04:41:58.863Z</lastmod>
     
@@ -380,14 +380,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/02/20/book-reading7/</loc>
+    <loc>http://yoursite.com/2018/02/04/book-reading2/</loc>
     
     <lastmod>2018-09-08T04:41:58.832Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/02/04/book-reading2/</loc>
+    <loc>http://yoursite.com/2018/02/17/book-reading4/</loc>
     
     <lastmod>2018-09-08T04:41:58.832Z</lastmod>
     
@@ -450,7 +450,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/02/17/book-reading4/</loc>
+    <loc>http://yoursite.com/2018/02/20/book-reading7/</loc>
     
     <lastmod>2018-09-08T04:41:58.832Z</lastmod>
     
