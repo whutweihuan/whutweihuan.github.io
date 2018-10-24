@@ -363,6 +363,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  150
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -381,13 +412,17 @@
       
         
           
-            <p><strong>描述</strong><br>累加一棵树的左叶子结点的值。</p>
-<p><strong>输入</strong><br><img src="/2018/10/22/2018-10-22-blog/tree.png" width="150" align="left"><br><br><br><br><br><strong>输出</strong><br>  24 (9+15)</p>
-<p><strong>解决思路</strong><br>root-&gt;left &amp;&amp; !(root-&gt;left-&gt;right) &amp;&amp; !(root-&gt;left-&gt;left)用来判断是否是左叶子结点。递归函数返回的为<br>f(该节点左孩子)+ f(该节点右孩子)的形式。</p>
-<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sumOfLeftLeaves</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) &#123; <span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br><span class="line">        <span class="comment">//left leave.</span></span><br><span class="line">        <span class="keyword">if</span> (root-&gt;left &amp;&amp; !(root-&gt;left-&gt;left) &amp;&amp; !(root-&gt;left-&gt;right)) &#123;</span><br><span class="line">            res = root-&gt;left-&gt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        res += sumOfLeftLeaves(root-&gt;left) + sumOfLeftLeaves(root-&gt;right);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/sum-of-left-leaves/" target="_blank" rel="noopener">原题链接</a></p>
-
-          
+          描述累加一棵树的左叶子结点的值。
+输入输出  24 (9+15)
+解决思路root-&gt;left &amp;&amp; !(root-&gt;left-&gt;right) &amp;&amp; !(root-&gt;left-&gt;left)用来判断是否是左叶子结点。递归函数返回的为f(该节
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/22/2018-10-22-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -487,6 +522,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  65
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -505,9 +571,16 @@
       
         
           
-            <h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><p>考虑将一个二维数组表示成一维的形式，比如 <code>a[3][4]</code> 最后的一个下标为 <code>a[11]</code><br><code>i * 4 + j</code> 就是计算下标的，以最后一个数字的下标11为例，<code>row = 11/4</code> <code>col = 11%4</code></p>
+          二维数组考虑将一个二维数组表示成一维的形式，比如 a[3][4] 最后的一个下标为 a[11]i * 4 + j 就是计算下标的，以最后一个数字的下标11为例，row = 11/4 col = 11%4
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/30/2018-9-30-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -607,6 +680,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  304
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -625,16 +729,16 @@
       
         
           
-            <h2 id="Subsequence-POJ-No-3061"><a href="#Subsequence-POJ-No-3061" class="headerlink" title="Subsequence POJ No.3061"></a>Subsequence POJ No.3061</h2><p>给定长度为 n 的数列整数 a[0], a[1], a[2],…,a[n-1],以及整数 S。求出总和不小于 S 的连续子序列的最小值。</p>
-<p><strong>样例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: n = 10,S = 15,a = &#123;5,1,3,5,10,7,4,2,8&#125;;</span><br><span class="line">输出: 2 (5+10)</span><br></pre></td></tr></table></figure></p>
-<p><strong>思路</strong><br>思路1：累加得到序列b[n],其中b[i] = a[0]+a[1]+…+a[i],i&gt;=0,再利用二分搜索从 i 到 n-1 查找第一个大于 S 的值。<br>思路2：像虫子一样向前挪动。</p>
-<blockquote>
-<p><em>notes: lower_bound(b+i,b+n, S + b[i]) 返回的是地址，减去 b 的首地址，即得到下标</em></p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n,<span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        b[i + <span class="number">1</span>] = a[i] + b[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (b[n] &lt; S) &#123; <span class="keyword">return</span> <span class="number">-1</span>; &#125;</span><br><span class="line">    <span class="keyword">int</span> res = n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; b[n] - b[i] &gt;= S; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> t = lower_bound(b+i,b+n, S + b[i]) - b;</span><br><span class="line">        res = min(res, t-i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>尺取法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve3</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>, t = <span class="number">0</span>, sum = <span class="number">0</span>, res = n + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="keyword">while</span> (sum &lt; S &amp;&amp; t &lt; n) &#123;</span><br><span class="line">            sum += a[t++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (sum &lt; S) &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">        res = res &lt; t - s  ? res : t - s ;</span><br><span class="line">        sum -= a[s++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (res &lt;= n) &#123; <span class="keyword">return</span> res; &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          Subsequence POJ No.3061给定长度为 n 的数列整数 a[0], a[1], a[2],…,a[n-1],以及整数 S。求出总和不小于 S 的连续子序列的最小值。
+样例12输入: n = 10,S = 15,a = &#123;5,1,3,5,10,7,4,2,8&#125;;输
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/29/2018-9-29-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -734,6 +838,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  275
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -752,11 +887,16 @@
       
         
           
-            <h2 id="prim-算法"><a href="#prim-算法" class="headerlink" title="prim 算法"></a>prim 算法</h2><p><strong>思路</strong><br>每次选取一个结点，记已选择的点的集合为 X ,计算未选择的点与 X 集合中结点的权值，选择一个权值最小的结点加入到 X 中。</p>
-<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">prim</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> visited[N] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">    visited[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N<span class="number">-1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> minval = INF;</span><br><span class="line">        <span class="keyword">int</span> t1 = v;</span><br><span class="line">        <span class="keyword">int</span> t2 = v;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (visited[j]) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line">            <span class="comment">//下面这个循环是判断已有的点集合和当前点的最小距离</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; N; k++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (visited[k]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (d[k][j] &lt; minval) &#123;</span><br><span class="line">                        t1 = k; t2 = j;</span><br><span class="line">                        minval = d[k][j];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        sum += minval;</span><br><span class="line">        visited[t2] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>代码2</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">prim_demo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> used[N] ;</span><br><span class="line">    <span class="keyword">int</span> mincost[N] ;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        used[i] = <span class="literal">false</span>;</span><br><span class="line">        mincost[i] = INF;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    mincost[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> u = <span class="number">0</span>; u &lt; N; u++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!used[u] &amp;&amp; (v == <span class="number">-1</span> || mincost[u] &lt; mincost[v])) &#123; v = u; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (v == <span class="number">-1</span>) &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">        used[v] = <span class="literal">true</span>;</span><br><span class="line">        res += mincost[v];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> u = <span class="number">0</span>; u &lt; N; u++) &#123;</span><br><span class="line">            mincost[u] = min(mincost[u], d[v][u]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          prim 算法思路每次选取一个结点，记已选择的点的集合为 X ,计算未选择的点与 X 集合中结点的权值，选择一个权值最小的结点加入到 X 中。
+代码1234567891011121314151617181920212223242526int prim() &#123;    int v = 0;  
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/28/2018-9-28-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -856,6 +996,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  273
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -874,12 +1045,17 @@
       
         
           
-            <p><strong>描述 </strong><br>n条绳子，第i条绳子长度为a[i],切割成长度相同的k段，求能切割出最大的长度</p>
-<p><strong>样例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: n = 4;  k =11 a = &#123;8.02,7.43,4.57,5.39&#125;;</span><br><span class="line">输出: 2.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)</span><br></pre></td></tr></table></figure></p>
-<p><strong>思路</strong><br>将这题转化为求满足 C(x) 的最大的 x,解范围下界是个较小的可行解，上界是一个较大的不可行解，每次取中间值缩小解范围。</p>
-<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">C</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; a,<span class="keyword">int</span> K,<span class="keyword">double</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = a.size();</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        sum += <span class="keyword">int</span>(a[i] / x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum &gt;= K;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; a, <span class="keyword">int</span> K)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> lo = <span class="number">0</span>;                <span class="comment">//下界，显然0是可行解，但很不优，需要向上扩充</span></span><br><span class="line">    <span class="keyword">double</span> hi = <span class="number">10000</span>;            <span class="comment">//上界，不可行解，需要向下收缩</span></span><br><span class="line">    <span class="comment">//循环100次是为了尽量缩小解的范围</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">double</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (C(a, K, mid)) &#123; lo = mid; &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123; hi = mid; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.2lf"</span>, lo);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          描述 n条绳子，第i条绳子长度为a[i],切割成长度相同的k段，求能切割出最大的长度
+样例12输入: n = 4;  k =11 a = &#123;8.02,7.43,4.57,5.39&#125;;输出: 2.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)
+思路将这题转化为求
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/26/2018-9-26-blog_tiaozhan/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -979,6 +1155,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  250
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -997,14 +1204,15 @@
       
         
           
-            <p><strong>描述</strong><br>其中 S 为未访问的城市集合，v为当前所在城市，d[v][u]为由 v 城市到 u 城市之间的距离。利用二进制01来保存访问的状态。第一个返回条件很好理解，就是记忆搜索。对于第二个和第三个需要好好理解一下。 <code>dp[11111][4]</code> 的值为无穷大，它不会经过循环，而是直接赋值。不用担心第一次的分支 <code>dp[00001][0]</code>没有出口，这个值肯定不是最小的，很可能是无穷大。</p>
-<blockquote>
-<p><em>notes: <code>1&lt;&lt;n</code> 代表1左移 n 位</em></p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rec</span><span class="params">(<span class="keyword">int</span> S, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dp[S][v] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> dp[S][v];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (S == (<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span> &amp;&amp; v == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = BIGNUM;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> u = <span class="number">0</span>; u &lt; n; u++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!(S &gt;&gt; u &amp; <span class="number">1</span>)) &#123;</span><br><span class="line">            res = min(res, rec(S | <span class="number">1</span> &lt;&lt; u, u) + d[v][u]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[S][v] = res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//利用这一条语句进行调用，即最终结果</span></span><br><span class="line">rec(<span class="number">0</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-          
+          描述其中 S 为未访问的城市集合，v为当前所在城市，d[v][u]为由 v 城市到 u 城市之间的距离。利用二进制01来保存访问的状态。第一个返回条件很好理解，就是记忆搜索。对于第二个和第三个需要好好理解一下。 dp[11111][4] 的值为无穷大，它不会经过循环，而是直接赋值。不用担心第一次的分
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/26/2018-9-26-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1104,6 +1312,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  67
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1122,16 +1361,22 @@
       
         
           
-            <ul>
-<li>c风格的随机数</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stido.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    srand(time(<span class="number">0</span>));</span><br><span class="line">    rand();  <span class="comment">//rand()为0到最大的int值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>c++ 标准库</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"></span><br><span class="line">default_random_engine e(time(0));</span><br><span class="line">uniform_real_distribution&lt;<span class="keyword">double</span>&gt; u(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> p = u(e); <span class="comment">//p在0到1之间</span></span><br></pre></td></tr></table></figure>
-
           
+c风格的随机数
+
+1234567#include&lt;stido.h&gt;#include&lt;time.h&gt;int main()&#123;    srand(time(0));    rand();  //rand()为0到最大的int值&#125;
+
+c++ 标准库
+
+12345
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/26/2018-9-26-blog_suijs/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1231,6 +1476,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  46
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1249,10 +1525,15 @@
       
         
           
-            <h1 id="java写入文件"><a href="#java写入文件" class="headerlink" title="java写入文件"></a>java写入文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter writer = <span class="keyword">new</span> PrintWriter(<span class="string">"the-file-name.txt"</span>, <span class="string">"UTF-8"</span>);</span><br><span class="line">writer.println(<span class="string">"The first line"</span>);</span><br><span class="line">writer.println(<span class="string">"The second line"</span>);</span><br><span class="line">writer.close();</span><br></pre></td></tr></table></figure>
-<p>如果要写入数值类型，可以进行转换<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = String.valueOf(<span class="number">123</span>);</span><br></pre></td></tr></table></figure></p>
-
-          
+          java写入文件1234PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");writer.println("The first line");writer.println("The second line");writ
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/25/2018-9-25-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1352,6 +1633,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  65
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1370,11 +1682,16 @@
       
         
           
-            <h1 id="android开发"><a href="#android开发" class="headerlink" title="android开发"></a>android开发</h1><p>在布局文件中，点击 preview 无法显示部件。<br>解决方法: 将 <code>res/values/style.xml</code> 中的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=<span class="string">"AppTheme"</span> parent=<span class="string">"Theme.AppCompat.Light.DarkActionBar"</span>&gt;`</span><br></pre></td></tr></table></figure></p>
-<p>修改为:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=<span class="string">"AppTheme"</span> parent=<span class="string">"Base.Theme.AppCompat.Light.DarkActionBar"</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://stackoverflow.com/questions/44223687/render-error-in-android-studio-3-0-layout-editor/45002903#45002903" target="_blank" rel="noopener">参考文章1</a>,<a href="https://github.com/udacity/ud839_Miwok/issues/54" target="_blank" rel="noopener">参考文章2</a></p>
-
-          
+          android开发在布局文件中，点击 preview 无法显示部件。解决方法: 将 res/values/style.xml 中的1&lt;style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"&gt;`
+修改为:1&lt
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/23/2018-9-23-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1474,6 +1791,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  452
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1492,19 +1840,17 @@
       
         
           
-            <p><strong>描述</strong><br>一只青蛙正在过河。 河流分为x个单位，每个单位可能存在或不存在石头。 青蛙可以跳到石头上，但不能跳入水中。</p>
-<p>给出按照升序排序的石块位置（单位），确定青蛙是否能够通过落在最后一块石头上过河。 最初，青蛙在第一块石头上并假设第一次跳跃必须是1个单位。</p>
-<p>如果青蛙的最后一次跳跃是k个单位，那么它的下一个跳跃必须是k-1，k或k + 1个单位。 请注意，青蛙只能向前跳。</p>
-<p><strong>样例1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [0,1,3,5,6,8,12,17]</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
-<p><strong>样例2</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [0,1,2,3,4,8,9,11]</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></p>
-<p><strong>解题思路</strong><br>本题就难在稍大规模的数据，不剪枝的话耗时很长。剪枝思路是，当上一步步长过大，下一个有石头的地方太近，则直接跳过下一个石头，转到下下个石头。当上一步步长过小，无法到达下一个有石头的地方，则直接返回false。</p>
-<blockquote>
-<p><em>note:下面代码中左移30位的作用是保证每一种方案的唯一性，记忆搜索。另外，创建不知道个数的dp可以采用map来保存。</em></p>
-</blockquote>
-<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span> &lt;<span class="keyword">int</span>,<span class="keyword">bool</span>&gt; dp;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canCross</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; stones)</span> </span>&#123;</span><br><span class="line">        dp = &#123;&#125;;</span><br><span class="line">        <span class="keyword">return</span> recursive(stones,<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">recursive</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; stones, <span class="keyword">int</span> index, <span class="keyword">int</span> step)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> key = index &lt;&lt; <span class="number">30</span> | step;</span><br><span class="line">        <span class="keyword">if</span> (dp.find(key) != dp.end()) &#123; <span class="keyword">return</span> dp[key]; &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = index + <span class="number">1</span>; i &lt; stones.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> gap = stones[i] - stones[index];</span><br><span class="line">            <span class="keyword">if</span> (gap &lt; step - <span class="number">1</span>) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line">            <span class="keyword">if</span> (gap &gt; step + <span class="number">1</span>) &#123; <span class="keyword">return</span> dp[key] = <span class="literal">false</span>; &#125;</span><br><span class="line">            <span class="keyword">if</span> (recursive(stones, i, gap)) &#123; <span class="keyword">return</span> dp[key] = <span class="literal">true</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> index+<span class="number">1</span> == stones.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/frog-jump/" target="_blank" rel="noopener">原题链接</a></p>
-
-          
+          描述一只青蛙正在过河。 河流分为x个单位，每个单位可能存在或不存在石头。 青蛙可以跳到石头上，但不能跳入水中。
+给出按照升序排序的石块位置（单位），确定青蛙是否能够通过落在最后一块石头上过河。 最初，青蛙在第一块石头上并假设第一次跳跃必须是1个单位。
+如果青蛙的最后一次跳跃是k个单位，那么它的下一个
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/23/2018-10-23-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
