@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="学习日志," />
+  <meta name="keywords" content="算法,挑战程序设计竞赛," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="二分法来自《挑战程序设计竞赛》  描述: n条绳子，第i条绳子长度为a[i],切割成长度相同的k段，求能切割出最大的长度 input: 1n = 4;  k =11 a = &amp;#123;8.02,7.43,4.57,5.39&amp;#125;;  output: 12.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)  思路：将这题转化为求满足 C(x) 的最大的 x,解范围下界是个较">
-<meta name="keywords" content="学习日志">
+<meta name="description" content="描述其中 S 为未访问的城市集合，v为当前所在城市，d[v][u]为由 v 城市到 u 城市之间的距离。利用二进制01来保存访问的状态。第一个返回条件很好理解，就是记忆搜索。对于第二个和第三个需要好好理解一下。 dp[11111][4] 的值为无穷大，它不会经过循环，而是直接赋值。不用担心第一次的分支 dp[00001][0]没有出口，这个值肯定不是最小的，很可能是无穷大。  notes: 1&amp;l">
+<meta name="keywords" content="算法,挑战程序设计竞赛">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2018年9月26日">
+<meta property="og:title" content="【挑战程序设计竞赛】 TSP 状态压缩动态规划">
 <meta property="og:url" content="http://yoursite.com/2018/09/26/2018-9-26-blog/index.html">
 <meta property="og:site_name" content="welcome">
-<meta property="og:description" content="二分法来自《挑战程序设计竞赛》  描述: n条绳子，第i条绳子长度为a[i],切割成长度相同的k段，求能切割出最大的长度 input: 1n = 4;  k =11 a = &amp;#123;8.02,7.43,4.57,5.39&amp;#125;;  output: 12.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)  思路：将这题转化为求满足 C(x) 的最大的 x,解范围下界是个较">
+<meta property="og:description" content="描述其中 S 为未访问的城市集合，v为当前所在城市，d[v][u]为由 v 城市到 u 城市之间的距离。利用二进制01来保存访问的状态。第一个返回条件很好理解，就是记忆搜索。对于第二个和第三个需要好好理解一下。 dp[11111][4] 的值为无穷大，它不会经过循环，而是直接赋值。不用担心第一次的分支 dp[00001][0]没有出口，这个值肯定不是最小的，很可能是无穷大。  notes: 1&amp;l">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-28T03:56:30.830Z">
+<meta property="og:updated_time" content="2018-10-24T14:14:57.616Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2018年9月26日">
-<meta name="twitter:description" content="二分法来自《挑战程序设计竞赛》  描述: n条绳子，第i条绳子长度为a[i],切割成长度相同的k段，求能切割出最大的长度 input: 1n = 4;  k =11 a = &amp;#123;8.02,7.43,4.57,5.39&amp;#125;;  output: 12.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)  思路：将这题转化为求满足 C(x) 的最大的 x,解范围下界是个较">
+<meta name="twitter:title" content="【挑战程序设计竞赛】 TSP 状态压缩动态规划">
+<meta name="twitter:description" content="描述其中 S 为未访问的城市集合，v为当前所在城市，d[v][u]为由 v 城市到 u 城市之间的距离。利用二进制01来保存访问的状态。第一个返回条件很好理解，就是记忆搜索。对于第二个和第三个需要好好理解一下。 dp[11111][4] 的值为无穷大，它不会经过循环，而是直接赋值。不用担心第一次的分支 dp[00001][0]没有出口，这个值肯定不是最小的，很可能是无穷大。  notes: 1&amp;l">
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-  <title>2018年9月26日 | welcome</title>
+  <title>【挑战程序设计竞赛】 TSP 状态压缩动态规划 | welcome</title>
   
 
 
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2018年9月26日</h1>
+          <h1 class="post-title" itemprop="name headline">【挑战程序设计竞赛】 TSP 状态压缩动态规划</h1>
         
 
         <div class="post-meta">
@@ -342,7 +342,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T08:23:47+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T09:55:22+08:00">
                 2018-09-26
               </time>
             
@@ -380,35 +380,12 @@
       
 
       
-        <h1 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h1><p>来自《挑战程序设计竞赛》</p>
-<ul>
-<li>描述: n条绳子，第i条绳子长度为a[i],切割成长度相同的k段，求能切割出最大的长度</li>
-<li><p>input:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n = 4;  k =11 a = &#123;8.02,7.43,4.57,5.39&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>output:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.00 (每条绳子分割可以得到4条，3条，2条，2条，共11条绳子)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>思路：将这题转化为求满足 C(x) 的最大的 x,解范围下界是个较小的可行解，上界是一个较大的不可行解，每次取中间值缩小解范围。</p>
-</li>
-</ul>
-<p><strong>代码</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">C</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; a,<span class="keyword">int</span> K,<span class="keyword">double</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = a.size();</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        sum += <span class="keyword">int</span>(a[i] / x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum &gt;= K;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; a, <span class="keyword">int</span> K)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> lo = <span class="number">0</span>;                <span class="comment">//下界，显然0是可行解，但很不优，需要向上扩充</span></span><br><span class="line">    <span class="keyword">double</span> hi = <span class="number">10000</span>;            <span class="comment">//上界，不可行解，需要向下收缩</span></span><br><span class="line">    <span class="comment">//循环100次是为了尽量缩小解的范围</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">double</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (C(a, K, mid)) &#123; lo = mid; &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123; hi = mid; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.2lf"</span>, lo);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="TSP-状态压缩动态规划"><a href="#TSP-状态压缩动态规划" class="headerlink" title="TSP 状态压缩动态规划"></a>TSP 状态压缩动态规划</h1><p>其中 S 为未访问的城市集合，v为当前所在城市，d[v][u]为由 v 城市到 u 城市之间的距离。利用二进制01来保存访问的状态。第一个返回条件很好理解，就是记忆搜索。对于第二个和第三个需要好好理解一下。 <code>dp[11111][4]</code> 的值为无穷大，它不会经过循环，而是直接赋值。不用担心第一次的分支 <code>dp[00001][0]</code>没有出口，这个值肯定不是最小的，很可能是无穷大。</p>
+        <p><strong>描述</strong><br>其中 S 为未访问的城市集合，v为当前所在城市，d[v][u]为由 v 城市到 u 城市之间的距离。利用二进制01来保存访问的状态。第一个返回条件很好理解，就是记忆搜索。对于第二个和第三个需要好好理解一下。 <code>dp[11111][4]</code> 的值为无穷大，它不会经过循环，而是直接赋值。不用担心第一次的分支 <code>dp[00001][0]</code>没有出口，这个值肯定不是最小的，很可能是无穷大。</p>
 <blockquote>
 <p><em>notes: <code>1&lt;&lt;n</code> 代表1左移 n 位</em></p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rec</span><span class="params">(<span class="keyword">int</span> S, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dp[S][v] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> dp[S][v];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (S == (<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span> &amp;&amp; v == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = BIGNUM;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> u = <span class="number">0</span>; u &lt; n; u++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!(S &gt;&gt; u &amp; <span class="number">1</span>)) &#123;</span><br><span class="line">            res = min(res, rec(S | <span class="number">1</span> &lt;&lt; u, u) + d[v][u]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[S][v] = res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//利用这一条语句进行调用，即最终结果</span></span><br><span class="line">rec(<span class="number">0</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="c-c-随机数"><a href="#c-c-随机数" class="headerlink" title="c/c++ 随机数"></a>c/c++ 随机数</h1><ul>
-<li>c风格的随机数</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stido.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    srand(time(<span class="number">0</span>));</span><br><span class="line">    rand();  <span class="comment">//rand()为0到最大的int值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>c++ 标准库</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"></span><br><span class="line">default_random_engine e(time(0));</span><br><span class="line">uniform_real_distribution&lt;<span class="keyword">double</span>&gt; u(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> p = u(e); <span class="comment">//p在0到1之间</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -426,7 +403,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/学习日志/" rel="tag"># 学习日志</a>
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/挑战程序设计竞赛/" rel="tag"># 挑战程序设计竞赛</a>
           
         </div>
       
@@ -439,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/25/2018-9-25-blog/" rel="next" title="2018年9月25日">
-                <i class="fa fa-chevron-left"></i> 2018年9月25日
+              <a href="/2018/09/26/2018-9-26-blog_suijs/" rel="next" title="c/c++ 随机数">
+                <i class="fa fa-chevron-left"></i> c/c++ 随机数
               </a>
             
           </div>
@@ -449,8 +428,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/28/2018-9-28-blog/" rel="prev" title="2018年9月28日">
-                2018年9月28日 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/26/2018-9-26-blog_tiaozhan/" rel="prev" title="【挑战程序设计竞赛】 二分法">
+                【挑战程序设计竞赛】 二分法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -503,17 +482,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -528,7 +498,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">93</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -541,7 +511,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -566,22 +536,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分法"><span class="nav-number">1.</span> <span class="nav-text">二分法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TSP-状态压缩动态规划"><span class="nav-number">2.</span> <span class="nav-text">TSP 状态压缩动态规划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#c-c-随机数"><span class="nav-number">3.</span> <span class="nav-text">c/c++ 随机数</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

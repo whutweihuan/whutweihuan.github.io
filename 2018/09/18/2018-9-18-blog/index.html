@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="学习日志," />
+  <meta name="keywords" content="算法,编程之美," />
 
 
 
@@ -94,19 +94,19 @@
 
 
 
-<meta name="description" content="《编程之美》1.15 构造数独深度优先搜索dfs(0,0)开始直到d(8,8),就完成了，可以参考:  数独算法 深度优先搜索和回溯法生成数独  notes:int maxrow = (irow/3)+3得到的是每一个宫里面的行数目最大值。 直接构造这种方法有较大的局限性，生成的数独有规律，但是很快。大致思路是，在中间的宫5里面随机生成数字，之后调行换位置形成左边宫4的位置，以及右边6的位置。持续">
-<meta name="keywords" content="学习日志">
+<meta name="description" content="深度优先搜索dfs(0,0)开始直到d(8,8),就完成了，可以参考:  数独算法 深度优先搜索和回溯法生成数独  notes:int maxrow = (irow/3)+3得到的是每一个宫里面的行数目最大值。 直接构造这种方法有较大的局限性，生成的数独有规律，但是很快。大致思路是，在中间的宫5里面随机生成数字，之后调行换位置形成左边宫4的位置，以及右边6的位置。持续将上2,下8一并完成了。之后利">
+<meta name="keywords" content="算法,编程之美">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2018年9月18日">
+<meta property="og:title" content="【编程之美】1.15 构造数独">
 <meta property="og:url" content="http://yoursite.com/2018/09/18/2018-9-18-blog/index.html">
 <meta property="og:site_name" content="welcome">
-<meta property="og:description" content="《编程之美》1.15 构造数独深度优先搜索dfs(0,0)开始直到d(8,8),就完成了，可以参考:  数独算法 深度优先搜索和回溯法生成数独  notes:int maxrow = (irow/3)+3得到的是每一个宫里面的行数目最大值。 直接构造这种方法有较大的局限性，生成的数独有规律，但是很快。大致思路是，在中间的宫5里面随机生成数字，之后调行换位置形成左边宫4的位置，以及右边6的位置。持续">
+<meta property="og:description" content="深度优先搜索dfs(0,0)开始直到d(8,8),就完成了，可以参考:  数独算法 深度优先搜索和回溯法生成数独  notes:int maxrow = (irow/3)+3得到的是每一个宫里面的行数目最大值。 直接构造这种方法有较大的局限性，生成的数独有规律，但是很快。大致思路是，在中间的宫5里面随机生成数字，之后调行换位置形成左边宫4的位置，以及右边6的位置。持续将上2,下8一并完成了。之后利">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/09/18/2018-9-18-blog/sudu.png">
-<meta property="og:updated_time" content="2018-09-18T14:51:19.900Z">
+<meta property="og:updated_time" content="2018-10-24T11:00:31.894Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2018年9月18日">
-<meta name="twitter:description" content="《编程之美》1.15 构造数独深度优先搜索dfs(0,0)开始直到d(8,8),就完成了，可以参考:  数独算法 深度优先搜索和回溯法生成数独  notes:int maxrow = (irow/3)+3得到的是每一个宫里面的行数目最大值。 直接构造这种方法有较大的局限性，生成的数独有规律，但是很快。大致思路是，在中间的宫5里面随机生成数字，之后调行换位置形成左边宫4的位置，以及右边6的位置。持续">
+<meta name="twitter:title" content="【编程之美】1.15 构造数独">
+<meta name="twitter:description" content="深度优先搜索dfs(0,0)开始直到d(8,8),就完成了，可以参考:  数独算法 深度优先搜索和回溯法生成数独  notes:int maxrow = (irow/3)+3得到的是每一个宫里面的行数目最大值。 直接构造这种方法有较大的局限性，生成的数独有规律，但是很快。大致思路是，在中间的宫5里面随机生成数字，之后调行换位置形成左边宫4的位置，以及右边6的位置。持续将上2,下8一并完成了。之后利">
 <meta name="twitter:image" content="http://yoursite.com/2018/09/18/2018-9-18-blog/sudu.png">
 
 
@@ -142,7 +142,7 @@
 
 
 
-  <title>2018年9月18日 | welcome</title>
+  <title>【编程之美】1.15 构造数独 | welcome</title>
   
 
 
@@ -332,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2018年9月18日</h1>
+          <h1 class="post-title" itemprop="name headline">【编程之美】1.15 构造数独</h1>
         
 
         <div class="post-meta">
@@ -382,15 +382,14 @@
       
 
       
-        <h1 id="《编程之美》"><a href="#《编程之美》" class="headerlink" title="《编程之美》"></a>《编程之美》</h1><h2 id="1-15-构造数独"><a href="#1-15-构造数独" class="headerlink" title="1.15 构造数独"></a>1.15 构造数独</h2><p><strong>深度优先搜索</strong><br>dfs(0,0)开始直到d(8,8),就完成了，可以参考:</p>
+        <p><strong>深度优先搜索</strong><br>dfs(0,0)开始直到d(8,8),就完成了，可以参考:</p>
 <ul>
 <li><a href="https://www.cnblogs.com/heaad/archive/2010/08/01/1789952.html" target="_blank" rel="noopener">数独算法</a></li>
 <li><a href="https://ladit.me/use-dfs-and-backtracking-algorithm-to-generate-sudoku/" target="_blank" rel="noopener">深度优先搜索和回溯法生成数独</a></li>
 </ul>
 <p><em>notes:<code>int maxrow = (irow/3)+3</code>得到的是每一个宫里面的行数目最大值。</em></p>
-<p><strong>直接构造</strong><br>这种方法有较大的局限性，生成的数独有规律，但是很快。<br>大致思路是，在中间的宫5里面随机生成数字，之后调行换位置形成左边宫4的位置，以及右边6的位置。持续将上2,下8一并完成了。<br>之后利用4补全1和7，利用6补全3和9，简单粗暴。<br><img src="/2018/09/18/2018-9-18-blog/sudu.png" width="30%" height="30%"></p>
+<p><strong>直接构造</strong><br>这种方法有较大的局限性，生成的数独有规律，但是很快。<br>大致思路是，在中间的宫5里面随机生成数字，之后调行换位置形成左边宫4的位置，以及右边6的位置。持续将上2,下8一并完成了。<br>之后利用4补全1和7，利用6补全3和9，简单粗暴。<br><img src="/2018/09/18/2018-9-18-blog/sudu.png" width="150" height="150"><br><br><br><br></p>
 <p><em>notes:<code>&lt;img src=&quot;2018-9-18-blog/sudu.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;</code>可以实现调整图片大小。</em></p>
-<h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><h2 id="410-Split-Array-Largest-Sum"><a href="#410-Split-Array-Largest-Sum" class="headerlink" title="410. Split Array Largest Sum"></a>410. Split Array Largest Sum</h2><p><a href="hhttps://leetcode.com/problems/split-array-largest-sum/description/" target="_blank" rel="noopener">题目链接</a><br>题目描述：给一个字符串，然后你重新组合，求组成回文数的最大字符数目。<br>解题思路：利用map数据结构保存每个字符出现的次数，显然偶数可以直接加2。为奇数的话，需要判断这个奇数是否大于1，大于1的话需要加上cnt(奇数)-1。又因为奇数可以放在中间，所以有奇数的话可以在最终的结果上再加上1。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; chmap;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> ch : s) &#123;</span><br><span class="line">            chmap[ch]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> single = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> iter : chmap) &#123;</span><br><span class="line">            <span class="keyword">if</span> (iter.second &amp; <span class="number">1</span>) &#123;</span><br><span class="line">                single = <span class="literal">true</span>;</span><br><span class="line">                sum += iter.second - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;    sum += iter.second;    &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (single) &#123; sum++; &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -408,7 +407,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/学习日志/" rel="tag"># 学习日志</a>
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/编程之美/" rel="tag"># 编程之美</a>
           
         </div>
       
@@ -421,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/17/2018-9-17-blog/" rel="next" title="2018年9月17日">
-                <i class="fa fa-chevron-left"></i> 2018年9月17日
+              <a href="/2018/09/18/2018-9-18-blog_leetcode/" rel="next" title="【leetcode】410. Split Array Largest Sum">
+                <i class="fa fa-chevron-left"></i> 【leetcode】410. Split Array Largest Sum
               </a>
             
           </div>
@@ -431,8 +432,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/19/2018-9-19-blog/" rel="prev" title="2018年9月19日">
-                2018年9月19日 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/19/2018-9-19-blog/" rel="prev" title="【挑战程序设计竞赛】 二分搜索">
+                【挑战程序设计竞赛】 二分搜索 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -485,17 +486,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -510,7 +502,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">93</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -523,7 +515,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -548,22 +540,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《编程之美》"><span class="nav-number">1.</span> <span class="nav-text">《编程之美》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-15-构造数独"><span class="nav-number">1.1.</span> <span class="nav-text">1.15 构造数独</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程题"><span class="nav-number">2.</span> <span class="nav-text">编程题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#410-Split-Array-Largest-Sum"><span class="nav-number">2.1.</span> <span class="nav-text">410. Split Array Largest Sum</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

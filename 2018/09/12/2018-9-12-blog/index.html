@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="学习日志," />
+  <meta name="keywords" content="学习日志,密码," />
 
 
 
@@ -95,20 +95,17 @@
 
 
 <meta name="description" content="切换hexo+next代码高亮主站点配置文件改成这个样子12345highlight:  enable: true  line_number: true  auto_detect: false  &amp;lt;&amp;lt;-----//这里改成false  tab_replace: next主题配置文件更改123456# Code Highlight theme# Available value:#">
-<meta name="keywords" content="学习日志">
+<meta name="keywords" content="学习日志,密码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018年9月12日">
 <meta property="og:url" content="http://yoursite.com/2018/09/12/2018-9-12-blog/index.html">
 <meta property="og:site_name" content="welcome">
 <meta property="og:description" content="切换hexo+next代码高亮主站点配置文件改成这个样子12345highlight:  enable: true  line_number: true  auto_detect: false  &amp;lt;&amp;lt;-----//这里改成false  tab_replace: next主题配置文件更改123456# Code Highlight theme# Available value:#">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://petxkegbg.bkt.clouddn.com/18-9-12/55146775.jpg">
-<meta property="og:image" content="http://petxkegbg.bkt.clouddn.com/18-9-12/97973756.jpg">
-<meta property="og:updated_time" content="2018-09-12T15:24:59.594Z">
+<meta property="og:updated_time" content="2018-10-24T13:41:29.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018年9月12日">
 <meta name="twitter:description" content="切换hexo+next代码高亮主站点配置文件改成这个样子12345highlight:  enable: true  line_number: true  auto_detect: false  &amp;lt;&amp;lt;-----//这里改成false  tab_replace: next主题配置文件更改123456# Code Highlight theme# Available value:#">
-<meta name="twitter:image" content="http://petxkegbg.bkt.clouddn.com/18-9-12/55146775.jpg">
 
 
 
@@ -387,18 +384,6 @@
 <p>next主题配置文件更改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Code Highlight theme</span><br><span class="line"># Available value:</span><br><span class="line">#    normal | night | night eighties | night blue | night bright</span><br><span class="line"># https://github.com/chriskempson/tomorrow-theme</span><br><span class="line"># highlight_theme: normal</span><br><span class="line">highlight_theme: night eighties</span><br></pre></td></tr></table></figure></p>
 <h2 id="密码移位"><a href="#密码移位" class="headerlink" title="密码移位"></a>密码移位</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch = (ch+i-<span class="string">'a'</span>)%<span class="number">26</span>+<span class="string">'a'</span>;</span><br></pre></td></tr></table></figure>
 <p>not is<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> (ch+i&gt;<span class="string">'z'</span>)&#123;</span><br><span class="line">   ch = (ch+i-<span class="string">'z'</span>)+<span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">   ch = ch+i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="《编程之美》"><a href="#《编程之美》" class="headerlink" title="《编程之美》"></a>《编程之美》</h2><h3 id="2-1-统计一个正整数二进制中1的个数"><a href="#2-1-统计一个正整数二进制中1的个数" class="headerlink" title="2.1 统计一个正整数二进制中1的个数"></a>2.1 统计一个正整数二进制中1的个数</h3><p>之前看了一下编程之美，没看懂。现在再看，果然是好书啊。<br><strong>普通法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countBinary1</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (num) &#123;</span><br><span class="line">		sum += num % <span class="number">2</span>;</span><br><span class="line">		num /= <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p> <strong>移位法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countBinary2</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (num) &#123;</span><br><span class="line">		sum += num &amp; <span class="number">1</span>;</span><br><span class="line">		num &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>快速法</strong><br>这个效率是与1的个数有关，超级牛逼！<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countBinary3</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (num) &#123;</span><br><span class="line">		num &amp;= (num - <span class="number">1</span>);</span><br><span class="line">		sum++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>还有以空间换取时间的方法,列出一个很大是数组，直接返回， 时间复杂度是O(1).<br><a href="http://www.cnblogs.com/graphics/archive/2010/06/21/1752421.html" target="_blank" rel="noopener">参考文章</a></p>
-<h2 id="2-2-不要被阶乘吓到"><a href="#2-2-不要被阶乘吓到" class="headerlink" title="2.2 不要被阶乘吓到"></a>2.2 不要被阶乘吓到</h2><p>问题1:给定要给整数n，求n!中末尾0的个数<br>问题2:给定整数n，求n!中最低位1的位置</p>
-<p><strong>问题1</strong><br>分析一下，就是统计含有5的个数,于是有代码:<br>emmm,算法的时间复杂度为O(n*log2(k))<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countFac0</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> k = i;</span><br><span class="line">		<span class="keyword">while</span> (k) &#123;</span><br><span class="line">			<span class="keyword">if</span> (k % <span class="number">5</span> == <span class="number">0</span>) &#123;</span><br><span class="line">				sum++;</span><br><span class="line">				k /= <span class="number">5</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>书中改进后的代码,显然更优，也理解起来更加费力<br>先整体除以5，求数目，再求25的倍数，以此类推</p>
-<p><img src="http://petxkegbg.bkt.clouddn.com/18-9-12/55146775.jpg" alt=""></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countFac2</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (n) &#123;</span><br><span class="line">		sum += n / <span class="number">5</span>;</span><br><span class="line">		n /= <span class="number">5</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>问题二</strong><br>关键要转换成求这个阶乘数的质因数2的个数，加个1就好。<br>二进制数，末尾为0=&gt;为偶数，那就看有多少个0，也就是能除以多少个2，题目要求1的位置，于是要加个1。</p>
-<p><img src="http://petxkegbg.bkt.clouddn.com/18-9-12/97973756.jpg" alt=""></p>
-<p>类似问题一的二解法,本问还可以计算1的个数，用N减得到的即为质因数的个数。</p>
 
       
     </div>
@@ -418,6 +403,8 @@
           
             <a href="/tags/学习日志/" rel="tag"># 学习日志</a>
           
+            <a href="/tags/密码/" rel="tag"># 密码</a>
+          
         </div>
       
 
@@ -429,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/11/2018-9-11-blog/" rel="next" title="2018年9月11日">
-                <i class="fa fa-chevron-left"></i> 2018年9月11日
+              <a href="/2018/09/12/2018-9-12-blog_mei2/" rel="next" title="【编程之美】 2.2 不要被阶乘吓到">
+                <i class="fa fa-chevron-left"></i> 【编程之美】 2.2 不要被阶乘吓到
               </a>
             
           </div>
@@ -439,8 +426,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/13/2018-9-13-blog/" rel="prev" title="2018年9月13日">
-                2018年9月13日 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/13/2018-10-15-blog/" rel="prev" title="【leetcode】405. Convert a Number to Hexadecimal">
+                【leetcode】405. Convert a Number to Hexadecimal <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -518,7 +505,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">93</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -531,7 +518,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -566,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#切换hexo-next代码高亮"><span class="nav-number">1.</span> <span class="nav-text">切换hexo+next代码高亮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码移位"><span class="nav-number">2.</span> <span class="nav-text">密码移位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《编程之美》"><span class="nav-number">3.</span> <span class="nav-text">《编程之美》</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-统计一个正整数二进制中1的个数"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 统计一个正整数二进制中1的个数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-不要被阶乘吓到"><span class="nav-number">4.</span> <span class="nav-text">2.2 不要被阶乘吓到</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#切换hexo-next代码高亮"><span class="nav-number">1.</span> <span class="nav-text">切换hexo+next代码高亮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码移位"><span class="nav-number">2.</span> <span class="nav-text">密码移位</span></a></li></ol></div>
             
 
           </div>
