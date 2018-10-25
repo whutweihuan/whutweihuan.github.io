@@ -315,7 +315,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/photo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -373,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  452
+                  498
                 </span>
               
 
@@ -389,7 +389,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -411,20 +411,16 @@
 
       
         
-          
-            <p><strong>描述</strong><br>一只青蛙正在过河。 河流分为x个单位，每个单位可能存在或不存在石头。 青蛙可以跳到石头上，但不能跳入水中。</p>
-<p>给出按照升序排序的石块位置（单位），确定青蛙是否能够通过落在最后一块石头上过河。 最初，青蛙在第一块石头上并假设第一次跳跃必须是1个单位。</p>
-<p>如果青蛙的最后一次跳跃是k个单位，那么它的下一个跳跃必须是k-1，k或k + 1个单位。 请注意，青蛙只能向前跳。</p>
-<p><strong>样例1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [0,1,3,5,6,8,12,17]</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
-<p><strong>样例2</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [0,1,2,3,4,8,9,11]</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></p>
-<p><strong>解题思路</strong><br>本题就难在稍大规模的数据，不剪枝的话耗时很长。剪枝思路是，当上一步步长过大，下一个有石头的地方太近，则直接跳过下一个石头，转到下下个石头。当上一步步长过小，无法到达下一个有石头的地方，则直接返回false。</p>
-<blockquote>
-<p><em>note:下面代码中左移30位的作用是保证每一种方案的唯一性，记忆搜索。另外，创建不知道个数的dp可以采用map来保存。</em></p>
-</blockquote>
-<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span> &lt;<span class="keyword">int</span>,<span class="keyword">bool</span>&gt; dp;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canCross</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; stones)</span> </span>&#123;</span><br><span class="line">        dp = &#123;&#125;;</span><br><span class="line">        <span class="keyword">return</span> recursive(stones,<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">recursive</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; stones, <span class="keyword">int</span> index, <span class="keyword">int</span> step)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> key = index &lt;&lt; <span class="number">30</span> | step;</span><br><span class="line">        <span class="keyword">if</span> (dp.find(key) != dp.end()) &#123; <span class="keyword">return</span> dp[key]; &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = index + <span class="number">1</span>; i &lt; stones.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> gap = stones[i] - stones[index];</span><br><span class="line">            <span class="keyword">if</span> (gap &lt; step - <span class="number">1</span>) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line">            <span class="keyword">if</span> (gap &gt; step + <span class="number">1</span>) &#123; <span class="keyword">return</span> dp[key] = <span class="literal">false</span>; &#125;</span><br><span class="line">            <span class="keyword">if</span> (recursive(stones, i, gap)) &#123; <span class="keyword">return</span> dp[key] = <span class="literal">true</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> index+<span class="number">1</span> == stones.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/frog-jump/" target="_blank" rel="noopener">原题链接</a></p>
+          <p class="description"><br><center><br>  <font face="楷体"><br>一只青蛙正在过河。 河流分为x个单位，每个单位可能存在或不存在石头。<br>青蛙可以跳到石头上，但不能跳入水中。<br>  </font><br></center><br></p>
 
-          
+<p><img src="/2018/10/23/2018-10-23-blog/sun-3726030_640.jpg" width="100%"><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/23/2018-10-23-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -476,7 +472,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/photo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -631,7 +627,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/photo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -782,7 +778,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/photo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -940,7 +936,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/photo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1093,7 +1089,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/photo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1247,7 +1243,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/photo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1403,7 +1399,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/photo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1561,7 +1557,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/photo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1713,7 +1709,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/photo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1886,7 +1882,7 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/images/photo.png"
                alt="weihuan" />
           <p class="site-author-name" itemprop="name">weihuan</p>
            
