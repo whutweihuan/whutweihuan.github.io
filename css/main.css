@@ -1803,7 +1803,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6a0d2d;
+  background: #cd74e8;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2855,4 +2855,12 @@ p.description {
   font-style: italic;
   color: #666;
   margin-top: 30px;
+}
+body {
+  position: relative;
+  font-family: Lato, -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Heiti SC", STHeiti, "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", "Droid Sans Fallback", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  line-height: 2;
+  color: #555;
+  background: #fff;
 }
