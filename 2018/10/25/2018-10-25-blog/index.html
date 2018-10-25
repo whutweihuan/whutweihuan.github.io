@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="leetcode,算法," />
 
 
 
@@ -94,16 +94,20 @@
 
 
 
+<meta name="description" content="除去 K 个数字后最小值">
+<meta name="keywords" content="leetcode,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2018-10-25-blog">
+<meta property="og:title" content="【leetcode】402 Remove K Digits">
 <meta property="og:url" content="http://yoursite.com/2018/10/25/2018-10-25-blog/index.html">
 <meta property="og:site_name" content="welcome">
+<meta property="og:description" content="除去 K 个数字后最小值">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/2018-10-25-blog/">
-<meta property="og:updated_time" content="2018-10-25T06:43:24.425Z">
+<meta property="og:image" content="http://yoursite.com/2018/10/25/2018-10-25-blog/autumn-3763897_640%20.jpg">
+<meta property="og:updated_time" content="2018-10-25T16:23:36.808Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2018-10-25-blog">
-<meta name="twitter:image" content="http://yoursite.com/2018/10/25/2018-10-25-blog/">
+<meta name="twitter:title" content="【leetcode】402 Remove K Digits">
+<meta name="twitter:description" content="除去 K 个数字后最小值">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/25/2018-10-25-blog/autumn-3763897_640%20.jpg">
 
 
 
@@ -138,7 +142,7 @@
 
 
 
-  <title>2018-10-25-blog | welcome</title>
+  <title>【leetcode】402 Remove K Digits | welcome</title>
   
 
 
@@ -328,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2018-10-25-blog</h1>
+          <h1 class="post-title" itemprop="name headline">【leetcode】402 Remove K Digits</h1>
         
 
         <div class="post-meta">
@@ -351,6 +355,39 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -372,7 +409,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  0
+                  346
                 </span>
               
 
@@ -409,9 +446,16 @@
       
 
       
-        <p class="description"></p>
+        <p class="description">除去 K 个数字后最小值</p>
 
-<p><img src="/2018/10/25/2018-10-25-blog/" alt="" width="100%"><br><a id="more"></a></p>
+<p><img src="/2018/10/25/2018-10-25-blog/autumn-3763897_640 .jpg" alt="" width="100%"><br><a id="more"></a></p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>给定一个非负整数num表示为一个字符串，从数字中删除k个数字，以便新的数字是最小的可能。</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p><strong>样例1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: num = &quot;1432219&quot;, k = 3</span><br><span class="line">输出: &quot;1219&quot;</span><br></pre></td></tr></table></figure></p>
+<p><strong>样例2</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: num = &quot;10200&quot;, k = 1</span><br><span class="line">输出: &quot;200&quot;</span><br></pre></td></tr></table></figure></p>
+<p><strong>样例3</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: num = &quot;10&quot;, k = 2</span><br><span class="line">输出: &quot;0&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>emm，想计算每个数的逆序数，然后逆序数大的移除，遇到的问题是处理很繁琐，而且还要考虑0的存在。参考了一份代码，尝试理解一下，可以理解为从已有的数字中选择出一些数字重新组合，这个过程肯定要选择小一些的数字，但是又不可能从全部数字中选择，下面这段代码 idx 和 i 的理解很关键，i 可以理解为选取的数字数目，但选择哪一个还是以 idx 来控制。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><figcaption><span>c++</span><a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/removeKDigits/RemoveKDigits.cpp" target="_blank" rel="noopener">推荐代码</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">removeKdigits</span><span class="params">(<span class="built_in">string</span> num, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = num.size();</span><br><span class="line">        <span class="keyword">int</span> idx = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">string</span> result=<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - k; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> min_idx = idx;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = min_idx; j &lt;= i + k; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (num[min_idx] &gt; num[j]) &#123; min_idx = j; &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!(result.empty() &amp;&amp; num[min_idx] == <span class="string">'0'</span>)) &#123;</span><br><span class="line">                result.push_back(num[min_idx]);</span><br><span class="line">            &#125;</span><br><span class="line">            idx = min_idx + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (result.empty()) &#123; result = <span class="string">"0"</span>; &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://leetcode.com/problems/remove-k-digits/" target="_blank" rel="noopener">原题链接</a></p>
 <hr>
       
     </div>
@@ -426,6 +470,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
       
 
       
@@ -498,8 +550,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/photo.png"
@@ -520,6 +581,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
           
 
           
@@ -552,6 +622,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例"><span class="nav-number">2.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
