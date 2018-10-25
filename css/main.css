@@ -1297,8 +1297,9 @@ pre .javascript .function {
 .posts-expand .post-body img {
   box-sizing: border-box;
   margin: auto;
-  padding: none;
-  border: 1px solid #ddd;
+  padding: 3px;
+/*border: 1px solid $gray-lighter;*/
+  border: none;
 }
 .posts-expand .fancybox img {
   margin: 0 auto;
@@ -1808,7 +1809,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e447e3;
+  background: #f4f7e3;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2783,7 +2784,47 @@ embed {
 .posts-expand .post-body img {
   border: none;
   padding: 0px;
+  border-radius: 10px;
 }
 .post-gallery .post-gallery-img img {
   padding: 3px;
+}
+body {
+/*background:url(https://source.unsplash.com/random/1600x900);*/
+  background: url("/images/bricks-459299_1920.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+}
+.main-inner {
+  margin-top: 60px;
+  padding: 60px 60px 60px 60px;
+  background: #fff;
+  opacity: 0.8;
+  min-height: 500px;
+}
+.posts-expand .post-meta .post-description {
+  font-style: italic;
+  font-size: 14px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+  color: #666;
+}
+.posts-expand .post-meta {
+  margin: 3px 0 10px 0;
+  color: #999;
+  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 12px;
+  text-align: center;
+}
+.post-button {
+  margin-top: 5px;
+}
+.post-button .btn {
+  color: #000;
+  font-size: 14px;
+  background: #fff;
+  border-radius: 5px;
+  line-height: 2;
+  margin: 0 4px 8px 4px;
 }
