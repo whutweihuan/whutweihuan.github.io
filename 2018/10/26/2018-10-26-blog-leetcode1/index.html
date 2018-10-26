@@ -94,20 +94,18 @@
 
 
 
-<meta name="description" content="二进制表，给出可能的时间">
+<meta name="description" content="二进制表，给出可能的时间  &amp;lt;img src=”2018-10-26-blog-leetcode1/dawn-3358468_640.jpg” alt=””width=”100%”&amp;gt;">
 <meta name="keywords" content="leetcode,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【leetcode】401 Binary Watch">
 <meta property="og:url" content="http://whutweihuan.github.io/2018/10/26/2018-10-26-blog-leetcode1/index.html">
 <meta property="og:site_name" content="welcome">
-<meta property="og:description" content="二进制表，给出可能的时间">
+<meta property="og:description" content="二进制表，给出可能的时间  &amp;lt;img src=”2018-10-26-blog-leetcode1/dawn-3358468_640.jpg” alt=””width=”100%”&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://whutweihuan.github.io/2018/10/26/2018-10-26-blog-leetcode1/dawn-3358468_640.jpg">
-<meta property="og:updated_time" content="2018-10-26T09:47:18.486Z">
+<meta property="og:updated_time" content="2018-10-26T13:01:10.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【leetcode】401 Binary Watch">
-<meta name="twitter:description" content="二进制表，给出可能的时间">
-<meta name="twitter:image" content="http://whutweihuan.github.io/2018/10/26/2018-10-26-blog-leetcode1/dawn-3358468_640.jpg">
+<meta name="twitter:description" content="二进制表，给出可能的时间  &amp;lt;img src=”2018-10-26-blog-leetcode1/dawn-3358468_640.jpg” alt=””width=”100%”&amp;gt;">
 
 
 
@@ -411,7 +409,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  447
+                  462
                 </span>
               
 
@@ -450,7 +448,7 @@
       
         <p class="description">二进制表，给出可能的时间</p>
 
-<p><img src="/2018/10/26/2018-10-26-blog-leetcode1/dawn-3358468_640.jpg" alt="" width="100%"><br><a id="more"></a></p>
+<p>&lt;img src=”2018-10-26-blog-leetcode1/dawn-3358468_640.jpg” alt=””width=”100%”&gt;<br><a id="more"></a></p>
 <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>有一块二进制表，4 个灯代表小时( 0 - 11 ), 6 个灯代表分钟( 00 - 59 )现在告诉你有 n 个灯亮了，你需要给出所有的可能时间。</p>
 <h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 1</span><br><span class="line">输出: [&quot;1:00&quot;, &quot;2:00&quot;, &quot;4:00&quot;, &quot;8:00&quot;, &quot;0:01&quot;, &quot;0:02&quot;, &quot;0:04&quot;, &quot;0:08&quot;, &quot;0:16&quot;, &quot;0:32&quot;]</span><br></pre></td></tr></table></figure>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>😅 想直接枚举解决，一个一个列出来，一个灯的话 0 , 1 , 2 , … , 两个灯的话，01, 02 , 03 , … ? 这样列举十个灯实在太烦人了。于是换了一种 a + b 的方法，a代表小时灯亮的个数， b 代表分钟灯亮的个数，分别计算。开始想枚举 a = 0 , a = 1 ,后来发现这可以转化为统计一个数的二进制数 1 的个数， 豁然开朗。</p>
