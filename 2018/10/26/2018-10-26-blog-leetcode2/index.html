@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="leetcode,算法," />
 
 
 
@@ -94,18 +94,21 @@
 
 
 
-<meta name="description" content="123456789101112131415161718192021222324252627282930313233import tkinter as tk     #引入包win = tk.Tk()win.geometry(&apos;200x200&apos;)   #大小var = tk.StringVar()      #tk字符串text = tk.Text()          #文本框text.inser">
-<meta name="keywords" content="python">
+<meta name="description" content="无限长数的第 n 位">
+<meta name="keywords" content="leetcode,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python-tkinter">
-<meta property="og:url" content="http://whutweihuan.github.io/2018/05/11/python-tkinter/index.html">
+<meta property="og:title" content="【leetcode】">
+<meta property="og:url" content="http://whutweihuan.github.io/2018/10/26/2018-10-26-blog-leetcode2/index.html">
 <meta property="og:site_name" content="welcome">
-<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233import tkinter as tk     #引入包win = tk.Tk()win.geometry(&apos;200x200&apos;)   #大小var = tk.StringVar()      #tk字符串text = tk.Text()          #文本框text.inser">
+<meta property="og:description" content="无限长数的第 n 位">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-08T04:41:58.863Z">
+<meta property="og:image" content="http://whutweihuan.github.io/2018/10/26/2018-10-26-blog-leetcode2/bird-3732867_640.jpg">
+<meta property="og:image" content="http://whutweihuan.github.io/2018/10/26/2018-10-26-blog-leetcode2/nth%20digit%20bug.png">
+<meta property="og:updated_time" content="2018-10-26T12:47:59.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python-tkinter">
-<meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233import tkinter as tk     #引入包win = tk.Tk()win.geometry(&apos;200x200&apos;)   #大小var = tk.StringVar()      #tk字符串text = tk.Text()          #文本框text.inser">
+<meta name="twitter:title" content="【leetcode】">
+<meta name="twitter:description" content="无限长数的第 n 位">
+<meta name="twitter:image" content="http://whutweihuan.github.io/2018/10/26/2018-10-26-blog-leetcode2/bird-3732867_640.jpg">
 
 
 
@@ -134,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://whutweihuan.github.io/2018/05/11/python-tkinter/"/>
+  <link rel="canonical" href="http://whutweihuan.github.io/2018/10/26/2018-10-26-blog-leetcode2/"/>
 
 
 
 
 
-  <title>python-tkinter | welcome</title>
+  <title>【leetcode】 | welcome</title>
   
 
 
@@ -315,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/11/python-tkinter/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/10/26/2018-10-26-blog-leetcode2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -332,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python-tkinter</h1>
+          <h1 class="post-title" itemprop="name headline">【leetcode】</h1>
         
 
         <div class="post-meta">
@@ -344,8 +347,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T00:00:00+08:00">
-                2018-05-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T20:46:24+08:00">
+                2018-10-26
               </time>
             
 
@@ -354,6 +357,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -376,7 +412,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  176
+                  413
                 </span>
               
 
@@ -413,8 +449,18 @@
       
 
       
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk     <span class="comment">#引入包</span></span><br><span class="line">win = tk.Tk()</span><br><span class="line">win.geometry(<span class="string">'200x200'</span>)   <span class="comment">#大小</span></span><br><span class="line">var = tk.StringVar()      <span class="comment">#tk字符串</span></span><br><span class="line">text = tk.Text()          <span class="comment">#文本框</span></span><br><span class="line">text.insert(<span class="string">'insert'</span>,var)</span><br><span class="line"></span><br><span class="line">lb = tk.Listbx(win,lisvariable=var)</span><br><span class="line">tk.Scale()  <span class="comment">#横条</span></span><br><span class="line">tk.CheckButton()</span><br><span class="line"></span><br><span class="line">canvas = tk.Canvas(win,bg=<span class="string">'blue'</span>,height=<span class="number">100</span>,width=<span class="number">200</span>)</span><br><span class="line">bt = tk.Button(win,text=<span class="string">'move'</span>,command=move) <span class="comment">#command指向的是一个函数</span></span><br><span class="line">bt.pack()   <span class="comment">#布置到窗口上去</span></span><br><span class="line"></span><br><span class="line">image_file = tk.PhotoImage(file=<span class="string">'abc.gif'</span>)</span><br><span class="line">image = canvas.create_image(<span class="number">0</span>,<span class="number">0</span>,anchor=<span class="string">'nw'</span>,image=image_file)   <span class="comment">#將锚点定在左上角0，0处</span></span><br><span class="line">line = canvas.create_line(x0,y0,x1,y1)</span><br><span class="line">canvas.move(rect,<span class="number">0</span>,<span class="number">2</span>)  <span class="comment">#rect 为移动的对象</span></span><br><span class="line"></span><br><span class="line">menubar = tk.MenuBar(win)</span><br><span class="line">filemenu = tk.Menu(menubar,tearoff=<span class="number">0</span>)</span><br><span class="line">menubar.add_cascade(label=<span class="string">'File'</span>,menu=filemenu)</span><br><span class="line">filemenu.add_commond(label=<span class="string">'new'</span>,commond=do_job)</span><br><span class="line">filemenu.add_separator()  <span class="comment">#分隔线</span></span><br><span class="line">win.congfig(menu=menubar)</span><br><span class="line"></span><br><span class="line">.pack()</span><br><span class="line">.place(x=<span class="number">10</span>,y=<span class="number">100</span>,anchor=<span class="string">'nw'</span>)</span><br><span class="line">.grid(row=i,col=j,padx,pad,y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">tk.MessageBox.showInfo(title=<span class="string">'hi'</span>,message=<span class="string">'HaHa'</span>)</span><br></pre></td></tr></table></figure>
+        <p class="description">无限长数的第 n 位</p>
 
+<p><img src="/2018/10/26/2018-10-26-blog-leetcode2/bird-3732867_640.jpg" alt="" width="100%"><br><a id="more"></a></p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>有数列 1 , 2 , 3 , … ,给定一个正整数 n 返回这个数的第 n 位</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p><strong>样例1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 3</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure></p>
+<p><strong>样例2</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 11</span><br><span class="line">输出: 0 (注意第十一位是 10 的个位)</span><br></pre></td></tr></table></figure></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最开始想枚举 2 ^ 31 发现循环时间太长了。 后发现数字是按照 9 <em> 10 ^ iter </em> (iter+1)增长的。于是可以将一个位数缩小到一个范围，能解决小数据问题，题目直接给了一个数据<br>1000,0000 emmm, 时间还是很久，之后发现还可以继续缩小，想象这样一个场景， 你有 2 个苹果， 要放到容积为 2 的抽屉里面，抽屉有序，抽屉里面的空间也有序，放在哪一个位置呢 ？ 2 / 2 = 1 要放到第一个抽屉，2 % 2 = 0，放在这个抽屉的最后一个位置，可以想象一下一个二维数组的排列，求余为 0 就是最后一个数据啦！😄，所以 3 个苹果就是放在第一个抽屉的末尾再加上一个位置，也就是第二个抽屉的第一个。这也就是代码后半部分做的工作。</p>
+<p>放一张想不清楚分苹果的人的结果图</p>
+<p><img src="/2018/10/26/2018-10-26-blog-leetcode2/nth digit bug.png" alt=""></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findNthDigit</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> num=<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> iter = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> endn = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> value = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (n &gt;  <span class="number">9</span> * <span class="built_in">pow</span>(<span class="number">10</span>, iter)*(iter + <span class="number">1</span>)) &#123;</span><br><span class="line">            endn += <span class="number">9</span> * <span class="built_in">pow</span>(<span class="number">10</span>, iter) ;</span><br><span class="line">            n -= <span class="number">9</span> * <span class="built_in">pow</span>(<span class="number">10</span>, iter)*(iter + <span class="number">1</span>);</span><br><span class="line">            iter++;</span><br><span class="line">        &#125;</span><br><span class="line">        iter++; <span class="comment">//代表检测到在iter位数的位置</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> gap = n / iter;</span><br><span class="line">        <span class="keyword">int</span> mod = n % iter;</span><br><span class="line">        <span class="keyword">int</span> start = endn + gap;</span><br><span class="line">        num = to_string(start%<span class="number">10</span>)+to_string(start+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> num[mod] - <span class="string">'0'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://leetcode.com/problems/nth-digit/" target="_blank" rel="noopener">原题链接</a></p>
+<hr>
       
     </div>
     
@@ -431,7 +477,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
           
         </div>
       
@@ -444,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/11/python-turtle/" rel="next" title="Python-turtle">
-                <i class="fa fa-chevron-left"></i> Python-turtle
+              <a href="/2018/10/26/2018-10-26-blog-leetcode1/" rel="next" title="【leetcode】401 Binary Watch">
+                <i class="fa fa-chevron-left"></i> 【leetcode】401 Binary Watch
               </a>
             
           </div>
@@ -453,10 +501,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/16/book-reading-精进/" rel="prev" title="《精进》">
-                《精进》 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -510,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/photo.png"
@@ -573,6 +626,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例"><span class="nav-number">2.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

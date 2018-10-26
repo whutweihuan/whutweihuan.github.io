@@ -312,6 +312,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/28/mfc-combobox/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/28/mfc-combobox/" itemprop="url">MFC 下拉列表</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T00:00:00+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  167
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&emsp; 利用mfc要完成效果如图：<br><br><br><img src="/2018/05/28/mfc-combobox/./mfc-combobox/hobby.JPG" alt=""></p>
+<ul>
+<li>创建mfc工程，选择对话框项目，选择资源文件的xxxx.rc2，进入后选择dialog,之后利用添加控件combobox</li>
+<li>右键控件，添加变量m_cbox</li>
+<li><p>添加控件Item,在OnInitDialog()中添加：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m_cList1.AddString(<span class="string">L"jack1"</span>);</span><br><span class="line">m_cList1.AddString(<span class="string">L"jack2"</span>);</span><br></pre></td></tr></table></figure>
+<p>  或者直接在属性中data中添加，注意两个变量间要以;(分号)隔开</p>
+</li>
+<li><p>获取变量内容：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CString msg;</span><br><span class="line">m_cList1.GetLBText(m_cList1.GetCurSel(), msg);</span><br></pre></td></tr></table></figure>
+<p>  msg 是一个全局变量用于传递消息</p>
+</li>
+<li><p>button 设置显示内容:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UpdateData(TRUE);</span><br><span class="line">m_edit = msg+<span class="string">L"爱好"</span>+msg2;</span><br><span class="line">UpdateData(FALSE);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Done</p>
+</li>
+</ul>
+<p>&amp;nbsp ;&amp;emsp ; 为空格,.=_=.(去掉分号与字母间的空格才可以)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/27/English-font/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -916,157 +1085,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/11/Linux-vim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/11/Linux-vim/" itemprop="url">Linux-vim</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T00:00:00+08:00">
-                2018-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  429
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近看了一本书《vim实战技巧》，感觉讲的比较好，做了些笔记<br>对于HJKL移位，手指最好保持在本位上，这一点建议很不错，以前见到一些教程叫我左移一格，真是妖言惑众<br>另外不断切换中英文形态在vim中操作好难受，fcitx词库可真小。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">.  重复上一次操作 </span><br><span class="line">w  跳到下一个单词开头</span><br><span class="line">e  跳到单词末尾</span><br><span class="line">b  跳到上一个单词开头</span><br><span class="line"></span><br><span class="line">fs ; , 跳到该行s字符位置</span><br><span class="line"></span><br><span class="line">ce    替换当前单词和一个空格</span><br><span class="line">cw    替换当前单词和一个空格</span><br><span class="line">%s/a/c/gc  全局替换，將所有a换成c，并且会提示是否换</span><br><span class="line"></span><br><span class="line">&lt;C-a&gt;  &lt;C-x&gt; 对该行数字进行增加和减少   10&lt;C-a&gt; 会对当前数字增加10</span><br><span class="line"></span><br><span class="line">gg=G  全局缩进</span><br><span class="line"></span><br><span class="line">daw  删除光标所在单词和一个空格</span><br><span class="line">diw  删除光标所在单词</span><br><span class="line">dap  删除光标所在段落</span><br><span class="line">gUap 將光标所在单词段落全部变为大写</span><br><span class="line">/search 正向查找单词</span><br><span class="line">?search 反向查找单词</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">need bundle:https://github.com/kana/vim-textobj-entire</span><br><span class="line">gcc 注释该行</span><br><span class="line">gcap 注释该段落</span><br><span class="line">gcG 注释到结尾</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;C-o&gt;zz  將光标所在处居中</span><br><span class="line"></span><br><span class="line">&lt;C-v&gt; 列选择</span><br><span class="line">&lt;S-v&gt; 行选择</span><br><span class="line">v    字符选择</span><br><span class="line"></span><br><span class="line">:%normalA; 在每行后面都加入;</span><br><span class="line"></span><br><span class="line">:bn  切换下一个文件</span><br><span class="line">:bp  切换到上一个文件</span><br><span class="line"></span><br><span class="line">w | !gcc % -o a &amp;&amp; ./a  编译执行</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">:1,3 co $  將1到3行赋值到行尾</span><br><span class="line">:1,3 m $   將1到三行移动到行尾</span><br><span class="line"></span><br><span class="line">mm  设置标志方便跳回</span><br><span class="line">`m  跳回标志</span><br><span class="line"></span><br><span class="line">lilydjwg/fcitx.vim bundle will work if you feel unease to swich to Chinese.</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/11/python-tkinter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1321,6 +1339,157 @@
         
           
             <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> turtle <span class="keyword">as</span> t</span><br><span class="line"></span><br><span class="line">t.setup(width,height,startx,starty)</span><br><span class="line"></span><br><span class="line">t.goto(x,y)</span><br><span class="line">t.fd(<span class="number">100</span>)  <span class="comment">#前进</span></span><br><span class="line">t.bk(<span class="number">100</span>)  <span class="comment">#后退</span></span><br><span class="line"></span><br><span class="line">t.circle(R,<span class="number">180</span>)           <span class="comment">#半径，左边角度</span></span><br><span class="line">t.seth(<span class="number">180</span>)</span><br><span class="line"></span><br><span class="line">t.colormode()</span><br><span class="line">t.pu()      <span class="comment">#抬起画笔</span></span><br><span class="line">t.pd()     <span class="comment">#放下画笔</span></span><br><span class="line">t.opensize(<span class="number">7</span>)</span><br><span class="line">t.pencolor(<span class="string">'red'</span>)</span><br><span class="line">t.ht()       <span class="comment">#隐藏</span></span><br><span class="line">t.st()       <span class="comment">#显示</span></span><br><span class="line"></span><br><span class="line">t.trace(<span class="keyword">False</span>)  <span class="comment">#轨迹</span></span><br><span class="line">t.setup()</span><br><span class="line">t.clear()</span><br><span class="line"></span><br><span class="line">t.rt(<span class="number">144</span>)   <span class="comment">#右转</span></span><br><span class="line">t.lt(<span class="number">144</span>)   <span class="comment">#左转</span></span><br><span class="line"></span><br><span class="line">t.begin_fill()</span><br><span class="line">t.end_fill()</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/11/Linux-vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/11/Linux-vim/" itemprop="url">Linux-vim</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T00:00:00+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  429
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近看了一本书《vim实战技巧》，感觉讲的比较好，做了些笔记<br>对于HJKL移位，手指最好保持在本位上，这一点建议很不错，以前见到一些教程叫我左移一格，真是妖言惑众<br>另外不断切换中英文形态在vim中操作好难受，fcitx词库可真小。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">.  重复上一次操作 </span><br><span class="line">w  跳到下一个单词开头</span><br><span class="line">e  跳到单词末尾</span><br><span class="line">b  跳到上一个单词开头</span><br><span class="line"></span><br><span class="line">fs ; , 跳到该行s字符位置</span><br><span class="line"></span><br><span class="line">ce    替换当前单词和一个空格</span><br><span class="line">cw    替换当前单词和一个空格</span><br><span class="line">%s/a/c/gc  全局替换，將所有a换成c，并且会提示是否换</span><br><span class="line"></span><br><span class="line">&lt;C-a&gt;  &lt;C-x&gt; 对该行数字进行增加和减少   10&lt;C-a&gt; 会对当前数字增加10</span><br><span class="line"></span><br><span class="line">gg=G  全局缩进</span><br><span class="line"></span><br><span class="line">daw  删除光标所在单词和一个空格</span><br><span class="line">diw  删除光标所在单词</span><br><span class="line">dap  删除光标所在段落</span><br><span class="line">gUap 將光标所在单词段落全部变为大写</span><br><span class="line">/search 正向查找单词</span><br><span class="line">?search 反向查找单词</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">need bundle:https://github.com/kana/vim-textobj-entire</span><br><span class="line">gcc 注释该行</span><br><span class="line">gcap 注释该段落</span><br><span class="line">gcG 注释到结尾</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;C-o&gt;zz  將光标所在处居中</span><br><span class="line"></span><br><span class="line">&lt;C-v&gt; 列选择</span><br><span class="line">&lt;S-v&gt; 行选择</span><br><span class="line">v    字符选择</span><br><span class="line"></span><br><span class="line">:%normalA; 在每行后面都加入;</span><br><span class="line"></span><br><span class="line">:bn  切换下一个文件</span><br><span class="line">:bp  切换到上一个文件</span><br><span class="line"></span><br><span class="line">w | !gcc % -o a &amp;&amp; ./a  编译执行</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">:1,3 co $  將1到3行赋值到行尾</span><br><span class="line">:1,3 m $   將1到三行移动到行尾</span><br><span class="line"></span><br><span class="line">mm  设置标志方便跳回</span><br><span class="line">`m  跳回标志</span><br><span class="line"></span><br><span class="line">lilydjwg/fcitx.vim bundle will work if you feel unease to swich to Chinese.</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1658,165 +1827,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/30/ans-noline/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/30/ans-noline/" itemprop="url">非线性方程求根</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-30T00:00:00+08:00">
-                2018-04-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  707
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="二分法搜索根"><a href="#二分法搜索根" class="headerlink" title="二分法搜索根"></a>二分法搜索根</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span> <span class="params">(x)</span>:</span></span><br><span class="line">    x=float(x)</span><br><span class="line">    c= pow(x,<span class="number">4</span>)+<span class="number">2</span>*pow(x,<span class="number">3</span>)+pow(x,<span class="number">2</span>)<span class="number">-5</span></span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">()</span>:</span></span><br><span class="line">    ep = input(<span class="string">"输入精度"</span>)</span><br><span class="line">    ep =float(ep)</span><br><span class="line">    a=input(<span class="string">"输入区间a,b"</span>)</span><br><span class="line">    a=float(a)</span><br><span class="line">    b=input()</span><br><span class="line">    b=float(b)</span><br><span class="line">    <span class="keyword">if</span> f(a)==<span class="number">0</span>:</span><br><span class="line">        x=a</span><br><span class="line">    <span class="keyword">elif</span> f(b)==<span class="number">0</span>:</span><br><span class="line">        x=b</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">while</span> (b-a)/<span class="number">2</span>&gt;ep:</span><br><span class="line">            m=(a+b)/<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> f(a)*f(m)&gt;<span class="number">0</span>:</span><br><span class="line">                a=m</span><br><span class="line">            <span class="keyword">elif</span> f(b)*f(m)&gt;<span class="number">0</span>:</span><br><span class="line">                b=m;</span><br><span class="line">        x=(a+b)/<span class="number">2</span></span><br><span class="line">    print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    search()</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="简单迭代法"><a href="#简单迭代法" class="headerlink" title="简单迭代法"></a>简单迭代法</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## 求解 x^5 + 5x^4 -41 = 0 在[1,3]的单根</span></span><br><span class="line"><span class="comment">## 注意 x = (-x^5 +41)/5 不收敛</span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">-5</span>*x+<span class="number">41</span>)**<span class="number">0.2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x=input(<span class="string">"输入迭代初值: "</span>)</span><br><span class="line">    x= float(x) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    x1=x</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x1 = x</span><br><span class="line">        x = f(x1)</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="牛顿迭代法"><a href="#牛顿迭代法" class="headerlink" title="牛顿迭代法"></a>牛顿迭代法</h2><p>迭代公式<br><img src="/2018/04/30/ans-noline/./ans-noline/niudun.gif" alt=""><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 牛顿迭代法</span></span><br><span class="line"><span class="comment">## f(x)=0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 求解 x^3 -2x -55 = 0 在区间 [3,4] 的根,以4为初值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x - (x**<span class="number">3</span><span class="number">-2</span>*x<span class="number">-55</span>)/(<span class="number">3</span>*x**<span class="number">2</span><span class="number">-2</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x=input(<span class="string">"输入迭代初值: "</span>)</span><br><span class="line">    x= float(x) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    x1=x</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x1 = x</span><br><span class="line">        x = f(x1)</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="艾特金加速法"><a href="#艾特金加速法" class="headerlink" title="艾特金加速法"></a>艾特金加速法</h2><p><div style="float:left;"><br><img src="/2018/04/30/ans-noline/./ans-noline/2.jpg" alt=""><br></div><br><br><br><br><br><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 艾特金加速迭代法</span></span><br><span class="line"><span class="comment">## yn = x(n+1)</span></span><br><span class="line"><span class="comment">## zn = x(n+2)</span></span><br><span class="line"><span class="comment">## x(n+1) = x(n) - (yn - x(n))^2/(zn - 2y + x)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## 求解 x^5 - 3x^4 -1 = 0 在3附近的单根</span></span><br><span class="line"><span class="comment">## 变形为 x = 3 + 1/x^4</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span> + <span class="number">1</span>/x**<span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    y = f1(x)</span><br><span class="line">    z = f1(y)</span><br><span class="line">    <span class="keyword">return</span> x - (y-x)**<span class="number">2</span>/(z<span class="number">-2</span>*y+x)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x=input(<span class="string">"输入迭代初值: "</span>)</span><br><span class="line">    x= float(x) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    x1=x</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x1 = x</span><br><span class="line">        x = f(x1)</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="变形双点截弦法"><a href="#变形双点截弦法" class="headerlink" title="变形双点截弦法"></a>变形双点截弦法</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">##变形的双点弦截法</span></span><br><span class="line"><span class="comment">## x(n+1) = x(n) - ((x(n)-x(n-1))/f(x(n))-f(x(n-1)))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## x^4 + 2x^3 + x^2 -5 =0 在[0,2]范围内单根,取x0=0,x1 =2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x**<span class="number">4</span> + <span class="number">2</span>*x**<span class="number">3</span> + x**<span class="number">2</span> <span class="number">-5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x0=input(<span class="string">"输入迭代初值x0: "</span>)</span><br><span class="line">    x1=input(<span class="string">"输入迭代初值x1: "</span>)</span><br><span class="line">    x0= float(x0) </span><br><span class="line">    x1= float(x1) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    f0 = f(x0)</span><br><span class="line">    f1 = f(x1)</span><br><span class="line">    n =<span class="number">0</span>    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x = x1 - f1*(x1 - x0)/(f1 - f0)</span><br><span class="line">        y = f(x)</span><br><span class="line"></span><br><span class="line">        x0 = x1</span><br><span class="line">        f0 = f1</span><br><span class="line">        x1 = x</span><br><span class="line">        f1 = y</span><br><span class="line">        <span class="keyword">if</span> (y==<span class="number">0</span>):</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x0-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1869,7 +1879,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">96</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
