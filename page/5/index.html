@@ -312,6 +312,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_leetcode1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_leetcode1/" itemprop="url">【leetcode】 859 Buddy Strings</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T00:00:00+08:00">
+                2018-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  332
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>描述</strong><br>这道题交换两个字符后相等</p>
+<p><strong>我的做法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">buddyStrings</span><span class="params">(<span class="built_in">string</span> A, <span class="built_in">string</span> B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (A.length() != B.length())<span class="comment">//长度不同直接返回false</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> strLength = A.length();</span><br><span class="line">        <span class="keyword">if</span> (A==B)<span class="comment">//字符串一样直接返回true</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//存在两个相同的字符才可以</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strLength; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; strLength; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (A.at(i) == A.at(j))</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ind1, ind2;<span class="comment">//能成功的必须只有两处不同</span></span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strLength; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (A.at(i) != B.at(i))</span><br><span class="line">            &#123;</span><br><span class="line">                flag++;</span><br><span class="line">                <span class="keyword">if</span> (flag == <span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ind1 = i;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (flag == <span class="number">2</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ind2 = i;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> temp_val = A.at(ind1);</span><br><span class="line">        A.at(ind1) = A.at(ind2);</span><br><span class="line">        A.at(ind2) = temp_val;</span><br><span class="line">        <span class="keyword">if</span> (A == B)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>大佬做法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">buddyStrings</span><span class="params">(<span class="built_in">string</span> A, <span class="built_in">string</span> B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (A.length() != B.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (A.length() &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">bool</span> bRpeat = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">bool</span> <span class="built_in">map</span>[<span class="number">26</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> diffCnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ind[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.length(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">map</span>[A[i] - <span class="string">'a'</span>]) &#123; bRpeat = <span class="literal">true</span>; &#125;</span><br><span class="line">            <span class="built_in">map</span>[A[i] - <span class="string">'a'</span>] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (A[i] != B[i]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (diffCnt &gt;= <span class="number">2</span>) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">                ind[diffCnt++] = i;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (diffCnt == <span class="number">0</span> &amp;&amp; bRpeat) &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">        <span class="keyword">return</span> A[ind[<span class="number">0</span>]] == B[ind[<span class="number">1</span>]] &amp;&amp; A[ind[<span class="number">1</span>]] == B[ind[<span class="number">0</span>]];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">**参考资料*</span><br><span class="line">[原题链接](https:<span class="comment">//leetcode.com/problems/buddy-strings/description/)</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/07/2018-9-7-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -777,158 +930,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/13/alg_quickSort/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/13/alg_quickSort/" itemprop="url">快速排序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T00:00:00+08:00">
-                2018-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  247
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span></span></span><br><span class="line">a = [<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">13</span>];</span><br><span class="line">num=<span class="built_in">size</span>(a,<span class="number">2</span>);</span><br><span class="line">c = quickSort1(a,<span class="number">1</span>,num);</span><br><span class="line"><span class="built_in">disp</span>(c);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>=<span class="title">quickSort1</span><span class="params">(a,aStart,aEnd)</span></span></span><br><span class="line"><span class="keyword">if</span> aStart &gt;= aEnd</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">index = a(aStart);</span><br><span class="line"><span class="built_in">i</span> = aStart,<span class="built_in">j</span> = aEnd;</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">i</span>&lt;<span class="built_in">j</span></span><br><span class="line">    <span class="keyword">while</span> a(<span class="built_in">j</span>)&gt;=index &amp;&amp; <span class="built_in">i</span>&lt;<span class="built_in">j</span></span><br><span class="line">        <span class="built_in">j</span>=<span class="built_in">j</span><span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    a(<span class="built_in">i</span>)= a(<span class="built_in">j</span>);</span><br><span class="line">    <span class="keyword">while</span> a(<span class="built_in">i</span>)&lt;=index &amp;&amp; <span class="built_in">i</span>&lt;<span class="built_in">j</span></span><br><span class="line">        <span class="built_in">i</span>=<span class="built_in">i</span>+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    a(<span class="built_in">j</span>)= a(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line">a(<span class="built_in">i</span>) = index;</span><br><span class="line">a=quickSort1(a,aStart,<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">a=quickSort1(a,<span class="built_in">i</span>+<span class="number">1</span>,aEnd);</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>感觉更为简洁<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = *a;</span><br><span class="line">    *a = *b;</span><br><span class="line">    *b = t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> aStart, <span class="keyword">int</span> aEnd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (aStart &gt;= aEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> midvalue = a[aEnd];</span><br><span class="line">    <span class="keyword">int</span> i = aStart - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = aStart; j &lt;= aEnd<span class="number">-1</span>; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[j] &lt;= midvalue)</span><br><span class="line">        &#123;</span><br><span class="line">            i++;</span><br><span class="line">            swap(&amp;a[j],&amp;a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(&amp;a[i+<span class="number">1</span>], &amp;a[aEnd]);</span><br><span class="line"></span><br><span class="line">    quickSort(a, aStart, i + <span class="number">1</span> - <span class="number">1</span>);</span><br><span class="line">    quickSort(a, i + <span class="number">1</span> + <span class="number">1</span>, aEnd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\t"</span>, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[] = &#123; <span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line">    printArray(a, n);</span><br><span class="line">    quickSort(a, <span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">    printArray(a, n);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/13/MFC-Snake/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1044,6 +1045,158 @@
 <p>3、按键一直咚咚咚亮<br>改正方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return CDialogEx::PreTranslateMessage(pMsg);</span><br></pre></td></tr></table></figure></p>
 <p>换成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return false;</span><br></pre></td></tr></table></figure></p>
 <p>学习于:kekehui</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/13/alg_quickSort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/13/alg_quickSort/" itemprop="url">快速排序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T00:00:00+08:00">
+                2018-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  247
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span></span></span><br><span class="line">a = [<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">13</span>];</span><br><span class="line">num=<span class="built_in">size</span>(a,<span class="number">2</span>);</span><br><span class="line">c = quickSort1(a,<span class="number">1</span>,num);</span><br><span class="line"><span class="built_in">disp</span>(c);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>=<span class="title">quickSort1</span><span class="params">(a,aStart,aEnd)</span></span></span><br><span class="line"><span class="keyword">if</span> aStart &gt;= aEnd</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">index = a(aStart);</span><br><span class="line"><span class="built_in">i</span> = aStart,<span class="built_in">j</span> = aEnd;</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">i</span>&lt;<span class="built_in">j</span></span><br><span class="line">    <span class="keyword">while</span> a(<span class="built_in">j</span>)&gt;=index &amp;&amp; <span class="built_in">i</span>&lt;<span class="built_in">j</span></span><br><span class="line">        <span class="built_in">j</span>=<span class="built_in">j</span><span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    a(<span class="built_in">i</span>)= a(<span class="built_in">j</span>);</span><br><span class="line">    <span class="keyword">while</span> a(<span class="built_in">i</span>)&lt;=index &amp;&amp; <span class="built_in">i</span>&lt;<span class="built_in">j</span></span><br><span class="line">        <span class="built_in">i</span>=<span class="built_in">i</span>+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    a(<span class="built_in">j</span>)= a(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line">a(<span class="built_in">i</span>) = index;</span><br><span class="line">a=quickSort1(a,aStart,<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">a=quickSort1(a,<span class="built_in">i</span>+<span class="number">1</span>,aEnd);</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>感觉更为简洁<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = *a;</span><br><span class="line">    *a = *b;</span><br><span class="line">    *b = t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> aStart, <span class="keyword">int</span> aEnd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (aStart &gt;= aEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> midvalue = a[aEnd];</span><br><span class="line">    <span class="keyword">int</span> i = aStart - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = aStart; j &lt;= aEnd<span class="number">-1</span>; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[j] &lt;= midvalue)</span><br><span class="line">        &#123;</span><br><span class="line">            i++;</span><br><span class="line">            swap(&amp;a[j],&amp;a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(&amp;a[i+<span class="number">1</span>], &amp;a[aEnd]);</span><br><span class="line"></span><br><span class="line">    quickSort(a, aStart, i + <span class="number">1</span> - <span class="number">1</span>);</span><br><span class="line">    quickSort(a, i + <span class="number">1</span> + <span class="number">1</span>, aEnd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\t"</span>, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[] = &#123; <span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line">    printArray(a, n);</span><br><span class="line">    quickSort(a, <span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">    printArray(a, n);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1688,161 +1841,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/28/LLK-bmp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/28/LLK-bmp/" itemprop="url">《连连看》- 位图、文字输出</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T00:00:00+08:00">
-                2018-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  489
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="显示文字"><a href="#显示文字" class="headerlink" title="显示文字"></a>显示文字</h2><p><img src="/2018/05/28/LLK-bmp/./LLK-bmp/showFont.JPG" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建字体</span></span><br><span class="line">   CFont font;</span><br><span class="line">   font.CreatePointFont(<span class="number">200</span>, <span class="string">L"Cambria"</span>);</span><br><span class="line">   CFont * oldFont;</span><br><span class="line">   oldFont = dc.SelectObject(&amp;font);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//设置字体颜色</span></span><br><span class="line">   dc.SetTextColor(RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>));</span><br><span class="line"></span><br><span class="line">   <span class="comment">//获取字体位置</span></span><br><span class="line">   CRect rect;</span><br><span class="line">   GetClientRect(&amp;rect);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//字体内容</span></span><br><span class="line">   CString strText = <span class="string">L"Welcom to LLK-GAME!"</span>;</span><br><span class="line">   CSize size;</span><br><span class="line">   size = dc.GetTextExtent(strText, strText.GetAllocLength());</span><br><span class="line"></span><br><span class="line">   <span class="comment">//居中显示</span></span><br><span class="line">   <span class="keyword">int</span> x = (rect.Width() - size.cx) / <span class="number">2</span>;</span><br><span class="line">   <span class="keyword">int</span> y = (rect.Height() - size.cy) / <span class="number">2</span>;</span><br><span class="line">   dc.TextOut(x, y, strText);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><hr></p>
-<h2 id="显示位图"><a href="#显示位图" class="headerlink" title="显示位图"></a>显示位图</h2><p><img src="/2018/05/28/LLK-bmp/./LLK-bmp/loadBmp.JPG" alt=""><br><img src="/2018/05/28/LLK-bmp/./LLK-bmp/loadBmp2.png" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="comment">//额外添加在自动生成的else里面</span></span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将内存DC复制到视频DC，内存DC在头文件类中定义</span></span><br><span class="line">   dc.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_DCMem, <span class="number">0</span>, <span class="number">0</span>, SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//此函数为自定义函数，在头文件中添加</span></span><br><span class="line"><span class="keyword">void</span> CLLKDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//加载位图</span></span><br><span class="line">   CBitmap bmpmain;</span><br><span class="line">   bmpmain.LoadBitmap(IDB_MAIN_BG);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建兼容dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">   m_DCMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图选进dc</span></span><br><span class="line">   m_DCMem.SelectObject(&amp;bmpmain);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以下方式能完成功能<br>1、保存背景图片在m_dcBG<br>2、以后可以利用m_dcBG完成对m_dcMem的刷新，进而刷新视频dc<br>发现m_dcMem和m_dcBG是为同一个视频dc创建的兼容dc<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGameDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//::是调用API，加载位图</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">//获得当前视频dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//加载bmp图片</span></span><br><span class="line">   HANDLE bmp = ::LoadImage(<span class="literal">NULL</span>, _T(<span class="string">"res\\theme\\picture\\game_bg.bmp"</span>), IMAGE_BITMAP, <span class="number">0</span>, <span class="number">0</span>,     LR_LOADFROMFILE);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建与视频内存兼容DC</span></span><br><span class="line">   m_dcBG.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图资源选进DC</span></span><br><span class="line">   m_dcBG.SelectObject(bmp);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//初始化内存DC</span></span><br><span class="line">   m_dcMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line">   CBitmap bmpMem;</span><br><span class="line">   bmpMem.CreateCompatibleBitmap(&amp;dc,<span class="number">800</span>,<span class="number">600</span>);</span><br><span class="line">   m_dcMem.SelectObject(bmpMem);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//绘制背景到内存中</span></span><br><span class="line">   m_dcMem.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_dcBG, <span class="number">0</span>, <span class="number">0</span>,SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CGameDlg::UpDateMap()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">int</span> nTop = m_ptGameTop.y;</span><br><span class="line">   <span class="keyword">int</span> nLeft = m_ptGameTop.x;</span><br><span class="line">   <span class="keyword">int</span> nElemW = m_sizeElement.cx;</span><br><span class="line">   <span class="keyword">int</span> nElemH = m_sizeElement.cy;</span><br><span class="line"></span><br><span class="line">   m_dcMem.BitBlt(m_rtGameRect.left, m_rtGameRect.top, m_rtGameRect.Width(), m_rtGameRect.Height(), &amp;m_dcBG, m_rtGameRect.left, m_rtGameRect.top, SRCCOPY);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</span><br><span class="line">	   &#123;</span><br><span class="line">	      <span class="keyword">if</span> (m_anMap[i][j] != <span class="number">-1</span>)</span><br><span class="line">	  	  &#123;</span><br><span class="line">		  m_dcMem.BitBlt(nLeft + j * nElemW, nTop + i * nElemH, nElemW, nElemH, &amp;m_dcElement, <span class="number">0</span>, m_anMap[i][j] * nElemH, SRCCOPY);</span><br><span class="line">		  &#125;</span><br><span class="line">	   &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>另外注意利用vs2017加载资源文件时有可能在文件中看不到bmp文件，此时把列表中文件类型改为所有文件即可。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1895,7 +1893,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-count">97</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
