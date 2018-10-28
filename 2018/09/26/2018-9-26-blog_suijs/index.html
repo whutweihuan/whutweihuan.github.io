@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="c风格的随机数  1234567#include&amp;lt;stido.h&amp;gt;#include&amp;lt;time.h&amp;gt;int main()&amp;#123;    srand(time(0));    rand();  //rand()为0到最大的int值&amp;#125;  c++ 标准库  1234567#include&amp;lt;random&amp;gt;#include&amp;lt;ctime&amp;gt;defau">
+<meta name="description" content="c风格的随机数  1234567#include&amp;lt;stido.h&amp;gt;#include&amp;lt;time.h&amp;gt;int main()&amp;#123;    srand(time(0));    rand();  //rand()为0到最大的int值&amp;#125;  c++ 标准库  12345678#include&amp;lt;random&amp;gt;#include&amp;lt;ctime&amp;gt;defa">
 <meta name="keywords" content="学习日志">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c&#x2F;c++ 随机数">
 <meta property="og:url" content="http://whutweihuan.github.io/2018/09/26/2018-9-26-blog_suijs/index.html">
 <meta property="og:site_name" content="welcome">
-<meta property="og:description" content="c风格的随机数  1234567#include&amp;lt;stido.h&amp;gt;#include&amp;lt;time.h&amp;gt;int main()&amp;#123;    srand(time(0));    rand();  //rand()为0到最大的int值&amp;#125;  c++ 标准库  1234567#include&amp;lt;random&amp;gt;#include&amp;lt;ctime&amp;gt;defau">
+<meta property="og:description" content="c风格的随机数  1234567#include&amp;lt;stido.h&amp;gt;#include&amp;lt;time.h&amp;gt;int main()&amp;#123;    srand(time(0));    rand();  //rand()为0到最大的int值&amp;#125;  c++ 标准库  12345678#include&amp;lt;random&amp;gt;#include&amp;lt;ctime&amp;gt;defa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-24T14:17:19.815Z">
+<meta property="og:updated_time" content="2018-10-28T07:11:57.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c&#x2F;c++ 随机数">
-<meta name="twitter:description" content="c风格的随机数  1234567#include&amp;lt;stido.h&amp;gt;#include&amp;lt;time.h&amp;gt;int main()&amp;#123;    srand(time(0));    rand();  //rand()为0到最大的int值&amp;#125;  c++ 标准库  1234567#include&amp;lt;random&amp;gt;#include&amp;lt;ctime&amp;gt;defau">
+<meta name="twitter:description" content="c风格的随机数  1234567#include&amp;lt;stido.h&amp;gt;#include&amp;lt;time.h&amp;gt;int main()&amp;#123;    srand(time(0));    rand();  //rand()为0到最大的int值&amp;#125;  c++ 标准库  12345678#include&amp;lt;random&amp;gt;#include&amp;lt;ctime&amp;gt;defa">
 
 
 
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  67
+                  111
                 </span>
               
 
@@ -420,8 +420,10 @@
 <ul>
 <li>c++ 标准库</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"></span><br><span class="line">default_random_engine e(time(0));</span><br><span class="line">uniform_real_distribution&lt;<span class="keyword">double</span>&gt; u(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> p = u(e); <span class="comment">//p在0到1之间</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"></span><br><span class="line">default_random_engine e(time(0));</span><br><span class="line"><span class="built_in">std</span>::uniform_real_distribution&lt;<span class="keyword">double</span>&gt; u(<span class="number">0</span>, <span class="number">1</span>);<span class="comment">//包括 0 ，不包括 1</span></span><br><span class="line"><span class="built_in">std</span>::uniform_int_distribution&lt;<span class="keyword">int</span>&gt; dis1(<span class="number">0</span>, <span class="number">100</span>);<span class="comment">//包括 0 和 100</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> p = u(e); <span class="comment">//p在0到1之间</span></span><br></pre></td></tr></table></figure>
+<div class="note info">uniform_int_distribution的随机数的范围不是半开范围[  )，而是[  ]，对于uniform_real_distribution却是半开范围[  )。</div>
 
+<hr>
       
     </div>
     
@@ -533,7 +535,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-count">98</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
