@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习," />
+  <meta name="keywords" content="机器学习,python,sklearn," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="1234from sklearn.neighbors import  KNeighborsClassifierknn = KNeighborsClassifier(k_neighbors=2)nn.fit(iris_X_train,iris_Y_train)knn.predict(iris_X_test)">
-<meta name="keywords" content="机器学习">
+<meta name="description" content="sklearn 回归方法">
+<meta name="keywords" content="机器学习,python,sklearn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KNN">
+<meta property="og:title" content="【机器学习】回归方法">
 <meta property="og:url" content="http://whutweihuan.github.io/2018/04/09/machine9/index.html">
 <meta property="og:site_name" content="welcome">
-<meta property="og:description" content="1234from sklearn.neighbors import  KNeighborsClassifierknn = KNeighborsClassifier(k_neighbors=2)nn.fit(iris_X_train,iris_Y_train)knn.predict(iris_X_test)">
+<meta property="og:description" content="sklearn 回归方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-08T04:41:58.848Z">
+<meta property="og:updated_time" content="2018-10-30T15:48:51.078Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KNN">
-<meta name="twitter:description" content="1234from sklearn.neighbors import  KNeighborsClassifierknn = KNeighborsClassifier(k_neighbors=2)nn.fit(iris_X_train,iris_Y_train)knn.predict(iris_X_test)">
+<meta name="twitter:title" content="【机器学习】回归方法">
+<meta name="twitter:description" content="sklearn 回归方法">
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-  <title>KNN | welcome</title>
+  <title>【机器学习】回归方法 | welcome</title>
   
 
 
@@ -332,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">KNN</h1>
+          <h1 class="post-title" itemprop="name headline">【机器学习】回归方法</h1>
         
 
         <div class="post-meta">
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  15
+                  128
                 </span>
               
 
@@ -413,7 +413,8 @@
       
 
       
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span>  KNeighborsClassifier</span><br><span class="line">knn = KNeighborsClassifier(k_neighbors=<span class="number">2</span>)</span><br><span class="line">nn.fit(iris_X_train,iris_Y_train)</span><br><span class="line">knn.predict(iris_X_test)</span><br></pre></td></tr></table></figure>
+        <p></p><p class="description">sklearn 回归方法 </p><br><a id="more"></a><p></p>
+<figure class="highlight python"><figcaption><span>示例</span><a href="https://my.oschina.net/kilosnow/blog/1619605" target="_blank" rel="noopener">原文链接</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 决策树回归 ###</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</span><br><span class="line">model_DecisionTreeRegressor = tree.DecisionTreeRegressor()</span><br><span class="line"></span><br><span class="line"><span class="comment">### 线性回归 ###</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line">model_LinearRegression = linear_model.LinearRegression()</span><br><span class="line"></span><br><span class="line"><span class="comment">### SVM回归 ###</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</span><br><span class="line">model_SVR = svm.SVR()</span><br><span class="line"></span><br><span class="line"><span class="comment">### KNN回归 ###</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> neighbors</span><br><span class="line">model_KNeighborsRegressor = neighbors.KNeighborsRegressor()</span><br><span class="line"></span><br><span class="line"><span class="comment">### 随机森林回归 ###</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> ensemble</span><br><span class="line">model_RandomForestRegressor = ensemble.RandomForestRegressor(n_estimators=<span class="number">20</span>)<span class="comment">#用20个决策树</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### Adaboost回归 ###</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> ensemble</span><br><span class="line">model_AdaBoostRegressor = ensemble.AdaBoostRegressor(n_estimators=<span class="number">50</span>)<span class="comment">#用50个决策树</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### GBRT回归 ###</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> ensemble</span><br><span class="line">model_GradientBoostingRegressor = ensemble.GradientBoostingRegressor(n_estimators=<span class="number">100</span>)<span class="comment">#用100个决策树</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### Bagging回归 ###</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> BaggingRegressor</span><br><span class="line">model_BaggingRegressor = BaggingRegressor()</span><br><span class="line"></span><br><span class="line"><span class="comment">### ExtraTree极端随机树回归 ###</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> ExtraTreeRegressor</span><br><span class="line">model_ExtraTreeRegressor = ExtraTreeRegressor()</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -432,6 +433,10 @@
         <div class="post-tags">
           
             <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/sklearn/" rel="tag"># sklearn</a>
           
         </div>
       
@@ -548,7 +553,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
