@@ -312,6 +312,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/09/2018-9-9-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/09/2018-9-9-blog/" itemprop="url">细胞生命游戏</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-09T00:00:00+08:00">
+                2018-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  778
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="细胞生命游戏"><a href="#细胞生命游戏" class="headerlink" title="细胞生命游戏"></a>细胞生命游戏</h2><p>简介：<br>“人口过少”：任何活细胞如果活邻居少于2个，则死掉。<br>“正常”：任何活细胞如果活邻居为2个或3个，则继续活。<br>“人口过多”：任何活细胞如果活邻居大于3个，则死掉。<br>“繁殖”：任何死细胞如果活邻居正好是3个，则活过来。<br>这里假设领域为3*3的大小<br><img src="/2018/09/09/2018-9-9-blog/life_game.png" alt=""></p>
+<p>利用java实现,三个类</p>
+<h3 id="Main-java"><a href="#Main-java" class="headerlink" title="Main.java"></a>Main.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> life_game3;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String []args)</span> </span>&#123;</span><br><span class="line">	    Paint ptPaint = <span class="keyword">new</span> Paint();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Logic-java"><a href="#Logic-java" class="headerlink" title="Logic.java"></a>Logic.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logic</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ROWS = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> COLS = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> WIDTH = <span class="number">40</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HIGHT = <span class="number">40</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> map[][] = <span class="keyword">new</span> <span class="keyword">int</span>[][] &#123;</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">		&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Logic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		 ;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span>  <span class="keyword">int</span>[][] newmap(<span class="keyword">int</span> [][] map)&#123;</span><br><span class="line">		<span class="comment">// copy new 2d array</span></span><br><span class="line">		<span class="keyword">int</span> [][] map0 = <span class="keyword">new</span> <span class="keyword">int</span> [ROWS][COLS];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ROWS;i++) &#123;</span><br><span class="line">			map0[i] =map[i].clone();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//go through the map</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ROWS;i++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;COLS;j++) &#123;</span><br><span class="line">				<span class="keyword">int</span> count =<span class="number">0</span>;</span><br><span class="line">				<span class="keyword">if</span>(i-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; j-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; map[i-<span class="number">1</span>][j-<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line">				<span class="keyword">if</span>(i-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span> &amp;&amp; map[i-<span class="number">1</span>][j]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line">				<span class="keyword">if</span>(i-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; j+<span class="number">1</span>&lt;COLS &amp;&amp; map[i-<span class="number">1</span>][j+<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(i&gt;=<span class="number">0</span> &amp;&amp; j-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; map[i][j-<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line">				<span class="keyword">if</span>(i&gt;=<span class="number">0</span> &amp;&amp; j+<span class="number">1</span>&lt;COLS &amp;&amp; map[i][j+<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(i+<span class="number">1</span>&lt;ROWS &amp;&amp; j-<span class="number">1</span>&gt;=<span class="number">0</span> &amp;&amp; map[i+<span class="number">1</span>][j-<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line">				<span class="keyword">if</span>(i+<span class="number">1</span>&lt;ROWS &amp;&amp; j&gt;=<span class="number">0</span> &amp;&amp; map[i+<span class="number">1</span>][j]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line">				<span class="keyword">if</span>(i+<span class="number">1</span>&lt;ROWS &amp;&amp; j+<span class="number">1</span>&lt;COLS &amp;&amp; map[i+<span class="number">1</span>][j+<span class="number">1</span>]==<span class="number">1</span>) &#123;count++;&#125;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(! (count==<span class="number">2</span> || count==<span class="number">3</span>)) &#123;</span><br><span class="line">					map0[i][j]=<span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>( count==<span class="number">3</span> ) &#123;</span><br><span class="line">					map0[i][j]=<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> map0;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[][] getMap()&#123;</span><br><span class="line">		<span class="keyword">return</span> map;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">updateMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.map = newmap(map);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Paint-java"><a href="#Paint-java" class="headerlink" title="Paint.java"></a>Paint.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> life_game3;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Paint</span>  <span class="keyword">extends</span> <span class="title">JPanel</span></span>&#123;</span><br><span class="line">	Logic gamelogic = <span class="keyword">new</span> Logic();</span><br><span class="line">	<span class="keyword">int</span> blank =<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Paint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		JFrame frame = <span class="keyword">new</span> JFrame(<span class="string">"生命游戏"</span>);</span><br><span class="line">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line"></span><br><span class="line">		frame.setBounds(<span class="number">800</span>, <span class="number">400</span>, <span class="number">420</span>,<span class="number">445</span>);</span><br><span class="line"></span><br><span class="line">		 <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">			   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">			     <span class="keyword">try</span> &#123;</span><br><span class="line">			      Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			     &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			    	 e.printStackTrace();</span><br><span class="line">			     &#125;</span><br><span class="line">			     repaint();</span><br><span class="line">			    &#125;</span><br><span class="line">			   &#125;</span><br><span class="line">			  &#125;).start();</span><br><span class="line">		frame.setResizable(<span class="keyword">false</span>);</span><br><span class="line">		frame.add(<span class="keyword">this</span>);</span><br><span class="line">		frame.setVisible(<span class="keyword">true</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paint</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.paint(g);</span><br><span class="line">		<span class="keyword">int</span> map[][] = gamelogic.getMap();</span><br><span class="line">		gamelogic.updateMap();</span><br><span class="line">	    g.setColor(Color.black);</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;gamelogic.ROWS;i++) &#123;</span><br><span class="line">	    	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;gamelogic.COLS;j++) &#123;</span><br><span class="line">	    		<span class="keyword">if</span>(map[i][j]==<span class="number">1</span>) &#123;</span><br><span class="line">	    			g.fillRect( j*gamelogic.WIDTH+blank,i*gamelogic.HIGHT, gamelogic.WIDTH, gamelogic.HIGHT);</span><br><span class="line">	    		&#125;</span><br><span class="line">	    		<span class="keyword">else</span> <span class="keyword">if</span>(map[i][j]==<span class="number">0</span>)&#123;</span><br><span class="line">	    			g.drawRect(j*gamelogic.WIDTH+blank,i*gamelogic.HIGHT,  gamelogic.WIDTH, gamelogic.HIGHT);</span><br><span class="line">	    		&#125;</span><br><span class="line">	    	&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="遇到的一个小问题"><a href="#遇到的一个小问题" class="headerlink" title="遇到的一个小问题"></a>遇到的一个小问题</h3><p>JFrame挡住了界面<br>解决方法：不要直接在JFrame中画，在JPannel中画，然后将其添加到JFrame里面去。</p>
+<p>参考文章:<a href="https://blog.csdn.net/xsgoing/article/details/47253621" target="_blank" rel="noopener">paint定时刷新</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_leetcode1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -465,7 +622,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_leetcode2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -484,7 +641,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog/" itemprop="url">2018年9月8日</a></h1>
+                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_leetcode2/" itemprop="url">【leetcode】852 Peak Index in a Mountain Array</a></h1>
         
 
         <div class="post-meta">
@@ -528,7 +685,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  444
+                  247
                 </span>
               
 
@@ -567,22 +724,163 @@
       
         
           
-            <h2 id="重新安装了hexo-gitpage"><a href="#重新安装了hexo-gitpage" class="headerlink" title="重新安装了hexo+gitpage"></a>重新安装了hexo+gitpage</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
-<li>安装node.js</li>
-<li>安装hexo</li>
-<li>git链接github</li>
-<li>git添加远程库</li>
-<li>git clone -b youbranch [rep]</li>
-<li>将_config.yml，source，themes文件夹替换成之前文件</li>
-</ul>
-<h3 id="遇到了一些问题"><a href="#遇到了一些问题" class="headerlink" title="遇到了一些问题"></a>遇到了一些问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! Maximum call stack size exceeded</span><br></pre></td></tr></table></figure>
-<p>原因是因为下载到一半就中断了，可以删除文件夹中的node_modules，然后在git bash中运行npm install 就可以变为初始状态。node_modules应该是类似于模块一样的东西。</p>
-<h2 id="Google-stackoverflow-可以解决95-的编程问题"><a href="#Google-stackoverflow-可以解决95-的编程问题" class="headerlink" title="Google+stackoverflow 可以解决95%的编程问题"></a>Google+stackoverflow 可以解决95%的编程问题</h2><p>有这种感觉，这上面搜索出来的东西往往比较可靠，没有那么多广告。</p>
-<h2 id="重新安装了一下Ubuntu18-04"><a href="#重新安装了一下Ubuntu18-04" class="headerlink" title="重新安装了一下Ubuntu18.04"></a>重新安装了一下Ubuntu18.04</h2><p>仍然需要在开启界面将quiet splash 替换成 nomodeset,具体可以参考<a href="https://connorkuehl.github.io/dell-inspiron-7559-linux-guide/" target="_blank" rel="noopener">这篇文章</a>,其中安装nvidia-390会有一些问题，可以参考<a href="https://blog.csdn.net/breeze5428/article/details/80013753" target="_blank" rel="noopener">这篇文章</a>，之后安装ss-qt5,参考<a href="https://blog.csdn.net/A807296772/article/details/80112871" target="_blank" rel="noopener">这篇文章</a>,配置Google浏览器代理，可以参考<a href="https://blog.csdn.net/u79501/article/details/69666754" target="_blank" rel="noopener">这篇文章</a>和<a href="https://blog.csdn.net/lanhaixuanvv/article/details/78387467" target="_blank" rel="noopener">这篇文章</a>。</p>
-<h2 id="一些数据结构题"><a href="#一些数据结构题" class="headerlink" title="一些数据结构题"></a>一些数据结构题</h2><p>发现leetcode这个编程网站比较优秀，相对之前的浙江大学poj和北京大学poj对新手好一些。有时间的对比，有详细的答案代码可以参考。emm，目前都是挑的简单题做的。</p>
-<h2 id="数学建模"><a href="#数学建模" class="headerlink" title="数学建模"></a>数学建模</h2><p>这玩意儿还真的要点技术。另外，matlab可真是简单粗暴。有点遗憾，但是也取得了不少收获，至少编程能力和数据分析能力提高了不少，以及眼界也开阔了不少，可见这样是实战对能力的成长还是大有帮助的。</p>
-<h2 id="图片问题"><a href="#图片问题" class="headerlink" title="图片问题"></a>图片问题</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![](./<span class="number">2018</span><span class="number">-9</span><span class="number">-8</span>/a.png) 没有用了</span><br><span class="line">要换成</span><br><span class="line">   ![](<span class="number">2018</span><span class="number">-9</span><span class="number">-8</span>/a.png)</span><br></pre></td></tr></table></figure>
-<h2 id="ChaZD查词"><a href="#ChaZD查词" class="headerlink" title="ChaZD查词"></a>ChaZD查词</h2><p>这是一个非常好用的在线英语查词谷歌插件</p>
+            <p><strong>描述</strong><br>求一个有峰值的序列的峰值</p>
+<p><strong>思路</strong><br>很简单的一道题，但是考验一点点思维和仔细。我直接找最大值了，算法效率是O(N)。</p>
+<p><strong>我的代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peakIndexInMountainArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max_val = A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> ind = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(max_val&lt;A[i])&#123;</span><br><span class="line">                max_val = A[i];</span><br><span class="line">                ind = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ind;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>大佬代码</strong><br>大佬采用了二分查找，时间复杂度为O(log2(N))<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peakIndexInMountainArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = A.size();</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (A[mid] &lt; A[mid + <span class="number">1</span>]) &#123; left = mid + <span class="number">1</span>; &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; right = mid; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>另外，这道题其实不是找最大值，而是找峰值，于是这样也可以解决，时间负责度为O(N)<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peakIndexInMountainArray</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (A[i] &lt; A[i+<span class="number">1</span>]) i++;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>参考链接</strong><br><a href="https://leetcode.com/problems/peak-index-in-a-mountain-array/description/" target="_blank" rel="noopener">原题链接</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_lianbiao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_lianbiao/" itemprop="url">交换链表的节点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T00:00:00+08:00">
+                2018-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  146
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/2018/09/08/2018-9-8-blog_lianbiao/2018-9-8-blog/linknode.png" alt=""><br>链表节点要这么画成图2这样的不要简单的画图1表示了。<br>代码如下<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode * <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> p = head;</span><br><span class="line">        <span class="comment">//no node</span></span><br><span class="line">        <span class="keyword">if</span> (p == <span class="literal">NULL</span>) &#123; <span class="keyword">return</span> p; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//swap first two nodes</span></span><br><span class="line">        <span class="keyword">if</span> (p&amp;&amp;p-&gt;next) &#123;</span><br><span class="line">            <span class="keyword">auto</span> next = p-&gt;next;</span><br><span class="line">            p-&gt;next = p-&gt;next-&gt;next;</span><br><span class="line">            next-&gt;next = p;</span><br><span class="line">            head = next;<span class="comment">//change head node</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//only one node</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//swap rest nodes;</span></span><br><span class="line">        <span class="keyword">auto</span> prev = head-&gt;next;</span><br><span class="line">        p = head-&gt;next-&gt;next;</span><br><span class="line">        <span class="keyword">while</span> (p&amp;&amp;p-&gt;next)&#123;</span><br><span class="line">            <span class="keyword">auto</span> next = p-&gt;next;</span><br><span class="line">            p-&gt;next = p-&gt;next-&gt;next;</span><br><span class="line">            next-&gt;next = p;</span><br><span class="line">            prev-&gt;next = next;</span><br><span class="line">            prev = p;</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -785,7 +1083,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_lianbiao/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -804,7 +1102,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_lianbiao/" itemprop="url">交换链表的节点</a></h1>
+                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog/" itemprop="url">2018年9月8日</a></h1>
         
 
         <div class="post-meta">
@@ -848,7 +1146,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  146
+                  444
                 </span>
               
 
@@ -887,163 +1185,22 @@
       
         
           
-            <p><img src="/2018/09/08/2018-9-8-blog_lianbiao/2018-9-8-blog/linknode.png" alt=""><br>链表节点要这么画成图2这样的不要简单的画图1表示了。<br>代码如下<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode * <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> p = head;</span><br><span class="line">        <span class="comment">//no node</span></span><br><span class="line">        <span class="keyword">if</span> (p == <span class="literal">NULL</span>) &#123; <span class="keyword">return</span> p; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//swap first two nodes</span></span><br><span class="line">        <span class="keyword">if</span> (p&amp;&amp;p-&gt;next) &#123;</span><br><span class="line">            <span class="keyword">auto</span> next = p-&gt;next;</span><br><span class="line">            p-&gt;next = p-&gt;next-&gt;next;</span><br><span class="line">            next-&gt;next = p;</span><br><span class="line">            head = next;<span class="comment">//change head node</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//only one node</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//swap rest nodes;</span></span><br><span class="line">        <span class="keyword">auto</span> prev = head-&gt;next;</span><br><span class="line">        p = head-&gt;next-&gt;next;</span><br><span class="line">        <span class="keyword">while</span> (p&amp;&amp;p-&gt;next)&#123;</span><br><span class="line">            <span class="keyword">auto</span> next = p-&gt;next;</span><br><span class="line">            p-&gt;next = p-&gt;next-&gt;next;</span><br><span class="line">            next-&gt;next = p;</span><br><span class="line">            prev-&gt;next = next;</span><br><span class="line">            prev = p;</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_leetcode2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_leetcode2/" itemprop="url">【leetcode】852 Peak Index in a Mountain Array</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T00:00:00+08:00">
-                2018-09-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  247
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>描述</strong><br>求一个有峰值的序列的峰值</p>
-<p><strong>思路</strong><br>很简单的一道题，但是考验一点点思维和仔细。我直接找最大值了，算法效率是O(N)。</p>
-<p><strong>我的代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peakIndexInMountainArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max_val = A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> ind = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(max_val&lt;A[i])&#123;</span><br><span class="line">                max_val = A[i];</span><br><span class="line">                ind = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ind;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>大佬代码</strong><br>大佬采用了二分查找，时间复杂度为O(log2(N))<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peakIndexInMountainArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = A.size();</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (A[mid] &lt; A[mid + <span class="number">1</span>]) &#123; left = mid + <span class="number">1</span>; &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; right = mid; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>另外，这道题其实不是找最大值，而是找峰值，于是这样也可以解决，时间负责度为O(N)<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peakIndexInMountainArray</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (A[i] &lt; A[i+<span class="number">1</span>]) i++;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>参考链接</strong><br><a href="https://leetcode.com/problems/peak-index-in-a-mountain-array/description/" target="_blank" rel="noopener">原题链接</a></p>
+            <h2 id="重新安装了hexo-gitpage"><a href="#重新安装了hexo-gitpage" class="headerlink" title="重新安装了hexo+gitpage"></a>重新安装了hexo+gitpage</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<li>安装node.js</li>
+<li>安装hexo</li>
+<li>git链接github</li>
+<li>git添加远程库</li>
+<li>git clone -b youbranch [rep]</li>
+<li>将_config.yml，source，themes文件夹替换成之前文件</li>
+</ul>
+<h3 id="遇到了一些问题"><a href="#遇到了一些问题" class="headerlink" title="遇到了一些问题"></a>遇到了一些问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! Maximum call stack size exceeded</span><br></pre></td></tr></table></figure>
+<p>原因是因为下载到一半就中断了，可以删除文件夹中的node_modules，然后在git bash中运行npm install 就可以变为初始状态。node_modules应该是类似于模块一样的东西。</p>
+<h2 id="Google-stackoverflow-可以解决95-的编程问题"><a href="#Google-stackoverflow-可以解决95-的编程问题" class="headerlink" title="Google+stackoverflow 可以解决95%的编程问题"></a>Google+stackoverflow 可以解决95%的编程问题</h2><p>有这种感觉，这上面搜索出来的东西往往比较可靠，没有那么多广告。</p>
+<h2 id="重新安装了一下Ubuntu18-04"><a href="#重新安装了一下Ubuntu18-04" class="headerlink" title="重新安装了一下Ubuntu18.04"></a>重新安装了一下Ubuntu18.04</h2><p>仍然需要在开启界面将quiet splash 替换成 nomodeset,具体可以参考<a href="https://connorkuehl.github.io/dell-inspiron-7559-linux-guide/" target="_blank" rel="noopener">这篇文章</a>,其中安装nvidia-390会有一些问题，可以参考<a href="https://blog.csdn.net/breeze5428/article/details/80013753" target="_blank" rel="noopener">这篇文章</a>，之后安装ss-qt5,参考<a href="https://blog.csdn.net/A807296772/article/details/80112871" target="_blank" rel="noopener">这篇文章</a>,配置Google浏览器代理，可以参考<a href="https://blog.csdn.net/u79501/article/details/69666754" target="_blank" rel="noopener">这篇文章</a>和<a href="https://blog.csdn.net/lanhaixuanvv/article/details/78387467" target="_blank" rel="noopener">这篇文章</a>。</p>
+<h2 id="一些数据结构题"><a href="#一些数据结构题" class="headerlink" title="一些数据结构题"></a>一些数据结构题</h2><p>发现leetcode这个编程网站比较优秀，相对之前的浙江大学poj和北京大学poj对新手好一些。有时间的对比，有详细的答案代码可以参考。emm，目前都是挑的简单题做的。</p>
+<h2 id="数学建模"><a href="#数学建模" class="headerlink" title="数学建模"></a>数学建模</h2><p>这玩意儿还真的要点技术。另外，matlab可真是简单粗暴。有点遗憾，但是也取得了不少收获，至少编程能力和数据分析能力提高了不少，以及眼界也开阔了不少，可见这样是实战对能力的成长还是大有帮助的。</p>
+<h2 id="图片问题"><a href="#图片问题" class="headerlink" title="图片问题"></a>图片问题</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![](./<span class="number">2018</span><span class="number">-9</span><span class="number">-8</span>/a.png) 没有用了</span><br><span class="line">要换成</span><br><span class="line">   ![](<span class="number">2018</span><span class="number">-9</span><span class="number">-8</span>/a.png)</span><br></pre></td></tr></table></figure>
+<h2 id="ChaZD查词"><a href="#ChaZD查词" class="headerlink" title="ChaZD查词"></a>ChaZD查词</h2><p>这是一个非常好用的在线英语查词谷歌插件</p>
 
           
         
@@ -1696,169 +1853,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/13/MFC-Snake/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/13/MFC-Snake/" itemprop="url">MFC贪吃蛇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T00:00:00+08:00">
-                2018-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  638
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加到OnInitDialog函数中去</span></span><br><span class="line">GetWindowRect(window);<span class="comment">//</span></span><br><span class="line">GetClientRect(client);<span class="comment">//</span></span><br><span class="line"><span class="keyword">int</span> width = window.Width() - client.Width() + LENGTH * SIZE_H;</span><br><span class="line"><span class="keyword">int</span> height = window.Height() - client.Height() + LENGTH * SIZE_H;</span><br><span class="line">MoveWindow(<span class="number">0</span>, <span class="number">0</span>, width, height);</span><br></pre></td></tr></table></figure>
-<h1 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h1><p>打开某个类类向导，添加消息,OnTimer编辑代码，写入按照计时器运行的内容<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CSnake2Dlg::OnTimer(UINT_PTR nIDEvent)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (nIDEvent)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:   <span class="comment">//定时器1处理函数，定时发送数据进行更新</span></span><br><span class="line">        &#123;</span><br><span class="line">            snakeMove();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:   <span class="comment">//定时器2位为状态栏时间信息</span></span><br><span class="line">        &#123;</span><br><span class="line">	    snakeMove();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    CDialogEx::OnTimer(nIDEvent);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//开始1号计时器</span></span><br><span class="line">SetTimer(<span class="number">1</span>, <span class="number">200</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//结束1号计时器</span></span><br><span class="line">KillTimer(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
-<h1 id="按键控制"><a href="#按键控制" class="headerlink" title="按键控制"></a>按键控制</h1><p>类向导-&gt;虚函数-&gt;pretranslate实现控制<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">BOOL CSnake2Dlg::PreTranslateMessage(MSG* pMsg)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">if</span> (pMsg-&gt;message == WM_KEYDOWN)</span><br><span class="line">      &#123;</span><br><span class="line">            <span class="keyword">switch</span> (pMsg-&gt;wParam)</span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">case</span> VK_UP:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">0</span>,<span class="number">-1</span>));</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_DOWN:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">0</span>, <span class="number">1</span>));</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_LEFT:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">-1</span>, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_RIGHT:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> CDialogEx::PreTranslateMessage(pMsg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CList &lt;CPoint&gt; body;<span class="comment">//链表类型</span></span><br><span class="line">body.GetHead();<span class="comment">//得到头节点</span></span><br><span class="line">body.GetTail();<span class="comment">//得到尾节点</span></span><br><span class="line">body.GetHeadPosition();<span class="comment">//返回位置</span></span><br><span class="line"></span><br><span class="line">body.Add</span><br><span class="line">POSITION p;<span class="comment">//感觉有点向迭代器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//得到下一个节点</span></span><br><span class="line">CPoint point =body.GetNext(p);</span><br></pre></td></tr></table></figure>
-<h1 id="画矩形"><a href="#画矩形" class="headerlink" title="画矩形"></a>画矩形</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">CBrush red(RGB(255, 0, 0));</span><br><span class="line">dc.SelectObject(red);</span><br><span class="line">dc.Rectangle(m_ptFood.x*LENGTH, m_ptFood.y*LENGTH, (m_ptFood.x + <span class="number">1</span>)*LENGTH, (m_ptFood.y + <span class="number">1</span>)*LENGTH);</span><br></pre></td></tr></table></figure>
-<h1 id="画直线"><a href="#画直线" class="headerlink" title="画直线"></a>画直线</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">CPen pen;</span><br><span class="line"></span><br><span class="line">pen.CreatePen(PS_SOLID, <span class="number">1</span>, RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">CPen *oldPen = dc.SelectObject(&amp;pen);</span><br><span class="line">dc.MoveTo(<span class="number">0</span>, <span class="number">0</span>);<span class="comment">//起点</span></span><br><span class="line">dc.LineTo(<span class="number">0</span>, <span class="number">600</span>);<span class="comment">//终点</span></span><br><span class="line">dc.SelectObject(oldPen);</span><br></pre></td></tr></table></figure>
-<h1 id="OnPaint"><a href="#OnPaint" class="headerlink" title="OnPaint"></a>OnPaint</h1><p>什么时候调用？<br>1、由其他窗口遮挡、移动窗口等动作的时候系统会发送<br>2、你自己想更新某个区域可以发送Invalidate或InvalidRect，再加上UpdateWindow()也可以触发</p>
-<h1 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h1><p>1、建立一个对话框<br>2、创建Point类型变量代表食物，并且作为对话框的成员变量<br>3、随机生成食物，绘制食物<br>4、建立蛇类，作为对话框类的成员<br>5、添加蛇类CList<cpoint>成员变量,以及代表方向CPoint成员变量<br>&emsp;&emsp;(CPoint类型的坐标含义为到下一方向作加法,(0,-1)代表纵坐标减1，即向上移动)<br>6、添加碰撞检测(比较两个点是否相同)<br>7、重绘蛇和食物</cpoint></p>
-<h1 id="遇到的bug"><a href="#遇到的bug" class="headerlink" title="遇到的bug"></a>遇到的bug</h1><p>1、消除边界<br>原因:消除蛇尾巴的时候清除<br>纠正方法:重画边界</p>
-<p>2、蛇撞到自己的身体<br>原因:按键速度和蛇移动速度不匹配<br>纠正方法:当按下键的时候，键盘控制蛇移动，其他时候定时器控制</p>
-<p>3、按键一直咚咚咚亮<br>改正方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return CDialogEx::PreTranslateMessage(pMsg);</span><br></pre></td></tr></table></figure></p>
-<p>换成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return false;</span><br></pre></td></tr></table></figure></p>
-<p>学习于:kekehui</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1911,7 +1905,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">101</span>
+                <span class="site-state-item-count">102</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
