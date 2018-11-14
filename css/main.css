@@ -1837,7 +1837,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #52f299;
+  background: #ffffc9;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2843,6 +2843,10 @@ embed {
 .post-gallery .post-gallery-img img {
   padding: 3px;
 }
+.img-description {
+  width: 100%;
+  height: auto;
+}
 .posts-expand .post-meta .post-description {
   font-style: italic;
   font-size: 14px;
@@ -2922,4 +2926,11 @@ h6 {
   padding: 8px 8px 8px 8px;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
   background-color: #fff;
+}
+.posts-expand .post-title {
+  font-size: 26px;
+  font-weight: 700;
+}
+.post-widgets {
+  padding-top: 0px;
 }

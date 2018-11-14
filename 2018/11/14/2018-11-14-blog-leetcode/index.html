@@ -94,18 +94,20 @@
 
 
 
-<meta name="description" content="描述返回第三大的数 样例12输入: [1,2,2,3]输出: 1 思路&amp;lt;(￣︶￣)↗[GO!],这个题目好简单啊!排序完，再调用一下unique就ok了。然而效率是硬伤。 我的解法12345678910class Solution &amp;#123;public:    int thirdMax(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;        sort(num">
+<meta name="description" content="返回第一个不重复的字符的下标">
 <meta name="keywords" content="leetcode,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【leetcode】414. Third Maximum Number">
-<meta property="og:url" content="http://whutweihuan.github.io/2018/09/13/2018-9-13-blog_leetcode1/index.html">
+<meta property="og:title" content="【leetcode】387. First Unique Character in a String">
+<meta property="og:url" content="http://whutweihuan.github.io/2018/11/14/2018-11-14-blog-leetcode/index.html">
 <meta property="og:site_name" content="welcome">
-<meta property="og:description" content="描述返回第三大的数 样例12输入: [1,2,2,3]输出: 1 思路&amp;lt;(￣︶￣)↗[GO!],这个题目好简单啊!排序完，再调用一下unique就ok了。然而效率是硬伤。 我的解法12345678910class Solution &amp;#123;public:    int thirdMax(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;        sort(num">
+<meta property="og:description" content="返回第一个不重复的字符的下标">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-24T13:48:15.755Z">
+<meta property="og:image" content="http://whutweihuan.github.io/2018/11/14/2018-11-14-blog-leetcode/meteora-3717220_640.jpg">
+<meta property="og:updated_time" content="2018-11-14T15:51:49.537Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【leetcode】414. Third Maximum Number">
-<meta name="twitter:description" content="描述返回第三大的数 样例12输入: [1,2,2,3]输出: 1 思路&amp;lt;(￣︶￣)↗[GO!],这个题目好简单啊!排序完，再调用一下unique就ok了。然而效率是硬伤。 我的解法12345678910class Solution &amp;#123;public:    int thirdMax(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;        sort(num">
+<meta name="twitter:title" content="【leetcode】387. First Unique Character in a String">
+<meta name="twitter:description" content="返回第一个不重复的字符的下标">
+<meta name="twitter:image" content="http://whutweihuan.github.io/2018/11/14/2018-11-14-blog-leetcode/meteora-3717220_640.jpg">
 
 
 
@@ -134,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://whutweihuan.github.io/2018/09/13/2018-9-13-blog_leetcode1/"/>
+  <link rel="canonical" href="http://whutweihuan.github.io/2018/11/14/2018-11-14-blog-leetcode/"/>
 
 
 
 
 
-  <title>【leetcode】414. Third Maximum Number | welcome</title>
+  <title>【leetcode】387. First Unique Character in a String | welcome</title>
   
 
 
@@ -315,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/13/2018-9-13-blog_leetcode1/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/11/14/2018-11-14-blog-leetcode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -332,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【leetcode】414. Third Maximum Number</h1>
+          <h1 class="post-title" itemprop="name headline">【leetcode】387. First Unique Character in a String</h1>
         
 
         <div class="post-meta">
@@ -344,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T00:00:00+08:00">
-                2018-09-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-14T17:31:24+08:00">
+                2018-11-14
               </time>
             
 
@@ -354,6 +356,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -376,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  289
+                  265
                 </span>
               
 
@@ -413,14 +448,16 @@
       
 
       
-        <p><strong>描述</strong><br>返回第三大的数</p>
-<p><strong>样例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,2,2,3]</span><br><span class="line">输出: 1</span><br></pre></td></tr></table></figure></p>
-<p><strong>思路</strong><br>&lt;(￣︶￣)↗[GO!],这个题目好简单啊!排序完，再调用一下unique就ok了。然而效率是硬伤。</p>
-<p><strong>我的解法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">thirdMax</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        sort(nums.begin(), nums.end(),greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">        <span class="keyword">if</span> (nums.size() &lt; <span class="number">3</span>) &#123; <span class="keyword">return</span> nums[<span class="number">0</span>]; &#125;</span><br><span class="line">        <span class="keyword">auto</span> uend = unique(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">if</span> (uend - nums.begin() &lt; <span class="number">3</span>) &#123; <span class="keyword">return</span> nums[<span class="number">0</span>]; &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>另一个解法</strong></p>
-<p>set的运用，消除重复值<br>set与vector的区别:首先，vector是序列式容器而set是关联式容器。set包含0个或多个不重复不排序的元素。也就是说set能够保证它里面所有的元素都是不重复的。另外对set容器进行插入时可以指定插入位置或者不指定插入位置。如insert(v.begin(),1),也可以直接用insert(1)。<br>set默认从小到大排序。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">thirdMax</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; numsets;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> n : nums) &#123;</span><br><span class="line">            numsets.insert(n);</span><br><span class="line">            <span class="keyword">if</span> (numsets.size() &gt; <span class="number">3</span>) &#123;</span><br><span class="line">                numsets.erase(numsets.begin());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> numsets.size() &gt;= <span class="number">3</span> ?  *numsets.begin() : *numsets.rbegin();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/third-maximum-number/description/" target="_blank" rel="noopener">原题</a></p>
+        <p class="description">返回第一个不重复的字符的下标</p>
 
+<p><img class="img-description" src="/2018/11/14/2018-11-14-blog-leetcode/meteora-3717220_640.jpg" alt="" width="100%"><br><a id="more"></a></p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>返回第一个不重复的字符的下标</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p><strong>样例1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;leetcode&quot;</span><br><span class="line">输出: 0</span><br></pre></td></tr></table></figure></p>
+<p><strong>样例2</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;loveleetcode&quot;</span><br><span class="line">输出: 2</span><br></pre></td></tr></table></figure></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>建立一个 maps ，用来判断某个字符是否出现了两次以上，用一个 set 来保存禁止的字符，最后遍历原始字符串，遇到非禁止的字符返回这个字符。曾经错误的想法包括，想把每一个出现的字符在它所在都映射为0，处理负责度比较的高。另外，可以考虑统计次数，显然次数为 1 的字符符合要求。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">firstUniqChar</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">         <span class="built_in">set</span>&lt;<span class="keyword">char</span>&gt; ban;</span><br><span class="line">         <span class="keyword">bool</span> maps[<span class="number">26</span>];</span><br><span class="line">         <span class="built_in">memset</span>(maps, <span class="literal">false</span>, <span class="keyword">sizeof</span>(maps) / <span class="keyword">sizeof</span>(maps[<span class="number">0</span>]));</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (maps[s[i] - <span class="string">'a'</span>]==<span class="literal">true</span>) &#123;</span><br><span class="line">               ban.insert(s[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">               maps[s[i]-<span class="string">'a'</span>] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ban.find(s[i]) == ban.end()) &#123;</span><br><span class="line">               <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://leetcode.com/problems/first-unique-character-in-a-string/" target="_blank" rel="noopener">原题链接</a></p>
+<hr>
       
     </div>
     
@@ -452,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/13/2018-10-15-blog/" rel="next" title="【leetcode】405. Convert a Number to Hexadecimal">
-                <i class="fa fa-chevron-left"></i> 【leetcode】405. Convert a Number to Hexadecimal
+              <a href="/2018/11/05/2018-11-5-blog-leetcode5/" rel="next" title="【leetcode】390 Elimination Game">
+                <i class="fa fa-chevron-left"></i> 【leetcode】390 Elimination Game
               </a>
             
           </div>
@@ -461,10 +498,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/13/2018-9-13-blog_mei1/" rel="prev" title="【编程之美】 2.7最大公因数">
-                【编程之美】 2.7最大公因数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -518,8 +551,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/photo.png"
@@ -581,6 +623,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例"><span class="nav-number">2.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
