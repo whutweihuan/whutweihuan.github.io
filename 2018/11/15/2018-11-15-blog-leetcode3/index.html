@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="算法," />
+  <meta name="keywords" content="leetcode,算法," />
 
 
 
@@ -94,18 +94,20 @@
 
 
 
-<meta name="description" content="12345678910111213141516171819202122232425262728function quickSorta = [2,0,1,8,6,13];num=size(a,2);c = quickSort1(a,1,num);disp(c);endfunction a=quickSort1(a,aStart,aEnd)if aStart &amp;gt;= aEnd    return">
-<meta name="keywords" content="算法">
+<meta name="description" content="重组单词">
+<meta name="keywords" content="leetcode,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="快速排序">
-<meta property="og:url" content="http://whutweihuan.github.io/2018/06/13/alg_quickSort/index.html">
+<meta property="og:title" content="【leetcode】388 Ransom Note">
+<meta property="og:url" content="http://whutweihuan.github.io/2018/11/15/2018-11-15-blog-leetcode3/index.html">
 <meta property="og:site_name" content="welcome">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728function quickSorta = [2,0,1,8,6,13];num=size(a,2);c = quickSort1(a,1,num);disp(c);endfunction a=quickSort1(a,aStart,aEnd)if aStart &amp;gt;= aEnd    return">
+<meta property="og:description" content="重组单词">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-08T04:41:58.816Z">
+<meta property="og:image" content="http://whutweihuan.github.io/2018/11/15/2018-11-15-blog-leetcode3/log-924958_640.jpg">
+<meta property="og:updated_time" content="2018-11-15T11:20:44.116Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="快速排序">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728function quickSorta = [2,0,1,8,6,13];num=size(a,2);c = quickSort1(a,1,num);disp(c);endfunction a=quickSort1(a,aStart,aEnd)if aStart &amp;gt;= aEnd    return">
+<meta name="twitter:title" content="【leetcode】388 Ransom Note">
+<meta name="twitter:description" content="重组单词">
+<meta name="twitter:image" content="http://whutweihuan.github.io/2018/11/15/2018-11-15-blog-leetcode3/log-924958_640.jpg">
 
 
 
@@ -134,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://whutweihuan.github.io/2018/06/13/alg_quickSort/"/>
+  <link rel="canonical" href="http://whutweihuan.github.io/2018/11/15/2018-11-15-blog-leetcode3/"/>
 
 
 
 
 
-  <title>快速排序 | welcome</title>
+  <title>【leetcode】388 Ransom Note | welcome</title>
   
 
 
@@ -315,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/13/alg_quickSort/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/11/15/2018-11-15-blog-leetcode3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -332,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">快速排序</h1>
+          <h1 class="post-title" itemprop="name headline">【leetcode】388 Ransom Note</h1>
         
 
         <div class="post-meta">
@@ -344,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T00:00:00+08:00">
-                2018-06-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-15T19:12:24+08:00">
+                2018-11-15
               </time>
             
 
@@ -354,6 +356,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -376,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  247
+                  158
                 </span>
               
 
@@ -413,9 +448,18 @@
       
 
       
-        <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span></span></span><br><span class="line">a = [<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">13</span>];</span><br><span class="line">num=<span class="built_in">size</span>(a,<span class="number">2</span>);</span><br><span class="line">c = quickSort1(a,<span class="number">1</span>,num);</span><br><span class="line"><span class="built_in">disp</span>(c);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>=<span class="title">quickSort1</span><span class="params">(a,aStart,aEnd)</span></span></span><br><span class="line"><span class="keyword">if</span> aStart &gt;= aEnd</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">index = a(aStart);</span><br><span class="line"><span class="built_in">i</span> = aStart,<span class="built_in">j</span> = aEnd;</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">i</span>&lt;<span class="built_in">j</span></span><br><span class="line">    <span class="keyword">while</span> a(<span class="built_in">j</span>)&gt;=index &amp;&amp; <span class="built_in">i</span>&lt;<span class="built_in">j</span></span><br><span class="line">        <span class="built_in">j</span>=<span class="built_in">j</span><span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    a(<span class="built_in">i</span>)= a(<span class="built_in">j</span>);</span><br><span class="line">    <span class="keyword">while</span> a(<span class="built_in">i</span>)&lt;=index &amp;&amp; <span class="built_in">i</span>&lt;<span class="built_in">j</span></span><br><span class="line">        <span class="built_in">i</span>=<span class="built_in">i</span>+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    a(<span class="built_in">j</span>)= a(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line">a(<span class="built_in">i</span>) = index;</span><br><span class="line">a=quickSort1(a,aStart,<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">a=quickSort1(a,<span class="built_in">i</span>+<span class="number">1</span>,aEnd);</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>感觉更为简洁<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = *a;</span><br><span class="line">    *a = *b;</span><br><span class="line">    *b = t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> aStart, <span class="keyword">int</span> aEnd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (aStart &gt;= aEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> midvalue = a[aEnd];</span><br><span class="line">    <span class="keyword">int</span> i = aStart - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = aStart; j &lt;= aEnd<span class="number">-1</span>; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[j] &lt;= midvalue)</span><br><span class="line">        &#123;</span><br><span class="line">            i++;</span><br><span class="line">            swap(&amp;a[j],&amp;a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(&amp;a[i+<span class="number">1</span>], &amp;a[aEnd]);</span><br><span class="line"></span><br><span class="line">    quickSort(a, aStart, i + <span class="number">1</span> - <span class="number">1</span>);</span><br><span class="line">    quickSort(a, i + <span class="number">1</span> + <span class="number">1</span>, aEnd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\t"</span>, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[] = &#123; <span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line">    printArray(a, n);</span><br><span class="line">    quickSort(a, <span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">    printArray(a, n);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p class="description">重组单词</p>
 
+<p><img src="/2018/11/15/2018-11-15-blog-leetcode3/log-924958_640.jpg" alt="" width="100%"><br><a id="more"></a></p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>给定一个目标字符串 s ，给定一个源字符串 t，判断 s 能否由 t 构成</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p><strong>样例1</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s=&quot;aa&quot; t =&quot;ab&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></p>
+<p><strong>样例2</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s=&quot;aa&quot; t =&quot;aab&quot;</span><br><span class="line">输出:true</span><br></pre></td></tr></table></figure></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>统计单词，减去单词。</p>
+<div class="note info">int a[10];<br>memset(a,0,sizeof(a));<br>是这样用的，后面不是 sizeof(a)/sizeof(a[0]);<br></div>
+
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canConstruct</span><span class="params">(<span class="built_in">string</span> ransomNote, <span class="built_in">string</span> magazine)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> maps[<span class="number">255</span>] = &#123;&#125;;</span><br><span class="line">        <span class="built_in">memset</span>(maps, <span class="number">0</span>, <span class="keyword">sizeof</span>(maps));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c : magazine) &#123;</span><br><span class="line">            maps[c] ++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c : ransomNote) &#123;</span><br><span class="line">            maps[c]--;</span><br><span class="line">            <span class="keyword">if</span> (maps[c]&lt;<span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://leetcode.com/problems/ransom-note/" target="_blank" rel="noopener">原题链接</a></p>
+<hr>
       
     </div>
     
@@ -432,6 +476,8 @@
       
         <div class="post-tags">
           
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
             <a href="/tags/算法/" rel="tag"># 算法</a>
           
         </div>
@@ -445,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/09/python-img-resize/" rel="next" title="批量更改图片大小">
-                <i class="fa fa-chevron-left"></i> 批量更改图片大小
+              <a href="/2018/11/15/2018-11-15-blog-leetcode2/" rel="next" title="【leetcode】384 Shuffle an Array">
+                <i class="fa fa-chevron-left"></i> 【leetcode】384 Shuffle an Array
               </a>
             
           </div>
@@ -454,10 +500,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/13/MFC-Snake/" rel="prev" title="MFC贪吃蛇">
-                MFC贪吃蛇 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -511,8 +553,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/photo.png"
@@ -574,6 +625,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例"><span class="nav-number">2.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
