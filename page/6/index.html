@@ -312,6 +312,318 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/12/2018-9-12-blog_mei2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/2018-9-12-blog_mei2/" itemprop="url">【编程之美】 2.2 不要被阶乘吓到</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T00:00:00+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  278
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>描述</strong><br>问题1:给定要给整数n，求n!中末尾0的个数<br>问题2:给定整数n，求n!中最低位1的位置</p>
+<p><strong>问题1</strong><br>分析一下，就是统计含有5的个数,于是有代码:<br>emmm,算法的时间复杂度为O(n*log2(k))<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countFac0</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> k = i;</span><br><span class="line">        <span class="keyword">while</span> (k) &#123;</span><br><span class="line">            <span class="keyword">if</span> (k % <span class="number">5</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                sum++;</span><br><span class="line">                k /= <span class="number">5</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>书中改进后的代码,显然更优，也理解起来更加费力<br>先整体除以5，求数目，再求25的倍数，以此类推</p>
+<p><img src="http://petxkegbg.bkt.clouddn.com/18-9-12/55146775.jpg" alt=""></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countFac2</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n) &#123;</span><br><span class="line">        sum += n / <span class="number">5</span>;</span><br><span class="line">        n /= <span class="number">5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>问题二</strong><br>关键要转换成求这个阶乘数的质因数2的个数，加个1就好。<br>二进制数，末尾为0=&gt;为偶数，那就看有多少个0，也就是能除以多少个2，题目要求1的位置，于是要加个1。</p>
+<p><img src="http://petxkegbg.bkt.clouddn.com/18-9-12/97973756.jpg" alt=""></p>
+<p>类似问题一的二解法,本问还可以计算1的个数，用N减得到的即为质因数的个数。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/12/2018-9-12-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/2018-9-12-blog/" itemprop="url">2018年9月12日</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T00:00:00+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  96
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="切换hexo-next代码高亮"><a href="#切换hexo-next代码高亮" class="headerlink" title="切换hexo+next代码高亮"></a>切换hexo+next代码高亮</h2><p>主站点配置文件改成这个样子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">highlight:</span><br><span class="line">  enable: true</span><br><span class="line">  line_number: true</span><br><span class="line">  auto_detect: false  &lt;&lt;-----//这里改成false</span><br><span class="line">  tab_replace:</span><br></pre></td></tr></table></figure></p>
+<p>next主题配置文件更改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Code Highlight theme</span><br><span class="line"># Available value:</span><br><span class="line">#    normal | night | night eighties | night blue | night bright</span><br><span class="line"># https://github.com/chriskempson/tomorrow-theme</span><br><span class="line"># highlight_theme: normal</span><br><span class="line">highlight_theme: night eighties</span><br></pre></td></tr></table></figure></p>
+<h2 id="密码移位"><a href="#密码移位" class="headerlink" title="密码移位"></a>密码移位</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch = (ch+i-<span class="string">'a'</span>)%<span class="number">26</span>+<span class="string">'a'</span>;</span><br></pre></td></tr></table></figure>
+<p>not is<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> (ch+i&gt;<span class="string">'z'</span>)&#123;</span><br><span class="line">   ch = (ch+i-<span class="string">'z'</span>)+<span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">   ch = ch+i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/11/2018-9-11-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -938,159 +1250,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_leetcode1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_leetcode1/" itemprop="url">【leetcode】 859 Buddy Strings</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T00:00:00+08:00">
-                2018-09-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  332
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>描述</strong><br>这道题交换两个字符后相等</p>
-<p><strong>我的做法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">buddyStrings</span><span class="params">(<span class="built_in">string</span> A, <span class="built_in">string</span> B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (A.length() != B.length())<span class="comment">//长度不同直接返回false</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> strLength = A.length();</span><br><span class="line">        <span class="keyword">if</span> (A==B)<span class="comment">//字符串一样直接返回true</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//存在两个相同的字符才可以</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strLength; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; strLength; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (A.at(i) == A.at(j))</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ind1, ind2;<span class="comment">//能成功的必须只有两处不同</span></span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strLength; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (A.at(i) != B.at(i))</span><br><span class="line">            &#123;</span><br><span class="line">                flag++;</span><br><span class="line">                <span class="keyword">if</span> (flag == <span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ind1 = i;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (flag == <span class="number">2</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ind2 = i;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> temp_val = A.at(ind1);</span><br><span class="line">        A.at(ind1) = A.at(ind2);</span><br><span class="line">        A.at(ind2) = temp_val;</span><br><span class="line">        <span class="keyword">if</span> (A == B)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>大佬做法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">buddyStrings</span><span class="params">(<span class="built_in">string</span> A, <span class="built_in">string</span> B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (A.length() != B.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (A.length() &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">bool</span> bRpeat = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">bool</span> <span class="built_in">map</span>[<span class="number">26</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> diffCnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ind[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.length(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">map</span>[A[i] - <span class="string">'a'</span>]) &#123; bRpeat = <span class="literal">true</span>; &#125;</span><br><span class="line">            <span class="built_in">map</span>[A[i] - <span class="string">'a'</span>] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (A[i] != B[i]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (diffCnt &gt;= <span class="number">2</span>) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">                ind[diffCnt++] = i;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (diffCnt == <span class="number">0</span> &amp;&amp; bRpeat) &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">        <span class="keyword">return</span> A[ind[<span class="number">0</span>]] == B[ind[<span class="number">1</span>]] &amp;&amp; A[ind[<span class="number">1</span>]] == B[ind[<span class="number">0</span>]];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">**参考资料*</span><br><span class="line">[原题链接](https:<span class="comment">//leetcode.com/problems/buddy-strings/description/)</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1257,7 +1416,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_leetcode3/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_leetcode1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1276,7 +1435,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_leetcode3/" itemprop="url">【leetcode】844 Backspace String Compare</a></h1>
+                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_leetcode1/" itemprop="url">【leetcode】 859 Buddy Strings</a></h1>
         
 
         <div class="post-meta">
@@ -1320,161 +1479,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  391
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这道题很有趣，很灵活。<br><strong>我的代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">backspaceCompare</span><span class="params">(<span class="built_in">string</span> S, <span class="built_in">string</span> T)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> s1 = delS(S);</span><br><span class="line">        <span class="built_in">string</span> t1 = delS(T);</span><br><span class="line">        <span class="keyword">int</span> len = s1.size() &lt; t1.size() ? s1.size() : t1.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s1[i] != t1[i]) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">delS</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> S2 = S;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> len = S.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123; S2[i] = <span class="string">'0'</span>; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (S[i] == <span class="string">'#'</span>) &#123;</span><br><span class="line">                S[i] = <span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">int</span> k = i - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> delCnt = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (k &gt;= <span class="number">0</span> &amp;&amp; S[k] == <span class="string">'#'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    S[k] = <span class="string">'0'</span>;</span><br><span class="line">                    delCnt++;</span><br><span class="line">                    k--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">while</span> (delCnt &gt; <span class="number">0</span> &amp;&amp; k &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (S[k] != <span class="string">'#'</span> &amp;&amp; S[k] != <span class="string">'0'</span>) &#123;</span><br><span class="line">                        S[k] = <span class="string">'0'</span>;</span><br><span class="line">                        k--; delCnt--;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123; k--; &#125;;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ind = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (S[i] != <span class="string">'0'</span>) &#123; S2[ind++] = S[i]; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> S2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>大佬代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">backspaceCompare</span><span class="params">(<span class="built_in">string</span> S, <span class="built_in">string</span> T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (delS(S) == delS(T)) &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">delS</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt; stk;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : S) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c != <span class="string">'#'</span>) &#123;</span><br><span class="line">                stk.push(c);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (!stk.empty()) &#123;</span><br><span class="line">                    stk.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> str=<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">while</span> (!stk.empty()) &#123;</span><br><span class="line">            str += stk.top();</span><br><span class="line">            stk.pop();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>大佬代码2</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">backspaceCompare</span><span class="params">(<span class="built_in">string</span> S, <span class="built_in">string</span> T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = S.length() - <span class="number">1</span>, j = T.length() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> skipS = <span class="number">0</span>, skipT = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (S[i] == <span class="string">'#'</span>) &#123; skipS++; i--; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (skipS &gt; <span class="number">0</span>) &#123; skipS--; i--; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (T[j] == <span class="string">'#'</span>) &#123; skipT++;j--; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (skipT &gt; <span class="number">0</span>) &#123; skipT--; j--; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (i&gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span> &amp;&amp; S[i] != T[j]) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">            i--, j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/backspace-string-compare/description/" target="_blank" rel="noopener">原题链接</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_lianbiao/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_lianbiao/" itemprop="url">交换链表的节点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T00:00:00+08:00">
-                2018-09-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  146
+                  332
                 </span>
               
 
@@ -1513,7 +1518,9 @@
       
         
           
-            <p><img src="/2018/09/08/2018-9-8-blog_lianbiao/2018-9-8-blog/linknode.png" alt=""><br>链表节点要这么画成图2这样的不要简单的画图1表示了。<br>代码如下<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode * <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> p = head;</span><br><span class="line">        <span class="comment">//no node</span></span><br><span class="line">        <span class="keyword">if</span> (p == <span class="literal">NULL</span>) &#123; <span class="keyword">return</span> p; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//swap first two nodes</span></span><br><span class="line">        <span class="keyword">if</span> (p&amp;&amp;p-&gt;next) &#123;</span><br><span class="line">            <span class="keyword">auto</span> next = p-&gt;next;</span><br><span class="line">            p-&gt;next = p-&gt;next-&gt;next;</span><br><span class="line">            next-&gt;next = p;</span><br><span class="line">            head = next;<span class="comment">//change head node</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//only one node</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//swap rest nodes;</span></span><br><span class="line">        <span class="keyword">auto</span> prev = head-&gt;next;</span><br><span class="line">        p = head-&gt;next-&gt;next;</span><br><span class="line">        <span class="keyword">while</span> (p&amp;&amp;p-&gt;next)&#123;</span><br><span class="line">            <span class="keyword">auto</span> next = p-&gt;next;</span><br><span class="line">            p-&gt;next = p-&gt;next-&gt;next;</span><br><span class="line">            next-&gt;next = p;</span><br><span class="line">            prev-&gt;next = next;</span><br><span class="line">            prev = p;</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+            <p><strong>描述</strong><br>这道题交换两个字符后相等</p>
+<p><strong>我的做法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">buddyStrings</span><span class="params">(<span class="built_in">string</span> A, <span class="built_in">string</span> B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (A.length() != B.length())<span class="comment">//长度不同直接返回false</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> strLength = A.length();</span><br><span class="line">        <span class="keyword">if</span> (A==B)<span class="comment">//字符串一样直接返回true</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//存在两个相同的字符才可以</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strLength; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; strLength; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (A.at(i) == A.at(j))</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ind1, ind2;<span class="comment">//能成功的必须只有两处不同</span></span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strLength; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (A.at(i) != B.at(i))</span><br><span class="line">            &#123;</span><br><span class="line">                flag++;</span><br><span class="line">                <span class="keyword">if</span> (flag == <span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ind1 = i;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (flag == <span class="number">2</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ind2 = i;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> temp_val = A.at(ind1);</span><br><span class="line">        A.at(ind1) = A.at(ind2);</span><br><span class="line">        A.at(ind2) = temp_val;</span><br><span class="line">        <span class="keyword">if</span> (A == B)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>大佬做法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">buddyStrings</span><span class="params">(<span class="built_in">string</span> A, <span class="built_in">string</span> B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (A.length() != B.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (A.length() &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">bool</span> bRpeat = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">bool</span> <span class="built_in">map</span>[<span class="number">26</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> diffCnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ind[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.length(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">map</span>[A[i] - <span class="string">'a'</span>]) &#123; bRpeat = <span class="literal">true</span>; &#125;</span><br><span class="line">            <span class="built_in">map</span>[A[i] - <span class="string">'a'</span>] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (A[i] != B[i]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (diffCnt &gt;= <span class="number">2</span>) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">                ind[diffCnt++] = i;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (diffCnt == <span class="number">0</span> &amp;&amp; bRpeat) &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">        <span class="keyword">return</span> A[ind[<span class="number">0</span>]] == B[ind[<span class="number">1</span>]] &amp;&amp; A[ind[<span class="number">1</span>]] == B[ind[<span class="number">0</span>]];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">**参考资料*</span><br><span class="line">[原题链接](https:<span class="comment">//leetcode.com/problems/buddy-strings/description/)</span></span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1718,7 +1725,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/07/2018-9-7-blog/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_leetcode3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1737,7 +1744,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/07/2018-9-7-blog/" itemprop="url">一点小感想</a></h1>
+                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_leetcode3/" itemprop="url">【leetcode】844 Backspace String Compare</a></h1>
         
 
         <div class="post-meta">
@@ -1749,8 +1756,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-07T00:00:00+08:00">
-                2018-09-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T00:00:00+08:00">
+                2018-09-08
               </time>
             
 
@@ -1781,7 +1788,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  146
+                  391
                 </span>
               
 
@@ -1797,7 +1804,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -1820,12 +1827,10 @@
       
         
           
-            <p>最近看了一些大佬的博客，真是太牛逼了。</p>
-<p>参加了数学建模，发现自己编程实力实在菜的一匹。</p>
-<p>数据结构是真的重要，需要好好复习一下。</p>
-<p>遇到一些问题，不能太钻牛角尖，有很多东西是不必要那么认真的。这样就会有够多的时间了。</p>
-<p>一个人的力量总是渺小的，需要向优秀的人学习询问方法，不要闭门造车。</p>
-<p>要开阔眼界，多看书，多看技术书，要养成看技术书的习惯.</p>
+            <p>这道题很有趣，很灵活。<br><strong>我的代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">backspaceCompare</span><span class="params">(<span class="built_in">string</span> S, <span class="built_in">string</span> T)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> s1 = delS(S);</span><br><span class="line">        <span class="built_in">string</span> t1 = delS(T);</span><br><span class="line">        <span class="keyword">int</span> len = s1.size() &lt; t1.size() ? s1.size() : t1.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s1[i] != t1[i]) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">delS</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> S2 = S;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> len = S.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123; S2[i] = <span class="string">'0'</span>; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (S[i] == <span class="string">'#'</span>) &#123;</span><br><span class="line">                S[i] = <span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">int</span> k = i - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> delCnt = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (k &gt;= <span class="number">0</span> &amp;&amp; S[k] == <span class="string">'#'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    S[k] = <span class="string">'0'</span>;</span><br><span class="line">                    delCnt++;</span><br><span class="line">                    k--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">while</span> (delCnt &gt; <span class="number">0</span> &amp;&amp; k &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (S[k] != <span class="string">'#'</span> &amp;&amp; S[k] != <span class="string">'0'</span>) &#123;</span><br><span class="line">                        S[k] = <span class="string">'0'</span>;</span><br><span class="line">                        k--; delCnt--;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123; k--; &#125;;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ind = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (S[i] != <span class="string">'0'</span>) &#123; S2[ind++] = S[i]; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> S2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>大佬代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">backspaceCompare</span><span class="params">(<span class="built_in">string</span> S, <span class="built_in">string</span> T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (delS(S) == delS(T)) &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">delS</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt; stk;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : S) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c != <span class="string">'#'</span>) &#123;</span><br><span class="line">                stk.push(c);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (!stk.empty()) &#123;</span><br><span class="line">                    stk.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> str=<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">while</span> (!stk.empty()) &#123;</span><br><span class="line">            str += stk.top();</span><br><span class="line">            stk.pop();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>大佬代码2</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">backspaceCompare</span><span class="params">(<span class="built_in">string</span> S, <span class="built_in">string</span> T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = S.length() - <span class="number">1</span>, j = T.length() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> skipS = <span class="number">0</span>, skipT = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (S[i] == <span class="string">'#'</span>) &#123; skipS++; i--; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (skipS &gt; <span class="number">0</span>) &#123; skipS--; i--; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (T[j] == <span class="string">'#'</span>) &#123; skipT++;j--; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (skipT &gt; <span class="number">0</span>) &#123; skipT--; j--; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (i&gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span> &amp;&amp; S[i] != T[j]) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">            i--, j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/backspace-string-compare/description/" target="_blank" rel="noopener">原题链接</a></p>
 
           
         
@@ -1913,7 +1918,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">115</span>
+                <span class="site-state-item-count">117</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1924,7 +1929,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1935,7 +1940,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
