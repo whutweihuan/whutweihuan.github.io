@@ -312,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/15/hexo1-搜索/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/03/machine5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -331,7 +331,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/15/hexo1-搜索/" itemprop="url">hexo1-搜索</a></h1>
+                <a class="post-title-link" href="/2018/04/03/machine5/" itemprop="url">SVM</a></h1>
         
 
         <div class="post-meta">
@@ -343,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T01:58:19+08:00">
-                2018-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-03T00:00:00+08:00">
+                2018-04-03
               </time>
             
 
@@ -375,7 +375,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  412
+                  89
                 </span>
               
 
@@ -414,17 +414,8 @@
       
         
           
-            <p>真是蛋疼的要命！<br>参考了许多文章，终于成功了，总结一下。</p>
-<h1 id="algolia方面"><a href="#algolia方面" class="headerlink" title="algolia方面"></a>algolia方面</h1><p>github登陆进去后，选择indices，然后新建一个index：<br><img src="/2018/04/15/hexo1-搜索/1.PNG" alt="123"></p>
-<p>之后点击ApiKeys,三个keys待会会用到:<br><img src="/2018/04/15/hexo1-搜索/2.PNG" alt="123"><br>之后来到这个页面，勾选一下：<br><img src="/2018/04/15/hexo1-搜索/3.PNG" alt="123"></p>
-<h1 id="hexo方面"><a href="#hexo方面" class="headerlink" title="hexo方面"></a>hexo方面</h1><p>在hexo文件夹内右键gitbrash,输入命令下载algolia搜索插件（据说免费）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-algolia@0.2.0</span><br></pre></td></tr></table></figure></p>
-<p>在hexo _config.yml 中添加代码(对齐很重要，开始由于没对齐，花了很长时间寻找问题)<br>代码需要填写之前页面的ApiKey：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">algolia:</span><br><span class="line">  applicationID: xxxxxx</span><br><span class="line">  apiKey: xxxxxx</span><br><span class="line">  adminApiKey: xxxxxx</span><br><span class="line">  indexName: xxxxxx</span><br><span class="line">  chunkSize: 5000</span><br><span class="line">  fields:</span><br><span class="line">    - title</span><br><span class="line">    - slug</span><br><span class="line">    - path</span><br><span class="line">    - content:strip</span><br></pre></td></tr></table></figure></p>
-<p>在next文件夹的_config.yml找到相应代码修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">algolia_search:</span><br><span class="line">  enable: true</span><br><span class="line">  hits:</span><br><span class="line">    per_page: 10</span><br><span class="line">  labels:</span><br><span class="line">    input_placeholder: &quot;输入关键词&quot;</span><br><span class="line">    hits_empty: &quot;没有找到相关内容.-_-.&quot;</span><br><span class="line">    hits_stats: &quot;$&#123;hits&#125; 条相关记录,共耗时 $&#123;time&#125; ms.&quot;</span><br></pre></td></tr></table></figure></p>
-<p>之后，运行代码使信息同步到algolia.com上面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo algolia</span><br></pre></td></tr></table></figure></p>
-<p>应该就可以了。。。。</p>
-<p>但是我还遇到了问题，能成功搜索出来信息，点击却无法反应？<br>因为path信息没有同步到algolia网站上，我之前用的这条命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-algolia</span><br></pre></td></tr></table></figure></p>
-<p>然而,手机端无法进行点击,应该是阴影覆盖了,修改文件中的z-index就好了。路径themes\next\source\css_common\components\third-party中的algolia-search.styl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.algolia-pop-overlay</span><br><span class="line">  position: fixed</span><br><span class="line">  width: 100%</span><br><span class="line">  height: 100%</span><br><span class="line">  top: 0</span><br><span class="line">  left: 0</span><br><span class="line">  z-index: 2080   //这一行删除</span><br><span class="line">  background-color: rgba(0, 0, 0, 0.3)</span><br></pre></td></tr></table></figure></p>
-<p>花了很长时间才发现0.2.0版本有妙解，也就是前面所用的命令。<br>终于能享受一波搜索乐趣了, 表情逐渐稳定~~<br><img src="/2018/04/15/hexo1-搜索/4.png" alt=""></p>
+            <p>SVM<br>1、分类<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</span><br><span class="line"></span><br><span class="line"> X = [[<span class="number">0</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>]]  <span class="comment"># training samples</span></span><br><span class="line">y = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]  <span class="comment"># training target</span></span><br><span class="line">clf = svm.SVC()  <span class="comment"># class</span></span><br><span class="line">clf.fit(X, y)  <span class="comment"># training the svc model</span></span><br><span class="line"></span><br><span class="line">result = clf.predict([<span class="number">2</span>, <span class="number">2</span>]) <span class="comment"># predict the target of testing samples</span></span><br><span class="line"><span class="keyword">print</span> result  <span class="comment"># target</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> clf.support_vectors_  <span class="comment">#support vectors</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> clf.support_  <span class="comment"># indeices of support vectors</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> clf.n_support_  <span class="comment"># number of support vectors for each class</span></span><br></pre></td></tr></table></figure></p>
+<p>2、回归<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">X = [[<span class="number">0</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">1</span>]]</span><br><span class="line">y = [<span class="number">0.5</span>, <span class="number">1.5</span>]</span><br><span class="line">clf = svm.SVR()</span><br><span class="line">clf.fit(X, y)</span><br><span class="line">result = clf.predict([<span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line"><span class="keyword">print</span> result</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -473,7 +464,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/15/hexo2-图片/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/01/machine6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -492,7 +483,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/15/hexo2-图片/" itemprop="url">hexo2-图片</a></h1>
+                <a class="post-title-link" href="/2018/04/01/machine6/" itemprop="url">python处理excel</a></h1>
         
 
         <div class="post-meta">
@@ -504,8 +495,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T00:00:00+08:00">
-                2018-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T00:00:00+08:00">
+                2018-04-01
               </time>
             
 
@@ -536,7 +527,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  107
+                  159
                 </span>
               
 
@@ -575,10 +566,7 @@
       
         
           
-            <p>安装插件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure></p>
-<p>修改hexo _config.yml为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure></p>
-<p>之后，运行hexo n “xxxx”，会产生一个xxxx.md，同时还会产生一个xxxx文件夹，把图片放入xxxx文件夹内。<br>markdown调用图片：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![可不填，图片代替的文字](xxxx/image.png)</span><br></pre></td></tr></table></figure></p>
-<p>注意gitpages是区分大小写的,image.png与image.PNG 是不同的！<br>但是在localhost:4000内不区分大小写，有点意思。</p>
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xlrd</span><br><span class="line"></span><br><span class="line">data = xlrd.open_workbook(<span class="string">'2017下学期成绩1.xlsx'</span>); <span class="comment">#打开excel文件</span></span><br><span class="line">table = data.sheets()[<span class="number">0</span>];                 <span class="comment">#获取工作表方式1</span></span><br><span class="line">table = data.sheets_by_index(<span class="number">0</span>);          <span class="comment">#获取工作表方式2</span></span><br><span class="line">table = data.sheet_by_name(<span class="string">u'Sheet1'</span>);    <span class="comment">#获取工作表方式3</span></span><br><span class="line"></span><br><span class="line">ncols = table.cols    <span class="comment">#获取列数</span></span><br><span class="line">nrows = table.nrows   <span class="comment">#获取行数</span></span><br><span class="line"><span class="comment">#for i in range(nrows):        #输出所有内容</span></span><br><span class="line">    <span class="comment">#print(table.row_values(B))</span></span><br><span class="line"></span><br><span class="line">cell_A = table.cell(<span class="number">2</span>,<span class="number">2</span>).value      <span class="comment">#获取单元格值方式1</span></span><br><span class="line">cell_B = table.row(<span class="number">0</span>)[<span class="number">0</span>].value</span><br><span class="line">cell_ = table.col(<span class="number">0</span>)[<span class="number">0</span>].value</span><br><span class="line">col = table2.col_values(<span class="number">10</span>,<span class="number">1</span>)  <span class="comment">#第十列，第二个开始</span></span><br><span class="line">print(cell_A)</span><br><span class="line"></span><br><span class="line">row = <span class="number">0</span></span><br><span class="line">col = <span class="number">0</span></span><br><span class="line">ctype = <span class="number">1</span> <span class="comment"># 类型 0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error</span></span><br><span class="line">value = <span class="string">'liluo'</span></span><br><span class="line">xf = <span class="number">0</span> <span class="comment"># 扩展的格式化 (默认是0)</span></span><br><span class="line">table.put_cell(row, col, ctype, value, xf)  <span class="comment">#写入数据</span></span><br></pre></td></tr></table></figure>
 
           
         
@@ -627,7 +615,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/14/book-reading11/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/03/14/book-reading8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -646,7 +634,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/14/book-reading11/" itemprop="url">《微习惯》</a></h1>
+                <a class="post-title-link" href="/2018/03/14/book-reading8/" itemprop="url">《许三观卖血记》</a></h1>
         
 
         <div class="post-meta">
@@ -658,8 +646,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T00:00:00+08:00">
-                2018-04-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T23:28:00+08:00">
+                2018-03-14
               </time>
             
 
@@ -690,7 +678,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  15
+                  259
                 </span>
               
 
@@ -729,7 +717,10 @@
       
         
           
-            <p>很亲切。<br>1与0的差距远大于n与1的差距。</p>
+            <p>在余华的作品里，没有多余的人物，没有多余的话语，字字皆露真情，催人深思。</p>
+<p>随着故事情节的发展，对许三观，从开始的嫌弃演变为后期的同情。和《活着》一样，人民贫苦，遭遇感人。当时官僚主义作风盛行，二乐的队长压榨民脂民膏，还强行令虚落的许三观陪酒，“喝酒，喝坏了身体不打紧，交情最重要!”。文革，大字报，批斗…搞得整个社会乌烟瘴气。徐玉兰被诬陷，被剃了个阴阳头，惋惜。书中一些客串人物形象也蛮丰满的，比如根龙、阿方，同是天涯沦落人，相逢何必曾相识。</p>
+<p>许三观卖了好多次血：<br>第一次：盖房娶媳妇<br>第二次：偿还医药费<br>第三次、第四次：请二乐队长吃饭。<br>第五、六、七次：为一乐凑集医药费。<br>第八次：年轻血头不接受卖血。</p>
+<p>总体来说，本书有点意思。</p>
 
           
         
@@ -778,7 +769,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/14/movie4/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/03/11/book-reading6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -797,7 +788,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/14/movie4/" itemprop="url">《头号玩家》</a></h1>
+                <a class="post-title-link" href="/2018/03/11/book-reading6/" itemprop="url">《南京大屠杀》</a></h1>
         
 
         <div class="post-meta">
@@ -809,8 +800,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T00:00:00+08:00">
-                2018-04-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-11T14:18:00+08:00">
+                2018-03-11
               </time>
             
 
@@ -841,7 +832,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  28
+                  212
                 </span>
               
 
@@ -880,7 +871,8 @@
       
         
           
-            <p>彩蛋的确多，237，那就顺其自然吧！哈哈哈。<br>随便玩玩就可以了，有点意思。</p>
+            <p>闻国殇久矣，偶见此书，观之，大感。曾困惑于人之异，今有少许见解。人之肉体相似，然其思想或差万分，倭寇入侵我南京城，我军抛儿弃女而逃，致一夜间南京沦陷。南京市民不自信，苟且偷生，任人宰割不敢动。闻我军俘虏数目甚敌远矣，而不自救，精神麻木，任其视吾等生命如玩物，悲哉！倭寇兽心大显，奸杀我国民女万千，中国壮士何在？中国国威何在？日本区区小国，胆敢侵犯我大中国，而我国竟节节溃退，何焉？</p>
+<p>当属领袖罪过，闭关锁国，享受其中，不求进取。国民思想滞怠，落后而迂腐。故领袖开明，则国强；领袖享乐而不知进取，国将衰。</p>
 
           
         
@@ -929,7 +921,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/14/book-reading12-了不起的盖茨比/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/20/movie3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -948,7 +940,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/14/book-reading12-了不起的盖茨比/" itemprop="url">《了不起的盖茨比》</a></h1>
+                <a class="post-title-link" href="/2018/02/20/movie3/" itemprop="url">《红海行动》</a></h1>
         
 
         <div class="post-meta">
@@ -960,8 +952,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T00:00:00+08:00">
-                2018-04-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T22:41:00+08:00">
+                2018-02-20
               </time>
             
 
@@ -992,7 +984,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  60
+                  202
                 </span>
               
 
@@ -1031,7 +1023,8 @@
       
         
           
-            <p>一个男人通过奋斗变得有钱，而他爱的女人却变了。<br>感触不是很大，也许英文原版会好一些。<br>那以理解这种书为什么这么有名，感觉很无聊，剧情很弱。</p>
+            <p>类似《战狼2》，都是海外救华侨。本以为也是个小场面的电影，看完后感觉是个大作。从片头打到片尾，有坦克大战，狙击战，等精彩部分。打斗过程细节处理的很好，包括石头同志手臂被炸断，另一名队员手指被炸断，很带感。我认为电影要引起观众的共鸣，必须有一些精彩的细节，做给大家看，而不是向大众啰嗦讲一堆大道理。片子很赞，如果之前没有《战狼2》，我感觉这部电影一定会更加令人难忘。</p>
+<p>PS：电影院设备真的让人涕泗横流，坐在第一排更是锦上添花，整个屏幕都有一种灰蒙蒙的感觉，略感遗憾。</p>
 
           
         
@@ -1080,7 +1073,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/13/book-reading10/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/20/book-reading5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1099,7 +1092,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/13/book-reading10/" itemprop="url">《我有故事，你有酒吗》</a></h1>
+                <a class="post-title-link" href="/2018/02/20/book-reading5/" itemprop="url">《东方快车谋杀案》</a></h1>
         
 
         <div class="post-meta">
@@ -1111,311 +1104,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T00:00:00+08:00">
-                2018-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  37
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>文笔清新自然，故事细腻煽情。</p>
-<p>我希望世间有这般温雅的人，看山花烂漫时带上一包葵花子。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/13/book-reading9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/13/book-reading9/" itemprop="url">《必须找到阿历克斯》</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T00:00:00+08:00">
-                2018-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  13
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>翻译好差！<br>情节有点意思。<br>很残暴。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/09/machine9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/09/machine9/" itemprop="url">【机器学习】回归方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T00:00:00+08:00">
-                2018-04-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T22:28:00+08:00">
+                2018-02-20
               </time>
             
 
@@ -1484,171 +1174,8 @@
 
       
         
-          <p></p><p class="description">sklearn 回归方法 </p><br>
-		  
           
-
-		          
- 
-		  
-		  
-		  
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/09/machine9/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/05/machine8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/05/machine8/" itemprop="url">Matplotlib</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-05T00:00:00+08:00">
-                2018-04-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  42
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(math_score)):</span><br><span class="line">    x.append(i)</span><br><span class="line"></span><br><span class="line">plt.plot(x,math_score,label=<span class="string">'math'</span>,color=<span class="string">'r'</span>)</span><br><span class="line">plt.plot(x,physical_score,label=<span class="string">'physic'</span>,color=<span class="string">'b'</span>)</span><br><span class="line">plt.plot(x,chemistry_score,label=<span class="string">'chemistry'</span>,color=<span class="string">'g'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+            <p>书中人物名字好长，看的累，没办法毕竟是外国的。故事情节在不专心的情况下很难记住，我断断续续看了3、4次才完整看完，感觉剧情发展的好慢，比东野圭吾的慢许多，而且结局没有特别让我震惊。书籍属于午夜书库的，《无人生还》也是午夜书库中的书，相比而言，我觉得《无人生还》节奏更快，而且在半夜看感触颇深。</p>
 
           
         
@@ -1697,7 +1224,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/04/machine7/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/20/book-reading7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1716,7 +1243,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/04/machine7/" itemprop="url">Pandas</a></h1>
+                <a class="post-title-link" href="/2018/02/20/book-reading7/" itemprop="url">《王阳明心学》</a></h1>
         
 
         <div class="post-meta">
@@ -1728,8 +1255,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T00:00:00+08:00">
-                2018-04-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T22:28:00+08:00">
+                2018-02-20
               </time>
             
 
@@ -1760,7 +1287,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  29
+                  152
                 </span>
               
 
@@ -1799,7 +1326,468 @@
       
         
           
-            <p>相关性分析：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s1 = pd.Series(math_score) <span class="comment">#转为series类型</span></span><br><span class="line">s2 = pd.Series(physical_score)</span><br><span class="line">corr = s1.corr(s2) <span class="comment">#计算相关系数</span></span><br><span class="line"><span class="keyword">print</span> (corr)</span><br></pre></td></tr></table></figure></p>
+            <p>王阳明真是牛X，攻心之术！<br>这本书讲的是王阳明的生活经历，有许多的小故事。有些内容很玄乎，比如：一道长说20年后会与王阳明再次见面，果真如此。再如：王阳明还会诸葛孔明那招—祈雨，关键是雨还真的来了！王阳明若加入了国民党，估计共产党在井冈山那会儿就要被团灭了。心学，有点意思。<br>感觉全书都是在讲故事，说心学是多么多么厉害，但是没有教我怎么格物致知啊?</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/17/book-reading4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/17/book-reading4/" itemprop="url">《一个人的朝圣》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-17T00:47:00+08:00">
+                2018-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  463
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>看的比较认真，被哈德罗.弗莱的执着感动了。也许人生许多事情就是这样的，为什么要那么理性呢？做一件事一定要有一个借口吗？<br>去接受一些你不了解的东西，去争取，去相信自己可以改变一些事情。</p>
+<p>但没人知道他们内心深处背着的包袱。有时他们需要付出简直不为人道的努力来扮演“正常”，每天都要装，还要装得稀松平常,那种不为人道的孤独感。</p>
+<p>他以为走一段路就可以治愈癌症？</p>
+<p>有些事情可以有好几个起点，也可以用不同的方式开始。有时候你以为自己已经展开了新的一页，实际上却可能只是重复以前的步伐。他直面并克服了自己的短处，所以现在终于可以说他的旅程真正揭幕了。</p>
+<p>哈罗德一路走，一路听着这些陌生人的故事，并不评判任何人。</p>
+<p>这世上有许多人每天做的事就是不断将一只脚放到另一只脚前面，日子久了，生活便显得平淡无奇。哈罗德无法再否认其实一路上见过的每个陌生人虽然是独特的，却又是一样的，这就是人生的两难。</p>
+<p>但或许这就是世界所需要的，少一点理性，多一点信念。</p>
+<p>他发现当一个人与熟悉的生活疏离，成为一个过客，陌生的事物都会被赋予新的意义。明白了这一点，保持真我，诚实地做一个哈罗德而不是扮演成其他任何人，就变得更加重要。</p>
+<p>给予和接受都是一份馈赠，既需要谦逊，也需要勇气。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/14/book-reading3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/14/book-reading3/" itemprop="url">《这本书能让你睡得更好》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-14T09:00:00+08:00">
+                2018-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  312
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>作为一个高三经常半夜仰望上铺床板的男人，我早已学会如何安详的睡个好觉了…当然不是因为这本书。该书给了一些建议，科普了一些睡眠方面的知识。说的最多的便是褪黑激素和血清素。褪黑激素，周围环境暗下来后，人体便会产生的激素，这种激素不仅有延年益寿之功效，而且还能抗癌，最重要的是，它能促进我们睡眠。书中指出，只要我们白天多晒太阳，晚上让室内黑的不见五指，这种激素便会大量产生了。血清素，90%存在于肠胃之中，能改善睡眠。之后作者还向我们推销了一种外服镁，说是一种万能的矿物质，还说美国80%的人都缺少它，扬言缺镁的人寿命会比正常人少一半！作者说，别熬夜了，早点睡吧！在10：00到2：00期间人体会产生大量的激素，排毒养颜。另外，室内加个植物还是不错的。虎尾兰挺好的，晚上吸收二氧化碳，产生氧气，建议手残党还是养个易活的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/13/movie2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/13/movie2/" itemprop="url">《源代码》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T16:18:00+08:00">
+                2018-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  144
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>剧情有点意思，烧脑片。我总感觉那个博士是个有巨大阴谋的反派，看看他那一副猥琐的面容，再加上他那步伐，真是太像坏蛋了。结局有点意思，是产生了平行世界还是改变了历史？从源代码世界给现实世界发送短信还真接收到了？还是说产生了接收到短信的依旧是源代码世界，而现实世界则是斯蒂芬上尉死亡，火车依旧爆炸。感觉是产生了平行世界。</p>
 
           
         
@@ -1839,7 +1827,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1887,7 +1875,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">128</span>
+                <span class="site-state-item-count">118</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
