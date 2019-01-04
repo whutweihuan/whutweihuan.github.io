@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="IXzN73vVIB" />
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据库," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="实验笔记">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库实验">
+<meta property="og:url" content="http://whutweihuan.github.io/2019/01/04/2019-1-4-blog/index.html">
+<meta property="og:site_name" content="welcome">
+<meta property="og:description" content="实验笔记">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-04T03:02:36.525Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库实验">
+<meta name="twitter:description" content="实验笔记">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'GSN98568S8',
+      apiKey: '29d8f0155bbe4222dfa69a1000d403f0',
+      indexName: 'yougood',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键词","hits_empty":"没有找到相关内容.-_-.","hits_stats":"${hits} 条相关记录,共耗时 ${time} ms."}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://whutweihuan.github.io/2019/01/04/2019-1-4-blog/"/>
+
+
+
+
+
+  <title>数据库实验 | welcome</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+	
+	
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">welcome</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+			<!--增加的代码 start-->
+
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2019/01/04/2019-1-4-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库实验</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-04T00:00:00+08:00">
+                2019-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p class="description">实验笔记</p><br><a id="more"></a><p></p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>**</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br> <strong><strong><strong><strong>**</strong></strong></strong></strong> 建表 <strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></p>
+<p> GROUP BY departmentId  (HAVING(departmentId) &gt;2);</p>
+<p> CREATE TABLE employee (<br>    employeeID CHAR(6) NOT NULL PRIMARY KEY,<br>    name CHAR(10) NOT NULL,<br>    education CHAR(4) NOT NULL,<br>    birth DATE NOT NULL,<br>    gender TINYINT(1) NOT NULL DEFAULT 1,<br>    workYear TINYINT(1),<br>    address VARCHAR(100),<br>    phone CHAR(12),<br>    departmentID CHAR(3),<br>    Foreign Key(departmentID) REFERENES department(departmentID)<br>);</p>
+<p>CREATE TABLE department (<br>    departmentID CHAR(3) PRIMARY KEY,<br>    departName CHAR(20) NOT NULL,<br>    comment VARCHAR(100)<br>);</p>
+<p>CREATE TABLE salary (<br>    employeeID CHAR(6) REFERENCES employees(employeeID),<br>    income REAL,<br>    outcome REAL,<br>PRIMARY KEY(employeeID)<br>);</p>
+<p>LOAD DATA INFILE ‘salary.csv’ INTO TABLE salary<br>CHARACTER SET gbk<br>FIELDS TERMINATED BY ‘,’<br>LINES TERMINATED BY ‘\r\n’;</p>
+<hr>
+<p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/</p>
+<p>实验1.1 数据库定义实验<br>（1） 创 建student_copy1 表：<br>CREATE TABLE student_copy1 LIKE student;<br>（2） 创 建student_copy2 表：<br>CREATE TABLE student_copy2 AS (SELECT * FROM student);<br>思考：有何区别？</p>
+<p>第一个构建的表中有主键，没有数据<br>第二个构建的表中有数据，没有主键</p>
+<p>实验2.1 索引实验</p>
+<p>三、实验任务<br> 思考与练习<br> 使用CREATE INDEX语句能创建主键吗？添加主键与添加普通索引有<br>什么区别？<br> 如果删除基本表的一个列或者多个列，该列上的索引会受怎样的影响</p>
+<p>//000001     | 王林   | 大专      | 1966-01-23 |      1 |        8 | 中山路32号    | 83355668 | 2</p>
+<p>INSERT INTO employee1 (employeeID,name ,education ,birth ,gender ,workYear ,address , phone ,departmentID) VALUES ( ‘000001’ ,’王林’ , ‘大专’  ,’1966-01-23’  ,1 , 8 ,’中山路32号 ‘ , 83355668 , 2);</p>
+<p>INSERT INTO salary1 (employeeID , income  , outcome) VALUES (  ‘000001’  , 2100.8 ,  123.09);</p>
+<p> 000001     |  2100.8 |  123.09</p>
+<p> SELECT MAX(salary.income),MIN(salary.income) FROM salary,employee WHERE employee.departmentID = 1 AND employee.employeeID = salary.employeeID;</p>
+<p>//使用内连接查询名字为“王林”的员工所在部门<br>SELECT departName FROM department  inner  JOIN employee  ON department.departmentId = employee.departmentId  where employee.name = ‘王林’;</p>
+<p>question： Subquery returns more than 1 row<br>using In not ==</p>
+<p>//查找员工数超过2人的部门名称和员工数量<br>SELECT (SELECT departName FROM department where departmentID = employee.departmentID )as ‘部门’ ,count(employeeId) as ‘人数’ FROM employee GROUP BY departmentId HAVING count(employeeId) &gt; 2;</p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><strong><strong>**</strong></strong> 实验1.4 视图实验 <strong><strong><strong><em>**</em></strong></strong></strong></p>
+<p>//创建DBEM数据库上的视图v_dp，包含department的全部信息<br>CREATE VIEW v_dp AS SELECT * FROM department;</p>
+<p>//创建DBEM数据库上的视图v_em，包含员工号码、姓名和实际收入<br>CREATE VIEW  v_em  AS SELECT employee.employeeID ,employee.name ,income FROM employee,salary;</p>
+<p>//从v_em视图中查询姓名为“王林”的员工的实际收入<br>SELECT income FROM v_em WHERE name=”王林”;</p>
+<p>//向v_dp视图中插入一行数据：6，广告部，推广产品。执行完之后分<br>别查看视图v_dp和表department中发生的变化<br>INSERT INTO v_dp VALUES(6,’广告部’,’推广产品’) ;</p>
+<p>//尝试向v_em视图中插入一行数据，看看会发生什么情况<br>| employeeID | name   | income  |<br>+————+——–+———+<br>| 000001     | 王林   |  2100.8 |<br>| 010008     | 伍容华 | 1582.62 |<br>| 020010     | 王向容 |    2860 |<br>| 020018     | 李丽   | 2347.68 |<br>| 102201     | 刘明   | 2569.88 |<br>| 102208     | 朱俊   |    1980 |<br>| 108991     | 钟敏   | 3259.98 |<br>| 111006     | 张石兵 | 1987.01 |<br>| 210678     | 林涛   |    2240 |<br>| 302566     | 李玉珉 |  2980.7 |<br>| 308759     | 叶凡   | 2531.98 |<br>| 504209     | 陈林琳 | 2066.15 |<br>+————+——–+———+<br>mysql&gt; INSERT INTO v_em VALUES(‘00002’,’危欢’,5000);<br>ERROR 1394 (HY000): Can not insert into join view ‘dbem.v_em’ without fields list</p>
+<p>//修改视图v_em中号码为000001的雇员的姓名为“王浩”<br>UPDATE v_em<br>SET name = ‘王浩’<br>WHERE employeeID = ‘000001’;</p>
+<p>//删除视图v_dp中部门号为“1”的数据<br>+————–+————+———-+<br>| departmentID | departName | comment  |<br>+————–+————+———-+<br>| 1            | 财务部     | NULL     |<br>| 2            | 人力资源部 | NULL     |<br>| 3            | 经理办公室 | NULL     |<br>| 4            | 研发部     | NULL     |<br>| 5            | 市场部     | NULL     |<br>| 6            | 广告部     | 推广产品 |<br>+————–+————+———-+<br>DELETE FROM v_dp<br>WHERE departmentID = 1;</p>
+<p>实验1.4 视图实验<br>三、实验任务<br> 思考与练习<br> 如果视图关联了一个表中的所有字段，而该表中添加了新字段，视图<br>中是否能查询到新字段？<br> 视图v_em中无法插入和删除数据，为什么？</p>
+<p>CREATE VIEW test_view<br>AS SELECT salary.employeeID ,salary.income,salary.outcome, department.departmentID FROM salary ,department;</p>
+<p>FROM子句中包含多个表；</p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><strong><strong>**</strong></strong> 实验2.1 索引实验 <strong><strong><strong><em>**</em></strong></strong></strong></p>
+<p>//在department表的departName字段上创建唯一性索引<br>CREATE UNIQUE INDEX uindex  ON department(departName);</p>
+<p>//在employee表的name和address两个字段上创建一个复合索引<br>CREATE INDEX pindex ON employee(name, address);</p>
+<p>//创建与department表相同结构的表department1，并将departName<br>设为主键，departmentID上建立一个索引<br>CREATE TABLE department1 (<br>    departmentID CHAR(3) ,<br>    departName CHAR(20) NOT NULL,<br>    comment VARCHAR(100),<br>    PRIMARY KEY (departName),<br>    INDEX (departmentID)<br>);</p>
+<p>//创建一个包含(employeeID, name, education)等字段的临时员工表<br>(tmpEmployee) ，并在该表的员工编号字段上创建一个HASH索引<br>CREATE TABLE tmpEmployee (<br>    employeeID CHAR(3),<br>    name CHAR(20) NOT NULL,<br>    education VARCHAR(100)<br>);</p>
+<p>CREATE INDEX hId using hash on tmpEmployee(employeeID);</p>
+<p>//使用CREATE INDEX语句能创建主键吗？添加主键与添加普通索引有<br>什么区别?</p>
+<p>显然不行………… 他语法不是写清楚了吗，只能是[UNIQUE|FULLTEXT|SPATIAL]<br>你看了手册，但是没看全，底下还有一句话：<br>CREATE INDEX cannot be used to create a PRIMARY KEY; use ALTER TABLE instead.</p>
+<p>添加主键会自动创建主键索引， 普通索引需要自己手动去添加和指定，<br>表中效率最高的索引就是主键索引</p>
+<p>//如果删除基本表的一个列或者多个列，该列上的索引会受怎样的影响？<br>被删除</p>
+<p>//删除字段<br>ALTER TABLE department DROP COLUMN departmentID; </p>
+<p>//增加字段<br>ALTER TABLE department ADD COLUMN departmentID int(255);</p>
+<p>//添加主键<br>ALTER TABLE tb ADD PRIMARY KEY(id);</p>
+<p>//删除主建<br>ALTER TABLE tb DROP PRIMARY KEY//</p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><strong><strong>**</strong></strong> 实验2.2 实体完整性实验 <strong><strong><strong><em>**</em></strong></strong></strong></p>
+<p>//创建一个表employee1，只含employeeID、name、gender和<br>education列。以name为主键作为列name的完整性约束，<br>employeeID为替代键作为表的完整性约束<br>CREATE TABLE employee1 (<br>    employeeID CHAR(3) ,<br>    name CHAR(20) NOT NULL,<br>    education VARCHAR(100),<br>    gender int(10),<br>    PRIMARY KEY (name),<br>    UNIQUE(employeeID)<br>);</p>
+<p>//定义不含主键的表employee2，包含上述属性列，然后定义实体完整<br>性，以employeeID为主码<br>CREATE TABLE employee2 (<br>    employeeID CHAR(3) ,<br>    name CHAR(20) NOT NULL,<br>    education VARCHAR(100),<br>    gender int(10)<br>);<br>alter table employee2 add primary key (employeeID);</p>
+<p>//设计记录增加到employee1表和employee2表，验证实体完整<br>性是否起作用</p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><strong><strong>**</strong></strong> 实验2.3 参照完整性实验 <strong><strong><strong><em>**</em></strong></strong></strong></p>
+<p>//关系的完整性是关系型数据模型结构中的另一组成部分，它分为实体完整性、参照完整性和用户定义完整性三类。<br>在关系数据库中一个关系对应现实世界的一个实体集，关系中的每一个元组对应一个实体。在关系中用主关键字来唯一标识一个实体，<br>实体具有独立性，关系中的这种约束条件称为实体完整性。参照完整性是用于约定两个关系之间的联系，<br>理论上规定：若M是关系S中的一属性组，且M是另一关系Z的主关键字，则称M为关系S对应关系Z的外关键字。<br>若M是关系S的外关键字，则S中每一个元组在M上的值必须是空值或是对应关系Z中某个元组的主关键字值。<br>例如，学生关系S和学校专业关系Z之间满足参照完整性约束。学校专业关系Z中的专业号属性是主关键字，<br>同时它也存在学生关系S中，那么只有当专业号存在，这个专业的学生才有可能存在，因此在添加学生关系中的元组时，<br>定义的专业号必须在学校专业关系Z中已存在对应的元组。用户定义完整性约束是用户定义某个具体数据库所涉及的数据<br>必须满足的约束条件，是由具体应用环境来决定的。例如，约定学生成绩的数据必须小于或等于100。</p>
+<p>$$ 不同参照动作含义<br>RESTRICT：当要删除或更新父表中被参照列上在外键中出现的值时，<br>          拒绝对父表的删除或更新操作<br>CASCADE： 从父表删除或更新行时自动删除或更新子表中匹配的行<br>SET NULL：当从父表删除或更新行时，设置子表中与之对应的外键<br>          列为NULL。如果外键列没有指定NOT NULL限定词，这就是合法的<br>NO ACTION：NO ACTION意味着不采取动作，就是如果有一个相关<br>           的外键值在被参考的表里，删除或更新父表中主要键值的企图不被允<br>            许，和RESTRICT一样<br>SET DEFAULT：作用和SET NULL一样，只不过SET DEFAULT是指定<br>             子表中的外键列为默认值</p>
+<p>//创建一个表salary1，要求所有salary1表上出现的employeeID都要<br>出现在salary表中，利用完整性约束实现，要求当删除或修改salary<br>表上的employeeID列时，salary1表中的值也随之变化<br>CREATE TABLE salary1 (<br>    employeeID CHAR(6) ,<br>    income REAL,<br>    outcome REAL,<br>    PRIMARY KEY(employeeID),<br>    FOREIGN KEY(employeeId) REFERENCES salary(employeeID)<br>    ON DELETE CASCADE<br>    ON UPDATE CASCADE<br>);</p>
+<p>//复制旧表的数据到新表(假设两个表结构一样)<br>INSERT INTO 新表 SELECT <em> FROM 旧表<br>//复制旧表的数据到新表(假设两个表结构不一样)<br>INSERT INTO 新表(字段1,字段2,…….) SELECT 字段1,字段2,…… FROM 旧表<br>mysql&gt; select </em> from salary1;<br>+————+———+———+<br>| employeeID | income  | outcome |<br>+————+———+———+<br>| 000001     |  2100.8 |  123.09 |<br>| 010008     | 1582.62 |   88.03 |<br>| 020010     |    2860 |     198 |<br>| 020018     | 2347.68 |     180 |<br>| 102201     | 2569.88 |  185.65 |<br>| 102208     |    1980 |     100 |<br>| 108991     | 3259.98 |  281.52 |<br>| 111006     | 1987.01 |   79.58 |<br>| 210678     |    2240 |     121 |<br>| 302566     |  2980.7 |   210.2 |<br>| 308759     | 2531.98 |  199.08 |<br>| 504209     | 2066.15 |     108 |<br>+————+———+———+</p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><strong><strong>**</strong></strong> 实验3.1 存储过程实验 <strong><strong><strong><em>**</em></strong></strong></strong></p>
+<p>//创建一个存储过程，计算employee表中的员工人数，并存储到<br>一个局部变量中，并输出该变量结果，尝试调用存储过程<br>delimiter $$<br>create procedure count_employee3 ()<br>begin<br>declare n1 INT(255);<br>select COUNT(employeeID) into n1  from employee ;<br>select n1;<br>end $$<br>delimiter ;<br>call count_employee3 ();</p>
+<p>FUNCTION count does not exist<br>解决方案：如sum() count() avg这些函数里面是这样子写的sum () sum和()分开了，<br>不是挨着写的，所以报这个错</p>
+<p>//创建一个存储过程，比较两个员工的实际收入，若前者比后者高<br>就输出0，否则输出1，员工用其员工编号识别<br>delimiter $$<br>create procedure compare_income (in employeeID1 char(6) ,in employeeID2 char(6))<br>begin<br>declare income1 INT(255);<br>declare income2 INT(255);<br>declare result INT(255);<br>set result = 0;<br>select income into income1  from salary where employeeID = employeeID1;<br>select income into income2  from salary where employeeID = employeeID2;<br>if income1 &gt; income2  then<br>select result as result;<br>else<br>select (result+1) as result;<br>end if;<br>end $$<br>delimiter ;<br>call compare_income (010008,020010);</p>
+<p>//显示所有存储过程<br>show procedure status where db=’数据库名’;<br>show procedure status where db=’dbem’;</p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><strong><strong>**</strong></strong> 实验3.2 触发器实验 <strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></p>
+<p>//创建触发器，在 employee 表中删除员工信息的同时将salary表<br>中该员工的信息删除，以确保数据完整性。创建完后尝试删除<br>employee表中的一行数据，然后查看salary表中的变化情况</p>
+<p>delimiter $$<br>create trigger t_employee_delete after delete on employee for each row<br>begin<br>delete from salary where employeeID=old.employeeID;<br>end$$<br>delimiter ;</p>
+<p>//当修改employee表时，若将employee表中的员工工作时间增加<br>一年，则将收入增加500，增加两年则收入增加1000，以此类推</p>
+<p>delimiter $$<br>create trigger t_update_employee after update on employee for each row<br>begin<br>declare n int;<br>set n = new.workYear - old.workYear;<br>update salary set income = (income + n * 500); </p>
+<p>end $$<br>delimiter ;</p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><strong><strong>**</strong></strong> 实验4.1 SQL语句备份与恢复实验 <strong><strong>*</strong></strong></p>
+<p>//用不同的存放格式（自由设计）备份DBEM数据库中的<br>employee, salary两个基本表，其中employee表要求只备份<br>employeeID, name, education 等三个字段</p>
+<p>//!!!!!!!!!! Q !!!!!!!!!!<br>The MySQL server is running with the –secure-file-priv option<br>so it cannot execute this statement<br>//A<br>show variables like ‘%secure%’;查看 secure-file-priv 当前的值是什么<br>select * from salary into outfile ‘E:\mysql_backup\salary_back2.csv’; 加上路径</p>
+<p>select * from salary into outfile select employeeID, name, education from employee into outfile ‘E:\mysql_backup\employee_back2.txt’; </p>
+<p>//根据上述任务所保存的文件，将相关数据恢复到基本表中，其中<br>要求employee表在恢复之前事先<br>中要求指定replace功能随机删除几条记录，SQL语句<br>‘E:\mysql_backup\salary_back2.txt’;<br>delete from salary;<br>load data  infile ‘E:\mysql_backup\salary_back2.txt’ replace into table salary;</p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><strong><strong>**</strong></strong> 实验4.2 客户端工具备份与恢复实验 <strong>**</strong></p>
+<p>//使用mysqldump命令备份DBEM数据库中的employee表<br>mysqldump -uroot -pweihuan dbem employee&gt;E:\mysql_backup\back_employee.sql;</p>
+<p>//!!!!!!!!!! Q !!!!!!!!!!<br>ERROR:<br>Unknown command ‘\m’.<br>ERROR:<br>Unknown command ‘\b’.<br>//A<br>不是在 mysql 内执行，而是在 C:\Users\weihuan&gt; 界面执行</p>
+<p>//!!!!!!!!!! Q !!!!!!!!!!<br>mysqldump: Couldn’t find table:<br>//A<br>把mysqldump命令后面的“;”去掉就可以了</p>
+<p>mysqldump -hlocalhost -uroot -p  dbem employee&gt;E:\mysql_backup\back_employee.txt</p>
+<p>//使用mysqldump命令备份整个DBEM数据库<br>mysqldump -hlocalhost -uroot -p  dbem &gt;E:\mysql_backup\entire_database.sql</p>
+<p>//删除employee表，然后使用mysql命令，利用上述保存的文件恢复employee表<br>//!!！ 注意这里数据库后面不加表名<br>mysql  -uroot -p  dbem  &lt; E:\mysql_backup\back_employee.sql</p>
+<p>//删除salary表的部分数据，然后使用mysqlimport命令及–<br>replace功能恢复salary表，其中salary表的数据备份文件使用实<br>验4.1中的文件<br>//！这里注意文件 salary.txt 要和表名一致，而且仅仅是导入，数据库必须存在该表。<br>mysqlimport -uroot -p –replace dbem E:\mysql_backup\salary.txt</p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><strong><strong>**</strong></strong> 实验5.1 自主存取控制实验 <strong><strong><strong>**</strong></strong></strong></p>
+<p>//创建用户user_1和user_2，密码都为1234<br>create user ‘user_1‘@’localhost’ identified by ‘1234’;<br>create user ‘user_2‘@’localhost’ identified by ‘1234’; </p>
+<p>//将用户user_2的名称修改为user_3，并将其密码修改为123456</p>
+<p>SET PASSWORD FOR ‘user_2‘@’localhost’ = passwrod(‘123456’);<br>//!!!!!! Q !!!!!!!!!<br>ERROR 1054 (42S22): Unknown column ‘password’ in ‘field list’<br>//原来是mysql数据库下已经没有password这个字段了，password字段改成了 authentication_string<br>//A<br>看文档<br><a href="https://dev.mysql.com/doc/refman/8.0/en/set-password.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/8.0/en/set-password.html</a><br>应该是  SET PASSWORD FOR ‘user_2‘@’localhost’ =’123456’;</p>
+<p>//修改用户名和密码<br>RENAME USER ‘user_2‘@’localhost’ TO ‘user_3‘@’127.0.0.1’;<br>SET PASSWORD FOR ‘user_2‘@’localhost’ =’123456’;</p>
+<p>//以user_1身份登陆数据库<br>mysql -uuser_1 -p1234</p>
+<p>//授予用户user_1对DBEM数据库中employee表的查询、插入、修改、删除等权限<br>grant select, insert, update, delete on dbem.employee to ‘user_1‘@’localhost’;</p>
+<p>//授予用户user_1对salary表的查询权限，并允许其将权限授予其他用<br>户，然后用user_1登陆数据库并将salary表的查询权限授予user_3<br>grant select  on dbem.employee to ‘user_1‘@’localhost’ WITH grant option;<br>grant select  on dbem.employee to ‘user_3‘@’localhost’;</p>
+<p>//回收user_1的employee表上的select权限<br>revoke select on dbem.employee from ‘user_1‘@’localhost’;</p>
+<p>//刷新权限<br>flush privileges;</p>
+<p>//显示mysql数据库的用户名<br>select user from mysql.user</p>
+<p>//ERROR 1410 (42000): You are not allowed to create a user with GRANT<br>确定有这个用户？注意后面是localhost</p>
+<p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br><strong><strong>**</strong></strong> 实验5.2 并发控制实验 <strong><strong><strong><strong>**</strong></strong></strong></strong></p>
+<p>准备</p>
+<p>//给salary表增加一条记录<br>insert into salary(employeeID,income,outcome) values(2,1000,0);</p>
+<p>//创建两个超级用户clientA和clientB，分别以clientA和clientB登录，<br>将隔离级别改为“读已提交”，取消自动提交事务的功能，改为显示<br>事务提交，即需要执行commit命令提交事务<br>create user ‘clientA‘@’localhost’ identified by ‘123456’;<br>create user ‘clientB‘@’localhost’ identified by ‘123456’;<br>grant all on DBEM.* to clientA@localhost;</p>
+<p>//登陆后设置<br>set session transaction isolation level read committed;<br>set @@autocommit=0;<br>select @@tx_isolation;<br>//select @@transaction_isolation</p>
+<p>//Unknown system variable ‘tx_isolation<br>变为 select @@transaction_isolation</p>
+<p>//提交事务<br>commit;</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/27/2018-12-27-blog/" rel="next" title="【编译原理】 短语，直接短语，素短语，句柄">
+                <i class="fa fa-chevron-left"></i> 【编译原理】 短语，直接短语，素短语，句柄
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/photo.png"
+               alt="weihuan" />
+          <p class="site-author-name" itemprop="name">weihuan</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">120</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">weihuan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+</body>
+</html>

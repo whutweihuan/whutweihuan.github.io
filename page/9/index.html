@@ -463,6 +463,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/11/python-tkinter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/11/python-tkinter/" itemprop="url">python-tkinter</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T00:00:00+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  176
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk     <span class="comment">#引入包</span></span><br><span class="line">win = tk.Tk()</span><br><span class="line">win.geometry(<span class="string">'200x200'</span>)   <span class="comment">#大小</span></span><br><span class="line">var = tk.StringVar()      <span class="comment">#tk字符串</span></span><br><span class="line">text = tk.Text()          <span class="comment">#文本框</span></span><br><span class="line">text.insert(<span class="string">'insert'</span>,var)</span><br><span class="line"></span><br><span class="line">lb = tk.Listbx(win,lisvariable=var)</span><br><span class="line">tk.Scale()  <span class="comment">#横条</span></span><br><span class="line">tk.CheckButton()</span><br><span class="line"></span><br><span class="line">canvas = tk.Canvas(win,bg=<span class="string">'blue'</span>,height=<span class="number">100</span>,width=<span class="number">200</span>)</span><br><span class="line">bt = tk.Button(win,text=<span class="string">'move'</span>,command=move) <span class="comment">#command指向的是一个函数</span></span><br><span class="line">bt.pack()   <span class="comment">#布置到窗口上去</span></span><br><span class="line"></span><br><span class="line">image_file = tk.PhotoImage(file=<span class="string">'abc.gif'</span>)</span><br><span class="line">image = canvas.create_image(<span class="number">0</span>,<span class="number">0</span>,anchor=<span class="string">'nw'</span>,image=image_file)   <span class="comment">#將锚点定在左上角0，0处</span></span><br><span class="line">line = canvas.create_line(x0,y0,x1,y1)</span><br><span class="line">canvas.move(rect,<span class="number">0</span>,<span class="number">2</span>)  <span class="comment">#rect 为移动的对象</span></span><br><span class="line"></span><br><span class="line">menubar = tk.MenuBar(win)</span><br><span class="line">filemenu = tk.Menu(menubar,tearoff=<span class="number">0</span>)</span><br><span class="line">menubar.add_cascade(label=<span class="string">'File'</span>,menu=filemenu)</span><br><span class="line">filemenu.add_commond(label=<span class="string">'new'</span>,commond=do_job)</span><br><span class="line">filemenu.add_separator()  <span class="comment">#分隔线</span></span><br><span class="line">win.congfig(menu=menubar)</span><br><span class="line"></span><br><span class="line">.pack()</span><br><span class="line">.place(x=<span class="number">10</span>,y=<span class="number">100</span>,anchor=<span class="string">'nw'</span>)</span><br><span class="line">.grid(row=i,col=j,padx,pad,y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">tk.MessageBox.showInfo(title=<span class="string">'hi'</span>,message=<span class="string">'HaHa'</span>)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/01/alg-maxk/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1675,157 +1826,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/17/git-命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/17/git-命令/" itemprop="url">git-命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T00:00:00+08:00">
-                2018-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  116
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git  init                            <span class="comment">#初始化仓库</span></span><br><span class="line">git add test.txt                     <span class="comment">#添加文件到暂存区</span></span><br><span class="line">git commit -m <span class="string">"add red line"</span>         <span class="comment">#提交到仓库</span></span><br><span class="line">git reset --hard head^               <span class="comment">#回到上一版本</span></span><br><span class="line">git reset --hard  id                 <span class="comment">#回到id版本</span></span><br><span class="line">git status                           <span class="comment">#检查目录是否有什么更改</span></span><br><span class="line">git checkout text.txt                <span class="comment">#恢复和仓库一样的状态</span></span><br><span class="line">git log                              <span class="comment">#显示当前版本之前的信息</span></span><br><span class="line">git reflog                           <span class="comment">#显示最近改的信息，可包括版本前</span></span><br><span class="line">clear                                <span class="comment">#清屏</span></span><br><span class="line">cat test.txt                         <span class="comment">#显示文件内容</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1878,7 +1878,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">119</span>
+                <span class="site-state-item-count">120</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1900,7 +1900,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1942,7 +1942,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
