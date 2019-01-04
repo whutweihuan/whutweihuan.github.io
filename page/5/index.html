@@ -312,6 +312,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/20/2018-9-20-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/20/2018-9-20-blog/" itemprop="url">【leetcode】 406 Queue Reconstruction by Height</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-20T00:00:00+08:00">
+                2018-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  521
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>描述</strong><br>给定一些数字，要求重新排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">input:</span><br><span class="line">[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]</span><br></pre></td></tr></table></figure></p>
+<p>每一组数据有两个数字组成，要求每组数据第二个数据为排在它前面大于等于它的数字的个数。<br>比如[5,2]在它前面有两个数据都大于等于它。</p>
+<p>初始数据<code>[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]</code></p>
+<p><strong>思路</strong></p>
+<ol>
+<li>找出最大的数，再对它根据第二个数排序，得到<code>[[7,0],[7,1]]</code></li>
+<li>找出第二大的数，同样的排序，得到<code>[6,1]</code></li>
+<li>将<code>[6,1]</code>插入，得到<code>[[7,0],[6,1],[7,1]]</code></li>
+<li>找出第三大数，<code>[[5,0],[5,1]]</code>插入得到<code>[[5,0],[5,1],[7,0],[6,1],[7,1]]</code></li>
+<li>找出第四大数，<code>[4,4],插入得到[[5,0],[5,1],[7,0],[6,1],[4,1],[7,1]]</code></li>
+<li>DONE。</li>
+</ol>
+<blockquote>
+<p>vector没有自带的find(),set和map有<br>map&lt;int,vector&lt;int&gt;&gt;后面的不会自动排序，而改成map&lt;int,set&lt;int&gt;&gt;可以排序<br>markdowm中的<code>&lt;</code>和<code>&gt;</code>需要转义，利用<code>&amp;it;</code>和<code>&amp;gt;</code><br>map插入数据<code>mymap.insert({1,1})</code>,加入大括号，或者<code>mymap.insert(std::pair&lt;int,int&gt;(1,1))</code></p>
+</blockquote>
+<p><strong>我的代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; reconstructQueue(<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&amp; people) &#123;</span><br><span class="line">        <span class="built_in">map</span> &lt;<span class="keyword">int</span>, <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;&gt; peo;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; people.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">auto</span> p = people[i];</span><br><span class="line">            peo[p.first].insert(p.second);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> iter = peo.rbegin(); iter!= peo.rend(); iter++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> iter2 = iter-&gt;second.begin(); iter2 != iter-&gt;second.end(); iter2++) &#123;</span><br><span class="line">                result.insert(result.begin() + *iter2, &#123; iter-&gt;first,&#123;*iter2&#125; &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>值得学习的代码</strong><br><a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/queueReconstructionByHeight/QueueReconstructionByHeight.cpp" target="_blank" rel="noopener">原文链接</a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; reconstructQueue(<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&amp; people) &#123;</span><br><span class="line">        <span class="keyword">auto</span> comp = [](<span class="keyword">const</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; p1, <span class="keyword">const</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; p2)</span><br><span class="line">        &#123; <span class="keyword">return</span> p1.first == p2.first ? p1.second &lt; p2.second : p1.first &gt; p2.first; &#125;;</span><br><span class="line">        sort(people.begin(), people.end(), comp);</span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; p : people) &#123;</span><br><span class="line">            res.insert(res.begin() + p.second, p);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/queue-reconstruction-by-height/" target="_blank" rel="noopener">原题链接</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/19/2018-9-19-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -935,159 +1103,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/17/2018-9-17-blog_leetcode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/17/2018-9-17-blog_leetcode/" itemprop="url">【leetcode】410. Split Array Largest Sum</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T00:00:00+08:00">
-                2018-09-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  324
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>描述</strong><br>给一个数组nums，分成m份，求每一种分法每一份的最大值的最小值。</p>
-<p>有点绕，感觉又是组合爆炸。参考<a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/splitArrayLargestSum/SplitArrayLargestSum.cpp" target="_blank" rel="noopener">这篇文章</a>后，得到了一些启发。将这个题转换成查找问题，不要被最小值迷惑，我们就求最大值，然后向下逼近。最大值的范围在单个数字最大值和总和之间，从总和开始向下枚举计算。要求这个最大值大于所有的子数组，m则为失败的次数条件，显然m越大，这个最大值可以更加的小，失败数目超过m后显然就不成立了，于是题目就解决了。</p>
-<p>下面这个解法会超时，时间复杂度为O(N^2)，可以改进为二分查找。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">splitArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = INT_MIN;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> n : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (left &lt; n) &#123; left = n; &#125;</span><br><span class="line">            right += n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> result = right;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = right; i &gt;= left; i--) &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> subsum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">bool</span> done = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> n : nums) &#123;</span><br><span class="line">                subsum += n;</span><br><span class="line">                <span class="keyword">if</span> (subsum &gt; i) &#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                    subsum = n;</span><br><span class="line">                    <span class="keyword">if</span> (cnt &gt; m) &#123;</span><br><span class="line">                        done = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (done == <span class="literal">false</span>) &#123; result = i; &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">**参考资料**</span><br><span class="line">[题目链接](https:<span class="comment">//leetcode.com/problems/split-array-largest-sum/description/)</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/17/2018-9-17-mei/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1243,7 +1258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/14/2018-9-14-blog_leetcode1/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/17/2018-9-17-blog_leetcode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1262,7 +1277,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/14/2018-9-14-blog_leetcode1/" itemprop="url">【leetcode】 412. Fizz Buzz</a></h1>
+                <a class="post-title-link" href="/2018/09/17/2018-9-17-blog_leetcode/" itemprop="url">【leetcode】410. Split Array Largest Sum</a></h1>
         
 
         <div class="post-meta">
@@ -1274,8 +1289,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T00:00:00+08:00">
-                2018-09-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T00:00:00+08:00">
+                2018-09-17
               </time>
             
 
@@ -1306,7 +1321,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  110
+                  324
                 </span>
               
 
@@ -1345,10 +1360,9 @@
       
         
           
-            <p><strong>描述</strong><br>一个求余判断的题目</p>
-<p>note:<code>std::to_string(21)</code> 将int转化为string类型，不是21+’0’。</p>
-<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; fizzBuzz(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; result;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % <span class="number">15</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                result.push_back(<span class="string">"FizzBuzz"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i % <span class="number">3</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                result.push_back(<span class="string">"Fizz"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i % <span class="number">5</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                result.push_back(<span class="string">"Buzz"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//string num = "";</span></span><br><span class="line">                <span class="comment">//num += char(i + '0');</span></span><br><span class="line">                result.push_back(<span class="built_in">std</span>::to_string(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/fizz-buzz/description/" target="_blank" rel="noopener">原题链接</a></p>
+            <p><strong>描述</strong><br>给一个数组nums，分成m份，求每一种分法每一份的最大值的最小值。</p>
+<p>有点绕，感觉又是组合爆炸。参考<a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/splitArrayLargestSum/SplitArrayLargestSum.cpp" target="_blank" rel="noopener">这篇文章</a>后，得到了一些启发。将这个题转换成查找问题，不要被最小值迷惑，我们就求最大值，然后向下逼近。最大值的范围在单个数字最大值和总和之间，从总和开始向下枚举计算。要求这个最大值大于所有的子数组，m则为失败的次数条件，显然m越大，这个最大值可以更加的小，失败数目超过m后显然就不成立了，于是题目就解决了。</p>
+<p>下面这个解法会超时，时间复杂度为O(N^2)，可以改进为二分查找。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">splitArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = INT_MIN;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> n : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (left &lt; n) &#123; left = n; &#125;</span><br><span class="line">            right += n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> result = right;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = right; i &gt;= left; i--) &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> subsum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">bool</span> done = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> n : nums) &#123;</span><br><span class="line">                subsum += n;</span><br><span class="line">                <span class="keyword">if</span> (subsum &gt; i) &#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                    subsum = n;</span><br><span class="line">                    <span class="keyword">if</span> (cnt &gt; m) &#123;</span><br><span class="line">                        done = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (done == <span class="literal">false</span>) &#123; result = i; &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">**参考资料**</span><br><span class="line">[题目链接](https:<span class="comment">//leetcode.com/problems/split-array-largest-sum/description/)</span></span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1552,6 +1566,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/14/2018-9-14-blog_leetcode1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/14/2018-9-14-blog_leetcode1/" itemprop="url">【leetcode】 412. Fizz Buzz</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T00:00:00+08:00">
+                2018-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  110
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>描述</strong><br>一个求余判断的题目</p>
+<p>note:<code>std::to_string(21)</code> 将int转化为string类型，不是21+’0’。</p>
+<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; fizzBuzz(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; result;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % <span class="number">15</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                result.push_back(<span class="string">"FizzBuzz"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i % <span class="number">3</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                result.push_back(<span class="string">"Fizz"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i % <span class="number">5</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                result.push_back(<span class="string">"Buzz"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//string num = "";</span></span><br><span class="line">                <span class="comment">//num += char(i + '0');</span></span><br><span class="line">                result.push_back(<span class="built_in">std</span>::to_string(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/fizz-buzz/description/" target="_blank" rel="noopener">原题链接</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/13/2018-10-15-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1702,165 +1870,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/13/2018-9-13-blog_leetcode2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/13/2018-9-13-blog_leetcode2/" itemprop="url">【leetcode】415. Add Strings</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T00:00:00+08:00">
-                2018-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  342
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>描述</strong><br>将两个字符相加，两个字符代表大整数，有5100多位，不能用int表示。</p>
-<p><strong>我的解法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">addStrings</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len1 = num1.size();</span><br><span class="line">        <span class="keyword">int</span> len2 = num2.size();</span><br><span class="line">        <span class="keyword">int</span> maxlen = len1 &gt; len2 ? len1 : len2;</span><br><span class="line">        <span class="built_in">string</span> str_sum =<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> overflow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxlen; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> sumtemp = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//common partion</span></span><br><span class="line">            <span class="keyword">if</span> (i &lt; len1 &amp;&amp; i &lt; len2) &#123;</span><br><span class="line">                sumtemp = (num1[len1 - i - <span class="number">1</span>]-<span class="string">'0'</span>) + (num2[len2 - i - <span class="number">1</span>] -<span class="string">'0'</span>);</span><br><span class="line">                <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">                    sumtemp ++;</span><br><span class="line">                    overflow = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">                    overflow = <span class="number">1</span>;</span><br><span class="line">                    sumtemp -= <span class="number">10</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (len1 &gt; len2) &#123;</span><br><span class="line">                sumtemp = num1[len1-i<span class="number">-1</span>]-<span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">                    overflow = <span class="number">0</span>;</span><br><span class="line">                    sumtemp++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">                    sumtemp -= <span class="number">10</span>;</span><br><span class="line">                    overflow = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (len1 &lt; len2) &#123;</span><br><span class="line">                sumtemp = num2[len2 - i<span class="number">-1</span>]-<span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">                    overflow = <span class="number">0</span>;</span><br><span class="line">                    sumtemp++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">                    sumtemp -= <span class="number">10</span>;</span><br><span class="line">                    overflow = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            str_sum=to_string(sumtemp)+str_sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123; str_sum= <span class="string">"1"</span> + str_sum; &#125;</span><br><span class="line">        <span class="keyword">return</span> str_sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>更佳的解法</strong><br>引用值得学习，overflow的产生值得学习，求余的方式值得学习，采用short和long值得学习。<br><a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/addStrings/AddStrings.cpp" target="_blank" rel="noopener">参考链接</a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">addStrings</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> &amp; longstr = (num1.size() &gt; num2.size()) ? num1:num2;</span><br><span class="line">        <span class="built_in">string</span> &amp; shortstr = (num1.size() &lt;= num2.size()) ? num1:num2;</span><br><span class="line">        <span class="built_in">string</span> result = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> overflow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = longstr.size() - <span class="number">1</span>,  j = shortstr.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--, j--) &#123;</span><br><span class="line">            <span class="keyword">int</span> tempsum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                tempsum = longstr[i] - <span class="string">'0'</span> + shortstr[j] - <span class="string">'0'</span>+ overflow;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                tempsum = longstr[i] - <span class="string">'0'</span> + overflow;</span><br><span class="line">            &#125;</span><br><span class="line">            overflow = tempsum / <span class="number">10</span>;</span><br><span class="line">            result = <span class="keyword">char</span>(tempsum % <span class="number">10</span>+<span class="string">'0'</span>) + result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (overflow) &#123;</span><br><span class="line">            result = <span class="string">'1'</span> + result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/add-strings/description/" target="_blank" rel="noopener">原题链接</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1908,7 +1922,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">120</span>
+                <span class="site-state-item-count">121</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
