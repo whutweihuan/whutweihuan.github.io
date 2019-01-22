@@ -312,6 +312,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/13/MFC-Snake/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/13/MFC-Snake/" itemprop="url">MFC贪吃蛇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T00:00:00+08:00">
+                2018-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  638
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加到OnInitDialog函数中去</span></span><br><span class="line">GetWindowRect(window);<span class="comment">//</span></span><br><span class="line">GetClientRect(client);<span class="comment">//</span></span><br><span class="line"><span class="keyword">int</span> width = window.Width() - client.Width() + LENGTH * SIZE_H;</span><br><span class="line"><span class="keyword">int</span> height = window.Height() - client.Height() + LENGTH * SIZE_H;</span><br><span class="line">MoveWindow(<span class="number">0</span>, <span class="number">0</span>, width, height);</span><br></pre></td></tr></table></figure>
+<h1 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h1><p>打开某个类类向导，添加消息,OnTimer编辑代码，写入按照计时器运行的内容<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CSnake2Dlg::OnTimer(UINT_PTR nIDEvent)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (nIDEvent)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:   <span class="comment">//定时器1处理函数，定时发送数据进行更新</span></span><br><span class="line">        &#123;</span><br><span class="line">            snakeMove();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:   <span class="comment">//定时器2位为状态栏时间信息</span></span><br><span class="line">        &#123;</span><br><span class="line">	    snakeMove();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    CDialogEx::OnTimer(nIDEvent);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//开始1号计时器</span></span><br><span class="line">SetTimer(<span class="number">1</span>, <span class="number">200</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//结束1号计时器</span></span><br><span class="line">KillTimer(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<h1 id="按键控制"><a href="#按键控制" class="headerlink" title="按键控制"></a>按键控制</h1><p>类向导-&gt;虚函数-&gt;pretranslate实现控制<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">BOOL CSnake2Dlg::PreTranslateMessage(MSG* pMsg)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">if</span> (pMsg-&gt;message == WM_KEYDOWN)</span><br><span class="line">      &#123;</span><br><span class="line">            <span class="keyword">switch</span> (pMsg-&gt;wParam)</span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">case</span> VK_UP:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">0</span>,<span class="number">-1</span>));</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_DOWN:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">0</span>, <span class="number">1</span>));</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_LEFT:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">-1</span>, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> VK_RIGHT:</span><br><span class="line">                  m_snake.dirctionChange(CPoint(<span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> CDialogEx::PreTranslateMessage(pMsg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CList &lt;CPoint&gt; body;<span class="comment">//链表类型</span></span><br><span class="line">body.GetHead();<span class="comment">//得到头节点</span></span><br><span class="line">body.GetTail();<span class="comment">//得到尾节点</span></span><br><span class="line">body.GetHeadPosition();<span class="comment">//返回位置</span></span><br><span class="line"></span><br><span class="line">body.Add</span><br><span class="line">POSITION p;<span class="comment">//感觉有点向迭代器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//得到下一个节点</span></span><br><span class="line">CPoint point =body.GetNext(p);</span><br></pre></td></tr></table></figure>
+<h1 id="画矩形"><a href="#画矩形" class="headerlink" title="画矩形"></a>画矩形</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">CBrush red(RGB(255, 0, 0));</span><br><span class="line">dc.SelectObject(red);</span><br><span class="line">dc.Rectangle(m_ptFood.x*LENGTH, m_ptFood.y*LENGTH, (m_ptFood.x + <span class="number">1</span>)*LENGTH, (m_ptFood.y + <span class="number">1</span>)*LENGTH);</span><br></pre></td></tr></table></figure>
+<h1 id="画直线"><a href="#画直线" class="headerlink" title="画直线"></a>画直线</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">CPen pen;</span><br><span class="line"></span><br><span class="line">pen.CreatePen(PS_SOLID, <span class="number">1</span>, RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">CPen *oldPen = dc.SelectObject(&amp;pen);</span><br><span class="line">dc.MoveTo(<span class="number">0</span>, <span class="number">0</span>);<span class="comment">//起点</span></span><br><span class="line">dc.LineTo(<span class="number">0</span>, <span class="number">600</span>);<span class="comment">//终点</span></span><br><span class="line">dc.SelectObject(oldPen);</span><br></pre></td></tr></table></figure>
+<h1 id="OnPaint"><a href="#OnPaint" class="headerlink" title="OnPaint"></a>OnPaint</h1><p>什么时候调用？<br>1、由其他窗口遮挡、移动窗口等动作的时候系统会发送<br>2、你自己想更新某个区域可以发送Invalidate或InvalidRect，再加上UpdateWindow()也可以触发</p>
+<h1 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h1><p>1、建立一个对话框<br>2、创建Point类型变量代表食物，并且作为对话框的成员变量<br>3、随机生成食物，绘制食物<br>4、建立蛇类，作为对话框类的成员<br>5、添加蛇类CList<cpoint>成员变量,以及代表方向CPoint成员变量<br>&emsp;&emsp;(CPoint类型的坐标含义为到下一方向作加法,(0,-1)代表纵坐标减1，即向上移动)<br>6、添加碰撞检测(比较两个点是否相同)<br>7、重绘蛇和食物</cpoint></p>
+<h1 id="遇到的bug"><a href="#遇到的bug" class="headerlink" title="遇到的bug"></a>遇到的bug</h1><p>1、消除边界<br>原因:消除蛇尾巴的时候清除<br>纠正方法:重画边界</p>
+<p>2、蛇撞到自己的身体<br>原因:按键速度和蛇移动速度不匹配<br>纠正方法:当按下键的时候，键盘控制蛇移动，其他时候定时器控制</p>
+<p>3、按键一直咚咚咚亮<br>改正方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return CDialogEx::PreTranslateMessage(pMsg);</span><br></pre></td></tr></table></figure></p>
+<p>换成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return false;</span><br></pre></td></tr></table></figure></p>
+<p>学习于:kekehui</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/09/python-img-resize/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -416,6 +579,156 @@
           
             <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">"cat.bmp"</span>)</span><br><span class="line">new_img = img.resize((<span class="number">40</span>,<span class="number">40</span>))</span><br><span class="line">new_img.save(<span class="string">"cat.bmp"</span>, <span class="string">"BMP"</span>, optimize=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/05/python-search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/05/python-search/" itemprop="url">查找文档内容</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T00:00:00+08:00">
+                2018-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  35
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  os</span><br><span class="line">target = input(<span class="string">"please input the search word:"</span>)</span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(<span class="string">"."</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="string">"."</span> <span class="keyword">in</span> filename:</span><br><span class="line">        <span class="keyword">with</span> open (filename,<span class="string">'r'</span>,encoding=<span class="string">'UTF-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">if</span> target <span class="keyword">in</span> f.read():</span><br><span class="line">                print(os.path.basename(filename))</span><br></pre></td></tr></table></figure>
           
         
       
@@ -568,156 +881,6 @@
             <p>多个文件重命名<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">i=<span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> os.listdir(<span class="string">"."</span>):</span><br><span class="line">    os.rename(file,<span class="string">"img"</span>+str(i)+<span class="string">".bmp"</span>)</span><br><span class="line">	i=i+<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 <p>PS: windows 防火墙会阻止脚本文件更改文件名，所以要关闭</p>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/05/python-search/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/05/python-search/" itemprop="url">查找文档内容</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T00:00:00+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  35
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  os</span><br><span class="line">target = input(<span class="string">"please input the search word:"</span>)</span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(<span class="string">"."</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="string">"."</span> <span class="keyword">in</span> filename:</span><br><span class="line">        <span class="keyword">with</span> open (filename,<span class="string">'r'</span>,encoding=<span class="string">'UTF-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">if</span> target <span class="keyword">in</span> f.read():</span><br><span class="line">                print(os.path.basename(filename))</span><br></pre></td></tr></table></figure>
           
         
       
@@ -921,161 +1084,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/28/LLK-bmp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/28/LLK-bmp/" itemprop="url">《连连看》- 位图、文字输出</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T00:00:00+08:00">
-                2018-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  489
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="显示文字"><a href="#显示文字" class="headerlink" title="显示文字"></a>显示文字</h2><p><img src="/2018/05/28/LLK-bmp/./LLK-bmp/showFont.JPG" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建字体</span></span><br><span class="line">   CFont font;</span><br><span class="line">   font.CreatePointFont(<span class="number">200</span>, <span class="string">L"Cambria"</span>);</span><br><span class="line">   CFont * oldFont;</span><br><span class="line">   oldFont = dc.SelectObject(&amp;font);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//设置字体颜色</span></span><br><span class="line">   dc.SetTextColor(RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>));</span><br><span class="line"></span><br><span class="line">   <span class="comment">//获取字体位置</span></span><br><span class="line">   CRect rect;</span><br><span class="line">   GetClientRect(&amp;rect);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//字体内容</span></span><br><span class="line">   CString strText = <span class="string">L"Welcom to LLK-GAME!"</span>;</span><br><span class="line">   CSize size;</span><br><span class="line">   size = dc.GetTextExtent(strText, strText.GetAllocLength());</span><br><span class="line"></span><br><span class="line">   <span class="comment">//居中显示</span></span><br><span class="line">   <span class="keyword">int</span> x = (rect.Width() - size.cx) / <span class="number">2</span>;</span><br><span class="line">   <span class="keyword">int</span> y = (rect.Height() - size.cy) / <span class="number">2</span>;</span><br><span class="line">   dc.TextOut(x, y, strText);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><hr></p>
-<h2 id="显示位图"><a href="#显示位图" class="headerlink" title="显示位图"></a>显示位图</h2><p><img src="/2018/05/28/LLK-bmp/./LLK-bmp/loadBmp.JPG" alt=""><br><img src="/2018/05/28/LLK-bmp/./LLK-bmp/loadBmp2.png" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="comment">//额外添加在自动生成的else里面</span></span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将内存DC复制到视频DC，内存DC在头文件类中定义</span></span><br><span class="line">   dc.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_DCMem, <span class="number">0</span>, <span class="number">0</span>, SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//此函数为自定义函数，在头文件中添加</span></span><br><span class="line"><span class="keyword">void</span> CLLKDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//加载位图</span></span><br><span class="line">   CBitmap bmpmain;</span><br><span class="line">   bmpmain.LoadBitmap(IDB_MAIN_BG);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建兼容dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">   m_DCMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图选进dc</span></span><br><span class="line">   m_DCMem.SelectObject(&amp;bmpmain);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以下方式能完成功能<br>1、保存背景图片在m_dcBG<br>2、以后可以利用m_dcBG完成对m_dcMem的刷新，进而刷新视频dc<br>发现m_dcMem和m_dcBG是为同一个视频dc创建的兼容dc<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGameDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//::是调用API，加载位图</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">//获得当前视频dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//加载bmp图片</span></span><br><span class="line">   HANDLE bmp = ::LoadImage(<span class="literal">NULL</span>, _T(<span class="string">"res\\theme\\picture\\game_bg.bmp"</span>), IMAGE_BITMAP, <span class="number">0</span>, <span class="number">0</span>,     LR_LOADFROMFILE);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建与视频内存兼容DC</span></span><br><span class="line">   m_dcBG.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图资源选进DC</span></span><br><span class="line">   m_dcBG.SelectObject(bmp);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//初始化内存DC</span></span><br><span class="line">   m_dcMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line">   CBitmap bmpMem;</span><br><span class="line">   bmpMem.CreateCompatibleBitmap(&amp;dc,<span class="number">800</span>,<span class="number">600</span>);</span><br><span class="line">   m_dcMem.SelectObject(bmpMem);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//绘制背景到内存中</span></span><br><span class="line">   m_dcMem.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_dcBG, <span class="number">0</span>, <span class="number">0</span>,SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CGameDlg::UpDateMap()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">int</span> nTop = m_ptGameTop.y;</span><br><span class="line">   <span class="keyword">int</span> nLeft = m_ptGameTop.x;</span><br><span class="line">   <span class="keyword">int</span> nElemW = m_sizeElement.cx;</span><br><span class="line">   <span class="keyword">int</span> nElemH = m_sizeElement.cy;</span><br><span class="line"></span><br><span class="line">   m_dcMem.BitBlt(m_rtGameRect.left, m_rtGameRect.top, m_rtGameRect.Width(), m_rtGameRect.Height(), &amp;m_dcBG, m_rtGameRect.left, m_rtGameRect.top, SRCCOPY);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</span><br><span class="line">	   &#123;</span><br><span class="line">	      <span class="keyword">if</span> (m_anMap[i][j] != <span class="number">-1</span>)</span><br><span class="line">	  	  &#123;</span><br><span class="line">		  m_dcMem.BitBlt(nLeft + j * nElemW, nTop + i * nElemH, nElemW, nElemH, &amp;m_dcElement, <span class="number">0</span>, m_anMap[i][j] * nElemH, SRCCOPY);</span><br><span class="line">		  &#125;</span><br><span class="line">	   &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>另外注意利用vs2017加载资源文件时有可能在文件中看不到bmp文件，此时把列表中文件类型改为所有文件即可。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/28/mfc-combobox/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1197,6 +1205,161 @@
 </li>
 </ul>
 <p>&amp;nbsp ;&amp;emsp ; 为空格,.=_=.(去掉分号与字母间的空格才可以)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/28/LLK-bmp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/28/LLK-bmp/" itemprop="url">《连连看》- 位图、文字输出</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T00:00:00+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  489
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="显示文字"><a href="#显示文字" class="headerlink" title="显示文字"></a>显示文字</h2><p><img src="/2018/05/28/LLK-bmp/./LLK-bmp/showFont.JPG" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建字体</span></span><br><span class="line">   CFont font;</span><br><span class="line">   font.CreatePointFont(<span class="number">200</span>, <span class="string">L"Cambria"</span>);</span><br><span class="line">   CFont * oldFont;</span><br><span class="line">   oldFont = dc.SelectObject(&amp;font);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//设置字体颜色</span></span><br><span class="line">   dc.SetTextColor(RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>));</span><br><span class="line"></span><br><span class="line">   <span class="comment">//获取字体位置</span></span><br><span class="line">   CRect rect;</span><br><span class="line">   GetClientRect(&amp;rect);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//字体内容</span></span><br><span class="line">   CString strText = <span class="string">L"Welcom to LLK-GAME!"</span>;</span><br><span class="line">   CSize size;</span><br><span class="line">   size = dc.GetTextExtent(strText, strText.GetAllocLength());</span><br><span class="line"></span><br><span class="line">   <span class="comment">//居中显示</span></span><br><span class="line">   <span class="keyword">int</span> x = (rect.Width() - size.cx) / <span class="number">2</span>;</span><br><span class="line">   <span class="keyword">int</span> y = (rect.Height() - size.cy) / <span class="number">2</span>;</span><br><span class="line">   dc.TextOut(x, y, strText);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><hr></p>
+<h2 id="显示位图"><a href="#显示位图" class="headerlink" title="显示位图"></a>显示位图</h2><p><img src="/2018/05/28/LLK-bmp/./LLK-bmp/loadBmp.JPG" alt=""><br><img src="/2018/05/28/LLK-bmp/./LLK-bmp/loadBmp2.png" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="comment">//额外添加在自动生成的else里面</span></span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将内存DC复制到视频DC，内存DC在头文件类中定义</span></span><br><span class="line">   dc.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_DCMem, <span class="number">0</span>, <span class="number">0</span>, SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//此函数为自定义函数，在头文件中添加</span></span><br><span class="line"><span class="keyword">void</span> CLLKDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//加载位图</span></span><br><span class="line">   CBitmap bmpmain;</span><br><span class="line">   bmpmain.LoadBitmap(IDB_MAIN_BG);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建兼容dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">   m_DCMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图选进dc</span></span><br><span class="line">   m_DCMem.SelectObject(&amp;bmpmain);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以下方式能完成功能<br>1、保存背景图片在m_dcBG<br>2、以后可以利用m_dcBG完成对m_dcMem的刷新，进而刷新视频dc<br>发现m_dcMem和m_dcBG是为同一个视频dc创建的兼容dc<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGameDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//::是调用API，加载位图</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">//获得当前视频dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//加载bmp图片</span></span><br><span class="line">   HANDLE bmp = ::LoadImage(<span class="literal">NULL</span>, _T(<span class="string">"res\\theme\\picture\\game_bg.bmp"</span>), IMAGE_BITMAP, <span class="number">0</span>, <span class="number">0</span>,     LR_LOADFROMFILE);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建与视频内存兼容DC</span></span><br><span class="line">   m_dcBG.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图资源选进DC</span></span><br><span class="line">   m_dcBG.SelectObject(bmp);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//初始化内存DC</span></span><br><span class="line">   m_dcMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line">   CBitmap bmpMem;</span><br><span class="line">   bmpMem.CreateCompatibleBitmap(&amp;dc,<span class="number">800</span>,<span class="number">600</span>);</span><br><span class="line">   m_dcMem.SelectObject(bmpMem);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//绘制背景到内存中</span></span><br><span class="line">   m_dcMem.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_dcBG, <span class="number">0</span>, <span class="number">0</span>,SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CGameDlg::UpDateMap()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">int</span> nTop = m_ptGameTop.y;</span><br><span class="line">   <span class="keyword">int</span> nLeft = m_ptGameTop.x;</span><br><span class="line">   <span class="keyword">int</span> nElemW = m_sizeElement.cx;</span><br><span class="line">   <span class="keyword">int</span> nElemH = m_sizeElement.cy;</span><br><span class="line"></span><br><span class="line">   m_dcMem.BitBlt(m_rtGameRect.left, m_rtGameRect.top, m_rtGameRect.Width(), m_rtGameRect.Height(), &amp;m_dcBG, m_rtGameRect.left, m_rtGameRect.top, SRCCOPY);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</span><br><span class="line">	   &#123;</span><br><span class="line">	      <span class="keyword">if</span> (m_anMap[i][j] != <span class="number">-1</span>)</span><br><span class="line">	  	  &#123;</span><br><span class="line">		  m_dcMem.BitBlt(nLeft + j * nElemW, nTop + i * nElemH, nElemW, nElemH, &amp;m_dcElement, <span class="number">0</span>, m_anMap[i][j] * nElemH, SRCCOPY);</span><br><span class="line">		  &#125;</span><br><span class="line">	   &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>另外注意利用vs2017加载资源文件时有可能在文件中看不到bmp文件，此时把列表中文件类型改为所有文件即可。</p>
 
           
         
@@ -1685,157 +1848,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/16/book-reading-精进/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/16/book-reading-精进/" itemprop="url">《精进》</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-16T00:00:00+08:00">
-                2018-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  305
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <font face="楷体" size="3px"><br>有些好书，看一遍是不够的。<br>近期浮躁无比，重新翻了一翻。发现第一章时间管理讲的有点道理。<br><br>种树最佳时间是十年前，其次是现在。<br><br>五年时间，通常会使人跨越到下一个阶段，如果你愿意随波逐流，随遇而安，沿着最普遍最一般的人生轨迹前走，那么你不需要提前五年思考。<br><br>在沙坑里，我们总是一次次地把沙子抓起来，但刚得到一点快感，沙子就已经从之间滑下。即便这个过程重复再多次，我们还是会得到相同的结果。每一天都是崭新的一天，但每一天都重复昨天的“故事”。<br><br>收益值高低无关紧要，只要不是短半衰期的事情，只要这个受益值可以被累加，就尽管去做。<br>不要只盯着那些“高大上”的事。一些不重要，不紧急的事情，只要对你有长期的益处，就尽管去做。<br><br>所谓经典，就是有超长半衰期的事情。<br><br>如果一首交响曲从头到尾快到底，听后一定会喘不过气来。<br></font>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1888,7 +1900,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">121</span>
+                <span class="site-state-item-count">122</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1899,7 +1911,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1910,7 +1922,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
