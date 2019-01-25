@@ -375,7 +375,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  324
+                  315
                 </span>
               
 
@@ -416,7 +416,164 @@
           
             <p><strong>描述</strong><br>给一个数组nums，分成m份，求每一种分法每一份的最大值的最小值。</p>
 <p>有点绕，感觉又是组合爆炸。参考<a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/splitArrayLargestSum/SplitArrayLargestSum.cpp" target="_blank" rel="noopener">这篇文章</a>后，得到了一些启发。将这个题转换成查找问题，不要被最小值迷惑，我们就求最大值，然后向下逼近。最大值的范围在单个数字最大值和总和之间，从总和开始向下枚举计算。要求这个最大值大于所有的子数组，m则为失败的次数条件，显然m越大，这个最大值可以更加的小，失败数目超过m后显然就不成立了，于是题目就解决了。</p>
-<p>下面这个解法会超时，时间复杂度为O(N^2)，可以改进为二分查找。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">splitArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = INT_MIN;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> n : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (left &lt; n) &#123; left = n; &#125;</span><br><span class="line">            right += n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> result = right;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = right; i &gt;= left; i--) &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> subsum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">bool</span> done = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> n : nums) &#123;</span><br><span class="line">                subsum += n;</span><br><span class="line">                <span class="keyword">if</span> (subsum &gt; i) &#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                    subsum = n;</span><br><span class="line">                    <span class="keyword">if</span> (cnt &gt; m) &#123;</span><br><span class="line">                        done = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (done == <span class="literal">false</span>) &#123; result = i; &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">**参考资料**</span><br><span class="line">[题目链接](https:<span class="comment">//leetcode.com/problems/split-array-largest-sum/description/)</span></span><br></pre></td></tr></table></figure></p>
+<p>下面这个解法会超时，时间复杂度为O(N^2)，可以改进为二分查找。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">splitArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = INT_MIN;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> n : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (left &lt; n) &#123; left = n; &#125;</span><br><span class="line">            right += n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> result = right;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = right; i &gt;= left; i--) &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> subsum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">bool</span> done = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> n : nums) &#123;</span><br><span class="line">                subsum += n;</span><br><span class="line">                <span class="keyword">if</span> (subsum &gt; i) &#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                    subsum = n;</span><br><span class="line">                    <span class="keyword">if</span> (cnt &gt; m) &#123;</span><br><span class="line">                        done = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (done == <span class="literal">false</span>) &#123; result = i; &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/split-array-largest-sum/description/" target="_blank" rel="noopener">题目链接</a></p>
+<p><code>`</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/17/2018-9-17-mei/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/17/2018-9-17-mei/" itemprop="url">【编程之美】 2.14 求数组的子数组之和的最大值</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T00:00:00+08:00">
+                2018-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  363
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>普通法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxSum_w1</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> tempsum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; n;j++) &#123;</span><br><span class="line">            <span class="comment">//add i to j</span></span><br><span class="line">            tempsum += a[j];</span><br><span class="line">            <span class="keyword">if</span> (tempsum &gt; sum) &#123;</span><br><span class="line">                sum = tempsum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>分治法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (left == right) &#123; <span class="keyword">return</span> a[left]; &#125;</span><br><span class="line">    <span class="keyword">if</span> (right - left + <span class="number">1</span> == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> maxelement = <span class="built_in">std</span>::max(a[left], a[right]);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">std</span>::max(maxelement, a[left] + a[right]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> result_left = recursion(a, n, left, (right+left)/<span class="number">2</span> );</span><br><span class="line">    <span class="keyword">int</span> result_right = recursion(a, n, (right + left) / <span class="number">2</span> + <span class="number">1</span>, right);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> mix_left = a[left + (right - left) / <span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> mix_right = a[left + (right - left) / <span class="number">2</span> + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = left + (right-left)/<span class="number">2</span>; i &gt;= left; i--) &#123;</span><br><span class="line">        temp += a[i];</span><br><span class="line">        <span class="keyword">if</span> (temp &gt; mix_left) &#123; mix_left = temp; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    temp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = left + (right - left) / <span class="number">2</span>+<span class="number">1</span>; i &lt;= right; i++) &#123;</span><br><span class="line">        temp += a[i];</span><br><span class="line">        <span class="keyword">if</span> (temp &gt; mix_right) &#123; mix_right = temp; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> max_temp = <span class="built_in">std</span>::max(result_left, result_right);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::max(mix_left + mix_right, max_temp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxSum_w3</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span>   recursion(a, n, <span class="number">0</span>, n <span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>动态规划法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxSum_w2</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123; <span class="keyword">return</span> <span class="number">-1000</span>; &#125;</span><br><span class="line">    <span class="keyword">int</span> all=a[n<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">int</span> result=a[n<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">2</span>) &#123; <span class="keyword">return</span> result; &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        all = <span class="built_in">std</span>::max(a[i], a[i] + all);</span><br><span class="line">        result = <span class="built_in">std</span>::max(result, all);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中动态规划是时间复杂度最低的，而且代码也较短。相对而言分治法可能会产生更多的bug。</p>
+<p><em>note:可以建立三个cpp文件，包含一个共同的头文件申明，然后主函数只要包含头文件就可以了，这样就不需要写多个main函数那么麻烦了。</em></p>
 
           
         
@@ -774,7 +931,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/13/2018-9-13-blog_leetcode2/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/13/2018-10-15-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -793,7 +950,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/13/2018-9-13-blog_leetcode2/" itemprop="url">【leetcode】415. Add Strings</a></h1>
+                <a class="post-title-link" href="/2018/09/13/2018-10-15-blog/" itemprop="url">【leetcode】405. Convert a Number to Hexadecimal</a></h1>
         
 
         <div class="post-meta">
@@ -837,7 +994,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  342
+                  206
                 </span>
               
 
@@ -876,162 +1033,19 @@
       
         
           
-            <p><strong>描述</strong><br>将两个字符相加，两个字符代表大整数，有5100多位，不能用int表示。</p>
-<p><strong>我的解法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">addStrings</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len1 = num1.size();</span><br><span class="line">        <span class="keyword">int</span> len2 = num2.size();</span><br><span class="line">        <span class="keyword">int</span> maxlen = len1 &gt; len2 ? len1 : len2;</span><br><span class="line">        <span class="built_in">string</span> str_sum =<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> overflow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxlen; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> sumtemp = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//common partion</span></span><br><span class="line">            <span class="keyword">if</span> (i &lt; len1 &amp;&amp; i &lt; len2) &#123;</span><br><span class="line">                sumtemp = (num1[len1 - i - <span class="number">1</span>]-<span class="string">'0'</span>) + (num2[len2 - i - <span class="number">1</span>] -<span class="string">'0'</span>);</span><br><span class="line">                <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">                    sumtemp ++;</span><br><span class="line">                    overflow = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">                    overflow = <span class="number">1</span>;</span><br><span class="line">                    sumtemp -= <span class="number">10</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (len1 &gt; len2) &#123;</span><br><span class="line">                sumtemp = num1[len1-i<span class="number">-1</span>]-<span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">                    overflow = <span class="number">0</span>;</span><br><span class="line">                    sumtemp++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">                    sumtemp -= <span class="number">10</span>;</span><br><span class="line">                    overflow = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (len1 &lt; len2) &#123;</span><br><span class="line">                sumtemp = num2[len2 - i<span class="number">-1</span>]-<span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">                    overflow = <span class="number">0</span>;</span><br><span class="line">                    sumtemp++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">                    sumtemp -= <span class="number">10</span>;</span><br><span class="line">                    overflow = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            str_sum=to_string(sumtemp)+str_sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123; str_sum= <span class="string">"1"</span> + str_sum; &#125;</span><br><span class="line">        <span class="keyword">return</span> str_sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>更佳的解法</strong><br>引用值得学习，overflow的产生值得学习，求余的方式值得学习，采用short和long值得学习。<br><a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/addStrings/AddStrings.cpp" target="_blank" rel="noopener">参考链接</a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">addStrings</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> &amp; longstr = (num1.size() &gt; num2.size()) ? num1:num2;</span><br><span class="line">        <span class="built_in">string</span> &amp; shortstr = (num1.size() &lt;= num2.size()) ? num1:num2;</span><br><span class="line">        <span class="built_in">string</span> result = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> overflow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = longstr.size() - <span class="number">1</span>,  j = shortstr.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--, j--) &#123;</span><br><span class="line">            <span class="keyword">int</span> tempsum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                tempsum = longstr[i] - <span class="string">'0'</span> + shortstr[j] - <span class="string">'0'</span>+ overflow;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                tempsum = longstr[i] - <span class="string">'0'</span> + overflow;</span><br><span class="line">            &#125;</span><br><span class="line">            overflow = tempsum / <span class="number">10</span>;</span><br><span class="line">            result = <span class="keyword">char</span>(tempsum % <span class="number">10</span>+<span class="string">'0'</span>) + result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (overflow) &#123;</span><br><span class="line">            result = <span class="string">'1'</span> + result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/add-strings/description/" target="_blank" rel="noopener">原题链接</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/13/2018-9-13-blog_mei1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/13/2018-9-13-blog_mei1/" itemprop="url">【编程之美】 2.7最大公因数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T00:00:00+08:00">
-                2018-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  81
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>辗转相除</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (b == <span class="number">0</span>) ? a : gcd(b, a%b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>另一种方法</strong><br>需要实现大整数类，其中大整数可以用string或者数组保存。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd2</span><span class="params">(BigInt a, BigInt b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a &lt; b) &#123; <span class="keyword">return</span> gcd2(b, a); &#125;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">0</span>) &#123; <span class="keyword">return</span>  a; &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;    <span class="keyword">return</span> gcd2(a - b, b);    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            <p><strong>描述</strong>:<br>输入一个整数，将其转化为16进制。若为负数，则取它的补码进行运算。</p>
+<p><strong>输入输出样例</strong><br>样例1</p>
+<pre><code>输入: 26
+输出: 1a
+</code></pre><p>样例2</p>
+<pre><code>输入: -1
+输出: ffffffff
+</code></pre><p><strong>解题思路</strong><br>将这个数对16求余，之后除以16，依次从低位转换。</p>
+<blockquote>
+<p><em>note:负数的补码处理可以采用 <code>unsigned int x = num</code> 和 <code>x /= 16</code>处理。 也可以采用 <code>num = ~(-num)+1</code> 加上 <code>x &gt;&gt; 4</code> 处理，int 是32位的，每次移动 4 位，一共可以移动 8 次。 </em></p>
+</blockquote>
+<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">toHex</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>) &#123; <span class="keyword">return</span> <span class="string">"0"</span>; &#125;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> x = num;</span><br><span class="line">        <span class="comment">//int x = num &gt; 0 ? num : ~(-num) + 1;</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">string</span> res = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> ret = x % <span class="number">16</span>;</span><br><span class="line">            x /= <span class="number">16</span>;</span><br><span class="line">            <span class="keyword">if</span> (ret &lt; <span class="number">10</span>) &#123; res = to_string(ret) + res; &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; res = <span class="keyword">char</span>(<span class="string">'a'</span>+ret%<span class="number">10</span>)+res; &#125;</span><br><span class="line">        &#125; <span class="keyword">while</span> (x);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/convert-a-number-to-hexadecimal/description/" target="_blank" rel="noopener">原题</a></p>
 
           
         
@@ -1237,7 +1251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/13/2018-10-15-blog/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/13/2018-9-13-blog_mei1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1256,7 +1270,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/13/2018-10-15-blog/" itemprop="url">【leetcode】405. Convert a Number to Hexadecimal</a></h1>
+                <a class="post-title-link" href="/2018/09/13/2018-9-13-blog_mei1/" itemprop="url">【编程之美】 2.7最大公因数</a></h1>
         
 
         <div class="post-meta">
@@ -1300,7 +1314,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  206
+                  81
                 </span>
               
 
@@ -1339,19 +1353,8 @@
       
         
           
-            <p><strong>描述</strong>:<br>输入一个整数，将其转化为16进制。若为负数，则取它的补码进行运算。</p>
-<p><strong>输入输出样例</strong><br>样例1</p>
-<pre><code>输入: 26
-输出: 1a
-</code></pre><p>样例2</p>
-<pre><code>输入: -1
-输出: ffffffff
-</code></pre><p><strong>解题思路</strong><br>将这个数对16求余，之后除以16，依次从低位转换。</p>
-<blockquote>
-<p><em>note:负数的补码处理可以采用 <code>unsigned int x = num</code> 和 <code>x /= 16</code>处理。 也可以采用 <code>num = ~(-num)+1</code> 加上 <code>x &gt;&gt; 4</code> 处理，int 是32位的，每次移动 4 位，一共可以移动 8 次。 </em></p>
-</blockquote>
-<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">toHex</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>) &#123; <span class="keyword">return</span> <span class="string">"0"</span>; &#125;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> x = num;</span><br><span class="line">        <span class="comment">//int x = num &gt; 0 ? num : ~(-num) + 1;</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">string</span> res = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> ret = x % <span class="number">16</span>;</span><br><span class="line">            x /= <span class="number">16</span>;</span><br><span class="line">            <span class="keyword">if</span> (ret &lt; <span class="number">10</span>) &#123; res = to_string(ret) + res; &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; res = <span class="keyword">char</span>(<span class="string">'a'</span>+ret%<span class="number">10</span>)+res; &#125;</span><br><span class="line">        &#125; <span class="keyword">while</span> (x);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/convert-a-number-to-hexadecimal/description/" target="_blank" rel="noopener">原题</a></p>
+            <p><strong>辗转相除</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (b == <span class="number">0</span>) ? a : gcd(b, a%b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>另一种方法</strong><br>需要实现大整数类，其中大整数可以用string或者数组保存。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd2</span><span class="params">(BigInt a, BigInt b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a &lt; b) &#123; <span class="keyword">return</span> gcd2(b, a); &#125;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">0</span>) &#123; <span class="keyword">return</span>  a; &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;    <span class="keyword">return</span> gcd2(a - b, b);    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1400,7 +1403,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/12/2018-9-12-blog/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/13/2018-9-13-blog_leetcode2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1419,7 +1422,161 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/12/2018-9-12-blog/" itemprop="url">2018年9月12日</a></h1>
+                <a class="post-title-link" href="/2018/09/13/2018-9-13-blog_leetcode2/" itemprop="url">【leetcode】415. Add Strings</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T00:00:00+08:00">
+                2018-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  342
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>描述</strong><br>将两个字符相加，两个字符代表大整数，有5100多位，不能用int表示。</p>
+<p><strong>我的解法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">addStrings</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len1 = num1.size();</span><br><span class="line">        <span class="keyword">int</span> len2 = num2.size();</span><br><span class="line">        <span class="keyword">int</span> maxlen = len1 &gt; len2 ? len1 : len2;</span><br><span class="line">        <span class="built_in">string</span> str_sum =<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> overflow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxlen; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> sumtemp = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//common partion</span></span><br><span class="line">            <span class="keyword">if</span> (i &lt; len1 &amp;&amp; i &lt; len2) &#123;</span><br><span class="line">                sumtemp = (num1[len1 - i - <span class="number">1</span>]-<span class="string">'0'</span>) + (num2[len2 - i - <span class="number">1</span>] -<span class="string">'0'</span>);</span><br><span class="line">                <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">                    sumtemp ++;</span><br><span class="line">                    overflow = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">                    overflow = <span class="number">1</span>;</span><br><span class="line">                    sumtemp -= <span class="number">10</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (len1 &gt; len2) &#123;</span><br><span class="line">                sumtemp = num1[len1-i<span class="number">-1</span>]-<span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">                    overflow = <span class="number">0</span>;</span><br><span class="line">                    sumtemp++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">                    sumtemp -= <span class="number">10</span>;</span><br><span class="line">                    overflow = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (len1 &lt; len2) &#123;</span><br><span class="line">                sumtemp = num2[len2 - i<span class="number">-1</span>]-<span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123;</span><br><span class="line">                    overflow = <span class="number">0</span>;</span><br><span class="line">                    sumtemp++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sumtemp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">                    sumtemp -= <span class="number">10</span>;</span><br><span class="line">                    overflow = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            str_sum=to_string(sumtemp)+str_sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (overflow == <span class="number">1</span>) &#123; str_sum= <span class="string">"1"</span> + str_sum; &#125;</span><br><span class="line">        <span class="keyword">return</span> str_sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>更佳的解法</strong><br>引用值得学习，overflow的产生值得学习，求余的方式值得学习，采用short和long值得学习。<br><a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/addStrings/AddStrings.cpp" target="_blank" rel="noopener">参考链接</a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">addStrings</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> &amp; longstr = (num1.size() &gt; num2.size()) ? num1:num2;</span><br><span class="line">        <span class="built_in">string</span> &amp; shortstr = (num1.size() &lt;= num2.size()) ? num1:num2;</span><br><span class="line">        <span class="built_in">string</span> result = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> overflow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = longstr.size() - <span class="number">1</span>,  j = shortstr.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--, j--) &#123;</span><br><span class="line">            <span class="keyword">int</span> tempsum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                tempsum = longstr[i] - <span class="string">'0'</span> + shortstr[j] - <span class="string">'0'</span>+ overflow;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                tempsum = longstr[i] - <span class="string">'0'</span> + overflow;</span><br><span class="line">            &#125;</span><br><span class="line">            overflow = tempsum / <span class="number">10</span>;</span><br><span class="line">            result = <span class="keyword">char</span>(tempsum % <span class="number">10</span>+<span class="string">'0'</span>) + result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (overflow) &#123;</span><br><span class="line">            result = <span class="string">'1'</span> + result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>参考资料</strong><br><a href="https://leetcode.com/problems/add-strings/description/" target="_blank" rel="noopener">原题链接</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/12/2018-9-12-blog_mei1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/2018-9-12-blog_mei1/" itemprop="url">【编程之美】 2.1 统计一个正整数二进制中1的个数</a></h1>
         
 
         <div class="post-meta">
@@ -1463,7 +1620,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  96
+                  125
                 </span>
               
 
@@ -1502,10 +1659,10 @@
       
         
           
-            <h2 id="切换hexo-next代码高亮"><a href="#切换hexo-next代码高亮" class="headerlink" title="切换hexo+next代码高亮"></a>切换hexo+next代码高亮</h2><p>主站点配置文件改成这个样子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">highlight:</span><br><span class="line">  enable: true</span><br><span class="line">  line_number: true</span><br><span class="line">  auto_detect: false  &lt;&lt;-----//这里改成false</span><br><span class="line">  tab_replace:</span><br></pre></td></tr></table></figure></p>
-<p>next主题配置文件更改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Code Highlight theme</span><br><span class="line"># Available value:</span><br><span class="line">#    normal | night | night eighties | night blue | night bright</span><br><span class="line"># https://github.com/chriskempson/tomorrow-theme</span><br><span class="line"># highlight_theme: normal</span><br><span class="line">highlight_theme: night eighties</span><br></pre></td></tr></table></figure></p>
-<h2 id="密码移位"><a href="#密码移位" class="headerlink" title="密码移位"></a>密码移位</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch = (ch+i-<span class="string">'a'</span>)%<span class="number">26</span>+<span class="string">'a'</span>;</span><br></pre></td></tr></table></figure>
-<p>not is<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> (ch+i&gt;<span class="string">'z'</span>)&#123;</span><br><span class="line">   ch = (ch+i-<span class="string">'z'</span>)+<span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">   ch = ch+i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            <p><strong>普通法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countBinary1</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        sum += num % <span class="number">2</span>;</span><br><span class="line">        num /= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> <strong>移位法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countBinary2</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        sum += num &amp; <span class="number">1</span>;</span><br><span class="line">        num &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>快速法</strong><br>这个效率是与1的个数有关，超级牛逼！<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countBinary3</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        num &amp;= (num - <span class="number">1</span>);</span><br><span class="line">        sum++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>还有以空间换取时间的方法,列出一个很大是数组，直接返回， 时间复杂度是O(1).<br><a href="http://www.cnblogs.com/graphics/archive/2010/06/21/1752421.html" target="_blank" rel="noopener">参考文章</a></p>
 
           
         
@@ -1699,160 +1856,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/12/2018-9-12-blog_mei1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/2018-9-12-blog_mei1/" itemprop="url">【编程之美】 2.1 统计一个正整数二进制中1的个数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T00:00:00+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  125
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>普通法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countBinary1</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        sum += num % <span class="number">2</span>;</span><br><span class="line">        num /= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p> <strong>移位法</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countBinary2</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        sum += num &amp; <span class="number">1</span>;</span><br><span class="line">        num &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>快速法</strong><br>这个效率是与1的个数有关，超级牛逼！<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countBinary3</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        num &amp;= (num - <span class="number">1</span>);</span><br><span class="line">        sum++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>还有以空间换取时间的方法,列出一个很大是数组，直接返回， 时间复杂度是O(1).<br><a href="http://www.cnblogs.com/graphics/archive/2010/06/21/1752421.html" target="_blank" rel="noopener">参考文章</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1905,7 +1908,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">125</span>
+                <span class="site-state-item-count">126</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
