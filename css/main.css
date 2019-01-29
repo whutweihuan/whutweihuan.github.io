@@ -1837,7 +1837,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff5d75;
+  background: #d6ff34;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2970,7 +2970,7 @@ code {
 @media (max-width: 767px) {
   .menu {
     text-align: center;
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);
   }
   .site-nav {
     top: initial;
@@ -2980,4 +2980,10 @@ code {
     position: relative;
     z-index: 1024;
   }
+  .header-inner {
+    padding: 100px 0 10px;
+  }
+}
+p {
+  margin: 0 0 0 0;
 }
