@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://whutweihuan.github.io/2019/02/17/%E6%91%98%E5%BD%95/</loc>
+    
+    <lastmod>2019-02-17T03:40:30.442Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://whutweihuan.github.io/2019/02/17/book_masterReg/</loc>
+    
+    <lastmod>2019-02-17T00:37:08.200Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://whutweihuan.github.io/2019/02/17/book_smallPeopleLoad/</loc>
+    
+    <lastmod>2019-02-17T00:35:42.003Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://whutweihuan.github.io/2019/02/17/kindleNote/</loc>
+    
+    <lastmod>2019-02-17T00:24:45.034Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://whutweihuan.github.io/2019/01/30/2018-1-30-blog-leetcode/</loc>
     
-    <lastmod>2019-01-30T13:47:24.122Z</lastmod>
+    <lastmod>2019-01-30T13:52:43.363Z</lastmod>
     
   </url>
   
@@ -618,6 +646,13 @@
   </url>
   
   <url>
+    <loc>http://whutweihuan.github.io/tags/index.html</loc>
+    
+    <lastmod>2018-09-08T04:41:58.863Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://whutweihuan.github.io/2018/04/30/python-swap/</loc>
     
     <lastmod>2018-09-08T04:41:58.863Z</lastmod>
@@ -653,13 +688,6 @@
   </url>
   
   <url>
-    <loc>http://whutweihuan.github.io/tags/index.html</loc>
-    
-    <lastmod>2018-09-08T04:41:58.863Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://whutweihuan.github.io/2018/05/11/python-turtle/</loc>
     
     <lastmod>2018-09-08T04:41:58.863Z</lastmod>
@@ -674,7 +702,7 @@
   </url>
   
   <url>
-    <loc>http://whutweihuan.github.io/2018/01/30/machine2/</loc>
+    <loc>http://whutweihuan.github.io/2018/04/05/machine8/</loc>
     
     <lastmod>2018-09-08T04:41:58.848Z</lastmod>
     
@@ -737,13 +765,6 @@
   </url>
   
   <url>
-    <loc>http://whutweihuan.github.io/2018/04/05/machine8/</loc>
-    
-    <lastmod>2018-09-08T04:41:58.848Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://whutweihuan.github.io/2018/04/03/machine5/</loc>
     
     <lastmod>2018-09-08T04:41:58.848Z</lastmod>
@@ -752,6 +773,13 @@
   
   <url>
     <loc>http://whutweihuan.github.io/2018/04/04/machine7/</loc>
+    
+    <lastmod>2018-09-08T04:41:58.848Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://whutweihuan.github.io/2018/01/30/machine2/</loc>
     
     <lastmod>2018-09-08T04:41:58.848Z</lastmod>
     
@@ -877,49 +905,7 @@
   </url>
   
   <url>
-    <loc>http://whutweihuan.github.io/2018/05/17/book-reading-%E4%B9%94%E6%9C%A8/</loc>
-    
-    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://whutweihuan.github.io/2018/05/16/book-reading-%E7%B2%BE%E8%BF%9B/</loc>
-    
-    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://whutweihuan.github.io/2018/04/13/book-reading10/</loc>
-    
-    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://whutweihuan.github.io/2018/06/13/alg_quickSort/</loc>
-    
-    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://whutweihuan.github.io/2018/04/14/book-reading12-%E4%BA%86%E4%B8%8D%E8%B5%B7%E7%9A%84%E7%9B%96%E8%8C%A8%E6%AF%94/</loc>
-    
-    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://whutweihuan.github.io/2018/04/30/ans-noline/</loc>
-    
-    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://whutweihuan.github.io/2018/05/01/alg-maxk/</loc>
     
     <lastmod>2018-09-08T04:41:58.816Z</lastmod>
     
@@ -933,6 +919,13 @@
   </url>
   
   <url>
+    <loc>http://whutweihuan.github.io/2018/05/17/book-reading-%E4%B9%94%E6%9C%A8/</loc>
+    
+    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://whutweihuan.github.io/2018/06/01/book-reading-gaobai/</loc>
     
     <lastmod>2018-09-08T04:41:58.816Z</lastmod>
@@ -940,7 +933,49 @@
   </url>
   
   <url>
+    <loc>http://whutweihuan.github.io/2018/04/30/ans-noline/</loc>
+    
+    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://whutweihuan.github.io/2018/06/13/alg_quickSort/</loc>
+    
+    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://whutweihuan.github.io/2018/05/01/alg-maxk/</loc>
+    
+    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://whutweihuan.github.io/2018/04/14/book-reading12-%E4%BA%86%E4%B8%8D%E8%B5%B7%E7%9A%84%E7%9B%96%E8%8C%A8%E6%AF%94/</loc>
+    
+    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://whutweihuan.github.io/2018/05/16/book-reading-%E7%B2%BE%E8%BF%9B/</loc>
+    
+    <lastmod>2018-09-08T04:41:58.816Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://whutweihuan.github.io/2018/06/25/MFC_LLK_progress/</loc>
+    
+    <lastmod>2018-09-08T04:41:58.801Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://whutweihuan.github.io/2018/06/13/MFC-Snake/</loc>
     
     <lastmod>2018-09-08T04:41:58.801Z</lastmod>
     
@@ -962,13 +997,6 @@
   
   <url>
     <loc>http://whutweihuan.github.io/2018/04/16/Linux-install/</loc>
-    
-    <lastmod>2018-09-08T04:41:58.801Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://whutweihuan.github.io/2018/06/13/MFC-Snake/</loc>
     
     <lastmod>2018-09-08T04:41:58.801Z</lastmod>
     
