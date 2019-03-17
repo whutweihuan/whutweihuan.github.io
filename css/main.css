@@ -1803,7 +1803,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #42e75e;
+  background: #42f42f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2928,10 +2928,6 @@ h6 {
 }
 .highlight:hover .btn-copy {
   opacity: 1;
-}
-code {
-  color: #ff9b00;
-  font-size: 14px;
 }
 @media (max-width: 767px) {
   .menu {
