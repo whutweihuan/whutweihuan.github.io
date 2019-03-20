@@ -312,6 +312,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/08/2018-9-8-blog_交换链表节点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/08/2018-9-8-blog_交换链表节点/" itemprop="url">交换链表的节点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T00:00:00+08:00">
+                2018-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/2018/09/08/2018-9-8-blog_交换链表节点/linknode.png" alt=""><br>链表节点要这么画成图2这样的不要简单的画图1表示了。<br>代码如下<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode * <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> p = head;</span><br><span class="line">        <span class="comment">//no node</span></span><br><span class="line">        <span class="keyword">if</span> (p == <span class="literal">NULL</span>) &#123; <span class="keyword">return</span> p; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//swap first two nodes</span></span><br><span class="line">        <span class="keyword">if</span> (p&amp;&amp;p-&gt;next) &#123;</span><br><span class="line">            <span class="keyword">auto</span> next = p-&gt;next;</span><br><span class="line">            p-&gt;next = p-&gt;next-&gt;next;</span><br><span class="line">            next-&gt;next = p;</span><br><span class="line">            head = next;<span class="comment">//change head node</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//only one node</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//swap rest nodes;</span></span><br><span class="line">        <span class="keyword">auto</span> prev = head-&gt;next;</span><br><span class="line">        p = head-&gt;next-&gt;next;</span><br><span class="line">        <span class="keyword">while</span> (p&amp;&amp;p-&gt;next)&#123;</span><br><span class="line">            <span class="keyword">auto</span> next = p-&gt;next;</span><br><span class="line">            p-&gt;next = p-&gt;next-&gt;next;</span><br><span class="line">            next-&gt;next = p;</span><br><span class="line">            prev-&gt;next = next;</span><br><span class="line">            prev = p;</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/09/07/2018-9-7-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -365,37 +485,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  146
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -414,13 +503,7 @@
       
         
           
-            <p>最近看了一些大佬的博客，真是太牛逼了。</p>
-<p>参加了数学建模，发现自己编程实力实在菜的一匹。</p>
-<p>数据结构是真的重要，需要好好复习一下。</p>
-<p>遇到一些问题，不能太钻牛角尖，有很多东西是不必要那么认真的。这样就会有够多的时间了。</p>
-<p>一个人的力量总是渺小的，需要向优秀的人学习询问方法，不要闭门造车。</p>
-<p>要开阔眼界，多看书，多看技术书，要养成看技术书的习惯.</p>
-
+            <font>最近看了一些大佬的博客，真是太牛逼了。<br><br>参加了数学建模，发现自己编程实力实在菜的一匹。<br><br>数据结构是真的重要，需要好好复习一下。<br><br>遇到一些问题，不能太钻牛角尖，有很多东西是不必要那么认真的。这样就会有够多的时间了。<br><br>一个人的力量总是渺小的，需要向优秀的人学习询问方法，不要闭门造车。<br><br>要开阔眼界，多看书，多看技术书，要养成看技术书的习惯.<br></font>
           
         
       
@@ -521,37 +604,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  357
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -577,158 +629,6 @@
 <h2 id="进度条的使用"><a href="#进度条的使用" class="headerlink" title="进度条的使用"></a>进度条的使用</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始进度条</span></span><br><span class="line">m_gameProcess.SetRange(<span class="number">0</span>, <span class="number">5</span> * <span class="number">60</span>);</span><br><span class="line"><span class="comment">//设置步长</span></span><br><span class="line">m_gameProcess.SetStep(<span class="number">-1</span>);</span><br><span class="line"><span class="comment">//初始值</span></span><br><span class="line">m_gameProcess.SetPos(<span class="number">300</span>);</span><br><span class="line"><span class="keyword">this</span>-&gt;SetTimer(<span class="number">12</span>,<span class="number">1000</span>,<span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGameDlg::OnTimer(UINT_PTR nIDEvent)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (nIDEvent == <span class="number">12</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> pos=m_gameProcess.GetPos();</span><br><span class="line">        drawFont(pos);</span><br><span class="line">        <span class="comment">//m_time--;</span></span><br><span class="line">        <span class="comment">//m_gameProcess.SetPos(pos - 1);</span></span><br><span class="line">        m_gameProcess.StepIt();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    CDialogEx::OnTimer(nIDEvent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="/2018/06/25/MFC_LLK_progress/./MFC_LLK_progress/llk.png" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/16/alg_comprexOn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/16/alg_comprexOn/" itemprop="url">时间复杂度</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-16T00:00:00+08:00">
-                2018-06-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  40
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>大小为n的原问题分解为a个大小为n/b的子问题，cn^k是合并子问题需要的工作量:<br><img src="http://petxkegbg.bkt.clouddn.com/18-9-10/93064109.jpg" alt=""></p>
-<p>时间复杂度为：<br><img src="http://petxkegbg.bkt.clouddn.com/18-9-10/51673587.jpg" alt=""></p>
 
           
         
@@ -829,37 +729,6 @@
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  247
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
           
 
           
@@ -982,37 +851,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  638
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
 
           
 
@@ -1092,7 +930,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/09/python-img-resize/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/28/2018-05-28-blog-mfc-combobox/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1111,616 +949,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/09/python-img-resize/" itemprop="url">批量更改图片大小</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T00:00:00+08:00">
-                2018-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  20
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">"cat.bmp"</span>)</span><br><span class="line">new_img = img.resize((<span class="number">40</span>,<span class="number">40</span>))</span><br><span class="line">new_img.save(<span class="string">"cat.bmp"</span>, <span class="string">"BMP"</span>, optimize=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/05/python-rename/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/05/python-rename/" itemprop="url">文件重命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T00:00:00+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  46
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>多个文件重命名<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">i=<span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> os.listdir(<span class="string">"."</span>):</span><br><span class="line">    os.rename(file,<span class="string">"img"</span>+str(i)+<span class="string">".bmp"</span>)</span><br><span class="line">	i=i+<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>PS: windows 防火墙会阻止脚本文件更改文件名，所以要关闭</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/05/python-search/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/05/python-search/" itemprop="url">查找文档内容</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T00:00:00+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  35
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  os</span><br><span class="line">target = input(<span class="string">"please input the search word:"</span>)</span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(<span class="string">"."</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="string">"."</span> <span class="keyword">in</span> filename:</span><br><span class="line">        <span class="keyword">with</span> open (filename,<span class="string">'r'</span>,encoding=<span class="string">'UTF-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">if</span> target <span class="keyword">in</span> f.read():</span><br><span class="line">                print(os.path.basename(filename))</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/06/01/book-reading-gaobai/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/01/book-reading-gaobai/" itemprop="url">《无声告白》</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-01T00:00:00+08:00">
-                2018-06-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  69
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>好压抑的一本书<br>知道为什么封面有一句话了</p>
-<center><font size="3px" face="楷体">我们终此一生，就是要摆脱他人的期待，找到真正的自己。</font><br><br><img src="/2018/06/01/book-reading-gaobai/./book-reading-gaobai/1.jpg" alt=""><br></center>
-
-
-<p>大大的剧透。</p>
-<p>另外，想用图片的话，文件名最好用英文。<br>图片来自网络。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/28/LLK-bmp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="weihuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/28/LLK-bmp/" itemprop="url">《连连看》- 位图、文字输出</a></h1>
+                <a class="post-title-link" href="/2018/05/28/2018-05-28-blog-mfc-combobox/" itemprop="url">MFC 下拉列表</a></h1>
         
 
         <div class="post-meta">
@@ -1754,36 +983,144 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  489
-                </span>
-              
 
-              
-                <span class="post-meta-divider">|</span>
-              
+          
 
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&emsp; 利用mfc要完成效果如图：<br></p>
+<p><img src="/2018/05/28/2018-05-28-blog-mfc-combobox/hobby.jpg" alt=""></p>
+<ul>
+<li>创建mfc工程，选择对话框项目，选择资源文件的xxxx.rc2，进入后选择dialog,之后利用添加控件combobox</li>
+<li>右键控件，添加变量m_cbox</li>
+<li><p>添加控件Item,在OnInitDialog()中添加：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m_cList1.AddString(<span class="string">L"jack1"</span>);</span><br><span class="line">m_cList1.AddString(<span class="string">L"jack2"</span>);</span><br></pre></td></tr></table></figure>
+<p>  或者直接在属性中data中添加，注意两个变量间要以;(分号)隔开</p>
+</li>
+<li><p>获取变量内容：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CString msg;</span><br><span class="line">m_cList1.GetLBText(m_cList1.GetCurSel(), msg);</span><br></pre></td></tr></table></figure>
+<p>  msg 是一个全局变量用于传递消息</p>
+</li>
+<li><p>button 设置显示内容:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UpdateData(TRUE);</span><br><span class="line">m_edit = msg+<span class="string">L"爱好"</span>+msg2;</span><br><span class="line">UpdateData(FALSE);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Done</p>
+</li>
+</ul>
+<p>&amp;nbsp ;&amp;emsp ; 为空格,.=_=.(去掉分号与字母间的空格才可以)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/28/2018-05-28-blog-连连看/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
                 
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
+                <a class="post-title-link" href="/2018/05/28/2018-05-28-blog-连连看/" itemprop="url">《连连看》- 位图、文字输出</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
-            </div>
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T00:00:00+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
           
 
           
@@ -1803,11 +1140,371 @@
       
         
           
-            <h2 id="显示文字"><a href="#显示文字" class="headerlink" title="显示文字"></a>显示文字</h2><p><img src="/2018/05/28/LLK-bmp/./LLK-bmp/showFont.JPG" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建字体</span></span><br><span class="line">   CFont font;</span><br><span class="line">   font.CreatePointFont(<span class="number">200</span>, <span class="string">L"Cambria"</span>);</span><br><span class="line">   CFont * oldFont;</span><br><span class="line">   oldFont = dc.SelectObject(&amp;font);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//设置字体颜色</span></span><br><span class="line">   dc.SetTextColor(RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>));</span><br><span class="line"></span><br><span class="line">   <span class="comment">//获取字体位置</span></span><br><span class="line">   CRect rect;</span><br><span class="line">   GetClientRect(&amp;rect);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//字体内容</span></span><br><span class="line">   CString strText = <span class="string">L"Welcom to LLK-GAME!"</span>;</span><br><span class="line">   CSize size;</span><br><span class="line">   size = dc.GetTextExtent(strText, strText.GetAllocLength());</span><br><span class="line"></span><br><span class="line">   <span class="comment">//居中显示</span></span><br><span class="line">   <span class="keyword">int</span> x = (rect.Width() - size.cx) / <span class="number">2</span>;</span><br><span class="line">   <span class="keyword">int</span> y = (rect.Height() - size.cy) / <span class="number">2</span>;</span><br><span class="line">   dc.TextOut(x, y, strText);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            <h2 id="显示文字"><a href="#显示文字" class="headerlink" title="显示文字"></a>显示文字</h2><p><img src="/2018/05/28/2018-05-28-blog-连连看/showFont.jpg" alt=""></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建字体</span></span><br><span class="line">   CFont font;</span><br><span class="line">   font.CreatePointFont(<span class="number">200</span>, <span class="string">L"Cambria"</span>);</span><br><span class="line">   CFont * oldFont;</span><br><span class="line">   oldFont = dc.SelectObject(&amp;font);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//设置字体颜色</span></span><br><span class="line">   dc.SetTextColor(RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>));</span><br><span class="line"></span><br><span class="line">   <span class="comment">//获取字体位置</span></span><br><span class="line">   CRect rect;</span><br><span class="line">   GetClientRect(&amp;rect);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//字体内容</span></span><br><span class="line">   CString strText = <span class="string">L"Welcom to LLK-GAME!"</span>;</span><br><span class="line">   CSize size;</span><br><span class="line">   size = dc.GetTextExtent(strText, strText.GetAllocLength());</span><br><span class="line"></span><br><span class="line">   <span class="comment">//居中显示</span></span><br><span class="line">   <span class="keyword">int</span> x = (rect.Width() - size.cx) / <span class="number">2</span>;</span><br><span class="line">   <span class="keyword">int</span> y = (rect.Height() - size.cy) / <span class="number">2</span>;</span><br><span class="line">   dc.TextOut(x, y, strText);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><hr></p>
-<h2 id="显示位图"><a href="#显示位图" class="headerlink" title="显示位图"></a>显示位图</h2><p><img src="/2018/05/28/LLK-bmp/./LLK-bmp/loadBmp.JPG" alt=""><br><img src="/2018/05/28/LLK-bmp/./LLK-bmp/loadBmp2.png" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="comment">//额外添加在自动生成的else里面</span></span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将内存DC复制到视频DC，内存DC在头文件类中定义</span></span><br><span class="line">   dc.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_DCMem, <span class="number">0</span>, <span class="number">0</span>, SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//此函数为自定义函数，在头文件中添加</span></span><br><span class="line"><span class="keyword">void</span> CLLKDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//加载位图</span></span><br><span class="line">   CBitmap bmpmain;</span><br><span class="line">   bmpmain.LoadBitmap(IDB_MAIN_BG);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建兼容dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">   m_DCMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图选进dc</span></span><br><span class="line">   m_DCMem.SelectObject(&amp;bmpmain);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="显示位图"><a href="#显示位图" class="headerlink" title="显示位图"></a>显示位图</h2><p><img src="/2018/05/28/2018-05-28-blog-连连看/loadBmp.JPG" alt=""><br><img src="/2018/05/28/2018-05-28-blog-连连看/loadBmp2.png" alt=""><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CLLKDlg::OnPaint()&#123;</span><br><span class="line">   <span class="comment">//额外添加在自动生成的else里面</span></span><br><span class="line">   <span class="function">CPaintDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将内存DC复制到视频DC，内存DC在头文件类中定义</span></span><br><span class="line">   dc.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_DCMem, <span class="number">0</span>, <span class="number">0</span>, SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//此函数为自定义函数，在头文件中添加</span></span><br><span class="line"><span class="keyword">void</span> CLLKDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//加载位图</span></span><br><span class="line">   CBitmap bmpmain;</span><br><span class="line">   bmpmain.LoadBitmap(IDB_MAIN_BG);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建兼容dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">   m_DCMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图选进dc</span></span><br><span class="line">   m_DCMem.SelectObject(&amp;bmpmain);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>以下方式能完成功能<br>1、保存背景图片在m_dcBG<br>2、以后可以利用m_dcBG完成对m_dcMem的刷新，进而刷新视频dc<br>发现m_dcMem和m_dcBG是为同一个视频dc创建的兼容dc<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CGameDlg::InitBackground() &#123;</span><br><span class="line">   <span class="comment">//::是调用API，加载位图</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">//获得当前视频dc</span></span><br><span class="line">   <span class="function">CClientDC <span class="title">dc</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//加载bmp图片</span></span><br><span class="line">   HANDLE bmp = ::LoadImage(<span class="literal">NULL</span>, _T(<span class="string">"res\\theme\\picture\\game_bg.bmp"</span>), IMAGE_BITMAP, <span class="number">0</span>, <span class="number">0</span>,     LR_LOADFROMFILE);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建与视频内存兼容DC</span></span><br><span class="line">   m_dcBG.CreateCompatibleDC(&amp;dc);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//将位图资源选进DC</span></span><br><span class="line">   m_dcBG.SelectObject(bmp);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//初始化内存DC</span></span><br><span class="line">   m_dcMem.CreateCompatibleDC(&amp;dc);</span><br><span class="line">   CBitmap bmpMem;</span><br><span class="line">   bmpMem.CreateCompatibleBitmap(&amp;dc,<span class="number">800</span>,<span class="number">600</span>);</span><br><span class="line">   m_dcMem.SelectObject(bmpMem);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//绘制背景到内存中</span></span><br><span class="line">   m_dcMem.BitBlt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">600</span>, &amp;m_dcBG, <span class="number">0</span>, <span class="number">0</span>,SRCCOPY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CGameDlg::UpDateMap()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">int</span> nTop = m_ptGameTop.y;</span><br><span class="line">   <span class="keyword">int</span> nLeft = m_ptGameTop.x;</span><br><span class="line">   <span class="keyword">int</span> nElemW = m_sizeElement.cx;</span><br><span class="line">   <span class="keyword">int</span> nElemH = m_sizeElement.cy;</span><br><span class="line"></span><br><span class="line">   m_dcMem.BitBlt(m_rtGameRect.left, m_rtGameRect.top, m_rtGameRect.Width(), m_rtGameRect.Height(), &amp;m_dcBG, m_rtGameRect.left, m_rtGameRect.top, SRCCOPY);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</span><br><span class="line">	   &#123;</span><br><span class="line">	      <span class="keyword">if</span> (m_anMap[i][j] != <span class="number">-1</span>)</span><br><span class="line">	  	  &#123;</span><br><span class="line">		  m_dcMem.BitBlt(nLeft + j * nElemW, nTop + i * nElemH, nElemW, nElemH, &amp;m_dcElement, <span class="number">0</span>, m_anMap[i][j] * nElemH, SRCCOPY);</span><br><span class="line">		  &#125;</span><br><span class="line">	   &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>另外注意利用vs2017加载资源文件时有可能在文件中看不到bmp文件，此时把列表中文件类型改为所有文件即可。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/17/2018-05-17-blog-南方有乔木/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/17/2018-05-17-blog-南方有乔木/" itemprop="url">《南方有乔木》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T00:00:00+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <font face="楷体" size="4px">用了一个下午看完了这本书，有点意思。<br>文中的时樾有点像《追龙》里面那个贩毒的。。。有义气。<br>时樾是要个很孝顺的人，每个月都会去看望他的母亲。<br>看到这一段时，我心里居然有点感触：<br>&emsp;&emsp;“妈。”<br>&emsp;&emsp;“嗯？”<br>&emsp;&emsp;“以后要是我成了穷光蛋怎么办？”<br>&emsp;&emsp;越秀英搅拌着青粥，爽朗的笑了起来：“穷光蛋？咱们本来不就是穷光蛋吗？”<br>&emsp;&emsp;“那就不能给你买好吃的好穿的好用的了。”<br>&emsp;&emsp;越秀英笑得更厉害了，朝隔壁房间一努嘴：“你自己看看，这些年来，给我带的东西，我除了手机，有啥用得上的啊？都快堆了一漫屋子了！”<br>    她拿勺子点了点灶台，“米是自己种的，菜也是自己载的。有米有菜万事足，用的上你的？和你说过多少遍不要浪费，你还要买买买。。。。。败家子儿！”<br><br>如此煽情的一本书，如此优秀的男主角，是每个女孩都梦寐以求的吧！<br><br>南乔好单纯。<br><br>最后，常剑雄还是觉悟了。<br><br>她的感情和岁月，他从来不会辜负。<br><br>时樾将所有家产一并放弃的魄力还是很牛皮的。<br><br><br></font>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/16/2018-05-16-blog-精进/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/16/2018-05-16-blog-精进/" itemprop="url">《精进》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-16T00:00:00+08:00">
+                2018-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <font face="楷体" size="4px"><br>有些好书，看一遍是不够的。<br>近期浮躁无比，重新翻了一翻。发现第一章时间管理讲的有点道理。<br><br>种树最佳时间是十年前，其次是现在。<br><br>五年时间，通常会使人跨越到下一个阶段，如果你愿意随波逐流，随遇而安，沿着最普遍最一般的人生轨迹前走，那么你不需要提前五年思考。<br><br>在沙坑里，我们总是一次次地把沙子抓起来，但刚得到一点快感，沙子就已经从之间滑下。即便这个过程重复再多次，我们还是会得到相同的结果。每一天都是崭新的一天，但每一天都重复昨天的“故事”。<br><br>收益值高低无关紧要，只要不是短半衰期的事情，只要这个受益值可以被累加，就尽管去做。<br>不要只盯着那些“高大上”的事。一些不重要，不紧急的事情，只要对你有长期的益处，就尽管去做。<br><br>所谓经典，就是有超长半衰期的事情。<br><br>如果一首交响曲从头到尾快到底，听后一定会喘不过气来。<br></font>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/05/11/python-tkinter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="weihuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/11/python-tkinter/" itemprop="url">python-tkinter</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T00:00:00+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk     <span class="comment">#引入包</span></span><br><span class="line">win = tk.Tk()</span><br><span class="line">win.geometry(<span class="string">'200x200'</span>)   <span class="comment">#大小</span></span><br><span class="line">var = tk.StringVar()      <span class="comment">#tk字符串</span></span><br><span class="line">text = tk.Text()          <span class="comment">#文本框</span></span><br><span class="line">text.insert(<span class="string">'insert'</span>,var)</span><br><span class="line"></span><br><span class="line">lb = tk.Listbx(win,lisvariable=var)</span><br><span class="line">tk.Scale()  <span class="comment">#横条</span></span><br><span class="line">tk.CheckButton()</span><br><span class="line"></span><br><span class="line">canvas = tk.Canvas(win,bg=<span class="string">'blue'</span>,height=<span class="number">100</span>,width=<span class="number">200</span>)</span><br><span class="line">bt = tk.Button(win,text=<span class="string">'move'</span>,command=move) <span class="comment">#command指向的是一个函数</span></span><br><span class="line">bt.pack()   <span class="comment">#布置到窗口上去</span></span><br><span class="line"></span><br><span class="line">image_file = tk.PhotoImage(file=<span class="string">'abc.gif'</span>)</span><br><span class="line">image = canvas.create_image(<span class="number">0</span>,<span class="number">0</span>,anchor=<span class="string">'nw'</span>,image=image_file)   <span class="comment">#將锚点定在左上角0，0处</span></span><br><span class="line">line = canvas.create_line(x0,y0,x1,y1)</span><br><span class="line">canvas.move(rect,<span class="number">0</span>,<span class="number">2</span>)  <span class="comment">#rect 为移动的对象</span></span><br><span class="line"></span><br><span class="line">menubar = tk.MenuBar(win)</span><br><span class="line">filemenu = tk.Menu(menubar,tearoff=<span class="number">0</span>)</span><br><span class="line">menubar.add_cascade(label=<span class="string">'File'</span>,menu=filemenu)</span><br><span class="line">filemenu.add_commond(label=<span class="string">'new'</span>,commond=do_job)</span><br><span class="line">filemenu.add_separator()  <span class="comment">#分隔线</span></span><br><span class="line">win.congfig(menu=menubar)</span><br><span class="line"></span><br><span class="line">.pack()</span><br><span class="line">.place(x=<span class="number">10</span>,y=<span class="number">100</span>,anchor=<span class="string">'nw'</span>)</span><br><span class="line">.grid(row=i,col=j,padx,pad,y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">tk.MessageBox.showInfo(title=<span class="string">'hi'</span>,message=<span class="string">'HaHa'</span>)</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1847,7 +1544,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1895,7 +1592,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">146</span>
+                <span class="site-state-item-count">123</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1917,7 +1614,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

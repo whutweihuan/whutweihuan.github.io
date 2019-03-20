@@ -312,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/30/ans-noline/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/01/2018-4-1-blog_python(excel)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -331,7 +331,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/30/ans-noline/" itemprop="url">非线性方程求根</a></h1>
+                <a class="post-title-link" href="/2018/04/01/2018-4-1-blog_python(excel)/" itemprop="url">python处理excel</a></h1>
         
 
         <div class="post-meta">
@@ -343,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-30T00:00:00+08:00">
-                2018-04-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T00:00:00+08:00">
+                2018-04-01
               </time>
             
 
@@ -365,37 +365,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  707
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
 
           
 
@@ -414,15 +383,7 @@
       
         
           
-            <h2 id="二分法搜索根"><a href="#二分法搜索根" class="headerlink" title="二分法搜索根"></a>二分法搜索根</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span> <span class="params">(x)</span>:</span></span><br><span class="line">    x=float(x)</span><br><span class="line">    c= pow(x,<span class="number">4</span>)+<span class="number">2</span>*pow(x,<span class="number">3</span>)+pow(x,<span class="number">2</span>)<span class="number">-5</span></span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">()</span>:</span></span><br><span class="line">    ep = input(<span class="string">"输入精度"</span>)</span><br><span class="line">    ep =float(ep)</span><br><span class="line">    a=input(<span class="string">"输入区间a,b"</span>)</span><br><span class="line">    a=float(a)</span><br><span class="line">    b=input()</span><br><span class="line">    b=float(b)</span><br><span class="line">    <span class="keyword">if</span> f(a)==<span class="number">0</span>:</span><br><span class="line">        x=a</span><br><span class="line">    <span class="keyword">elif</span> f(b)==<span class="number">0</span>:</span><br><span class="line">        x=b</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">while</span> (b-a)/<span class="number">2</span>&gt;ep:</span><br><span class="line">            m=(a+b)/<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> f(a)*f(m)&gt;<span class="number">0</span>:</span><br><span class="line">                a=m</span><br><span class="line">            <span class="keyword">elif</span> f(b)*f(m)&gt;<span class="number">0</span>:</span><br><span class="line">                b=m;</span><br><span class="line">        x=(a+b)/<span class="number">2</span></span><br><span class="line">    print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    search()</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="简单迭代法"><a href="#简单迭代法" class="headerlink" title="简单迭代法"></a>简单迭代法</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## 求解 x^5 + 5x^4 -41 = 0 在[1,3]的单根</span></span><br><span class="line"><span class="comment">## 注意 x = (-x^5 +41)/5 不收敛</span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">-5</span>*x+<span class="number">41</span>)**<span class="number">0.2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x=input(<span class="string">"输入迭代初值: "</span>)</span><br><span class="line">    x= float(x) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    x1=x</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x1 = x</span><br><span class="line">        x = f(x1)</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="牛顿迭代法"><a href="#牛顿迭代法" class="headerlink" title="牛顿迭代法"></a>牛顿迭代法</h2><p>迭代公式<br><img src="/2018/04/30/ans-noline/./ans-noline/niudun.gif" alt=""><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 牛顿迭代法</span></span><br><span class="line"><span class="comment">## f(x)=0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 求解 x^3 -2x -55 = 0 在区间 [3,4] 的根,以4为初值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x - (x**<span class="number">3</span><span class="number">-2</span>*x<span class="number">-55</span>)/(<span class="number">3</span>*x**<span class="number">2</span><span class="number">-2</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x=input(<span class="string">"输入迭代初值: "</span>)</span><br><span class="line">    x= float(x) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    x1=x</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x1 = x</span><br><span class="line">        x = f(x1)</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="艾特金加速法"><a href="#艾特金加速法" class="headerlink" title="艾特金加速法"></a>艾特金加速法</h2><p><div style="float:left;"><br><img src="/2018/04/30/ans-noline/./ans-noline/2.jpg" alt=""><br></div><br><br><br><br><br><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 艾特金加速迭代法</span></span><br><span class="line"><span class="comment">## yn = x(n+1)</span></span><br><span class="line"><span class="comment">## zn = x(n+2)</span></span><br><span class="line"><span class="comment">## x(n+1) = x(n) - (yn - x(n))^2/(zn - 2y + x)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## 求解 x^5 - 3x^4 -1 = 0 在3附近的单根</span></span><br><span class="line"><span class="comment">## 变形为 x = 3 + 1/x^4</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span> + <span class="number">1</span>/x**<span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    y = f1(x)</span><br><span class="line">    z = f1(y)</span><br><span class="line">    <span class="keyword">return</span> x - (y-x)**<span class="number">2</span>/(z<span class="number">-2</span>*y+x)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x=input(<span class="string">"输入迭代初值: "</span>)</span><br><span class="line">    x= float(x) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    x1=x</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x1 = x</span><br><span class="line">        x = f(x1)</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="变形双点截弦法"><a href="#变形双点截弦法" class="headerlink" title="变形双点截弦法"></a>变形双点截弦法</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">##变形的双点弦截法</span></span><br><span class="line"><span class="comment">## x(n+1) = x(n) - ((x(n)-x(n-1))/f(x(n))-f(x(n-1)))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## x^4 + 2x^3 + x^2 -5 =0 在[0,2]范围内单根,取x0=0,x1 =2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x**<span class="number">4</span> + <span class="number">2</span>*x**<span class="number">3</span> + x**<span class="number">2</span> <span class="number">-5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seach</span><span class="params">()</span>:</span></span><br><span class="line">    x0=input(<span class="string">"输入迭代初值x0: "</span>)</span><br><span class="line">    x1=input(<span class="string">"输入迭代初值x1: "</span>)</span><br><span class="line">    x0= float(x0) </span><br><span class="line">    x1= float(x1) </span><br><span class="line">    nmax=input(<span class="string">"输入迭代最大次数: "</span>)</span><br><span class="line">    nmax =int(nmax)</span><br><span class="line">    ep = input(<span class="string">"输入精度: "</span>)</span><br><span class="line">    ep = float(ep)</span><br><span class="line">    f0 = f(x0)</span><br><span class="line">    f1 = f(x1)</span><br><span class="line">    n =<span class="number">0</span>    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,nmax):</span><br><span class="line">        x = x1 - f1*(x1 - x0)/(f1 - f0)</span><br><span class="line">        y = f(x)</span><br><span class="line"></span><br><span class="line">        x0 = x1</span><br><span class="line">        f0 = f1</span><br><span class="line">        x1 = x</span><br><span class="line">        f1 = y</span><br><span class="line">        <span class="keyword">if</span> (y==<span class="number">0</span>):</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> abs(x0-x1)&lt;=ep:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> i &lt; nmax:</span><br><span class="line">        print(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"超过最大迭代次数!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    seach()</span><br></pre></td></tr></table></figure>
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xlrd</span><br><span class="line"></span><br><span class="line">data = xlrd.open_workbook(<span class="string">'2017下学期成绩1.xlsx'</span>); <span class="comment">#打开excel文件</span></span><br><span class="line">table = data.sheets()[<span class="number">0</span>];                 <span class="comment">#获取工作表方式1</span></span><br><span class="line">table = data.sheets_by_index(<span class="number">0</span>);          <span class="comment">#获取工作表方式2</span></span><br><span class="line">table = data.sheet_by_name(<span class="string">u'Sheet1'</span>);    <span class="comment">#获取工作表方式3</span></span><br><span class="line"></span><br><span class="line">ncols = table.cols    <span class="comment">#获取列数</span></span><br><span class="line">nrows = table.nrows   <span class="comment">#获取行数</span></span><br><span class="line"><span class="comment">#for i in range(nrows):        #输出所有内容</span></span><br><span class="line">    <span class="comment">#print(table.row_values(B))</span></span><br><span class="line"></span><br><span class="line">cell_A = table.cell(<span class="number">2</span>,<span class="number">2</span>).value      <span class="comment">#获取单元格值方式1</span></span><br><span class="line">cell_B = table.row(<span class="number">0</span>)[<span class="number">0</span>].value</span><br><span class="line">cell_ = table.col(<span class="number">0</span>)[<span class="number">0</span>].value</span><br><span class="line">col = table2.col_values(<span class="number">10</span>,<span class="number">1</span>)  <span class="comment">#第十列，第二个开始</span></span><br><span class="line">print(cell_A)</span><br><span class="line"></span><br><span class="line">row = <span class="number">0</span></span><br><span class="line">col = <span class="number">0</span></span><br><span class="line">ctype = <span class="number">1</span> <span class="comment"># 类型 0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error</span></span><br><span class="line">value = <span class="string">'liluo'</span></span><br><span class="line">xf = <span class="number">0</span> <span class="comment"># 扩展的格式化 (默认是0)</span></span><br><span class="line">table.put_cell(row, col, ctype, value, xf)  <span class="comment">#写入数据</span></span><br></pre></td></tr></table></figure>
 
           
         
@@ -471,7 +432,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/28/Linux-fcitx/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/03/14/2018-03-14-blog-许三观卖血记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -490,7 +451,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/28/Linux-fcitx/" itemprop="url">Linux-fcitx</a></h1>
+                <a class="post-title-link" href="/2018/03/14/2018-03-14-blog-许三观卖血记/" itemprop="url">《许三观卖血记》</a></h1>
         
 
         <div class="post-meta">
@@ -502,8 +463,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-28T10:27:32+08:00">
-                2018-04-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T23:28:00+08:00">
+                2018-03-14
               </time>
             
 
@@ -524,37 +485,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  53
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -573,8 +503,7 @@
       
         
           
-            <p><span style="font-size:14px;font-family:'Arial'"><br>调试了很久，很麻烦，很难受。开始一直失败，因为系统按键影响了fcitx的按键设置，所以先要关闭系统快捷按键,如图：<br></span></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/2018/04/28/Linux-fcitx/./Linux-fcitx/1.png" alt=""></h2><p>ficitx键盘设置如图:<br><img src="/2018/04/28/Linux-fcitx/./Linux-fcitx/2.png" alt=""></p>
+            <p>在余华的作品里，没有多余的人物，没有多余的话语，字字皆露真情，催人深思。<br><br>随着故事情节的发展，对许三观，从开始的嫌弃演变为后期的同情。和《活着》一样，人民贫苦，遭遇感人。当时官僚主义作风盛行，二乐的队长压榨民脂民膏，还强行令虚落的许三观陪酒，“喝酒，喝坏了身体不打紧，交情最重要!”。文革，大字报，批斗…搞得整个社会乌烟瘴气。徐玉兰被诬陷，被剃了个阴阳头，惋惜。书中一些客串人物形象也蛮丰满的，比如根龙、阿方，同是天涯沦落人，相逢何必曾相识。<br><br>许三观卖了好多次血：<br>第一次：盖房娶媳妇<br>第二次：偿还医药费<br>第三次、第四次：请二乐队长吃饭。<br>第五、六、七次：为一乐凑集医药费。<br>第八次：年轻血头不接受卖血。<br><br>总体来说，本书有点意思。</p>
 
           
         
@@ -623,7 +552,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/27/sort/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/03/11/book-reading6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -642,7 +571,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/27/sort/" itemprop="url">排序算法</a></h1>
+                <a class="post-title-link" href="/2018/03/11/book-reading6/" itemprop="url">《南京大屠杀》</a></h1>
         
 
         <div class="post-meta">
@@ -654,8 +583,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T12:50:00+08:00">
-                2018-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-11T14:18:00+08:00">
+                2018-03-11
               </time>
             
 
@@ -676,37 +605,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  165
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -725,11 +623,8 @@
       
         
           
-            <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span> <span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,t;</span><br><span class="line">    <span class="keyword">int</span> term;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        t =i;</span><br><span class="line">        <span class="keyword">for</span>(j=i+<span class="number">1</span>;j&lt;n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[j]&lt;a[t])&#123;</span><br><span class="line">                t =j;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">        term = a[i];</span><br><span class="line">        a[i] = a[t];</span><br><span class="line">        a[t] = term;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *a,<span class="keyword">const</span> <span class="keyword">void</span> *b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (*(<span class="keyword">int</span> *)a-*(<span class="keyword">int</span> *)b);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> a[]=&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	qsort(a,<span class="number">4</span>,<span class="keyword">sizeof</span>(a[<span class="number">0</span>]),cmp);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d"</span>,a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maosort</span><span class="params">(a)</span>:</span></span><br><span class="line">    n=len(a)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,n-i<span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">if</span> a[j]&gt;a[j+<span class="number">1</span>]:</span><br><span class="line">                a[j],a[j+<span class="number">1</span>]=a[j+<span class="number">1</span>],a[j]</span><br></pre></td></tr></table></figure>
+            <p>闻国殇久矣，偶见此书，观之，大感。曾困惑于人之异，今有少许见解。人之肉体相似，然其思想或差万分，倭寇入侵我南京城，我军抛儿弃女而逃，致一夜间南京沦陷。南京市民不自信，苟且偷生，任人宰割不敢动。闻我军俘虏数目甚敌远矣，而不自救，精神麻木，任其视吾等生命如玩物，悲哉！倭寇兽心大显，奸杀我国民女万千，中国壮士何在？中国国威何在？日本区区小国，胆敢侵犯我大中国，而我国竟节节溃退，何焉？</p>
+<p>当属领袖罪过，闭关锁国，享受其中，不求进取。国民思想滞怠，落后而迂腐。故领袖开明，则国强；领袖享乐而不知进取，国将衰。</p>
 
           
         
@@ -778,7 +673,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/27/file-c/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/20/2018-02-20-blog-红海行动/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -797,7 +692,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/27/file-c/" itemprop="url">文件(I/O)</a></h1>
+                <a class="post-title-link" href="/2018/02/20/2018-02-20-blog-红海行动/" itemprop="url">《红海行动》</a></h1>
         
 
         <div class="post-meta">
@@ -809,8 +704,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T00:00:00+08:00">
-                2018-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T22:41:00+08:00">
+                2018-02-20
               </time>
             
 
@@ -831,37 +726,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  127
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -880,10 +744,7 @@
       
         
           
-            <h2 id="c语言"><a href="#c语言" class="headerlink" title="c语言"></a>c语言</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  MAXSIZE 100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    FILE *fp1=fopen(<span class="string">"input.txt"</span>,<span class="string">"r"</span>);</span><br><span class="line">    FILE *fp2=fopen(<span class="string">"output.txt"</span>,<span class="string">"w"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(fp1==<span class="literal">NULL</span>||fp2==<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"打开文件失败！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> a[MAXSIZE];</span><br><span class="line">    <span class="keyword">int</span> b[MAXSIZE];</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">fscanf</span>(fp1,<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;n&amp;&amp;<span class="built_in">fscanf</span>(fp1,<span class="string">"%d"</span>,&amp;a[i])!=EOF)&#123;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;n&amp;&amp;<span class="built_in">fscanf</span>(fp1,<span class="string">"%d"</span>,&amp;b[i])!=EOF&amp;&amp;i&lt;n)&#123;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> k;</span><br><span class="line">    k = fun(a,b,n);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fprintf</span>(fp2,<span class="string">"%d"</span>,k);  </span><br><span class="line">    fclose(fp1);</span><br><span class="line">    fclose(fp2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>input.txt</p>
-<p>3<br>5 15 18<br>3 14 21</p>
+            <p>类似《战狼2》，都是海外救华侨。本以为也是个小场面的电影，看完后感觉是个大作。从片头打到片尾，有坦克大战，狙击战，等精彩部分。打斗过程细节处理的很好，包括石头同志手臂被炸断，另一名队员手指被炸断，很带感。我认为电影要引起观众的共鸣，必须有一些精彩的细节，做给大家看，而不是向大众啰嗦讲一堆大道理。片子很赞，如果之前没有《战狼2》，我感觉这部电影一定会更加令人难忘。<br><br>PS：电影院设备真差。</p>
 
           
         
@@ -932,7 +793,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/27/niudun/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/20/2018-02-20-王阳明心学/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -951,7 +812,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/27/niudun/" itemprop="url">牛顿插值</a></h1>
+                <a class="post-title-link" href="/2018/02/20/2018-02-20-王阳明心学/" itemprop="url">《王阳明心学》</a></h1>
         
 
         <div class="post-meta">
@@ -963,8 +824,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T00:00:00+08:00">
-                2018-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T22:28:00+08:00">
+                2018-02-20
               </time>
             
 
@@ -985,37 +846,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  186
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -1034,7 +864,7 @@
       
         
           
-            <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX 50</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">(<span class="keyword">double</span> x[MAX],<span class="keyword">double</span> f[MAX][MAX],<span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">double</span> x[MAX],f[MAX][MAX],_x,_y;</span><br><span class="line">    <span class="keyword">long</span> i,j;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"请输入插值点个数:"</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    input(x,f,n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n请输入插值点:"</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;_x);</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n<span class="number">-1</span>;j++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(i=j;i&lt;=n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">            f[i][j] = (f[i][j<span class="number">-1</span>]-f[i<span class="number">-1</span>][j<span class="number">-1</span>])/(x[i]-x[i-j]);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        _y = f[n<span class="number">-1</span>][n<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="keyword">for</span>(i=n<span class="number">-2</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">          _y = f[i][i]+(_x-x[i])*_y;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"\n插值点(x,y)=(%lf,%lf )"</span>,_x,_y);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">(<span class="keyword">double</span> x[MAX],<span class="keyword">double</span> f[MAX][MAX],<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n请输入插点x[%d],y[%d]:"</span>,i,i);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;x[i],&amp;f[i][<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>王阳明真是牛X，攻心之术！<br><br>这本书讲的是王阳明的生活经历，有许多的小故事。有些内容很玄乎，比如：一道长说20年后会与王阳明再次见面，果真如此。再如：王阳明还会诸葛孔明那招—祈雨，关键是雨还真的来了！王阳明若加入了国民党，估计共产党在井冈山那会儿就要被团灭了。心学，有点意思。<br><br>感觉全书都是在讲故事，说心学是多么多么厉害，但是没有教我怎么格物致知啊?<br></p>
 
           
         
@@ -1083,7 +913,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/25/new-article-in-linux/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/20/2018-02-20-blog-东方快车谋杀案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1102,7 +932,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/25/new-article-in-linux/" itemprop="url">New artcle in Linux</a></h1>
+                <a class="post-title-link" href="/2018/02/20/2018-02-20-blog-东方快车谋杀案/" itemprop="url">《东方快车谋杀案》</a></h1>
         
 
         <div class="post-meta">
@@ -1114,8 +944,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T21:15:15+08:00">
-                2018-04-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T22:28:00+08:00">
+                2018-02-20
               </time>
             
 
@@ -1136,37 +966,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  84
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -1185,8 +984,7 @@
       
         
           
-            <font face="garamond" size="3px"><br>You know? I am so happy now, because I just finish the config of the hexo in Linux. I spent 2 days working for it, however I failed one time and one time.The sudupid machine always talk someings like I don’t have permission to do that, and the github don’t access my requests. But, you know,I am a so clever boy, and I can figure it in quickly.I am so happy. Byebye, the supid Operation System windows and Linux.<br></font>
-
+            <p>书中人物名字好长，看的累，没办法毕竟是外国的。故事情节在不专心的情况下很难记住，我断断续续看了3、4次才完整看完，感觉剧情发展的好慢，比东野圭吾的慢许多，而且结局没有特别让我震惊。书籍属于午夜书库的，《无人生还》也是午夜书库中的书，相比而言，我觉得《无人生还》节奏更快，而且在半夜看感触颇深。</p>
 
           
         
@@ -1235,7 +1033,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/17/git-命令/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/17/2018-02-17-一个人的朝圣/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1254,7 +1052,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/17/git-命令/" itemprop="url">github</a></h1>
+                <a class="post-title-link" href="/2018/02/17/2018-02-17-一个人的朝圣/" itemprop="url">《一个人的朝圣》</a></h1>
         
 
         <div class="post-meta">
@@ -1266,8 +1064,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T00:00:00+08:00">
-                2018-04-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-17T00:47:00+08:00">
+                2018-02-17
               </time>
             
 
@@ -1288,37 +1086,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  382
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -1337,46 +1104,7 @@
       
         
           
-            <h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git  init                            <span class="comment">#初始化仓库</span></span><br><span class="line">git add test.txt                     <span class="comment">#添加文件到暂存区</span></span><br><span class="line">git commit -m <span class="string">"add red line"</span>         <span class="comment">#提交到仓库</span></span><br><span class="line">git reset --hard head^               <span class="comment">#回到上一版本</span></span><br><span class="line">git reset --hard  id                 <span class="comment">#回到id版本</span></span><br><span class="line">git status                           <span class="comment">#检查目录是否有什么更改</span></span><br><span class="line">git checkout text.txt                <span class="comment">#恢复和仓库一样的状态</span></span><br><span class="line">git log                              <span class="comment">#显示当前版本之前的信息</span></span><br><span class="line">git reflog                           <span class="comment">#显示最近改的信息，可包括版本前</span></span><br><span class="line">clear                                <span class="comment">#清屏</span></span><br><span class="line">cat test.txt                         <span class="comment">#显示文件内容</span></span><br></pre></td></tr></table></figure>
-<h2 id="创建公钥"><a href="#创建公钥" class="headerlink" title="创建公钥"></a>创建公钥</h2><p><a href="https://gist.github.com/yisibl/8019693#file-git-key-md" target="_blank" rel="noopener">原文链接</a></p>
-<ol>
-<li><p>首先启动一个Git Bash窗口（非Windows用户直接打开终端）</p>
-</li>
-<li><p>执行：</p>
-<blockquote>
-<p>cd ~/.ssh</p>
-</blockquote>
-<p> 如果返回“… No such file or directory”，说明没有生成过SSH Key，直接进入第4步。否则进入第3步备份!</p>
-</li>
-<li><p>备份：</p>
-<blockquote>
-<p>mkdir key_backup<br>mv id_isa* key_backup</p>
-</blockquote>
-</li>
-<li><p>生成新的Key：（引号内的内容替换为你自己的邮箱）</p>
-<blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:your_email@youremail.com" target="_blank" rel="noopener">your_email@youremail.com</a>“</p>
-</blockquote>
-<p>输出显示：</p>
-<blockquote>
-<p>Generating public/private rsa key pair. Enter file in which to save the key<br> (/Users/your_user_directory/.ssh/id_rsa):<press enter=""></press></p>
-</blockquote>
-<p>直接回车，不要修改默认路劲。</p>
-<blockquote>
-<p>Enter passphrase (empty for no passphrase):<enter a="" passphrase=""><br> Enter same passphrase again:<enter passphrase="" again=""></enter></enter></p>
-</blockquote>
-<p>设置一个密码短语，在每次远程操作之前会要求输入密码短语！闲麻烦可以直接回车，不设置。</p>
-</li>
-<li><p>成功：</p>
-<blockquote>
-<p>Your identification has been saved in /Users/your_user_directory/.ssh/id_rsa.<br> Your public key has been saved in /Users/your_user_directory/.ssh/id_rsa.pub.<br> The key fingerprint is:<br> … …</p>
-</blockquote>
-</li>
-<li><p>提交公钥：</p>
-<p>6.1 找到.ssh文件夹，用文本编辑器打开“id_rsa.pub”文件，复制内容到剪贴板。</p>
-<p>6.2 打开 <a href="https://github.com/settings/ssh" target="_blank" rel="noopener">https://github.com/settings/ssh</a> ，点击 Add SSH Key 按钮，粘贴进去保存即可。</p>
-</li>
-</ol>
+            <p>看的比较认真，被哈德罗.弗莱的执着感动了。也许人生许多事情就是这样的，为什么要那么理性呢？做一件事一定要有一个借口吗？<br><br>去接受一些你不了解的东西，去争取，去相信自己可以改变一些事情。<br><br>但没人知道他们内心深处背着的包袱。有时他们需要付出简直不为人道的努力来扮演“正常”，每天都要装，还要装得稀松平常,那种不为人道的孤独感。<br><br>他以为走一段路就可以治愈癌症？<br><br>有些事情可以有好几个起点，也可以用不同的方式开始。有时候你以为自己已经展开了新的一页，实际上却可能只是重复以前的步伐。他直面并克服了自己的短处，所以现在终于可以说他的旅程真正揭幕了。<br><br>哈罗德一路走，一路听着这些陌生人的故事，并不评判任何人。<br><br>这世上有许多人每天做的事就是不断将一只脚放到另一只脚前面，日子久了，生活便显得平淡无奇。哈罗德无法再否认其实一路上见过的每个陌生人虽然是独特的，却又是一样的，这就是人生的两难。<br><br>但或许这就是世界所需要的，少一点理性，多一点信念。<br><br>他发现当一个人与熟悉的生活疏离，成为一个过客，陌生的事物都会被赋予新的意义。明白了这一点，保持真我，诚实地做一个哈罗德而不是扮演成其他任何人，就变得更加重要。<br><br>给予和接受都是一份馈赠，既需要谦逊，也需要勇气。<br></p>
 
           
         
@@ -1425,7 +1153,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/16/Linux-install/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/14/2018-02-14-blog-这本书能让你睡的更好/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1444,7 +1172,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/16/Linux-install/" itemprop="url">Linux 安装</a></h1>
+                <a class="post-title-link" href="/2018/02/14/2018-02-14-blog-这本书能让你睡的更好/" itemprop="url">《这本书能让你睡得更好》</a></h1>
         
 
         <div class="post-meta">
@@ -1456,8 +1184,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T00:00:00+08:00">
-                2018-04-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-14T09:00:00+08:00">
+                2018-02-14
               </time>
             
 
@@ -1478,37 +1206,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  110
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -1527,41 +1224,7 @@
       
         
           
-            <h1 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h1><pre><code>UItraISO软件将iso镜像文件刻入进u盘
-</code></pre><h1 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h1><pre><code>win + x ,进入磁盘管理，将某个盘转化为未分配
-</code></pre><h1 id="secureboot"><a href="#secureboot" class="headerlink" title="secureboot"></a>secureboot</h1><pre><code>进入bios，将secure转化为Disable
-</code></pre><h1 id="nomodeset"><a href="#nomodeset" class="headerlink" title="nomodeset"></a>nomodeset</h1><pre><code>对于7559电脑来说，还需要在install ubuntu按e键,将倒数第二行的Quick ... -- 改为nomodeset
-</code></pre><h1 id="设置分区"><a href="#设置分区" class="headerlink" title="设置分区"></a>设置分区</h1><table>
-<thead>
-<tr>
-<th>*</th>
-<th style="text-align:center">分区</th>
-<th style="text-align:right">大小</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>   /</td>
-<td style="text-align:center">主分区</td>
-<td style="text-align:right">15,000MB</td>
-</tr>
-<tr>
-<td>   /boot</td>
-<td style="text-align:center">逻辑分区</td>
-<td style="text-align:right">300MB</td>
-</tr>
-<tr>
-<td>   / swap(交换空间)</td>
-<td style="text-align:center">逻辑分区</td>
-<td style="text-align:right">2,0000MB</td>
-</tr>
-<tr>
-<td>   /home</td>
-<td style="text-align:center">逻辑分区</td>
-<td style="text-align:right">100,000MB</td>
-</tr>
-</tbody>
-</table>
+            <p>作为一个高三经常半夜仰望上铺床板的男人，我早已学会如何安详的睡个好觉了…当然不是因为这本书。该书给了一些建议，科普了一些睡眠方面的知识。说的最多的便是褪黑激素和血清素。褪黑激素，周围环境暗下来后，人体便会产生的激素，这种激素不仅有延年益寿之功效，而且还能抗癌，最重要的是，它能促进我们睡眠。书中指出，只要我们白天多晒太阳，晚上让室内黑的不见五指，这种激素便会大量产生了。血清素，90%存在于肠胃之中，能改善睡眠。之后作者还向我们推销了一种外服镁，说是一种万能的矿物质，还说美国80%的人都缺少它，扬言缺镁的人寿命会比正常人少一半！作者说，别熬夜了，早点睡吧！在10：00到2：00期间人体会产生大量的激素，排毒养颜。另外，室内加个植物还是不错的。虎尾兰挺好的，晚上吸收二氧化碳，产生氧气，建议手残党还是养个易活的。</p>
 
           
         
@@ -1610,7 +1273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/15/hexo1-搜索/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/13/2018-02-13-blog-源代码/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1629,7 +1292,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/15/hexo1-搜索/" itemprop="url">hexo1-搜索</a></h1>
+                <a class="post-title-link" href="/2018/02/13/2018-02-13-blog-源代码/" itemprop="url">《源代码》</a></h1>
         
 
         <div class="post-meta">
@@ -1641,8 +1304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T01:58:19+08:00">
-                2018-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T16:18:00+08:00">
+                2018-02-13
               </time>
             
 
@@ -1663,37 +1326,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  412
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -1712,17 +1344,7 @@
       
         
           
-            <p>真是蛋疼的要命！<br>参考了许多文章，终于成功了，总结一下。</p>
-<h1 id="algolia方面"><a href="#algolia方面" class="headerlink" title="algolia方面"></a>algolia方面</h1><p>github登陆进去后，选择indices，然后新建一个index：<br><img src="/2018/04/15/hexo1-搜索/1.PNG" alt="123"></p>
-<p>之后点击ApiKeys,三个keys待会会用到:<br><img src="/2018/04/15/hexo1-搜索/2.PNG" alt="123"><br>之后来到这个页面，勾选一下：<br><img src="/2018/04/15/hexo1-搜索/3.PNG" alt="123"></p>
-<h1 id="hexo方面"><a href="#hexo方面" class="headerlink" title="hexo方面"></a>hexo方面</h1><p>在hexo文件夹内右键gitbrash,输入命令下载algolia搜索插件（据说免费）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-algolia@0.2.0</span><br></pre></td></tr></table></figure></p>
-<p>在hexo _config.yml 中添加代码(对齐很重要，开始由于没对齐，花了很长时间寻找问题)<br>代码需要填写之前页面的ApiKey：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">algolia:</span><br><span class="line">  applicationID: xxxxxx</span><br><span class="line">  apiKey: xxxxxx</span><br><span class="line">  adminApiKey: xxxxxx</span><br><span class="line">  indexName: xxxxxx</span><br><span class="line">  chunkSize: 5000</span><br><span class="line">  fields:</span><br><span class="line">    - title</span><br><span class="line">    - slug</span><br><span class="line">    - path</span><br><span class="line">    - content:strip</span><br></pre></td></tr></table></figure></p>
-<p>在next文件夹的_config.yml找到相应代码修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">algolia_search:</span><br><span class="line">  enable: true</span><br><span class="line">  hits:</span><br><span class="line">    per_page: 10</span><br><span class="line">  labels:</span><br><span class="line">    input_placeholder: &quot;输入关键词&quot;</span><br><span class="line">    hits_empty: &quot;没有找到相关内容.-_-.&quot;</span><br><span class="line">    hits_stats: &quot;$&#123;hits&#125; 条相关记录,共耗时 $&#123;time&#125; ms.&quot;</span><br></pre></td></tr></table></figure></p>
-<p>之后，运行代码使信息同步到algolia.com上面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo algolia</span><br></pre></td></tr></table></figure></p>
-<p>应该就可以了。。。。</p>
-<p>但是我还遇到了问题，能成功搜索出来信息，点击却无法反应？<br>因为path信息没有同步到algolia网站上，我之前用的这条命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-algolia</span><br></pre></td></tr></table></figure></p>
-<p>然而,手机端无法进行点击,应该是阴影覆盖了,修改文件中的z-index就好了。路径themes\next\source\css_common\components\third-party中的algolia-search.styl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.algolia-pop-overlay</span><br><span class="line">  position: fixed</span><br><span class="line">  width: 100%</span><br><span class="line">  height: 100%</span><br><span class="line">  top: 0</span><br><span class="line">  left: 0</span><br><span class="line">  z-index: 2080   //这一行删除</span><br><span class="line">  background-color: rgba(0, 0, 0, 0.3)</span><br></pre></td></tr></table></figure></p>
-<p>花了很长时间才发现0.2.0版本有妙解，也就是前面所用的命令。<br>终于能享受一波搜索乐趣了, 表情逐渐稳定~~<br><img src="/2018/04/15/hexo1-搜索/4.png" alt=""></p>
+            <p>剧情有点意思，烧脑片。我总感觉那个博士是个有巨大阴谋的反派，看看他那一副猥琐的面容，再加上他那步伐，真是太像坏蛋了。结局有点意思，是产生了平行世界还是改变了历史？从源代码世界给现实世界发送短信还真接收到了？还是说产生了接收到短信的依旧是源代码世界，而现实世界则是斯蒂芬上尉死亡，火车依旧爆炸。感觉是产生了平行世界。</p>
 
           
         
@@ -1771,7 +1393,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/04/15/hexo2-图片/">
+    <link itemprop="mainEntityOfPage" href="http://whutweihuan.github.io/2018/02/13/2018-02-13-blog-大护法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="weihuan">
@@ -1790,7 +1412,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/15/hexo2-图片/" itemprop="url">hexo2-图片</a></h1>
+                <a class="post-title-link" href="/2018/02/13/2018-02-13-blog-大护法/" itemprop="url">《大护法》</a></h1>
         
 
         <div class="post-meta">
@@ -1802,8 +1424,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T00:00:00+08:00">
-                2018-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T16:07:00+08:00">
+                2018-02-13
               </time>
             
 
@@ -1824,37 +1446,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  107
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
 
           
 
@@ -1873,10 +1464,7 @@
       
         
           
-            <p>安装插件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure></p>
-<p>修改hexo _config.yml为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure></p>
-<p>之后，运行hexo n “xxxx”，会产生一个xxxx.md，同时还会产生一个xxxx文件夹，把图片放入xxxx文件夹内。<br>markdown调用图片：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![可不填，图片代替的文字](xxxx/image.png)</span><br></pre></td></tr></table></figure></p>
-<p>注意gitpages是区分大小写的,image.png与image.PNG 是不同的！<br>但是在localhost:4000内不区分大小写，有点意思。</p>
+            <p>中国动漫，挺好的。没想到小鸣同学如此厉害，小小年纪居然有如此城府。话说大护法到底是个什么东西？居然活了这么久，而且还能秒杀对方？被熏黑的花生壳，蚁后出来后接着发生什么？有点意思啊大护法。我是谁？我从哪里来？我要到哪里去？</p>
 
           
         
@@ -1916,7 +1504,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1964,7 +1552,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">146</span>
+                <span class="site-state-item-count">123</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1986,7 +1574,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

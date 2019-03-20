@@ -103,7 +103,7 @@
 <meta property="og:description" content="实验笔记">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://whutweihuan.github.io/2019/01/04/2019-1-4-blog/Num4.jpg">
-<meta property="og:updated_time" content="2019-01-04T12:19:11.736Z">
+<meta property="og:updated_time" content="2019-03-20T02:48:52.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库实验">
 <meta name="twitter:description" content="实验笔记">
@@ -368,37 +368,6 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  3.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  15
-                </span>
-              
-            </div>
-          
 
           
 
@@ -415,7 +384,9 @@
       
 
       
-        <p></p><p class="description">实验笔记</p><br><img src="/2019/01/04/2019-1-4-blog/Num4.jpg" alt="" width="100%"><br><a id="more"></a><p></p>
+        <p class="description">实验笔记</p>
+
+<p><img src="/2019/01/04/2019-1-4-blog/Num4.jpg" alt="" width="100%"><br><a id="more"></a></p>
 <h2 id="实验一-数据库定义与操作语言"><a href="#实验一-数据库定义与操作语言" class="headerlink" title="实验一  数据库定义与操作语言"></a>实验一  数据库定义与操作语言</h2><h3 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> GROUP BY departmentId  (HAVING(departmentId) &gt;2);</span><br><span class="line"></span><br><span class="line"> CREATE TABLE employee (</span><br><span class="line">    employeeID CHAR(6) NOT NULL PRIMARY KEY,</span><br><span class="line">    name CHAR(10) NOT NULL,</span><br><span class="line">    education CHAR(4) NOT NULL,</span><br><span class="line">    birth DATE NOT NULL,</span><br><span class="line">    gender TINYINT(1) NOT NULL DEFAULT 1,</span><br><span class="line">    workYear TINYINT(1),</span><br><span class="line">    address VARCHAR(100),</span><br><span class="line">    phone CHAR(12),</span><br><span class="line">    departmentID CHAR(3),</span><br><span class="line">    Foreign Key(departmentID) REFERENES department(departmentID)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">CREATE TABLE department (</span><br><span class="line">    departmentID CHAR(3) PRIMARY KEY,</span><br><span class="line">    departName CHAR(20) NOT NULL,</span><br><span class="line">    comment VARCHAR(100)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">CREATE TABLE salary (</span><br><span class="line">    employeeID CHAR(6) REFERENCES employees(employeeID),</span><br><span class="line">    income REAL,</span><br><span class="line">    outcome REAL,</span><br><span class="line">    PRIMARY KEY(employeeID)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">LOAD DATA INFILE &apos;salary.csv&apos; INTO TABLE salary</span><br><span class="line">CHARACTER SET gbk</span><br><span class="line">FIELDS TERMINATED BY &apos;,&apos;</span><br><span class="line">LINES TERMINATED BY &apos;\r\n&apos;;</span><br></pre></td></tr></table></figure>
 <h3 id="实验1-1-数据库定义实验"><a href="#实验1-1-数据库定义实验" class="headerlink" title="实验1.1 数据库定义实验"></a>实验1.1 数据库定义实验</h3><p>（1） 创 建student_copy1 表：<br>CREATE TABLE student_copy1 LIKE student;<br>（2） 创 建student_copy2 表：<br>CREATE TABLE student_copy2 AS (SELECT * FROM student);<br>思考：有何区别？</p>
 <p>第一个构建的表中有主键，没有数据<br>第二个构建的表中有数据，没有主键</p>
@@ -633,7 +604,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">146</span>
+                <span class="site-state-item-count">123</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -655,7 +626,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
