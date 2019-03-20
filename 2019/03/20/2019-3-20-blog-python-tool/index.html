@@ -102,12 +102,12 @@
 <meta property="og:site_name" content="welcome">
 <meta property="og:description" content="一些小工具">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://whutweihuan.github.io/2019/03/20/2019-3-20-blog-python-tool/common_pic/pic.jpg">
-<meta property="og:updated_time" content="2019-03-20T05:35:37.357Z">
+<meta property="og:image" content="http://whutweihuan.github.io/2019/03/20/2019-3-20-blog-python-tool/pic.jpg">
+<meta property="og:updated_time" content="2019-03-20T05:55:03.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 应用">
 <meta name="twitter:description" content="一些小工具">
-<meta name="twitter:image" content="http://whutweihuan.github.io/2019/03/20/2019-3-20-blog-python-tool/common_pic/pic.jpg">
+<meta name="twitter:image" content="http://whutweihuan.github.io/2019/03/20/2019-3-20-blog-python-tool/pic.jpg">
 
 
 
@@ -384,7 +384,10 @@
       
 
       
-        <p></p><p class="description">一些小工具</p><br><img src="/2019/03/20/2019-3-20-blog-python-tool/common_pic/pic.jpg" alt="" width="100%"><br><a id="more"></a><p></p>
+        <p class="description">一些小工具</p>
+
+<p><img src="/2019/03/20/2019-3-20-blog-python-tool/pic.jpg" alt="" width="100%"></p>
+<a id="more"></a>
 <h2 id="多个文件重命名"><a href="#多个文件重命名" class="headerlink" title="多个文件重命名"></a>多个文件重命名</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">i=<span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> os.listdir(<span class="string">"."</span>):</span><br><span class="line">    os.rename(file,<span class="string">"img"</span>+str(i)+<span class="string">".bmp"</span>)</span><br><span class="line">	i=i+<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>PS: windows 防火墙会阻止脚本文件更改文件名，所以要关闭</p>
 <h2 id="查找文档内容"><a href="#查找文档内容" class="headerlink" title="查找文档内容"></a>查找文档内容</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  os</span><br><span class="line">target = input(<span class="string">"please input the search word:"</span>)</span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(<span class="string">"."</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="string">"."</span> <span class="keyword">in</span> filename:</span><br><span class="line">        <span class="keyword">with</span> open (filename,<span class="string">'r'</span>,encoding=<span class="string">'UTF-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">if</span> target <span class="keyword">in</span> f.read():</span><br><span class="line">                print(os.path.basename(filename))</span><br></pre></td></tr></table></figure>
