@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://whutweihuan.github.io/2019/03/21/2019-3-21-blog-%E6%B1%82%E5%B9%B3%E6%96%B9%E6%A0%B9/</loc>
+    <lastmod>2019-03-21T06:55:12.986Z</lastmod>
+  </url>  <url>
+    <loc>http://whutweihuan.github.io/2019/03/01/book_%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/</loc>
+    <lastmod>2019-03-20T14:51:14.128Z</lastmod>
+  </url>  <url>
     <loc>http://whutweihuan.github.io/2019/03/20/2019-3-20-blog-python-tool/</loc>
     <lastmod>2019-03-20T05:55:03.304Z</lastmod>
   </url>  <url>
@@ -66,9 +72,6 @@
   </url>  <url>
     <loc>http://whutweihuan.github.io/2019/03/09/2019-3-9-blog/</loc>
     <lastmod>2019-03-17T08:27:49.688Z</lastmod>
-  </url>  <url>
-    <loc>http://whutweihuan.github.io/2019/03/01/book_%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/</loc>
-    <lastmod>2019-03-17T08:27:27.898Z</lastmod>
   </url>  <url>
     <loc>http://whutweihuan.github.io/2019/03/13/2019-3-13-blog-keras-blog/</loc>
     <lastmod>2019-03-17T08:25:45.289Z</lastmod>
@@ -331,11 +334,14 @@
     <loc>http://whutweihuan.github.io/2018/09/30/2018-9-30-blog/</loc>
     <lastmod>2018-10-01T04:02:36.985Z</lastmod>
   </url>  <url>
+    <loc>http://whutweihuan.github.io/2018/05/11/python-tkinter/</loc>
+    <lastmod>2018-09-08T04:41:58.863Z</lastmod>
+  </url>  <url>
     <loc>http://whutweihuan.github.io/2018/05/11/python-turtle/</loc>
     <lastmod>2018-09-08T04:41:58.863Z</lastmod>
   </url>  <url>
-    <loc>http://whutweihuan.github.io/2018/05/11/python-tkinter/</loc>
-    <lastmod>2018-09-08T04:41:58.863Z</lastmod>
+    <loc>http://whutweihuan.github.io/2018/02/13/2018-02-13-blog-%E6%BA%90%E4%BB%A3%E7%A0%81/</loc>
+    <lastmod>2018-09-08T04:41:58.848Z</lastmod>
   </url>  <url>
     <loc>http://whutweihuan.github.io/2018/04/27/2018-04-27-blog-%E7%89%9B%E9%A1%BF%E6%8F%92%E5%80%BC/</loc>
     <lastmod>2018-09-08T04:41:58.848Z</lastmod>
@@ -343,16 +349,13 @@
     <loc>http://whutweihuan.github.io/2018/02/13/2018-02-13-blog-%E5%A4%A7%E6%8A%A4%E6%B3%95/</loc>
     <lastmod>2018-09-08T04:41:58.848Z</lastmod>
   </url>  <url>
-    <loc>http://whutweihuan.github.io/2018/02/13/2018-02-13-blog-%E6%BA%90%E4%BB%A3%E7%A0%81/</loc>
-    <lastmod>2018-09-08T04:41:58.848Z</lastmod>
-  </url>  <url>
     <loc>http://whutweihuan.github.io/2018/04/03/2018-4-03-blog-SVM/</loc>
     <lastmod>2018-09-08T04:41:58.848Z</lastmod>
   </url>  <url>
-    <loc>http://whutweihuan.github.io/2018/02/20/2018-02-20-blog-%E4%B8%9C%E6%96%B9%E5%BF%AB%E8%BD%A6%E8%B0%8B%E6%9D%80%E6%A1%88/</loc>
+    <loc>http://whutweihuan.github.io/2018/03/11/book-reading6/</loc>
     <lastmod>2018-09-08T04:41:58.832Z</lastmod>
   </url>  <url>
-    <loc>http://whutweihuan.github.io/2018/03/11/book-reading6/</loc>
+    <loc>http://whutweihuan.github.io/2018/02/20/2018-02-20-blog-%E4%B8%9C%E6%96%B9%E5%BF%AB%E8%BD%A6%E8%B0%8B%E6%9D%80%E6%A1%88/</loc>
     <lastmod>2018-09-08T04:41:58.832Z</lastmod>
   </url>  <url>
     <loc>http://whutweihuan.github.io/2018/02/14/2018-02-14-blog-%E8%BF%99%E6%9C%AC%E4%B9%A6%E8%83%BD%E8%AE%A9%E4%BD%A0%E7%9D%A1%E7%9A%84%E6%9B%B4%E5%A5%BD/</loc>
@@ -361,13 +364,13 @@
     <loc>http://whutweihuan.github.io/2018/06/13/alg_quickSort/</loc>
     <lastmod>2018-09-08T04:41:58.816Z</lastmod>
   </url>  <url>
+    <loc>http://whutweihuan.github.io/2018/06/25/MFC_LLK_progress/</loc>
+    <lastmod>2018-09-08T04:41:58.801Z</lastmod>
+  </url>  <url>
     <loc>http://whutweihuan.github.io/2018/06/13/MFC-Snake/</loc>
     <lastmod>2018-09-08T04:41:58.801Z</lastmod>
   </url>  <url>
     <loc>http://whutweihuan.github.io/2018/04/16/2018-04-16-Linux-install/</loc>
-    <lastmod>2018-09-08T04:41:58.801Z</lastmod>
-  </url>  <url>
-    <loc>http://whutweihuan.github.io/2018/06/25/MFC_LLK_progress/</loc>
     <lastmod>2018-09-08T04:41:58.801Z</lastmod>
   </url>
 </urlset>

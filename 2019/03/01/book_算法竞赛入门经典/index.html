@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://whutweihuan.github.io/2019/03/01/book_算法竞赛入门经典/index.html">
 <meta property="og:site_name" content="welcome">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T08:27:27.898Z">
+<meta property="og:updated_time" content="2019-03-20T14:51:14.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《算法入门经典学习笔记》">
 
@@ -408,8 +408,9 @@
 <div class="note "><p>&lt;&lt; 和 &gt;&gt; 的重载不能直接写在 struct 里面，需要写成全局的函数 </p></div>
 <div class="note "><p>对于优先队列  <code>priority_queue&lt;int,vector &lt;int&gt; ,cmp&gt; pq</code> </p></div>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cmp</span>&#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> a, <span class="keyword">const</span> <span class="keyword">int</span> b,)</span> <span class="keyword">const</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a &gt; b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<div class="note "><p><code>sprintf(buf, &quot;%08d&quot;, x.s[i]);</code>  在printf中%08d表示输出宽度为8，不足8位的补0，%8d表示输出宽度为8，不足8位的补空格。sprintf 返回被写入buffer 的字节数</p></div>
-<div class="note "><p><code>sscanf(&quot;123456 &quot;, &quot;%s&quot;, buf);</code> sscanf与scanf类似，都是用于输入的，只是后者以键盘(stdin)为输入源，前者以固定字符串为输入源。</p></div>
+<div class="note "><p><code>sprintf(buff, &quot;%08d&quot;, n);</code>  将数字 n 写入 buff 。 在printf中%08d表示输出宽度为8，不足8位的补0，%8d表示输出宽度为8，不足8位的补空格。sprintf 返回被写入buffer 的字节数</p></div>
+<div class="note "><p><code>sscanf(buff, &quot;%d&quot;, &amp;n);</code>  将 buff 写入数字 n 。sscanf与scanf类似，都是用于输入的，只是后者以键盘(stdin)为输入源，前者以固定字符串为输入源。</p></div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const char s[] =&quot;123456435&quot;;</span><br><span class="line">int n;</span><br><span class="line">sscanf(s,&quot;%3d&quot;,&amp;n);  //截取三个字节，即3个数字</span><br><span class="line">cout &lt;&lt; n &lt;&lt;endl;   // n=123</span><br><span class="line"></span><br><span class="line">char buff[100];</span><br><span class="line">sprintf(buff,&quot;%d&quot;,n);</span><br><span class="line">cout &lt;&lt; buff &lt;&lt; endl; // buff = 123456435&quot;</span><br></pre></td></tr></table></figure>
 <div class="note "><p>多个数据集输入每次进行要对数据结构进行清空处理</p></div>
 <div class="note "><p>可以利用重定向完成文件的写入 </p></div>
 <div class="note "><p>diff -y  分成两列查看</p></div>
@@ -443,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/17/摘录/" rel="next" title="摘录2019年2月17日">
-                <i class="fa fa-chevron-left"></i> 摘录2019年2月17日
+              <a href="/2019/02/17/book_masterReg/" rel="next" title="《精通正则表达式》">
+                <i class="fa fa-chevron-left"></i> 《精通正则表达式》
               </a>
             
           </div>
@@ -525,7 +526,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">123</span>
+                <span class="site-state-item-count">124</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -547,7 +548,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
