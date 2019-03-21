@@ -100,13 +100,13 @@
 <meta property="og:url" content="http://whutweihuan.github.io/2019/03/09/2019-3-9-blog/index.html">
 <meta property="og:site_name" content="welcome">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://whutweihuan.github.io/2019/03/09/2019-3-9-blog/p1.PNG">
-<meta property="og:image" content="http://whutweihuan.github.io/2019/03/09/2019-3-9-blog/p2.PNG">
-<meta property="og:image" content="http://whutweihuan.github.io/2019/03/09/2019-3-9-blog/p3.PNG">
-<meta property="og:updated_time" content="2019-03-17T08:27:49.688Z">
+<meta property="og:image" content="http://whutweihuan.github.io/2019/03/09/2019-3-9-blog/p1.gif">
+<meta property="og:image" content="http://whutweihuan.github.io/2019/03/09/2019-3-9-blog/p2.gif">
+<meta property="og:image" content="http://whutweihuan.github.io/2019/03/09/2019-3-9-blog/p3.gif">
+<meta property="og:updated_time" content="2019-03-21T08:38:45.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拓展欧几里德">
-<meta name="twitter:image" content="http://whutweihuan.github.io/2019/03/09/2019-3-9-blog/p1.PNG">
+<meta name="twitter:image" content="http://whutweihuan.github.io/2019/03/09/2019-3-9-blog/p1.gif">
 
 
 
@@ -388,13 +388,13 @@
 <a id="more"></a>
 <h2 id="欧几里得"><a href="#欧几里得" class="headerlink" title="欧几里得"></a>欧几里得</h2><p>主要用于求解两个数的公约数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int gcd(int a,int b)&#123;</span><br><span class="line">    return b==0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="拓展欧几里得"><a href="#拓展欧几里得" class="headerlink" title="拓展欧几里得"></a>拓展欧几里得</h2><p>扩展欧几里得算法可以在求得a、b的最大公约数的同时，能找到整数x、y（其中一个很可能是负数）</p>
-<p><img src="/2019/03/09/2019-3-9-blog/p1.PNG"></p>
+<p><img src="/2019/03/09/2019-3-9-blog/p1.gif"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int gcdEx(int a, int b, int *x, int *y)</span><br><span class="line">&#123;</span><br><span class="line">    if(b==0)&#123;</span><br><span class="line">        *x = 1,*y = 0;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        int r = gcdEx(b, a%b, x, y); </span><br><span class="line">        /* r = GCD(a, b) = GCD(b, a%b) */</span><br><span class="line">        int t = *x;</span><br><span class="line">        *x = *y;</span><br><span class="line">        *y = t - a/b * *y;</span><br><span class="line">        return r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int gcdEx(int a,int b,int &amp;d,int &amp;x,int &amp;y)&#123;</span><br><span class="line">    if(!b)&#123;d = a,x=1,y=0&#125;</span><br><span class="line">    else&#123;</span><br><span class="line">       gcdEx(b,a%b,d,y,x);</span><br><span class="line">       y -= x*a/b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.cnblogs.com/frog112111/archive/2012/08/19/2646012.html" target="_blank" rel="noopener">证明可参考</a><br>可以用来解不定方程</p>
-<p><img src="/2019/03/09/2019-3-9-blog/p2.PNG"></p>
+<p><img src="/2019/03/09/2019-3-9-blog/p2.gif"></p>
 <p>x0,y0 是一组特解，可以求得全部解</p>
-<p><img src="/2019/03/09/2019-3-9-blog/p3.PNG"></p>
+<p><img src="/2019/03/09/2019-3-9-blog/p3.gif"></p>
 <p>如果 gcd(a,b) mod c == 0 ,则该方程存在整数解，否则不存在整数解(可以应用到多维)</p>
 
       
