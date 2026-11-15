@@ -51,6 +51,7 @@ menu:
   archives: /archives/
   tags: /tags/
   about: /about/
+  zhouyi: /zhouyi/
   #sitemap: /sitemap.xml
   #commonweal: /404/
 
@@ -70,6 +71,7 @@ menu_icons:
   archives: archive
   sitemap: sitemap
   commonweal: heartbeat
+  zhouyi: book
 
 
 # ---------------------------------------------------------------

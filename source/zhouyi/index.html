@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周易六十四卦 · 随机起卦</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <style>
+    body { font-family: 'Noto Serif SC', 'Songti SC', serif; }
+    .hexagram-symbol { font-size: 5rem; line-height: 1; letter-spacing: 0.1em; }
+    .fade-in { animation: fadeIn 0.4s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .card-clickable { cursor: pointer; transition: box-shadow 0.2s ease, transform 0.2s ease; }
+    .card-clickable:hover { box-shadow: 0 12px 32px rgba(120, 100, 80, 0.12); }
+    .card-clickable:active { transform: scale(0.995); }
+    .detail-tag { display: inline-block; font-size: 0.7rem; letter-spacing: 0.15em; color: #a8a29e; border: 1px solid #e7e5e4; border-radius: 999px; padding: 2px 10px; margin-bottom: 4px; }
+  </style>
+</head>
+<body class="min-h-screen bg-stone-50 flex items-start justify-center p-6 pt-10">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useCallback } = React;
+
+    // ============================================================
+    // 六十四卦数据
+    // 卦辞底本：《周易正义》（公有领域）
+    // detail 字段结构：
+    //   plain      — 白话精解（整段）
+    //   career     — 事业
+    //   fortune    — 运势
+    //   family     — 家庭 / 婚恋
+    // 示范卦已填入 detail；其余卦的 detail 为 null，界面会提示“整理中”。
+    // ============================================================
+    const GUA_DATA = [
+      { id:1, name:"乾", symbol:"䷀", upper:"乾", lower:"乾",
+        judgment:"元亨，利贞。",
+        detail:{
+          plain:"乾卦六爻皆阳，象征纯粹的刚健与创造之力。天道运行不息，君子观此象，当效法天的刚健，不断奋发进取。卦辞“元亨利贞”四字，对应“始、通、和、正”四种德性：万物由此开始，由此亨通，由此和谐，由此贞定。乾卦的核心不是蛮力向前，而是在不同时位中知进退——潜、见、惕、跃、飞、亢，各有其道。",
+          career:"大吉之象，能力与时机俱佳时，事业可以如日中天。但关键在于“时位”：初期宜潜蓄，中期宜勤勉警惕，鼎盛时更要防止“亢龙有悔”，不可自满冒进。适合承担开创性、领导性的角色。",
+          fortune:"运势处于上升与旺盛阶段，地位与名望有提升空间。但乾卦纯阳，盛极易衰，凡事以谦和节制为贵，避免因刚强过度而折损。",
+          family:"阳刚过盛，家庭中容易以自我为中心。需主动以柔济刚，多沟通、多迁就，不可逞强争胜。感情中双方若能刚柔互补，则可长久；若各执一端，矛盾会反复出现。"
+        }
+      },
+      { id:2, name:"坤", symbol:"䷁", upper:"坤", lower:"坤",
+        judgment:"元亨，利牝马之贞。君子有攸往，先迷后得主，利西南得朋，东北丧朋。安贞，吉。",
+        detail:{
+          plain:"坤卦六爻皆阴，象征大地的柔顺、包容与承载。坤的“亨”不同于乾的直接开创，而是通过顺应天道、厚德载物来实现。“利牝马之贞”以母马的柔顺而能行远为喻：柔不是软弱，而是以持久的耐力走完长途。“先迷后得主”提示：不争先、不主导，反而能在跟随中找到自己的位置。“西南得朋，东北丧朋”讲的是合群与独立之间的取舍——在适合自己的方向上获得同类，在不适合的方向上失去同类也未必是坏事。安于正道，自然吉祥。",
+          career:"适合辅佐、协作、执行与支持型的角色。不宜独断专行或冒险急进，获得团队与伙伴的支持则吉。坤道的事业路径是“以静制动、以柔克刚”，在稳定中积累实力。",
+          fortune:"运势不宜急进。此时退守幕后、含蓄温和，比强出头更有利。保持耐心与恒心，等待时机自然成熟。",
+          family:"家庭中强调包容与承载。进展可能缓慢，但欲速则不达。柔顺、耐心、以家庭整体为重，是坤卦在亲密关系中的核心智慧。"
+        }
+      },
+      { id:3, name:"屯", symbol:"䷂", upper:"坎", lower:"震",
+        judgment:"元亨，利贞，勿用有攸往，利建侯。",
+        detail:{
+          plain:"屯卦是“始生之难”。下震为动，上坎为险，动而遇险，如同幼苗破土时遭遇石块。但屯卦的“元亨”说明，这种困难是万物初生必经的阶段，本身蕴含着生长的力量。“勿用有攸往”不是永远不动，而是在根基未稳时不要贸然远行；“利建侯”则提示此时最该做的是建立根据地、寻找可依靠的力量、搭好结构。屯的核心智慧是：**开头难时，先建底盘，再图进取。**",
+          career:"万事开头难，创业或新项目启动阶段阻力集中。不宜急于扩张，应先稳住基本盘、建立核心团队、明确方向。小心翼翼、观察时机、修心养性，比盲目突进更重要。",
+          fortune:"身处困境，欲进难进。此时运势不在“攻”而在“守”与“建”。把困难视为必经的积累期，不因一时不顺而动摇。",
+          family:"感情或家庭关系可能处于磨合初期，波折较多，双方都不容易妥协。需要给彼此时间建立信任和相处模式，不宜在根基未稳时做出重大承诺或变动。"
+        }
+      },
+      { id:4, name:"蒙", symbol:"䷃", upper:"艮", lower:"坎",
+        judgment:"亨。匪我求童蒙，童蒙求我。初筮告，再三渎，渎则不告。利贞。",
+        detail:{
+          plain:"蒙卦象征启蒙与求知。下坎为险，上艮为止，内心有困惑而外有阻碍，正是需要学习的处境。“匪我求童蒙，童蒙求我”讲的是教与学的次序：求学者应当主动，教育者不应强灌。“初筮告，再三渎，渎则不告”则强调诚心与专注——第一次诚心发问，应当得到回应；反复轻慢地追问，反而得不到真正的答案。蒙卦的“亨”在于：承认自己的蒙昧，并以端正的态度求教，就能走向通达。",
+          career:"初始阶段可能混乱无序、方向不明。此时最该做的是接受教育与训练，向有经验的人请教，而不是好高骛远或凭冲动行事。适合以学习者和成长者的姿态进入事业。",
+          fortune:"初时迷惑，不知方向。运势的转折点不在外部机会，而在自身是否愿意放低姿态、耐心学习。听取长辈或有经验者的意见，会比独自摸索更有利。",
+          family:"家庭或感情中可能存在沟通不畅、彼此不够理解的情况。需要以宽容和耐心代替指责，注重对方的品德与内在，而不是急于改变对方。"
+        }
+      },
+      { id:5, name:"需", symbol:"䷄", upper:"坎", lower:"乾",
+        judgment:"有孚，光亨，贞吉。利涉大川。",
+        detail:{
+          plain:"需卦是“等待”的智慧。下乾为健，上坎为险，内在有前进的动力，外部却有险阻，此时不能硬闯，而要“有孚”——以诚信和耐心等待时机。“光亨”说明这种等待不是消极的停滞，而是在等待中保持光明坦荡的心态。最终“利涉大川”，意味着当时机成熟，等待会转化为跨越险阻的力量。需卦的核心是：**等，不是什么都不做，而是在信心中积蓄，在耐心中观时。**",
+          career:"不可轻举妄动。审时度势、保持冷静、积蓄实力，比仓促行动更重要。当前阶段适合做准备、建能力、观风向，不宜投机急取。",
+          fortune:"运势处于“待时”阶段。冒险前进反而容易失利，耐心等待、大器晚成是更稳妥的路径。保持诚信与镇定，机会会在条件具备时出现。",
+          family:"感情初期可能不如意或多有波折，不宜急于推进。耐心培养、逐步加深了解，比急于确定关系更有利于长久。"
+        }
+      },
+      { id:6, name:"讼", symbol:"䷅", upper:"乾", lower:"坎",
+        judgment:"有孚，窒。惕中吉。终凶。利见大人，不利涉大川。",
+        detail:{
+          plain:"讼卦讲争讼与冲突。下坎为险，上乾为刚，内心险诈而外呈刚强，容易陷入对立。“有孚，窒”是说即便自己占理，也可能被阻塞、难以伸张。“惕中吉”提示：在争执中保持警惕、适可而止，中途停下来反而吉祥；“终凶”则警告，把争讼进行到底，无论输赢都会付出代价。“利见大人”是请中正之人调停，“不利涉大川”是不要在冲突中再做冒险的大事。讼卦的核心是：**息争优于胜争。**",
+          career:"起初可能顺利，继而容易受挫或卷入矛盾。退让、协调、借助公正的第三方化解分歧，比硬碰硬更有利。避免在冲突中做重大决策。",
+          fortune:"百事不顺，事与愿违，容易遭遇口舌是非。以息事宁人为上策，保持警惕但不纠缠，防止小矛盾升级为持续损耗。",
+          family:"家庭或感情中是非较多，反复不定，容易因言语起争执。需要温和协调、主动退让，避免在情绪中做出伤害关系的事。"
+        }
+      },
+      { id:7, name:"师", symbol:"䷆", upper:"坤", lower:"坎",
+        judgment:"贞，丈人，吉无咎。",
+        detail:{
+          plain:"师卦象征兵众、组织与行动中的纪律。下坎为险，上坤为顺，在危险中依靠顺理而行的组织力来解决问题。“贞”是守正，“丈人”指有威望、有经验的领导者。师卦的“吉无咎”不是轻易得来的——它要求行动有正当理由、领导者有德有能、组织有纪律有章法。师卦的核心是：**集体行动的力量来自纪律与正当性，而非单纯的人数或声势。**",
+          career:"阻力较大，不宜独断专行或盲目冒险。需要与他人密切合作，谨小慎微，不贪功，依靠组织和纪律来推进。领导者的品德与经验是关键。",
+          fortune:"运势处于需要“聚众成事”的阶段。忌单打独斗，也忌内部不和。提防潜在的对立因素，以正立身、以纪律约束，才能化险为夷。",
+          family:"家庭中需要明确的秩序与分工，但也容易因角色不清或内外压力产生不和。以柔顺的态度沟通，同时守住原则，比情绪化对抗更有效。"
+        }
+      },
+      { id:8, name:"比", symbol:"䷇", upper:"坎", lower:"坤",
+        judgment:"吉。原筮元永贞，无咎。不宁方来，后夫凶。",
+        detail:{
+          plain:"比卦讲亲附与结盟。下坤上坎，水在地上，彼此相依。比卦的“吉”建立在“元永贞”之上：亲附必须有正当的开端、可长久的诚意和端正的原则。“不宁方来”是说四方不安定者纷纷前来依附，“后夫凶”则警告：该亲附的时候迟疑不来，会错失时机而陷入不利。比卦的核心是：**好的关系不是临时抱佛脚，而是在平时就以正道建立起来的相互依附。**",
+          career:"有亲密的伙伴相助，相互扶持则事业可成。关键在于择友与择盟——与贤良者合作会带来助力，与不当之人绑定则会拖累。",
+          fortune:"运势适合“与人相亲”，合作、结盟、融入团队会比孤立行动更顺。时机上宜速决，不可迟疑拖延。",
+          family:"感情与家庭关系以彼此忠诚、相互依附为吉。两情相悦、互敬互谅是良好基础；但也要注意亲附的对象是否端正，不可因一时热情而忽视根本。"
+        }
+      },
+      { id:9, name:"小畜", symbol:"䷈", upper:"巽", lower:"乾",
+        judgment:"亨。密云不雨，自我西郊。",
+        detail:{
+          plain:"小畜卦是“以小蓄大”的状态。下乾为健，上巽为顺，内在有力量，外部却只能以柔顺的方式稍加约束。“密云不雨”是极精妙的意象：云已经聚集，但雨还没有落下——条件在酝酿，却尚未到释放的时候。“自我西郊”提示这种蓄积尚在自己的范围内，未及远施。小畜的“亨”在于：接受“小”的阶段，以耐心和节制蓄养实力，不强求立即兑现。",
+          career:"已有一定基础，但尚不足以大举推进。应耐心积存力量，对所得适可而止，不可冒险行动或贪求过大。",
+          fortune:"运势有阻隔、反复难调之意。此时宜忍耐、有节制，静待时机。强行突破反而容易失去已有的积累。",
+          family:"感情或家庭中可能出现分歧、长辈意见或外部干扰。需要耐心应对，不因一时不顺而否定关系，也不宜急于求成。"
+        }
+      },
+      { id:10, name:"履", symbol:"䷉", upper:"乾", lower:"兑",
+        judgment:"履虎尾，不咥人，亨。",
+        detail:{
+          plain:"履卦讲“行走”与“谨慎”。下兑为悦，上乾为刚，以和悦之心行于刚强之间，如同踩在老虎尾巴上，老虎却没有咬人。这不是因为危险不存在，而是因为行走的方式得当——柔顺、守礼、不激怒对方。“履虎尾”是履卦的核心意象：身处高风险的关系或处境中，态度与分寸决定安危。履卦的“亨”来自“履道”的端正，而非运气的庇护。",
+          career:"起初可能不顺或受到威胁，不宜逞强急于求成。应量力而行、提高警惕、以礼待人，在强手或复杂关系中保持分寸。",
+          fortune:"反复不和，先劳后逸、始惊后安。不应急进，反省自身、请教有经验者，比盲目自信更有利。",
+          family:"感情中两情相悦但阻碍较多，不易一蹴而就。以谦和、尊重、守礼的态度相处，先苦后甜可期；咄咄逼人则容易激化矛盾。"
+        }
+      },
+      { id:11, name:"泰", symbol:"䷊", upper:"坤", lower:"乾",
+        judgment:"小往大来，吉亨。",
+        detail:{
+          plain:"泰卦是天地交而万物通的状态。下乾为天、上坤为地，天气上升、地气下降，阴阳交感，上下志同。“小往大来”意味着付出较小的代价而获得较大的通达。泰卦的核心不是“一切顺利”的静态，而是“交”的动态——天地交、上下交、内外交，才有通泰。但泰极可转否，所以真正的智慧是在通泰中保持敬畏，不因顺境而懈怠。",
+          career:"非常顺利的时期，但应坚持由小而大、循序渐进，居安思危，不因循守旧。顺境中更要防止乐极生悲。",
+          fortune:"百事吉祥，运势通达。但应求内实而不求外虚，避免过度活跃和自满，在顺境中为可能的转折预留余地。",
+          family:"情投意合，良缘可缔。但不可因关系亲密而任性放肆，否则通泰可能转为冷漠。保持尊重与节制，是泰卦在家庭中的要义。"
+        }
+      },
+      { id:12, name:"否", symbol:"䷋", upper:"乾", lower:"坤",
+        judgment:"否之匪人，不利君子贞，大往小来。",
+        detail:{
+          plain:"否卦与泰卦相反：天地不交，万物不通，上下离心。“否之匪人”是说这种闭塞的环境并非人道所宜，“不利君子贞”提示此时坚守正道反而可能受挫。“大往小来”与泰的“小往大来”相对，意味着付出大而收获小。但否卦的智慧不止于“不好”——它同时包含“否极泰来”的必然性。在闭塞中俭德避难、保存实力、不随波逐流，就是为通达的到来做准备。",
+          career:"陷入逆境或衰退阶段，可能受小人干扰而不得志。应自保待机，不宜强行出头，也不可与不正之风同流合污。",
+          fortune:"百事不顺，损失较重。遇事宜忍，守住底线，等待时机转变。否极泰来不是自动发生的，而是在隐忍中保全正道的结果。",
+          family:"阴阳相背，是非较多，矛盾不易调和。需要格外注意沟通方式，防止小问题积累成隔阂；此时不宜在情绪中做重大关系决定。"
+        }
+      },
+      { id:13, name:"同人", symbol:"䷌", upper:"乾", lower:"离",
+        judgment:"同人于野，亨。利涉大川，利君子贞。",
+        detail:{
+          plain:"同人卦讲“与人和同”。下离为明，上乾为刚健，以光明之心行刚健之事，且“于野”——在开阔无私的场域中与人和同，而非结党于私。同人的“亨”来自公开、无私、以正道相合。“利涉大川”说明真正的团结可以支撑人跨越大的险阻。同人的核心是：**合作的范围越开阔、动机越端正，力量就越持久。**",
+          career:"与人合作会成功。应广泛建立人脉，克服门户之见，协调多方关系。以公正、开放的态度聚合力量，比小圈子抱团更有利。",
+          fortune:"百事顺通，平安如意。宜把握时机维持盛泰，但若以私利为先，则合作的基础会瓦解。",
+          family:"谦和相待、互敬互谅，可成美眷。家庭或感情中应以“和同”而非“控制”为原则，尊重彼此的独立性。"
+        }
+      },
+      { id:14, name:"大有", symbol:"䷍", upper:"离", lower:"乾",
+        judgment:"元亨。",
+        detail:{
+          plain:"大有卦是火在天上，光明普照，万物皆见。下乾为刚健，上离为光明，以刚健之质而行光明之道，所拥有者大而能照。卦辞只有“元亨”二字，极简却极盛——但大有卦的深层提醒在于：**拥有得越多，越需要“不盈”的自觉。** 光明之所以能持续普照，正因为它不据为己有。大有之后是谦卦，这个卦序本身就说明：大有的正确打开方式，是以谦守住盛大的成果。",
+          career:"已有成就，运势隆盛。此时应戒惧谨慎，大而不盈、满而不溢，得意忘形则容易由盛转衰。",
+          fortune:"得时得运，隆盛昌荣。但物极必反的预兆已经隐含其中，不可不慎。以勤勉节俭和清醒的动向判断来延续好运。",
+          family:"有情人可成眷属，家庭有丰盛之象。但选择伴侣或处理家事时，以慎重和谦和为贵，不可因条件优越而傲慢挑剔。"
+        }
+      },
+      { id:15, name:"谦", symbol:"䷎", upper:"坤", lower:"艮",
+        judgment:"亨，君子有终。",
+        detail:{
+          plain:"谦卦是六十四卦中极少数六爻皆吉的卦。下艮为山，上坤为地，高山甘居地下，是“谦”的绝妙象征。谦不是自我贬低，而是**有实力而不居功、有位置而不凌人**。“君子有终”四个字分量极重：谦的价值不在于一时讨喜，而在于让人能够善始善终。在《周易》的逻辑里，满则招损、谦则受益，谦是长期主义的品格。",
+          career:"尚未被充分器重时，不必刻意表现。谦虚学习、埋头苦干，终会被发现。谦不是不进取，而是以不争之争走得更远。",
+          fortune:"吉利平安。谦受益，满招损。运势本身没有大的阻碍，关键在于自身是否守得住谦道。",
+          family:"重视家庭的稳定。以谦恭之态相处，可获良缘；反之，若在亲密关系中争强好胜，则容易失利。"
+        }
+      },
+      { id:16, name:"豫", symbol:"䷏", upper:"震", lower:"坤",
+        judgment:"利建侯，行师。",
+        detail:{
+          plain:"豫卦是雷出地上，阳气奋发，万物欣然。下坤为顺，上震为动，以顺而动，行动得到拥护，所以“利建侯，行师”——可以建立组织、采取大的行动。但豫卦的深层警示在于“豫”的双重含义：它既是“悦豫”，也是“预备”。沉溺于安乐而不做准备，豫就会转为怠惰。真正的“豫”是在顺境中保持清醒的预备。",
+          career:"十分顺利的时期，但不能因繁华而怠惰，不可玩物丧志。顺境中应为可能的转折做准备。",
+          fortune:"万物欣畅，如意安泰。但不可沉醉于声色享乐，警惕“乐极生悲”的机制。",
+          family:"天赐良缘之象，感情较为顺遂。但不可掉以轻心或玩弄感情，在安乐中仍需用心经营。"
+        }
+      },
+      { id:23, name:"剥", symbol:"䷖", upper:"艮", lower:"坤",
+        judgment:"不利有攸往。",
+        detail:{
+          plain:"剥卦是五阴在下、一阳在上，阴气盛而阳气孤，如同高山被侵蚀、基础在剥落。“不利有攸往”直截了当：此时不适合有所行动。但剥卦并非纯粹的凶——那一阳虽然孤悬，却尚未消失；剥到极点，就是复卦“一阳来复”的起点。剥的核心智慧是：**在衰败期，守住那一点阳气，不随波逐流，就是为复生保存种子。**",
+          career:"时运不佳，大势不利于强行推进。应暂停行动、静观待变，谨慎隐忍，不与不正之风同流。积蓄实力、等待时机，比孤注一掷更明智。",
+          fortune:"运势从高峰转入低落，处于剥落期。需要认真总结经验、整顿自身，不可执意强求。景气一旦回转，可顺势再起。",
+          family:"家庭或感情关系可能面临考验，需要慎重维护。除非有十分般配的基础，不宜在此时草率做出重大关系决定。"
+        }
+      },
+      { id:24, name:"复", symbol:"䷗", upper:"坤", lower:"震",
+        judgment:"亨。出入无疾，朋来无咎。反复其道，七日来复，利有攸往。",
+        detail:{
+          plain:"复卦是一阳生于五阴之下，冬至一阳来复，万物开始回春。“反复其道，七日来复”讲的是循环的必然：剥落到尽头，阳气必然回归。复卦的“亨”不是来自外部条件的突然好转，而是来自**生机自身的回归**。“出入无疾，朋来无咎”提示此时行动不宜过猛，让阳气自然生长，同类会逐渐汇聚。“利有攸往”说明方向是对的，但要尊重“复”的节奏——刚刚回升时，最忌拔苗助长。",
+          career:"已经渡过最困难的阶段，开始进入可以积极行动的时期。但务必抓住时机的同时不可急躁，应时常反省、严于修身，稳步推进。",
+          fortune:"时机正在成熟。不要急于求成，继续奠定基础，机遇到来时果断抓住，即可转运。最忌自伤意志。",
+          family:"顺利之象，但不可性急。家庭的美满需要严于律己和冷静经营，循序渐进反而更快。"
+        }
+      },
+      { id:37, name:"家人", symbol:"䷤", upper:"巽", lower:"离",
+        judgment:"利女贞。",
+        detail:{
+          plain:"家人卦是风火家人，下离为明、上巽为顺，明于内而顺于外，正是治家之象。卦辞只有“利女贞”三字，字面指向女性守正，但家人卦的完整义理是**家庭中各安其位、各尽其责**：内在光明而外在柔顺，家道才能端正。《彖传》说“女正位乎内，男正位乎外”，其核心不是固化分工，而是强调家庭秩序来自每个成员在自身位置上的端正与诚信。",
+          career:"事业合作与团队建设中，家人卦启示以“家”的凝聚力来协作——同心协力、建立规则、以诚信立基。适合需要团队默契和长期稳定的工作。",
+          fortune:"主小吉之象，事事以家人为重则顺。遇到困难可得家人或亲近团队之助，运势的根基在内部的和合。",
+          family:"家人卦最直接的维度。婚姻可成，家庭运平和幸福[reference:3]。强调以诚信立家、以规矩治家，同时保持相亲相爱的温度[reference:4]。"
+        }
+      },
+      { id:47, name:"困", symbol:"䷮", upper:"兑", lower:"坎",
+        judgment:"亨，贞，大人吉，无咎，有言不信。",
+        detail:{
+          plain:"困卦是泽水困——水在泽下，泽中无水，困顿之象。“亨”字出现在困卦中值得深思：困之所以能“亨”，是因为**困境逼迫人回到自身**，剥去浮华，只剩下最根本的志向与操守。“大人吉”是说在困中不失节操、自勉自坚的人，反而能成就。 “有言不信”则提醒：身处困顿之时，言语的说服力很弱，行动和坚守比辩解更有力量。",
+          career:"景况可能不佳，面临较大的艰难与磨练。采用不正当手段会愈陷愈深；反之，不失节操、自勉自坚，终能成事。",
+          fortune:"身名皆困，财乏势危之象。但困是阶段而非终点，保持信念、摒弃侥幸、锲而不舍，运势会在坚守中逐步转机。",
+          family:"家庭或感情可能因外部压力而承受考验。以乐观镇定的态度处置，尤应注重人品，而非在困境中互相指责。"
+        }
+      },
+      { id:49, name:"革", symbol:"䷰", upper:"兑", lower:"离",
+        judgment:"己日乃孚。元亨利贞。悔亡。",
+        detail:{
+          plain:"革卦是泽火革，水火相息，必然发生变化。“己日乃孚”是说变革需要等到时机成熟、人心信服的那一刻，才能推行。革卦的“元亨利贞”与乾卦同辞，但含义不同：乾是创造性的开始，革是**旧秩序的解体与新秩序的确立**。变革最容易犯的错误是“为变而变”或“变得太早/太晚”。革的核心智慧是：动机纯正、时机恰当、手段正当，三者缺一，变革就会变成动荡。",
+          career:"正处在转折的关键时刻。应密切关注形势，先稳固自身地位，时机成熟后果断行动。动机纯正、措施正当，不守旧也不妄进，事业可获新发展。",
+          fortune:"变革之运。旧有的格局需要打破，但不可急躁妄动。等待“己日”的成熟信号，变革才能获得信任与支持。",
+          family:"家庭或感情关系可能来到需要“改变相处模式”的节点。变革本身不是坏事，但需要以诚信和恰当的时机为基础，单方面的强行改变容易引发对抗。"
+        }
+      }
+      // 其余卦的 detail 留空，界面会显示“整理中”。
+      // 补齐时按同一结构填入 plain / career / fortune / family 即可。
+    ];
+
+    // 将缺少 detail 的卦自动补为 null，避免 undefined 判断分散
+    GUA_DATA.forEach(g => { if (!g.detail) g.detail = null; });
+
+    // ============================================================
+    // 详情面板组件
+    // ============================================================
+    function DetailPanel({ gua, onClose }) {
+      if (!gua.detail) {
+        return (
+          <div className="mt-5 pt-5 border-t border-stone-100 fade-in">
+            <p className="text-sm text-stone-400 text-center py-4 tracking-wider">
+              该卦详细解读尚在整理中
+            </p>
+            <div className="text-center">
+              <button onClick={onClose} className="text-xs text-stone-400 hover:text-stone-600 tracking-wider transition-colors">
+                收起详情
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      const { plain, career, fortune, family } = gua.detail;
+      return (
+        <div className="mt-5 pt-5 border-t border-stone-100 fade-in">
+          {/* 白话精解 */}
+          <div className="mb-5">
+            <p className="detail-tag">白 话 精 解</p>
+            <p className="text-stone-700 leading-relaxed text-[0.95rem] text-justify mt-2">
+              {plain}
+            </p>
+          </div>
+
+          {/* 多维解卦 */}
+          <div className="space-y-4">
+            <div>
+              <p className="detail-tag">事 业</p>
+              <p className="text-stone-600 text-sm leading-relaxed text-justify mt-1">{career}</p>
+            </div>
+            <div>
+              <p className="detail-tag">运 势</p>
+              <p className="text-stone-600 text-sm leading-relaxed text-justify mt-1">{fortune}</p>
+            </div>
+            <div>
+              <p className="detail-tag">家 庭 · 婚 恋</p>
+              <p className="text-stone-600 text-sm leading-relaxed text-justify mt-1">{family}</p>
+            </div>
+          </div>
+
+          <div className="text-center mt-5">
+            <button onClick={onClose} className="text-xs text-stone-400 hover:text-stone-600 tracking-wider transition-colors">
+              收起详情
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    // ============================================================
+    // 应用主组件
+    // ============================================================
+    function App() {
+      const [current, setCurrent] = useState(null);
+      const [expanded, setExpanded] = useState(false);
+
+      const drawRandom = useCallback(() => {
+        const idx = Math.floor(Math.random() * GUA_DATA.length);
+        setCurrent(GUA_DATA[idx]);
+        setExpanded(false);
+      }, []);
+
+      const toggleExpand = useCallback(() => {
+        setExpanded(v => !v);
+      }, []);
+
+      return (
+        <div className="w-full max-w-lg mx-auto">
+          <header className="text-center mb-10">
+            <h1 className="text-3xl font-bold text-stone-800 tracking-widest">周易六十四卦</h1>
+            <p className="text-stone-400 mt-2 text-sm tracking-wider">随机起卦 · 观象玩辞</p>
+          </header>
+
+          <div className="text-center mb-8">
+            <button
+              onClick={drawRandom}
+              className="px-8 py-3 bg-stone-800 text-white rounded-full text-sm tracking-widest
+                         hover:bg-stone-700 active:scale-95 transition-all duration-150
+                         shadow-lg shadow-stone-300"
+            >
+              随 机 起 卦
+            </button>
+          </div>
+
+          {current ? (
+            <div
+              className="fade-in bg-white rounded-2xl shadow-xl shadow-stone-200/60 p-8 border border-stone-100 card-clickable"
+              onClick={toggleExpand}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleExpand(); } }}
+            >
+              <div className="flex items-baseline justify-between mb-1">
+                <span className="text-xs text-stone-400 tracking-widest">第 {current.id} 卦</span>
+                <span className="text-xs text-stone-400 tracking-widest">
+                  {current.upper}上 · {current.lower}下
+                </span>
+              </div>
+              <h2 className="text-2xl font-bold text-stone-800 mb-1">{current.name}卦</h2>
+
+              <div className="hexagram-symbol text-stone-700 text-center my-6 select-none">
+                {current.symbol}
+              </div>
+
+              <div className="border-t border-stone-100 pt-5">
+                <p className="text-xs text-stone-400 tracking-widest mb-2">卦 辞</p>
+                <p className="text-stone-700 leading-relaxed text-base text-justify">
+                  {current.judgment}
+                </p>
+              </div>
+
+              {/* 未展开时的小提示 */}
+              {!expanded && (
+                <p className="text-center text-xs text-stone-300 tracking-widest mt-5">
+                  点击卡片查看详细解读
+                </p>
+              )}
+
+              {/* 详情面板 */}
+              {expanded && <DetailPanel gua={current} onClose={(e) => { e.stopPropagation(); setExpanded(false); }} />}
+            </div>
+          ) : (
+            <div className="text-center py-20 text-stone-300 text-sm tracking-widest">
+              点击上方按钮，抽取一卦
+            </div>
+          )}
+
+          <footer className="text-center mt-10 text-xs text-stone-300 tracking-wider">
+            <p>卦辞底本：《周易正义》（公有领域）</p>
+            <p className="mt-1">多维解读参考公开易学资料整理，示范卦已标注出处</p>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</body>
+</html>
