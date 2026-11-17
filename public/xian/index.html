@@ -1,0 +1,2637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>云岫修仙录 · 放置修仙</title>
+<style>
+/* ============ 设计令牌 ============ */
+:root{
+  --bg-0:#070b12; --bg-1:#0c1420; --bg-2:#101d2c;
+  --panel:rgba(16,28,42,.82); --panel-line:rgba(150,190,180,.16);
+  --ink:#dfe9e6; --ink-dim:#8fa3a0; --ink-faint:#5d7075;
+  --jade:#7fd6b0; --jade-deep:#3f9d78; --jade-glow:rgba(127,214,176,.35);
+  --gold:#e8c47a; --gold-deep:#b98f3e; --gold-glow:rgba(232,196,122,.35);
+  --danger:#d98a7a;
+  --radius:14px;
+  --font-display:"Noto Serif SC","Source Han Serif SC","STKaiti","KaiTi","SimSun",serif;
+  --font-body:"Noto Sans SC","Source Han Sans SC","Microsoft YaHei",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:linear-gradient(180deg,#05080e 0%,var(--bg-0) 30%,var(--bg-1) 70%,#0e1a26 100%);
+  color:var(--ink); font-family:var(--font-body); font-size:14px;
+  overflow-x:hidden; min-height:100%;
+  -webkit-font-smoothing:antialiased;
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+.hidden{display:none !important}
+::selection{background:rgba(127,214,176,.3)}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:rgba(127,214,176,.25);border-radius:4px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ============ 背景氛围层 ============ */
+#bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+#bg .moon{
+  position:absolute;top:7%;right:12%;width:110px;height:110px;border-radius:50%;
+  background:radial-gradient(circle at 38% 35%,#f5efdd 0%,#e9dfc0 45%,#cfc09a 75%,rgba(207,192,154,0) 100%);
+  box-shadow:0 0 60px 18px rgba(240,230,200,.14);
+  animation:moonPulse 9s ease-in-out infinite;
+}
+@keyframes moonPulse{0%,100%{box-shadow:0 0 60px 18px rgba(240,230,200,.12)}50%{box-shadow:0 0 80px 26px rgba(240,230,200,.2)}}
+.mtn{position:absolute;left:0;right:0;bottom:0}
+.mtn svg{display:block;width:100%;height:auto}
+.mtn-far{height:52vh;opacity:.55}
+.mtn-near{height:36vh;opacity:.85}
+.cloud{position:absolute;border-radius:50%;filter:blur(26px);opacity:.16;
+  background:radial-gradient(ellipse at center,rgba(160,200,190,.9),rgba(160,200,190,0) 70%)}
+.cloud.c1{width:46vw;height:9vh;top:26%;left:-10%;animation:drift1 70s linear infinite}
+.cloud.c2{width:54vw;height:11vh;top:44%;left:30%;animation:drift2 95s linear infinite}
+.cloud.c3{width:38vw;height:8vh;top:62%;left:-20%;animation:drift3 120s linear infinite}
+@keyframes drift1{0%{transform:translateX(-15vw)}50%{transform:translateX(45vw)}100%{transform:translateX(-15vw)}}
+@keyframes drift2{0%{transform:translateX(20vw)}50%{transform:translateX(-30vw)}100%{transform:translateX(20vw)}}
+@keyframes drift3{0%{transform:translateX(-10vw)}50%{transform:translateX(50vw)}100%{transform:translateX(-10vw)}}
+#particles span{
+  position:absolute;bottom:-12px;border-radius:50%;
+  background:radial-gradient(circle,rgba(150,230,195,.95),rgba(150,230,195,0) 70%);
+  animation:rise linear infinite;
+}
+@keyframes rise{
+  0%{transform:translateY(0) translateX(0);opacity:0}
+  12%{opacity:.9}
+  85%{opacity:.5}
+  100%{transform:translateY(-105vh) translateX(var(--sway,30px));opacity:0}
+}
+#vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 42%,transparent 55%,rgba(4,7,11,.55) 100%)}
+
+/* ============ 应用骨架 ============ */
+#app{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:14px 18px 30px;
+  display:flex;flex-direction:column;gap:14px;min-height:100vh}
+
+/* ============ 顶栏 ============ */
+#topbar{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);
+  padding:10px 16px;backdrop-filter:blur(6px);
+}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand .logo{width:42px;height:42px;flex:none;filter:drop-shadow(0 0 8px var(--jade-glow))}
+.brand h1{font-family:var(--font-display);font-size:20px;letter-spacing:4px;color:var(--ink);white-space:nowrap}
+.brand h1 em{font-style:normal;color:var(--gold)}
+#realm-badge{
+  display:inline-block;margin-top:3px;padding:2px 10px;border-radius:999px;
+  font-size:12px;letter-spacing:2px;color:var(--jade);
+  border:1px solid rgba(127,214,176,.4);background:rgba(127,214,176,.08);
+}
+#res-bar{display:flex;gap:10px;margin-left:auto;flex-wrap:wrap}
+.res-item{
+  display:flex;align-items:center;gap:8px;padding:6px 14px;border-radius:10px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
+  min-width:150px;
+}
+.res-item .r-ico{width:22px;height:22px;flex:none}
+.res-item .r-main{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.res-item .r-val{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.res-item .r-rate{font-size:11px;color:var(--ink-dim);font-variant-numeric:tabular-nums}
+.res-cult .r-val{color:var(--jade)}
+.res-stone .r-val{color:var(--gold)}
+.res-cult .r-ico{color:var(--jade)} .res-stone .r-ico{color:var(--gold)}
+#btn-settings{
+  width:40px;height:40px;border-radius:10px;display:grid;place-items:center;
+  border:1px solid var(--panel-line);background:rgba(255,255,255,.03);color:var(--ink-dim);
+  transition:all .2s;
+}
+#btn-settings:hover{color:var(--gold);border-color:rgba(232,196,122,.5);box-shadow:0 0 12px rgba(232,196,122,.15)}
+#btn-settings svg{width:20px;height:20px}
+
+/* ============ 主区：修炼场 + 侧栏 ============ */
+#main{display:grid;grid-template-columns:1.35fr .9fr;gap:14px;align-items:stretch}
+
+#cult-stage{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--panel-line);
+  background:
+    radial-gradient(ellipse at 50% 120%,rgba(63,157,120,.18),transparent 60%),
+    linear-gradient(180deg,rgba(13,22,34,.6),rgba(10,16,25,.85));
+  display:flex;flex-direction:column;min-height:430px;
+}
+#scene{position:relative;flex:1;min-height:220px}
+#scene svg.hero{position:absolute;inset:0;width:100%;height:100%}
+.aura{
+  position:absolute;left:50%;top:58%;width:230px;height:230px;transform:translate(-50%,-50%);
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(127,214,176,.28) 0%,rgba(127,214,176,.1) 42%,transparent 68%);
+  animation:aura 4.5s ease-in-out infinite;
+}
+@keyframes aura{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8}50%{transform:translate(-50%,-50%) scale(1.12);opacity:1}}
+#realm-name{
+  position:absolute;left:16px;top:14px;z-index:3;
+}
+#realm-name .r-label{font-size:11px;letter-spacing:3px;color:var(--ink-faint)}
+#realm-name .r-text{font-family:var(--font-display);font-size:26px;letter-spacing:5px;color:var(--ink);
+  text-shadow:0 0 18px rgba(127,214,176,.35)}
+
+#realm-panel{
+  position:relative;z-index:3;margin:-46px 18px 16px;padding:16px 18px 18px;
+  background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);
+  backdrop-filter:blur(8px);
+  display:flex;flex-direction:column;gap:12px;
+}
+#progress-wrap{position:relative}
+#progress{
+  height:14px;border-radius:7px;overflow:hidden;position:relative;
+  background:rgba(255,255,255,.05);border:1px solid rgba(127,214,176,.18);
+}
+#progress-fill{
+  height:100%;width:0%;border-radius:7px;
+  background:linear-gradient(90deg,var(--jade-deep),var(--jade));
+  box-shadow:0 0 12px var(--jade-glow);
+  transition:width .25s ease;
+  position:relative;
+}
+#progress-fill::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  transform:translateX(-100%);animation:shimmer 2.6s ease-in-out infinite}
+@keyframes shimmer{60%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+#progress-text{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:10.5px;letter-spacing:1px;color:var(--ink);text-shadow:0 1px 2px rgba(0,0,0,.7);
+  font-variant-numeric:tabular-nums;
+}
+#btn-breath{
+  position:relative;overflow:visible;
+  padding:16px 0 15px;border-radius:12px;text-align:center;
+  font-family:var(--font-display);font-size:20px;letter-spacing:10px;text-indent:10px;
+  color:#06231a;font-weight:700;
+  background:linear-gradient(180deg,#a9e8c9 0%,var(--jade) 45%,var(--jade-deep) 100%);
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow:0 4px 18px rgba(63,157,120,.45),inset 0 1px 0 rgba(255,255,255,.5);
+  transition:transform .08s ease,box-shadow .2s ease,filter .2s;
+  user-select:none;-webkit-tap-highlight-color:transparent;
+}
+#btn-breath:hover{filter:brightness(1.06);box-shadow:0 6px 26px rgba(63,157,120,.6),inset 0 1px 0 rgba(255,255,255,.5)}
+#btn-breath:active{transform:scale(.965)}
+#btn-breath .b-sub{display:block;font-family:var(--font-body);font-size:11px;letter-spacing:2px;
+  text-indent:2px;font-weight:400;color:rgba(6,35,26,.75);margin-top:4px}
+#btn-breath.burst::before{
+  content:"";position:absolute;inset:-6px;border-radius:16px;pointer-events:none;
+  border:2px solid rgba(160,240,205,.8);animation:burst .5s ease-out forwards;
+}
+@keyframes burst{0%{opacity:.9;transform:scale(.96)}100%{opacity:0;transform:scale(1.22)}}
+#btn-breath .ripple{
+  position:absolute;left:50%;top:50%;width:20px;height:20px;border-radius:50%;
+  background:radial-gradient(circle,rgba(220,255,240,.85),transparent 70%);
+  transform:translate(-50%,-50%);pointer-events:none;animation:ripple .6s ease-out forwards;
+}
+@keyframes ripple{0%{opacity:.9;transform:translate(-50%,-50%) scale(.4)}100%{opacity:0;transform:translate(-50%,-50%) scale(9)}}
+#btn-break{
+  padding:12px 0;border-radius:12px;text-align:center;
+  font-family:var(--font-display);font-size:16px;letter-spacing:6px;text-indent:6px;
+  border:1px solid rgba(232,196,122,.45);color:var(--gold);
+  background:linear-gradient(180deg,rgba(232,196,122,.12),rgba(232,196,122,.04));
+  transition:all .2s;position:relative;overflow:hidden;
+  user-select:none;-webkit-tap-highlight-color:transparent;
+}
+#btn-break .bk-cost{display:block;font-family:var(--font-body);font-size:11px;letter-spacing:1px;
+  text-indent:1px;font-weight:400;color:var(--ink-dim);margin-top:4px}
+#btn-break.ready{
+  color:#fff8e8;border-color:var(--gold);
+  background:linear-gradient(180deg,#f0d99a,#d4a94f);
+  box-shadow:0 0 22px var(--gold-glow),inset 0 1px 0 rgba(255,255,255,.55);
+  animation:readyGlow 1.8s ease-in-out infinite;
+}
+@keyframes readyGlow{0%,100%{box-shadow:0 0 14px var(--gold-glow)}50%{box-shadow:0 0 30px rgba(232,196,122,.55)}}
+#btn-break.ready:active{transform:scale(.97)}
+#btn-break:not(.ready){opacity:.55;cursor:not-allowed}
+#btn-break.maxed{color:var(--ink-dim);border-color:var(--panel-line);background:rgba(255,255,255,.03);
+  animation:none;opacity:.8;cursor:default}
+
+/* ============ 侧栏面板 ============ */
+#side{display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel{
+  background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);
+  padding:14px 16px;backdrop-filter:blur(6px);
+}
+.panel h3{
+  font-family:var(--font-display);font-size:14px;letter-spacing:4px;color:var(--ink);
+  display:flex;align-items:center;gap:8px;margin-bottom:10px;font-weight:600;
+}
+.panel h3::before{content:"";width:4px;height:14px;border-radius:2px;
+  background:linear-gradient(180deg,var(--jade),var(--jade-deep));box-shadow:0 0 8px var(--jade-glow)}
+.panel h3.gold::before{background:linear-gradient(180deg,var(--gold),var(--gold-deep));box-shadow:0 0 8px var(--gold-glow)}
+.stat-row{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  padding:6px 2px;border-bottom:1px dashed rgba(255,255,255,.06);
+  font-size:12.5px;color:var(--ink-dim);
+}
+.stat-row:last-child{border-bottom:none}
+.stat-row b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.3px}
+.stat-row b.j{color:var(--jade)} .stat-row b.g{color:var(--gold)}
+#log-panel{flex:1;display:flex;flex-direction:column;min-height:180px}
+#log-list{flex:1;overflow-y:auto;max-height:220px;display:flex;flex-direction:column;gap:6px;padding-right:4px}
+.log-item{font-size:12px;line-height:1.55;color:var(--ink-dim);padding:6px 10px;border-radius:8px;
+  background:rgba(255,255,255,.025);border-left:2px solid rgba(127,214,176,.35);
+  animation:logIn .35s ease both}
+.log-item .lt{color:var(--ink-faint);font-size:10.5px;margin-right:6px;font-variant-numeric:tabular-nums}
+.log-item.gold{border-left-color:var(--gold);background:rgba(232,196,122,.06)}
+.log-item.gold .lm{color:var(--gold)}
+@keyframes logIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ============ 底部：标签页 ============ */
+#bottom{
+  background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);
+  backdrop-filter:blur(6px);overflow:hidden;
+}
+#tabs{display:flex;gap:4px;padding:10px 12px 0;border-bottom:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.02)}
+.tab-btn{
+  position:relative;padding:10px 20px 12px;font-size:14px;letter-spacing:3px;font-family:var(--font-display);
+  color:var(--ink-dim);border-radius:10px 10px 0 0;transition:color .2s;
+  display:flex;align-items:center;gap:7px;
+}
+.tab-btn svg{width:15px;height:15px;opacity:.8}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn.active{color:var(--jade)}
+.tab-btn.active::after{
+  content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--jade),transparent);
+  box-shadow:0 0 10px var(--jade-glow);
+}
+.tab-btn .tab-badge{
+  min-width:17px;height:17px;padding:0 5px;border-radius:9px;display:grid;place-items:center;
+  font-size:10.5px;font-family:var(--font-body);letter-spacing:0;color:#06231a;font-weight:700;
+  background:linear-gradient(180deg,var(--gold),var(--gold-deep));
+}
+.pane{display:none;padding:16px;animation:paneIn .3s ease both}
+.pane.active{display:block}
+@keyframes paneIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* 设施卡片 */
+#bld-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bld-card{
+  position:relative;border-radius:12px;padding:14px 14px 13px;overflow:hidden;
+  background:linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  border:1px solid rgba(255,255,255,.08);
+  transition:transform .18s ease,border-color .2s,box-shadow .2s;
+  display:flex;flex-direction:column;gap:10px;
+}
+.bld-card:hover{transform:translateY(-3px);border-color:rgba(127,214,176,.4);box-shadow:0 8px 24px rgba(0,0,0,.35),0 0 18px rgba(127,214,176,.08)}
+.bld-card .bc-head{display:flex;align-items:center;gap:10px}
+.bld-card .bc-ico{width:44px;height:44px;flex:none;display:grid;place-items:center;border-radius:10px;
+  background:radial-gradient(circle at 35% 30%,rgba(127,214,176,.22),rgba(127,214,176,.05));
+  border:1px solid rgba(127,214,176,.25)}
+.bld-card .bc-ico svg{width:28px;height:28px;color:var(--jade)}
+.bld-card.g-gold .bc-ico{background:radial-gradient(circle at 35% 30%,rgba(232,196,122,.22),rgba(232,196,122,.05));
+  border-color:rgba(232,196,122,.3)}
+.bld-card.g-gold .bc-ico svg{color:var(--gold)}
+.bld-card .bc-name{font-family:var(--font-display);font-size:16px;letter-spacing:2px}
+.bld-card .bc-lv{font-size:11px;color:var(--ink-dim);letter-spacing:1px;margin-top:2px}
+.bld-card .bc-desc{font-size:11.5px;color:var(--ink-faint);line-height:1.5;min-height:32px}
+.bld-card .bc-nums{display:flex;flex-direction:column;gap:4px;font-size:12px}
+.bld-card .bc-nums div{display:flex;justify-content:space-between;color:var(--ink-dim)}
+.bld-card .bc-nums b{color:var(--ink);font-variant-numeric:tabular-nums}
+.bld-card .bc-nums .up{color:var(--jade)}
+.bld-card .bc-nums.g-gold .up{color:var(--gold)}
+.upg-btn{
+  position:relative;margin-top:auto;padding:10px 0;border-radius:9px;
+  font-size:13.5px;letter-spacing:3px;font-family:var(--font-display);
+  color:#0a2419;font-weight:600;
+  background:linear-gradient(180deg,#9fe3c2,var(--jade-deep));
+  border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 3px 12px rgba(63,157,120,.35);
+  transition:all .15s;display:flex;flex-direction:column;gap:2px;align-items:center;
+  user-select:none;-webkit-tap-highlight-color:transparent;
+}
+.upg-btn .cost{font-family:var(--font-body);font-size:11px;letter-spacing:.5px;font-weight:500;
+  color:rgba(10,36,25,.8);display:flex;align-items:center;gap:4px}
+.upg-btn .cost svg{width:11px;height:11px}
+.upg-btn:hover{filter:brightness(1.08)}
+.upg-btn:active{transform:scale(.97)}
+.upg-btn:disabled{
+  cursor:not-allowed;filter:saturate(.25) brightness(.75);
+  background:linear-gradient(180deg,#3a4a46,#2c3a36);color:#7d8f8a;
+  border-color:rgba(255,255,255,.12);box-shadow:none;
+}
+.upg-btn:disabled .cost{color:var(--danger)}
+.bld-card.flash{animation:cardFlash .5s ease}
+@keyframes cardFlash{0%{box-shadow:0 0 0 rgba(127,214,176,0)}30%{box-shadow:0 0 26px var(--jade-glow)}100%{box-shadow:0 0 0 rgba(127,214,176,0)}}
+
+/* 任务 */
+.quest-group{margin-bottom:18px}
+.quest-group:last-child{margin-bottom:0}
+.qg-title{display:flex;align-items:center;gap:8px;margin-bottom:10px;
+  font-family:var(--font-display);font-size:13.5px;letter-spacing:3px;color:var(--ink)}
+.qg-title .qg-ico{width:20px;height:20px;display:grid;place-items:center;color:var(--jade)}
+.qg-title .qg-ico svg{width:16px;height:16px}
+.qg-title .qg-note{font-family:var(--font-body);font-size:10.5px;letter-spacing:1px;color:var(--ink-faint);margin-left:auto}
+.quest-card{
+  display:flex;align-items:center;gap:12px;padding:11px 14px;margin-bottom:8px;border-radius:10px;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+  transition:all .2s;flex-wrap:wrap;
+}
+.quest-card:last-child{margin-bottom:0}
+.quest-card .q-main{flex:1;min-width:180px;display:flex;flex-direction:column;gap:6px}
+.quest-card .q-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.quest-card .q-name{font-size:13.5px;letter-spacing:1px}
+.quest-card .q-desc{font-size:11px;color:var(--ink-faint)}
+.quest-card .q-prog{display:flex;align-items:center;gap:8px}
+.q-bar{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden;min-width:90px}
+.q-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--jade-deep),var(--jade));
+  transition:width .3s ease}
+.quest-card.done .q-bar i{background:linear-gradient(90deg,var(--gold-deep),var(--gold))}
+.q-num{font-size:10.5px;color:var(--ink-dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+.q-reward{font-size:11px;color:var(--gold);white-space:nowrap;display:flex;align-items:center;gap:4px}
+.q-reward svg{width:12px;height:12px}
+.q-btn{
+  padding:8px 18px;border-radius:8px;font-size:12.5px;letter-spacing:2px;white-space:nowrap;
+  font-family:var(--font-display);transition:all .15s;
+}
+.q-btn.can{
+  color:#0a2419;font-weight:600;background:linear-gradient(180deg,#f2ddA2,#d4a94f);
+  border:1px solid rgba(255,255,255,.35);box-shadow:0 0 14px var(--gold-glow);
+  animation:readyGlow 2s ease-in-out infinite;
+}
+.q-btn.can:active{transform:scale(.95)}
+.q-btn.wait{color:var(--ink-faint);border:1px solid rgba(255,255,255,.12);cursor:not-allowed}
+.q-btn.claimed{color:var(--jade);border:1px solid rgba(127,214,176,.4);cursor:default;background:rgba(127,214,176,.08)}
+.quest-card.done{border-color:rgba(232,196,122,.3);background:rgba(232,196,122,.05)}
+.quest-card.claimed-card{opacity:.62}
+
+/* 成就 */
+#achv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.achv-card{
+  padding:13px 12px;border-radius:12px;text-align:center;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  transition:all .2s;position:relative;overflow:hidden;
+}
+.achv-card .a-ico{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:var(--ink-faint)}
+.achv-card .a-ico svg{width:22px;height:22px}
+.achv-card .a-name{font-size:13px;letter-spacing:2px;font-family:var(--font-display)}
+.achv-card .a-desc{font-size:10.5px;color:var(--ink-faint);line-height:1.45;min-height:28px}
+.achv-card .a-reward{font-size:10.5px;color:var(--ink-faint)}
+.achv-card.unlocked{border-color:rgba(232,196,122,.45);
+  background:linear-gradient(170deg,rgba(232,196,122,.1),rgba(232,196,122,.02))}
+.achv-card.unlocked .a-ico{color:var(--gold);border-color:rgba(232,196,122,.5);
+  background:radial-gradient(circle at 40% 32%,rgba(232,196,122,.25),rgba(232,196,122,.06));
+  box-shadow:0 0 16px rgba(232,196,122,.2)}
+.achv-card.unlocked .a-name{color:var(--gold)}
+.achv-card.unlocked .a-reward{color:var(--gold)}
+.achv-card.unlocked::after{content:"已达成";position:absolute;top:8px;right:-22px;transform:rotate(35deg);
+  font-size:9.5px;letter-spacing:2px;padding:2px 26px;
+  background:linear-gradient(90deg,rgba(232,196,122,.25),rgba(232,196,122,.15));
+  border-bottom:1px solid rgba(232,196,122,.4)}
+.achv-card.locked .a-name{color:var(--ink-dim)}
+
+/* 日志页 */
+#log-page .lp-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+#log-full{max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding-right:4px}
+.lp-btns{display:flex;gap:10px;flex-wrap:wrap}
+.ghost-btn{
+  padding:9px 20px;border-radius:9px;font-size:13px;letter-spacing:2px;
+  border:1px solid rgba(255,255,255,.15);color:var(--ink-dim);background:rgba(255,255,255,.03);
+  transition:all .2s;font-family:var(--font-display);
+}
+.ghost-btn:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}
+.ghost-btn.danger{color:var(--danger);border-color:rgba(217,138,122,.35)}
+.ghost-btn.danger:hover{background:rgba(217,138,122,.1);border-color:rgba(217,138,122,.6)}
+.ghost-btn:active{transform:scale(.96)}
+
+/* ============ 弹窗 ============ */
+.modal-mask{
+  position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;
+  background:rgba(4,8,12,.72);backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;transition:opacity .25s;
+}
+.modal-mask.show{opacity:1;pointer-events:auto}
+.modal{
+  width:min(440px,100%);border-radius:16px;padding:26px 26px 22px;position:relative;
+  background:linear-gradient(165deg,#152435,#0d1723);
+  border:1px solid rgba(232,196,122,.35);
+  box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(127,214,176,.08);
+  transform:translateY(14px) scale(.97);transition:transform .3s cubic-bezier(.2,.9,.3,1.2);
+}
+.modal-mask.show .modal{transform:none}
+.modal .m-deco{position:absolute;top:0;left:24px;right:24px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.modal h2{
+  font-family:var(--font-display);font-size:20px;letter-spacing:6px;text-align:center;
+  color:var(--gold);margin-bottom:6px;
+}
+.modal .m-sub{text-align:center;font-size:12px;color:var(--ink-dim);letter-spacing:2px;margin-bottom:18px}
+.offline-rows{display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
+.offline-rows .or{
+  display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:10px;
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);font-size:13px;
+}
+.offline-rows .or b{font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.or.j b{color:var(--jade)} .or.g b{color:var(--gold)}
+.m-btns{display:flex;gap:10px}
+.m-btns .ghost-btn{flex:1;text-align:center}
+.m-btns .gold-btn{
+  flex:1;text-align:center;padding:11px 0;border-radius:9px;font-size:14px;letter-spacing:4px;
+  font-family:var(--font-display);color:#0a2419;font-weight:700;
+  background:linear-gradient(180deg,#f2dda2,#d4a94f);border:1px solid rgba(255,255,255,.4);
+  box-shadow:0 3px 16px var(--gold-glow);transition:all .15s;
+}
+.m-btns .gold-btn:hover{filter:brightness(1.07)}
+.m-btns .gold-btn:active{transform:scale(.96)}
+.settings-rows{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.set-row{
+  display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:10px;
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);font-size:13px;gap:10px;
+}
+.set-row .s-desc{font-size:10.5px;color:var(--ink-faint);margin-top:3px}
+.switch{position:relative;width:44px;height:24px;flex:none;cursor:pointer}
+.switch input{opacity:0;width:0;height:0;position:absolute}
+.switch .sl{
+  position:absolute;inset:0;border-radius:12px;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);transition:all .2s;
+}
+.switch .sl::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;
+  background:#93a5a1;transition:all .2s}
+.switch input:checked + .sl{background:rgba(63,157,120,.4);border-color:var(--jade)}
+.switch input:checked + .sl::after{left:22px;background:var(--jade);box-shadow:0 0 8px var(--jade-glow)}
+.confirm-box{padding:14px;border-radius:10px;background:rgba(217,138,122,.08);
+  border:1px solid rgba(217,138,122,.35);font-size:13px;line-height:1.7;color:#e8c0b6;margin-bottom:18px}
+
+/* ============ 提示 & 浮动数字 ============ */
+#toasts{position:fixed;top:18px;right:18px;z-index:80;display:flex;flex-direction:column;gap:9px;
+  pointer-events:none;max-width:min(340px,86vw)}
+.toast{
+  display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:11px;
+  background:linear-gradient(165deg,rgba(21,36,53,.97),rgba(13,23,35,.97));
+  border:1px solid rgba(232,196,122,.4);box-shadow:0 8px 26px rgba(0,0,0,.45),0 0 18px rgba(232,196,122,.1);
+  font-size:13px;letter-spacing:1px;
+  animation:toastIn .35s cubic-bezier(.2,.9,.3,1.2) both;
+}
+.toast.out{animation:toastOut .3s ease both}
+.toast .t-ico{width:24px;height:24px;flex:none;display:grid;place-items:center;color:var(--gold)}
+.toast .t-ico svg{width:20px;height:20px}
+.toast .t-body b{display:block;font-size:13px;color:var(--gold);letter-spacing:2px}
+.toast .t-body span{font-size:11px;color:var(--ink-dim)}
+.toast.jade{border-color:rgba(127,214,176,.45)}
+.toast.jade .t-ico{color:var(--jade)} .toast.jade .t-body b{color:var(--jade)}
+.toast.danger{border-color:rgba(217,138,122,.55)}
+.toast.danger .t-ico{color:var(--danger)} .toast.danger .t-body b{color:var(--danger)}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(40px)}}
+
+#fx-layer{position:fixed;inset:0;z-index:70;pointer-events:none;overflow:hidden}
+.float-num{
+  position:absolute;font-size:17px;font-weight:700;letter-spacing:1px;white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  animation:floatUp 1.15s ease-out forwards;text-shadow:0 0 10px rgba(0,0,0,.5);
+  will-change:transform,opacity;
+}
+.float-num.j{color:var(--jade)} .float-num.g{color:var(--gold)}
+.float-num.big{font-size:22px}
+@keyframes floatUp{
+  0%{opacity:0;transform:translate(-50%,0) scale(.7)}
+  14%{opacity:1;transform:translate(-50%,-14px) scale(1.08)}
+  100%{opacity:0;transform:translate(-50%,-86px) scale(1)}
+}
+.spark{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--jade);
+  animation:spark .8s ease-out forwards}
+@keyframes spark{0%{opacity:1;transform:translate(0,0) scale(1)}
+  100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2)}}
+
+/* 突破动画 */
+#break-overlay{
+  position:fixed;inset:0;z-index:90;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 50%,rgba(20,40,45,.55),rgba(4,8,12,.88));
+  opacity:0;pointer-events:none;transition:opacity .4s;
+}
+#break-overlay.show{opacity:1;pointer-events:auto}
+#break-overlay .bo-core{text-align:center;position:relative}
+#break-overlay .bo-ring{
+  position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;
+  border:2px solid rgba(232,196,122,.7);
+  animation:boRing 1.6s ease-out infinite;
+}
+#break-overlay .bo-ring.r2{animation-delay:.5s;border-color:rgba(127,214,176,.6)}
+@keyframes boRing{0%{transform:scale(.4);opacity:1}100%{transform:scale(2.6);opacity:0}}
+#break-overlay .bo-title{
+  font-family:var(--font-display);font-size:15px;letter-spacing:10px;text-indent:10px;
+  color:var(--ink-dim);margin-bottom:14px;animation:boFade 1s .2s both;
+}
+#break-overlay .bo-realm{
+  font-family:var(--font-display);font-size:52px;letter-spacing:12px;text-indent:12px;
+  color:var(--gold);text-shadow:0 0 30px var(--gold-glow),0 0 60px rgba(232,196,122,.4);
+  animation:boRealm 1.2s .35s cubic-bezier(.2,.9,.3,1.15) both;
+}
+#break-overlay .bo-reward{margin-top:18px;font-size:13px;letter-spacing:2px;color:var(--jade);
+  animation:boFade 1s 1s both}
+@keyframes boRealm{0%{opacity:0;transform:scale(.4)}70%{transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}
+@keyframes boFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+#break-overlay .bo-skip{margin-top:34px;font-size:12px;letter-spacing:3px;color:var(--ink-faint);
+  animation:boFade 1s 1.6s both}
+
+/* ============ 响应式 ============ */
+@media (max-width:980px){
+  #main{grid-template-columns:1fr}
+  #cult-stage{min-height:380px}
+  #bld-grid{grid-template-columns:1fr 1fr}
+  #achv-grid{grid-template-columns:repeat(3,1fr)}
+  #log-list{max-height:160px}
+}
+@media (max-width:640px){
+  #app{padding:10px 10px 22px;gap:10px}
+  #topbar{gap:10px;padding:10px 12px}
+  .brand h1{font-size:16px;letter-spacing:2px}
+  .brand .logo{width:34px;height:34px}
+  #res-bar{margin-left:0;width:100%;justify-content:stretch}
+  .res-item{flex:1;min-width:0;padding:6px 10px}
+  .res-item .r-val{font-size:14px}
+  #btn-breath{font-size:17px;letter-spacing:7px;text-indent:7px;padding:13px 0 12px}
+  #realm-name .r-text{font-size:21px}
+  #bld-grid{grid-template-columns:1fr}
+  #achv-grid{grid-template-columns:repeat(2,1fr)}
+  .tab-btn{padding:9px 12px 11px;font-size:13px;letter-spacing:1px}
+  .pane{padding:12px}
+  .quest-card .q-btn{width:100%;text-align:center}
+  .quest-card{flex-direction:column;align-items:stretch}
+  .quest-card .q-top{flex-wrap:wrap}
+  .q-reward{margin-left:0}
+  #break-overlay .bo-realm{font-size:36px;letter-spacing:6px;text-indent:6px}
+  #toasts{left:12px;right:12px;max-width:none;align-items:stretch}
+}
+.v2-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;padding:16px}.v2-card{padding:20px;border:1px solid var(--jade);border-radius:14px;background:rgba(30,60,50,.08);transition:transform .2s,box-shadow .2s}.v2-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px #64aa8822}.v2-card p{line-height:1.8;font-size:13px}.v2-card button{padding:10px 14px;margin:5px;border:1px solid var(--jade);border-radius:8px;background:transparent;color:inherit;cursor:pointer}.v2-card button:disabled{opacity:.4;cursor:not-allowed}.v2-root{position:fixed;inset:0;z-index:1000;background:#101d21ed;overflow:auto;padding:5vh 5vw;color:#eee}.v2-root h2,.v2-root>p{text-align:center}.v2-root .v2-card{border-color:var(--root-color);animation:v2-awake .6s ease-out}.v2-root button{color:var(--root-color)}@keyframes v2-awake{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}nav{overflow-x:auto}.tab-btn{flex-shrink:0}@media(max-width:600px){.v2-grid{grid-template-columns:1fr;padding:10px}.v2-root{padding:20px 10px}}
+/* 大面积背景模糊在移动滚动时会反复合成；使用静态柔和云色。 */
+.cloud{filter:none;background:radial-gradient(ellipse,rgba(150,190,180,.65),transparent 70%)}
+.is-scrolling #bg *,.is-scrolling .aura,.is-scrolling #btn-break,.is-scrolling #progress-fill::after{animation-play-state:paused!important}
+.is-scrolling #app *{backdrop-filter:none!important}
+@media (hover:none),(prefers-reduced-motion:reduce){
+  *{backdrop-filter:none!important}
+  .cloud,#particles span{animation:none!important}
+  .v2-card:hover{transform:none;box-shadow:none}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+  <!-- 背景氛围 -->
+  <div id="bg" aria-hidden="true">
+    <div class="moon"></div>
+    <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+    <div class="mtn mtn-far">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#16283a" d="M0,320 L0,220 L120,150 L240,210 L380,90 L520,190 L660,120 L820,230 L980,80 L1120,180 L1260,120 L1440,210 L1440,320 Z"/>
+        <path fill="#122130" d="M0,320 L0,260 L180,190 L330,250 L480,150 L640,240 L800,160 L960,260 L1140,150 L1300,240 L1440,180 L1440,320 Z"/>
+      </svg>
+    </div>
+    <div class="mtn mtn-near">
+      <svg viewBox="0 0 1440 240" preserveAspectRatio="none">
+        <path fill="#0d1824" d="M0,240 L0,180 L150,110 L300,170 L460,70 L620,160 L780,90 L940,180 L1100,80 L1260,160 L1440,100 L1440,240 Z"/>
+      </svg>
+    </div>
+    <div id="particles"></div>
+  </div>
+  <div id="vignette" aria-hidden="true"></div>
+
+  <div id="app">
+    <!-- 顶栏 -->
+    <header id="topbar">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="21" stroke="#7fd6b0" stroke-width="1.4" opacity=".5"/>
+          <path d="M24 8 C18 16 18 26 24 34 C30 26 30 16 24 8 Z" fill="#7fd6b0" opacity=".85"/>
+          <path d="M14 30 C18 24 30 24 34 30 C30 34 18 34 14 30 Z" fill="#e8c47a" opacity=".8"/>
+          <circle cx="24" cy="22" r="2.4" fill="#f2edd9"/>
+        </svg>
+        <div>
+          <h1>云岫<em>修仙录</em></h1>
+          <span id="realm-badge">炼气一层</span>
+        </div>
+      </div>
+      <div id="res-bar">
+        <div class="res-item res-cult" title="修为：用于境界突破">
+          <svg class="r-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3 C9 7.5 9 13 12 18 C15 13 15 7.5 12 3 Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M6.5 15.5 C8.5 12.5 15.5 12.5 17.5 15.5 C15.5 18 8.5 18 6.5 15.5 Z" stroke="currentColor" stroke-width="1.4" opacity=".8"/>
+          </svg>
+          <div class="r-main">
+            <span class="r-val" id="res-cult">0</span>
+            <span class="r-rate" id="rate-cult">+0/秒</span>
+          </div>
+        </div>
+        <div class="res-item res-stone" title="灵石：用于设施升级与突破">
+          <svg class="r-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3 L20 9 L12 21 L4 9 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M4 9 L20 9 M12 3 L9 9 L12 21 M12 3 L15 9 L12 21" stroke="currentColor" stroke-width="1" opacity=".6"/>
+          </svg>
+          <div class="r-main">
+            <span class="r-val" id="res-stone">0</span>
+            <span class="r-rate" id="rate-stone">+0/秒</span>
+          </div>
+        </div>
+      </div>
+      <button id="btn-settings" title="设置" aria-label="设置">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M12 2.8 L13.4 5.6 L16.6 4.6 L16.6 8 L19.8 7.4 L18.9 10.6 L22 12 L18.9 13.4 L19.8 16.6 L16.6 16 L16.6 19.4 L13.4 18.4 L12 21.2 L10.6 18.4 L7.4 19.4 L7.4 16 L4.2 16.6 L5.1 13.4 L2 12 L5.1 10.6 L4.2 7.4 L7.4 8 L7.4 4.6 L10.6 5.6 Z" stroke="currentColor" stroke-width="1.1" opacity=".75"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- 主区 -->
+    <main id="main">
+      <section id="cult-stage">
+        <div id="scene">
+          <div class="aura"></div>
+          <svg class="hero" viewBox="0 0 600 340" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+            <defs>
+              <linearGradient id="gFig" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#9fd8c0" stop-opacity=".95"/>
+                <stop offset="1" stop-color="#2c5c4c" stop-opacity=".9"/>
+              </linearGradient>
+              <linearGradient id="gMist" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#7fd6b0" stop-opacity="0"/>
+                <stop offset="1" stop-color="#7fd6b0" stop-opacity=".18"/>
+              </linearGradient>
+            </defs>
+            <!-- 远峰 -->
+            <path d="M40 340 L150 190 L250 340 Z" fill="#152739" opacity=".8"/>
+            <path d="M330 340 L470 150 L600 340 Z" fill="#132233" opacity=".8"/>
+            <!-- 平台 -->
+            <ellipse cx="300" cy="318" rx="150" ry="16" fill="#0f1c2a"/>
+            <ellipse cx="300" cy="314" rx="110" ry="11" fill="#1a2e40"/>
+            <!-- 修行者剪影（盘坐） -->
+            <g transform="translate(300,208)">
+              <circle cx="0" cy="-52" r="17" fill="url(#gFig)"/>
+              <path d="M-46 62 C-52 24 -34 6 -14 2 C-6 -2 6 -2 14 2 C34 6 52 24 46 62 C30 70 -30 70 -46 62 Z" fill="url(#gFig)"/>
+              <path d="M-14 2 C-20 -14 -12 -26 0 -30 C12 -26 20 -14 14 2 Z" fill="#b9ead2" opacity=".55"/>
+              <!-- 结印双手 -->
+              <ellipse cx="0" cy="34" rx="14" ry="8" fill="#cdeeda" opacity=".8"/>
+              <!-- 头部灵光 -->
+              <circle cx="0" cy="-52" r="26" fill="#7fd6b0" opacity=".14"/>
+            </g>
+            <!-- 灵气环 -->
+            <ellipse cx="300" cy="262" rx="96" ry="18" fill="none" stroke="#7fd6b0" stroke-opacity=".35" stroke-width="1.4" stroke-dasharray="6 8">
+              <animateTransform attributeName="transform" type="rotate" from="0 300 262" to="360 300 262" dur="26s" repeatCount="indefinite"/>
+            </ellipse>
+            <ellipse cx="300" cy="268" rx="120" ry="24" fill="url(#gMist)"/>
+          </svg>
+          <div id="realm-name">
+            <div class="r-label">当 前 境 界</div>
+            <div class="r-text" id="realm-display">炼气一层</div>
+          </div>
+        </div>
+        <div id="realm-panel">
+          <div id="progress-wrap">
+            <div id="progress"><div id="progress-fill"></div></div>
+            <div id="progress-text">修为 0 / 100</div>
+          </div>
+          <button id="btn-breath" type="button">
+            静心吐纳
+            <span class="b-sub" id="breath-yield">每次 +20 修为</span>
+          </button>
+          <button id="btn-break" type="button">
+            <span id="break-label">突 破</span>
+            <span class="bk-cost" id="break-cost">需 100 修为 · 10 灵石</span>
+          </button>
+        </div>
+      </section>
+
+      <aside id="side">
+        <div class="panel" id="stats-panel">
+          <h3>修行状态</h3>
+          <div class="stat-row"><span>修为速度</span><b class="j" id="st-cult-rate">+0/秒</b></div>
+          <div class="stat-row"><span>灵石速度</span><b class="g" id="st-stone-rate">+0/秒</b></div>
+          <div class="stat-row"><span>吐纳收益</span><b class="j" id="st-breath">+0 修为</b></div>
+          <div class="stat-row"><span>累计修为</span><b id="st-total-cult">0</b></div>
+          <div class="stat-row"><span>累计灵石</span><b class="g" id="st-total-stone">0</b></div>
+          <div class="stat-row"><span>吐纳次数</span><b id="st-breaths">0</b></div>
+          <div class="stat-row"><span>修炼时长</span><b id="st-time">0 分钟</b></div>
+        </div>
+        <div class="panel" id="log-panel">
+          <h3>修 练 录</h3>
+          <ul id="log-list"></ul>
+        </div>
+      </aside>
+    </main>
+
+    <!-- 底部：洞府 / 历练 / 成就 / 日志 -->
+    <section id="bottom">
+      <nav id="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="cave" type="button">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 21 L12 4 L21 21 Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 21 C9 16 15 16 16 21" stroke="currentColor" stroke-width="1.4"/></svg>
+          洞府
+        </button>
+        <button class="tab-btn" data-tab="quest" type="button">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3 L18 3 M6 7 L18 7 M6 3 C4 3 4 7 6 7 M18 3 C20 3 20 7 18 7" stroke="currentColor" stroke-width="1.5"/><path d="M9 11 L11 19 L15 11 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          历练<span class="tab-badge hidden" id="quest-badge">0</span>
+        </button>
+        <button class="tab-btn" data-tab="achv" type="button">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="9" r="5.5" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 13.5 L7 21 L12 18.5 L17 21 L15.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          成就
+        </button>
+        <button class="tab-btn" data-tab="log" type="button">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4 L19 4 L19 20 L5 20 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 9 L16 9 M8 13 L16 13 M8 17 L12 17" stroke="currentColor" stroke-width="1.3"/></svg>
+          日志
+        </button>
+      <button class="tab-btn" data-tab="technique" type="button">功法</button><button class="tab-btn" data-tab="expedition" type="button">秘境</button><button class="tab-btn" data-tab="alchemy" type="button">丹房</button></nav>
+
+      <div id="tab-panes"><div class="pane" id="pane-technique" role="tabpanel"><div id="v2-technique" class="v2-grid"></div></div><div class="pane" id="pane-expedition" role="tabpanel"><div id="v2-expedition" class="v2-grid"></div></div><div class="pane" id="pane-alchemy" role="tabpanel"><div id="v2-alchemy" class="v2-grid"></div></div>
+        <!-- 洞府设施 -->
+        <div class="pane active" id="pane-cave" role="tabpanel">
+          <div id="bld-grid">
+            <div class="bld-card" id="bld-array">
+              <div class="bc-head">
+                <div class="bc-ico">
+                  <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                    <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.6"/>
+                    <circle cx="16" cy="16" r="6.5" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 3"/>
+                    <path d="M16 4 L18 14 L16 28 L14 14 Z" fill="currentColor" opacity=".7"/>
+                    <path d="M4 16 L14 14 L28 16 L14 18 Z" fill="currentColor" opacity=".35"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="bc-name">聚灵阵</div>
+                  <div class="bc-lv">等级 <b id="lv-array">0</b></div>
+                </div>
+              </div>
+              <div class="bc-desc">引天地灵气入阵，持续催生修为。</div>
+              <div class="bc-nums">
+                <div><span>当前加成</span><b id="cur-array">+0 修为/秒</b></div>
+                <div><span>下级加成</span><b class="up" id="nxt-array">+0 修为/秒</b></div>
+              </div>
+              <button class="upg-btn" id="upg-array" type="button">
+                升 级
+                <span class="cost"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L20 9 L12 21 L4 9 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span id="cost-array">10</span> 灵石</span>
+              </button>
+            </div>
+
+            <div class="bld-card g-gold" id="bld-vein">
+              <div class="bc-head">
+                <div class="bc-ico">
+                  <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                    <path d="M6 26 C10 18 14 22 18 12 C21 5 24 8 27 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M10 28 C13 24 15 26 17 20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".6"/>
+                    <path d="M22 24 L25 18 M16 27 L14 22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".6"/>
+                    <circle cx="27" cy="4" r="2" fill="currentColor"/>
+                    <circle cx="18" cy="12" r="1.6" fill="currentColor" opacity=".8"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="bc-name">灵脉</div>
+                  <div class="bc-lv">等级 <b id="lv-vein">0</b></div>
+                </div>
+              </div>
+              <div class="bc-desc">开辟山中灵脉，昼夜不息地凝练灵石。</div>
+              <div class="bc-nums g-gold">
+                <div><span>当前产出</span><b id="cur-vein">+0 灵石/秒</b></div>
+                <div><span>下级产出</span><b class="up" id="nxt-vein">+0 灵石/秒</b></div>
+              </div>
+              <button class="upg-btn" id="upg-vein" type="button">
+                升 级
+                <span class="cost"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L20 9 L12 21 L4 9 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span id="cost-vein">15</span> 灵石</span>
+              </button>
+            </div>
+
+            <div class="bld-card" id="bld-alchemy">
+              <div class="bc-head">
+                <div class="bc-ico">
+                  <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                    <path d="M13 4 L19 4 M14 4 L14 12 C8 14 6 20 8 25 C10 29 22 29 24 25 C26 20 24 14 18 12 L18 4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                    <circle cx="13" cy="21" r="1.8" fill="currentColor" opacity=".8"/>
+                    <circle cx="19" cy="24" r="1.3" fill="currentColor" opacity=".6"/>
+                    <path d="M12 1 L14 4 M16 0.5 L16 4 M20 1 L18 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="bc-name">炼丹房</div>
+                  <div class="bc-lv">等级 <b id="lv-alchemy">0</b></div>
+                </div>
+              </div>
+              <div class="bc-desc">温养丹火，提升静心吐纳的吐纳收益。</div>
+              <div class="bc-nums">
+                <div><span>当前增幅</span><b id="cur-alchemy">+0% 吐纳</b></div>
+                <div><span>下级增幅</span><b class="up" id="nxt-alchemy">+0% 吐纳</b></div>
+              </div>
+              <button class="upg-btn" id="upg-alchemy" type="button">
+                升 级
+                <span class="cost"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L20 9 L12 21 L4 9 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span id="cost-alchemy">40</span> 灵石</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 历练任务 -->
+        <div class="pane" id="pane-quest" role="tabpanel">
+          <div id="quest-list"></div>
+        </div>
+
+        <!-- 成就 -->
+        <div class="pane" id="pane-achv" role="tabpanel">
+          <div id="achv-grid"></div>
+        </div>
+
+        <!-- 日志与存档 -->
+        <div class="pane" id="pane-log" role="tabpanel">
+          <div id="log-page">
+            <div class="lp-row">
+              <div>
+                <div style="font-family:var(--font-display);letter-spacing:3px;font-size:14px">历 练 志</div>
+                <div style="font-size:11px;color:var(--ink-faint);margin-top:4px">所有重要事件都会记录于此，随存档保留。</div>
+              </div>
+              <div class="lp-btns">
+                <button class="ghost-btn" id="btn-save-now" type="button">保存进度</button>
+                <button class="ghost-btn danger" id="btn-reset" type="button">重置游戏</button>
+              </div>
+            </div>
+            <div id="log-full"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 浮动提示 -->
+  <div id="toasts" aria-live="polite"></div>
+  <div id="fx-layer" aria-hidden="true"></div>
+
+  <!-- 离线收益弹窗 -->
+  <div class="modal-mask" id="modal-offline" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="m-deco"></div>
+      <h2>归 山 收 获</h2>
+      <div class="m-sub" id="off-time">离线 0 分钟</div>
+      <div class="offline-rows">
+        <div class="or j"><span>修为</span><b id="off-cult">+0</b></div>
+        <div class="or g"><span>灵石</span><b id="off-stone">+0</b></div>
+        <div class="or"><span>生产效率</span><b id="off-rate">修为 0/秒 · 灵石 0/秒</b></div>
+      </div>
+      <div class="m-btns">
+        <button class="gold-btn" id="btn-off-claim" type="button">领 取 收 获</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 设置弹窗 -->
+  <div class="modal-mask" id="modal-settings" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="m-deco"></div>
+      <h2>设 置</h2>
+      <div class="m-sub">云岫修仙录 · 本地存档</div>
+      <div class="settings-rows">
+        <div class="set-row">
+          <div>
+            <div>音效</div>
+            <div class="s-desc">界面交互与突破的提示音（本地合成，无需联网）</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="set-sound" checked>
+            <span class="sl"></span>
+          </label>
+        </div>
+        <div class="set-row">
+          <div>
+            <div>存档</div>
+            <div class="s-desc" id="set-save-info">每 30 秒自动保存，关闭页面时自动保存</div>
+          </div>
+          <button class="ghost-btn" id="btn-save-setting" type="button">立即保存</button>
+        </div>
+        <div class="set-row">
+          <div>
+            <div>重置游戏</div>
+            <div class="s-desc">清空全部进度，此操作不可恢复</div>
+          </div>
+          <button class="ghost-btn danger" id="btn-reset-setting" type="button">重置</button>
+        </div>
+      </div>
+      <div id="reset-confirm" class="confirm-box hidden">
+        确定要清空全部修行进度吗？<br>
+        所有境界、设施、任务与成就都将归零，且<b>无法恢复</b>。
+        <div class="m-btns" style="margin-top:14px">
+          <button class="ghost-btn" id="btn-reset-cancel" type="button">再想想</button>
+          <button class="gold-btn" id="btn-reset-confirm" type="button" style="background:linear-gradient(180deg,#e8a794,#c06a55);box-shadow:0 3px 16px rgba(217,138,122,.4)">确认重置</button>
+        </div>
+      </div>
+      <div class="m-btns" id="settings-foot">
+        <button class="ghost-btn" id="btn-settings-close" type="button" style="flex:1">关 闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 突破动画 -->
+  <div id="break-overlay" aria-hidden="true">
+    <div class="bo-core">
+      <div class="bo-ring"></div>
+      <div class="bo-ring r2"></div>
+      <div class="bo-title">突 破 成 功</div>
+      <div class="bo-realm" id="bo-realm">筑基初期</div>
+      <div class="bo-reward" id="bo-reward">突破奖励 +50 灵石</div>
+      <div class="bo-skip">（ 点 击 任 意 处 继 续 ）</div>
+    </div>
+  </div>
+  </div>
+</body>
+<div id="v2-root" class="v2-root" style="display:none" role="dialog" aria-modal="true" aria-label="灵根觉醒"></div><script>
+'use strict';
+/* ================================================================
+ * 云岫修仙录 —— 单文件放置修仙
+ * 模块：GameConfig / GameState / NumberFormat / ResourceSystem / BuffSystem
+ *      Rates / SaveSystem / GameEngine / CultivationSystem / UpgradeSystem
+ *      QuestSystem / AchievementSystem / Effects / UI / Game
+ * 原则：所有数值先改 GameState，再触发 UI 渲染；收益统一由 Rates 计算。
+ * ================================================================ */
+
+/* ---------------- 配置 ---------------- */
+const GameConfig = {
+  SAVE_KEY: 'yunxiu_xiuxian_save_v1',
+  SAVE_VERSION: 2,
+  OFFLINE_CAP_SEC: 8 * 3600,      // 离线收益上限 8 小时
+  OFFLINE_MIN_SEC: 5,             // 少于 5 秒不结算离线收益
+  AUTOSAVE_MS: 30 * 1000,
+  TICK_MS: 100,
+  UI_REFRESH_MS: 300,
+  SCROLL_IDLE_MS: 180,
+  LOG_MAX: 60,
+  BASE: {
+    cultPerSec: 1,        // 基础修为/秒
+    stonePerSec: 0.5,     // 基础灵石/秒
+    breathCult: 20,       // 吐纳基础修为
+    breathStone: 4,       // 吐纳基础灵石
+  },
+  REALM_MULT_PER_STAGE: 0.25,    // 每提升一阶，全局产出 ×(1 + 0.25×阶数)
+
+  /* 境界表：stage i 的 needCult/needStone 是突破到 stage i+1 的门槛 */
+  REALMS: [
+    { name: '炼气一层', needCult: 1e2,      needStone: 1e1 },
+    { name: '炼气二层', needCult: 3e2,      needStone: 3e1 },
+    { name: '炼气三层', needCult: 9e2,      needStone: 9e1 },
+    { name: '炼气四层', needCult: 2.5e3,    needStone: 2.5e2 },
+    { name: '炼气五层', needCult: 7e3,      needStone: 7e2 },
+    { name: '炼气六层', needCult: 2e4,      needStone: 2e3 },
+    { name: '炼气七层', needCult: 5.5e4,    needStone: 6e3 },
+    { name: '炼气八层', needCult: 1.5e5,    needStone: 1.5e4 },
+    { name: '炼气九层', needCult: 4e5,      needStone: 4e4 },
+    { name: '筑基初期', needCult: 1e6,      needStone: 1e5 },
+    { name: '筑基中期', needCult: 2.5e6,    needStone: 2.5e5 },
+    { name: '筑基后期', needCult: 6e6,      needStone: 6e5 },
+    { name: '金丹初期', needCult: 1.5e7,    needStone: 1.5e6 },
+    { name: '金丹中期', needCult: 4e7,      needStone: 4e6 },
+    { name: '金丹后期', needCult: 1e8,      needStone: 1e7 },
+    { name: '元婴初期', needCult: 2.5e8,    needStone: 2.5e7 },
+    { name: '元婴中期', needCult: 6.5e8,    needStone: 6.5e7 },
+    { name: '元婴后期', needCult: 1.6e9,    needStone: 1.6e8 },
+    { name: '化神初期', needCult: 4e9,      needStone: 4e8 },
+    { name: '化神中期', needCult: 1e10,     needStone: 1e9 },
+    { name: '化神后期', needCult: Infinity, needStone: Infinity }, // 境界之巅
+  ],
+  BREAK_REWARD_RATIO: 0.5,       // 突破奖励 = 门槛灵石的 50%
+
+  /* 设施：cost(level) = ceil(baseCost * growth^level) */
+  BUILDINGS: {
+    array:   { name: '聚灵阵', baseCost: 10, growth: 1.15, perLevel: 2,   type: 'cult'   },
+    vein:    { name: '灵脉',   baseCost: 15, growth: 1.15, perLevel: 0.5, type: 'stone'  },
+    alchemy: { name: '炼丹房', baseCost: 40, growth: 1.18, perLevel: 0.1, type: 'breath' },
+  },
+
+  /* ---- V2：五行灵根（一次性觉醒，五选一；pct 为加成百分比） ---- */
+  SPIRIT_ROOTS: {
+    metal: { name: '金灵根', affects: 'stone',     pct: 12, color: '#e8c47a', quality: '天赋', icon: '◆', direction: '资源发展', description: '金气凝财，聚四方灵石。' },
+    wood:  { name: '木灵根', affects: 'cult',      pct: 12, color: '#8fd98a', quality: '天赋', icon: '❀', direction: '自动修炼', description: '生机绵延，修为日积月累。' },
+    water: { name: '水灵根', affects: 'offline',   pct: 15, color: '#6cc4e8', quality: '天赋', icon: '≈', direction: '放置发展', description: '流水不息，归来收获更丰。' },
+    fire:  { name: '火灵根', affects: 'breath',    pct: 20, color: '#e88a5a', quality: '天赋', icon: '焰', direction: '主动修炼', description: '心火炽盛，吐纳更进一步。' },
+    earth: { name: '土灵根', affects: 'buildCost', pct: 10, color: '#c9a86a', quality: '天赋', icon: '山', direction: '洞府建设', description: '厚土载物，建设更加从容。' },
+  },
+  SPIRIT_ROOT_ORDER: ['metal', 'wood', 'water', 'fire', 'earth'],
+
+  /* ---- V2：功法（境界 + 残卷解锁；至多装备 1 个；等级 1..5） ---- */
+  TECHNIQUES: {
+    qingmu: { name: '青木长生诀', quality: '普通', affects: 'cult',   bonuses: [12, 16, 20, 24, 30], unlockStage: 2,  unlockFragments: 5 },
+    taihu:  { name: '太虚纳灵诀', quality: '优秀', affects: 'breath', bonuses: [25, 30, 35, 40, 45], unlockStage: 9,  unlockFragments: 15 },
+    thoutu: { name: '厚土聚宝诀', quality: '稀有', affects: 'stone',  bonuses: [12, 16, 20, 24, 30], unlockStage: 12, unlockFragments: 25 },
+  },
+  TECH_MAX_LEVEL: 5,
+  /* 等级 n → n+1 的升级成本（1→2 … 4→5 共 4 档） */
+  TECH_UPGRADE_COSTS: [
+    { stone: 300,  herbs: 6 },
+    { stone: 800,  herbs: 14, demonCores: 2 },
+    { stone: 2000, herbs: 24, demonCores: 5 },
+    { stone: 5000, herbs: 40, demonCores: 10 },
+  ],
+
+  /* ---- V2：秘境历练（奖励在开始时一次性生成并存档，领取不再重算） ---- */
+  EXPLORATION_ROUTES: {
+    balanced:{name:'稳步探索',time:1,material:1,stone:1,desc:'原有时长与奖励，均衡发展'},
+    gather:{name:'寻药采集',time:1.25,material:1.6,stone:0.7,desc:'耗时 +25%，材料 +60%，灵石 -30%'},
+    study:{name:'访古寻卷',time:1.5,material:1,stone:0.8,fragments:2,desc:'耗时 +50%，残卷翻倍，灵石 -20%'}
+  },
+  EXPLORATION_EVENTS: [
+    {name:'雾中药圃',desc:'山雾散开，一处古老药圃显露。采摘外围灵草，还是踏入阵法深处？',safe:{herbs:3},risk:{herbs:10,fragments:1}},
+    {name:'无名石碑',desc:'石碑记载着残缺功法。抄录表层文字，还是以神识探查碑心？',safe:{fragments:1},risk:{fragments:4,demonCores:1}},
+    {name:'山中灵兽',desc:'一只灵兽守着遗落的行囊。拾取散落物资，还是尝试接近它？',safe:{stone:30},risk:{stone:100,demonCores:2}}
+  ],
+  EXPLORATION_RISK_CHANCE:0.55,
+  EXPLORATION_PILL_CHANCE:0.15,
+  EXPEDITION_DURATIONS: { short: 60, mid: 300, long: 900 },
+  EXPEDITIONS: {
+    lingcaogu: { name: '灵草谷', unlockStage: 2, rewards: {
+      short: { herbs: 4, stone: 15 },
+      mid:   { herbs: 10, fragments: 1, stone: 40 },
+      long:  { herbs: 24, fragments: 2, stone: 100 },
+    } },
+    guxiu:     { name: '古修遗府', unlockStage: 9, rewards: {
+      short: { herbs: 3, fragments: 1, stone: 60 },
+      mid:   { herbs: 8, fragments: 2, stone: 140 },
+      long:  { herbs: 16, fragments: 4, stone: 320 },
+    } },
+    youshan:   { name: '妖兽山脉', unlockStage: 12, rewards: {
+      short: { herbs: 4, demonCores: 1, stone: 120 },
+      mid:   { herbs: 10, demonCores: 2, fragments: 1, stone: 280 },
+      long:  { herbs: 20, demonCores: 4, fragments: 2, stone: 600 },
+    } },
+  },
+  /* 历练奖励的境界缩放与抖动（以 startedAt 为固定种子，结果确定） */
+  EXPEDITION_REALM_SCALE: { perStage: 0.02, cap: 2.5, jitter: 0.1 },
+
+  /* ---- V2：炼丹（增益用 expiresAt 绝对时间戳；刷新不叠加） ---- */
+  PILLS: {
+    juqi:   { name: '聚气丹', quality: '普通', cost: { herbs: 3 },                    affects: 'cult',   bonusPct: 30, durationMs: 600000 },
+    nshen:  { name: '凝神丹', quality: '优秀', cost: { herbs: 2, demonCores: 1 },     affects: 'breath', bonusPct: 50, durationMs: 600000 },
+    naling: { name: '纳灵丹', quality: '稀有', cost: { herbs: 2, demonCores: 2 },     affects: 'stone',  bonusPct: 30, durationMs: 600000 },
+  },
+  PILL_ORDER: ['juqi', 'nshen', 'naling'],
+
+  /* 任务：metric 为 QuestSystem.metric() 识别的指标名 */
+  QUESTS: [
+    {id:'g9',cat:'growth',name:'机缘由心',desc:'解决 5 次秘境机缘',metric:'encountersResolved',target:5,reward:{stone:800,cult:1200}},
+    { id: 'g1', cat: 'growth',   name: '初入仙途', desc: '完成 1 次静心吐纳',        metric: 'breathCount',   target: 1,     reward: { stone: 20 } },
+    { id: 'g2', cat: 'growth',   name: '修为有成', desc: '累计获得 1 万修为',        metric: 'totalCult',     target: 1e4,   reward: { stone: 200, cult: 500 } },
+    { id: 'g3', cat: 'growth',   name: '筑基之路', desc: '突破至筑基初期',          metric: 'stage',         target: 9,     reward: { stone: 1000, cult: 2000 } },
+    { id: 'g4', cat: 'growth',   name: '阵法小成', desc: '聚灵阵达到 5 级',          metric: 'bldArray',      target: 5,     reward: { stone: 500 } },
+    { id: 'd1', cat: 'daily',    name: '晨昏吐纳', desc: '今日完成 30 次吐纳',       metric: 'dailyBreath',   target: 30,    reward: { stone: 100, cult: 300 } },
+    { id: 'd2', cat: 'daily',    name: '今日修行', desc: '今日获得 5000 修为',       metric: 'dailyCult',     target: 5e3,   reward: { stone: 150 } },
+    { id: 'd3', cat: 'daily',    name: '精进洞府', desc: '今日升级任意设施 1 次',    metric: 'dailyUpgrade',  target: 1,     reward: { stone: 100 } },
+    { id: 'c1', cat: 'challenge',name: '金丹大道', desc: '突破至金丹初期',          metric: 'stage',         target: 12,    reward: { stone: 5000, cult: 1e4 } },
+    { id: 'c2', cat: 'challenge',name: '灵脉贯通', desc: '灵脉达到 10 级',           metric: 'bldVein',       target: 10,    reward: { stone: 3000, cult: 5e4 } },
+    { id: 'c3', cat: 'challenge',name: '灵石百万', desc: '累计获得 100 万灵石',      metric: 'totalStone',    target: 1e6,   reward: { stone: 2e4 } },
+    /* ---- V2：与灵根/功法/秘境/炼丹联动 ---- */
+    { id: 'g5', cat: 'growth',   name: '灵根觉醒', desc: '完成首次灵根觉醒',        metric: 'rootAwakened',        target: 1,     reward: { stone: 300 } },
+    { id: 'g6', cat: 'growth',   name: '功法初成', desc: '装备一本功法',            metric: 'techniqueEquipped',   target: 1,     reward: { stone: 400, cult: 800 } },
+    { id: 'g7', cat: 'growth',   name: '秘境初探', desc: '完成第一次秘境历练',      metric: 'expeditionCompleted', target: 1,     reward: { stone: 500, cult: 1000 } },
+    { id: 'g8', cat: 'growth',   name: '丹炉初热', desc: '成功炼制一枚丹药',        metric: 'pillsCrafted',        target: 1,     reward: { stone: 500 } },
+    { id: 'd4', cat: 'daily',    name: '两番历练', desc: '今日完成 2 次秘境历练',   metric: 'dailyExpedition',     target: 2,     reward: { stone: 200 } },
+    { id: 'd5', cat: 'daily',    name: '灵草入囊', desc: '今日获得 5 株灵草',       metric: 'dailyHerbs',          target: 5,     reward: { stone: 150, cult: 200 } },
+    { id: 'd6', cat: 'daily',    name: '炼丹一次', desc: '今日炼制 1 枚丹药',       metric: 'dailyCraft',          target: 1,     reward: { stone: 150 } },
+    { id: 'd7', cat: 'daily',    name: '服用丹药', desc: '今日服用 1 枚丹药',       metric: 'dailyPillUsed',       target: 1,     reward: { stone: 120 } },
+    { id: 'c4', cat: 'challenge',name: '功法大成', desc: '任一功法达到 5 级',       metric: 'techMaxLevel',        target: 5,     reward: { stone: 8000, cult: 2e4 } },
+    { id: 'c5', cat: 'challenge',name: '妖丹百枚', desc: '累计收集 100 枚妖丹',     metric: 'demonCoresTotal',     target: 100,   reward: { stone: 6000, cult: 15000 } },
+    { id: 'c6', cat: 'challenge',name: '秘境全开', desc: '解锁全部 3 处秘境',       metric: 'expeditionsUnlocked', target: 3,     reward: { stone: 20000, cult: 50000 } },
+    { id: 'c7', cat: 'challenge',name: '功法收藏', desc: '解锁全部功法',            metric: 'techniquesUnlocked',  target: 3,     reward: { stone: 30000, cult: 1e5 } },
+  ],
+  QUEST_CATS: [
+    { key: 'growth',    label: '成长任务' },
+    { key: 'daily',     label: '每日任务' },
+    { key: 'challenge', label: '挑战任务' },
+  ],
+
+  /* 成就：cond 为 AchievementSystem.CONDS 中的断言函数 */
+  ACHIEVEMENTS: [
+    { id: 'a1', name: '初入仙途', desc: '完成第一次吐纳',       cond: 'breath1',   reward: { stone: 50 } },
+    { id: 'a2', name: '首次突破', desc: '完成第一次境界突破',   cond: 'break1',    reward: { cult: 500 } },
+    { id: 'a3', name: '持之以恒', desc: '累计修炼 1 小时',      cond: 'time1h',    reward: { stone: 1000 } },
+    { id: 'a4', name: '道行深厚', desc: '累计获得 100 万修为',  cond: 'cult1m',    reward: { stone: 5000 } },
+    { id: 'a5', name: '洞府初成', desc: '设施总等级达到 15',    cond: 'bld15',     reward: { cult: 2e4 } },
+    { id: 'a6', name: '小有家产', desc: '累计获得 10 万灵石',   cond: 'stone100k', reward: { stone: 2000 } },
+    { id: 'a7', name: '金丹大道', desc: '突破至金丹期',         cond: 'stage12',   reward: { stone: 2e4 } },
+    { id: 'a8', name: '化神之境', desc: '突破至化神期',         cond: 'stage18',   reward: { stone: 2e5 } },
+    /* ---- V2：灵根/功法/秘境/炼丹成就 ---- */
+    { id: 'a9',  name: '五行初窥',   desc: '完成首次灵根觉醒',     cond: 'root1',      reward: { stone: 300, cult: 300 } },
+    { id: 'a10', name: '功法入门',   desc: '解锁第一本功法',       cond: 'tech1',      reward: { stone: 500 } },
+    { id: 'a11', name: '秘境探索者', desc: '完成第一次秘境历练',   cond: 'expedition1', reward: { stone: 400, cult: 400 } },
+    { id: 'a12', name: '丹道初成',   desc: '成功炼制第一枚丹药',   cond: 'pill1',      reward: { stone: 400 } },
+    { id: 'a13', name: '百炉丹师',   desc: '累计炼制 100 枚丹药',  cond: 'pill100',    reward: { stone: 1e5, cult: 5e4 } },
+    { id: 'a14', name: '洞天寻宝人', desc: '累计收集 100 枚妖丹',  cond: 'demon100',   reward: { stone: 80000 } },
+  ],
+};
+
+/* ---------------- 状态 ---------------- */
+const GameState = {
+  state: null,
+  defaultState() {
+    return {
+      version: GameConfig.SAVE_VERSION,
+      realm: { stage: 0, cult: 0 },                 // stage 当前境界序号；cult 当前阶段修为
+      resources: { stone: 0, herbs: 0, demonCores: 0, fragments: 0 },
+      buildings: { array: 0, vein: 0, alchemy: 0 },
+      stats: {
+        totalCult: 0, totalStone: 0,
+        breathCount: 0, upgradeCount: 0, breakthroughCount: 0, playTimeSec: 0,
+        herbsTotal: 0, demonCoresTotal: 0, fragmentsTotal: 0,
+        expeditionsCompleted: 0, pillsCrafted: 0, pillsUsed: 0,
+      },
+      quests: {
+        claimed: {},                 // {questId: true}
+        dailyDate: '',               // 本地日期 YYYY-MM-DD
+        daily: { breath: 0, cult: 0, upgrade: 0, expedition: 0, herbs: 0, craft: 0, pillUsed: 0 },
+      },
+      achievements: { unlocked: [] },
+      cultivation: {                /* V2：灵根 + 功法 */
+        rootId: null,               /* null = 尚未觉醒 */
+        equippedTechnique: null,
+        techniques: {},             /* {id: {unlocked: true, level: 1..5}} */
+      },
+      alchemy: {                   /* V2：丹药库存 + 生效增益 */
+        inventory: {},              /* {pillId: count} */
+        activeBuffs: {},            /* {affects: {pill, expiresAt}} */
+      },
+      expedition: {                /* V2：秘境历练（真实时间戳） */
+        active: null,               /* {id, durKey, startedAt, endsAt, rewards, claimed} */
+        completedCount: 0,
+      },
+      exploration:{route:'balanced',encounter:null,resolved:0},
+      settings: { sound: true },
+      pendingOffline: null,          // { seconds, cult, stone }
+      log: [],                       // [{ t, msg, gold }]
+      lastSaved: 0,
+    };
+  },
+  /* 用默认值兜底合并存档，缺字段不炸游戏 */
+  mergeSaved(raw) {
+    const s = this.defaultState();
+    if (!raw || typeof raw !== 'object') return s;
+    const r = raw.realm || {};
+    s.realm.stage = Number.isFinite(r.stage) ? Math.max(0, Math.min(r.stage, GameConfig.REALMS.length - 1)) : 0;
+    s.realm.cult = Number.isFinite(r.cult) && r.cult > 0 ? r.cult : 0;
+    const res = raw.resources || {};
+    const resNum = (v) => (Number.isFinite(v) && v > 0) ? Math.floor(v) : 0;
+    s.resources.stone = Number.isFinite(res.stone) && res.stone > 0 ? res.stone : 0;
+    s.resources.herbs = resNum(res.herbs);
+    s.resources.demonCores = resNum(res.demonCores);
+    s.resources.fragments = resNum(res.fragments);
+    const b = raw.buildings || {};
+    for (const k of Object.keys(s.buildings)) {
+      s.buildings[k] = Number.isFinite(b[k]) && b[k] > 0 ? Math.floor(b[k]) : 0;
+    }
+    const d = this.defaultState().stats;
+    const st = raw.stats || {};
+    for (const k of Object.keys(d)) {
+      s.stats[k] = Number.isFinite(st[k]) && st[k] > 0 ? st[k] : 0;
+    }
+    const q = raw.quests || {};
+    s.quests.claimed = (q.claimed && typeof q.claimed === 'object') ? q.claimed : {};
+    s.quests.dailyDate = typeof q.dailyDate === 'string' ? q.dailyDate : '';
+    const dq = q.daily || {};
+    const dnum = (v) => (Number.isFinite(v) && v > 0) ? Math.floor(v) : 0;
+    s.quests.daily = {
+      breath: dnum(dq.breath),
+      cult: dnum(dq.cult),
+      upgrade: dnum(dq.upgrade),
+      expedition: dnum(dq.expedition),
+      herbs: dnum(dq.herbs),
+      craft: dnum(dq.craft),
+      pillUsed: dnum(dq.pillUsed),
+    };
+    const a = raw.achievements || {};
+    s.achievements.unlocked = Array.isArray(a.unlocked)
+      ? a.unlocked.filter(x => typeof x === 'string').slice(0, 64) : [];
+    const set = raw.settings || {};
+    s.settings.sound = set.sound !== false;
+    /* ---- V2 字段合并（缺失/脏值一律回退安全默认） ---- */
+    const cv = raw.cultivation || {};
+    s.cultivation.rootId = (typeof cv.rootId === 'string' && GameConfig.SPIRIT_ROOTS[cv.rootId]) ? cv.rootId : null;
+    const techs = (cv.techniques && typeof cv.techniques === 'object') ? cv.techniques : {};
+    const cleanTechs = {};
+    for (const id of Object.keys(GameConfig.TECHNIQUES)) {
+      const t = techs[id];
+      if (t && t.unlocked === true) {
+        const lv = Number.isFinite(t.level) ? Math.max(1, Math.min(GameConfig.TECH_MAX_LEVEL, Math.floor(t.level))) : 1;
+        cleanTechs[id] = { unlocked: true, level: lv };
+      }
+    }
+    s.cultivation.techniques = cleanTechs;
+    s.cultivation.equippedTechnique = (cv.equippedTechnique && cleanTechs[cv.equippedTechnique]) ? cv.equippedTechnique : null;
+    const al = raw.alchemy || {};
+    const inv = (al.inventory && typeof al.inventory === 'object') ? al.inventory : {};
+    const cleanInv = {};
+    for (const id of Object.keys(GameConfig.PILLS)) {
+      if (Number.isFinite(inv[id]) && inv[id] > 0) cleanInv[id] = Math.floor(inv[id]);
+    }
+    s.alchemy.inventory = cleanInv;
+    const buffs = (al.activeBuffs && typeof al.activeBuffs === 'object') ? al.activeBuffs : {};
+    const cleanBuffs = {};
+    for (const key of Object.keys(buffs)) {
+      const bf = buffs[key];
+      if (bf && GameConfig.PILLS[bf.pill] && Number.isFinite(bf.expiresAt) && bf.expiresAt > Date.now()) {
+        cleanBuffs[key] = { pill: bf.pill, expiresAt: bf.expiresAt };
+      }
+    }
+    s.alchemy.activeBuffs = cleanBuffs;
+    const exploration=raw.exploration||{};
+    s.exploration.route=Object.hasOwn(GameConfig.EXPLORATION_ROUTES,exploration.route)?exploration.route:'balanced';
+    s.exploration.resolved=dnum(exploration.resolved);
+    const encounter=exploration.encounter;
+    if(encounter && Number.isInteger(encounter.event) && GameConfig.EXPLORATION_EVENTS[encounter.event] && Number.isFinite(encounter.roll) && encounter.roll>=0 && encounter.roll<1)
+      s.exploration.encounter={event:encounter.event,roll:encounter.roll};
+    const ex = raw.expedition || {};
+    s.expedition.completedCount = Number.isFinite(ex.completedCount) && ex.completedCount > 0 ? Math.floor(ex.completedCount) : 0;
+    const act = ex.active;
+    if (act && GameConfig.EXPEDITIONS[act.id]
+        && Number.isFinite(act.startedAt) && Number.isFinite(act.endsAt) && act.endsAt > act.startedAt
+        && act.claimed !== true
+        && act.rewards && typeof act.rewards === 'object' && Object.keys(act.rewards).length > 0) {
+      const cleanRewards = {};
+      for (const rk of ['herbs', 'demonCores', 'fragments', 'stone']) {
+        if (Number.isFinite(act.rewards[rk]) && act.rewards[rk] > 0) cleanRewards[rk] = Math.floor(act.rewards[rk]);
+      }
+      if (Object.keys(cleanRewards).length > 0) {
+        s.expedition.active = {
+          id: act.id,
+          durKey: (act.durKey && GameConfig.EXPEDITION_DURATIONS[act.durKey]) ? act.durKey : 'mid',
+          startedAt: act.startedAt,
+          endsAt: act.endsAt,
+          rewards: cleanRewards,
+          claimed: false,
+        };
+      }
+    }
+    if (raw.pendingOffline) {
+      const p = raw.pendingOffline;
+      if (Number.isFinite(p.seconds) && p.seconds > 0 &&
+          Number.isFinite(p.cult) && p.cult >= 0 &&
+          Number.isFinite(p.stone) && p.stone >= 0) {
+        s.pendingOffline = { seconds: p.seconds, cult: p.cult, stone: p.stone };
+      }
+    }
+    if (Array.isArray(raw.log)) {
+      s.log = raw.log.filter(e => e && typeof e.msg === 'string').slice(-GameConfig.LOG_MAX);
+    }
+    s.lastSaved = Number.isFinite(raw.lastSaved) ? raw.lastSaved : 0;
+    return s;
+  },
+  reset() { this.state = this.defaultState(); },
+};
+
+/* ---------------- 数值格式化 ---------------- */
+const NumberFormat = {
+  UNITS: [ [1e12, 'T'], [1e9, 'B'], [1e6, 'M'], [1e3, 'K'] ],
+  fmt(n) {
+    if (!Number.isFinite(n)) return '∞';
+    if (n < 0) n = 0;
+    for (const [v, u] of this.UNITS) {
+      if (n >= v) {
+        const x = n / v;
+        const str = x >= 100 ? x.toFixed(0) : x >= 10 ? x.toFixed(1) : x.toFixed(2);
+        return str + u;
+      }
+    }
+    if (n >= 100) return Math.floor(n).toString();
+    if (n >= 1) return (Math.round(n * 10) / 10).toString();
+    if (n > 0) return (Math.round(n * 100) / 100).toString();
+    return '0';
+  },
+  full(n) {
+    if (!Number.isFinite(n)) return '∞';
+    return Math.floor(Math.max(0, n)).toLocaleString('zh-CN');
+  },
+  rate(n) { return (n >= 0 ? '+' : '') + this.fmt(n); },
+  time(sec) {
+    sec = Math.max(0, Math.floor(sec));
+    const d = Math.floor(sec / 86400), h = Math.floor(sec % 86400 / 3600),
+          m = Math.floor(sec % 3600 / 60), s = sec % 60;
+    if (d > 0) return d + ' 天 ' + h + ' 小时';
+    if (h > 0) return h + ' 小时 ' + m + ' 分';
+    if (m > 0) return m + ' 分钟 ' + s + ' 秒';
+    return s + ' 秒';
+  },
+  clock(t) {
+    const dt = new Date(t);
+    const p = x => (x < 10 ? '0' : '') + x;
+    return p(dt.getHours()) + ':' + p(dt.getMinutes());
+  },
+};
+
+/* ---------------- 生产速率（唯一收益来源） ---------------- */
+const Rates = {
+  realmMult() {
+    return 1 + GameState.state.realm.stage * GameConfig.REALM_MULT_PER_STAGE;
+  },
+  /* V2 灵根倍率：affects 匹配才生效；未觉醒/不匹配 → 1 */
+  rootMult(affects) {
+    const s = GameState.state;
+    const rootId = s.cultivation ? s.cultivation.rootId : null;
+    const r = rootId && GameConfig.SPIRIT_ROOTS && GameConfig.SPIRIT_ROOTS[rootId];
+    if (!r || r.affects !== affects) return 1;
+    return 1 + r.pct / 100;
+  },
+  /* V2 灵根建筑成本倍率（土 −10%）；未觉醒/不匹配 → 1 */
+  rootCostMult() {
+    const s = GameState.state;
+    const rootId = s.cultivation ? s.cultivation.rootId : null;
+    const r = rootId && GameConfig.SPIRIT_ROOTS && GameConfig.SPIRIT_ROOTS[rootId];
+    if (!r || r.affects !== 'buildCost') return 1;
+    return 1 - r.pct / 100;
+  },
+  /* V2 功法倍率：已装备功法 affects 匹配时按等级取加成；未装备/不匹配 → 1 */
+  techMult(affects) {
+    const s = GameState.state;
+    const id = s.cultivation ? s.cultivation.equippedTechnique : null;
+    const t = id && GameConfig.TECHNIQUES ? GameConfig.TECHNIQUES[id] : null;
+    const rec = id && s.cultivation && s.cultivation.techniques ? s.cultivation.techniques[id] : null;
+    if (!t || !rec || rec.unlocked !== true || t.affects !== affects) return 1;
+    const lv = Math.max(1, Math.min(GameConfig.TECH_MAX_LEVEL, rec.level));
+    const pct = t.bonuses[lv - 1];
+    if (!Number.isFinite(pct)) return 1;
+    return 1 + pct / 100;
+  },
+  /* V2 丹药增益倍率：无生效增益 → 1；now 缺省用真实时钟（测试可显式传入） */
+  buffMult(affects, now) {
+    return BuffSystem.getMultiplier(affects, now);
+  },
+  integrate(channel, start, end) {
+    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) return 0;
+    const cuts=[start,end];
+    for(const b of Object.values(GameState.state.alchemy.activeBuffs))
+      if(b.expiresAt>start && b.expiresAt<end)cuts.push(b.expiresAt);
+    cuts.sort((a,b)=>a-b);
+    let total=0;
+    for(let i=1;i<cuts.length;i++)total+=this[channel](cuts[i-1])*(cuts[i]-cuts[i-1])/1000;
+    return total;
+  },
+  cultPerSec(now) {
+    const s = GameState.state;
+    return (GameConfig.BASE.cultPerSec + s.buildings.array * GameConfig.BUILDINGS.array.perLevel) * this.realmMult() * this.rootMult('cult') * this.techMult('cult') * this.buffMult('cult', now);
+  },
+  stonePerSec(now) {
+    const s = GameState.state;
+    return (GameConfig.BASE.stonePerSec + s.buildings.vein * GameConfig.BUILDINGS.vein.perLevel) * this.realmMult() * this.rootMult('stone') * this.techMult('stone') * this.buffMult('stone', now);
+  },
+  breathCult(now) {
+    const s = GameState.state;
+    return GameConfig.BASE.breathCult * (1 + s.buildings.alchemy * GameConfig.BUILDINGS.alchemy.perLevel) * this.realmMult() * this.rootMult('breath') * this.techMult('breath') * this.buffMult('breath', now);
+  },
+  breathStone(now) {
+    const s = GameState.state;
+    return GameConfig.BASE.breathStone * (1 + s.buildings.alchemy * GameConfig.BUILDINGS.alchemy.perLevel) * this.realmMult() * this.rootMult('breath') * this.techMult('breath') * this.buffMult('breath', now);
+  },
+  buildingCost(id) {
+    const cfg = GameConfig.BUILDINGS[id];
+    const lv = GameState.state.buildings[id];
+    return Math.ceil(cfg.baseCost * Math.pow(cfg.growth, lv) * this.rootCostMult());
+  },
+};
+
+/* 资源增减的统一入口：先改状态 */
+function addCult(n) {
+  if (!Number.isFinite(n) || n <= 0) return;
+  const s = GameState.state;
+  s.realm.cult += n;
+  s.stats.totalCult += n;
+  s.quests.daily.cult += n;
+}
+function addStone(n) {
+  if (!Number.isFinite(n) || n <= 0) return;
+  const s = GameState.state;
+  s.resources.stone += n;
+  s.stats.totalStone += n;
+}
+function spendStone(n) {
+  const s = GameState.state;
+  if (!Number.isFinite(n) || n < 0 || s.resources.stone < n) return false;
+  s.resources.stone -= n;
+  return true;
+}
+function addLog(msg, gold) {
+  const s = GameState.state;
+  s.log.push({ t: Date.now(), msg: msg, gold: !!gold });
+  if (s.log.length > GameConfig.LOG_MAX) s.log.splice(0, s.log.length - GameConfig.LOG_MAX);
+}
+
+/* ---------------- V2：资源系统（灵草 / 妖丹 / 功法残卷） ---------------- */
+const ResourceSystem = {
+  TYPES: { herbs: '灵草', demonCores: '妖丹', fragments: '功法残卷' },
+  TOTAL_KEYS: { herbs: 'herbsTotal', demonCores: 'demonCoresTotal', fragments: 'fragmentsTotal' },
+  /* 增加：拒绝 NaN / 负数 / Infinity / 未知类型 */
+  add(type, n) {
+    const s = GameState.state;
+    if (!this.TYPES[type]) return false;
+    if (typeof n !== 'number' || !Number.isFinite(n) || n <= 0) return false;
+    const v = Math.floor(n);
+    s.resources[type] += v;
+    s.stats[this.TOTAL_KEYS[type]] += v;
+    if (type === 'herbs' && s.quests && s.quests.daily) s.quests.daily.herbs += v;
+    return true;
+  },
+  /* 能否负担全部成本 */
+  canAfford(cost) {
+    if (!cost || typeof cost !== 'object') return false;
+    const s = GameState.state;
+    for (const k of Object.keys(cost)) {
+      const need = cost[k];
+      if (!Number.isFinite(need) || need < 0) return false;
+      if ((s.resources[k] || 0) < need) return false;
+    }
+    return true;
+  },
+  /* 单资源扣除 */
+  spend(type, n) {
+    const s = GameState.state;
+    if (!Number.isFinite(n) || n < 0 || (s.resources[type] || 0) < n) return false;
+    s.resources[type] -= n;
+    return true;
+  },
+  /* 混合成本：全有或全无（原子） */
+  spendCosts(cost) {
+    if (!this.canAfford(cost)) return false;
+    for (const k of Object.keys(cost)) {
+      GameState.state.resources[k] -= cost[k];
+    }
+    return true;
+  },
+  /* UI 成本文案：「灵草×3 妖丹×1」 */
+  costText(cost) {
+    if (!cost || typeof cost !== 'object') return '';
+    const parts = [];
+    for (const k of Object.keys(cost)) {
+      const name = this.TYPES[k] || (k === 'stone' ? '灵石' : k);
+      parts.push(name + '×' + cost[k]);
+    }
+    return parts.join(' ');
+  },
+};
+
+/* ---------------- V2：丹药增益系统（绝对时间戳；刷新不叠加） ---------------- */
+const BuffSystem = {
+  /* 消耗 1 颗丹药启用增益；expiresAt = now + duration */
+  apply(pillId, now) {
+    if (typeof now !== 'number' || !Number.isFinite(now)) now = Date.now();
+    const s = GameState.state;
+    const pill = GameConfig.PILLS[pillId];
+    if (!pill) return false;
+    if ((s.alchemy.inventory[pillId] || 0) <= 0) return false;
+    s.alchemy.inventory[pillId]--;
+    s.alchemy.activeBuffs[pill.affects] = { pill: pillId, expiresAt: now + pill.durationMs };
+    s.stats.pillsUsed += 1;
+    return true;
+  },
+  /* 返回当前类型增益倍率（无/过期 → 1） */
+  getMultiplier(affects, now) {
+    if (typeof now !== 'number' || !Number.isFinite(now)) now = Date.now();
+    const s = GameState.state;
+    const bf = s.alchemy.activeBuffs[affects];
+    if (bf && GameConfig.PILLS[bf.pill] && bf.expiresAt > now) {
+      return 1 + GameConfig.PILLS[bf.pill].bonusPct / 100;
+    }
+    return 1;
+  },
+  /* 清理过期增益（引擎 tick / 启动时调用） */
+  update(now) {
+    if (typeof now !== 'number' || !Number.isFinite(now)) now = Date.now();
+    const s = GameState.state;
+    for (const k of Object.keys(s.alchemy.activeBuffs)) {
+      if (s.alchemy.activeBuffs[k].expiresAt <= now) delete s.alchemy.activeBuffs[k];
+    }
+  },
+};
+
+/* ---------------- V2：炼丹系统（炼制入库存；服用落增益） ---------------- */
+const AlchemySystem = {
+  /* 炼制：成本原子扣除，成功入库存并计数；失败/不足一律不改状态 */
+  craft(pillId) {
+    const pill = GameConfig.PILLS[pillId];
+    if (!pill) return false;
+    const s = GameState.state;
+    if (!ResourceSystem.canAfford(pill.cost)) return false;
+    if (!ResourceSystem.spendCosts(pill.cost)) return false;
+    s.alchemy.inventory[pillId] = (s.alchemy.inventory[pillId] || 0) + 1;
+    s.stats.pillsCrafted += 1;
+    if (s.quests && s.quests.daily) s.quests.daily.craft += 1;
+    return true;
+  },
+  /* 服用：扣库存 + 落增益 + stats.pillsUsed 由 BuffSystem.apply 负责；
+     本函数只补记 quests.daily.pillUsed，避免重复计数 */
+  use(pillId, now) {
+    const ok = BuffSystem.apply(pillId, now);
+    if (!ok) return false;
+    const s = GameState.state;
+    if (s.quests && s.quests.daily) s.quests.daily.pillUsed += 1;
+    return true;
+  },
+};
+
+/* ---------------- V2：五行灵根（首次觉醒，一次性选择） ---------------- */
+const RootSystem = {
+  /* 首次觉醒：合法灵根且尚未觉醒才可选；选后不可改 */
+  select(rootId) {
+    const cfg = GameConfig.SPIRIT_ROOTS;
+    if (!cfg || !cfg[rootId]) return false;
+    const s = GameState.state;
+    if (!s.cultivation || s.cultivation.rootId !== null) return false;
+    s.cultivation.rootId = rootId;
+    addLog('灵根觉醒：' + cfg[rootId].name, true);
+    QuestSystem.checkUnlockable();
+    AchievementSystem.checkAll();
+    if (typeof Effects !== 'undefined') Effects.sound('achv');
+    SaveSystem.save();
+    UI.renderAll();
+    return true;
+  },
+};
+
+/* ---------------- V2：功法（解锁 / 装备 / 升级 ≤5，至多装备一门） ---------------- */
+const TechniqueSystem = {
+  /* 解锁：境界 + 残卷门槛；成功即 level=1 并自动装备 */
+  unlock(id) {
+    const t = GameConfig.TECHNIQUES[id];
+    if (!t) return false;
+    const s = GameState.state;
+    const rec = s.cultivation ? s.cultivation.techniques[id] : null;
+    if (rec && rec.unlocked) return false;
+    if (s.realm.stage < t.unlockStage) return false;
+    if ((s.resources.fragments || 0) < t.unlockFragments) return false;
+    s.resources.fragments -= t.unlockFragments;
+    s.cultivation.techniques[id] = { unlocked: true, level: 1 };
+    s.cultivation.equippedTechnique = id;
+    addLog('功法解锁：' + t.name, true);
+    QuestSystem.checkUnlockable();
+    AchievementSystem.checkAll();
+    if (typeof Effects !== 'undefined') Effects.sound('achv');
+    SaveSystem.save();
+    UI.renderAll();
+    return true;
+  },
+  /* 装备：已解锁功法自由切换，不消耗资源 */
+  equip(id) {
+    const t = GameConfig.TECHNIQUES[id];
+    if (!t) return false;
+    const s = GameState.state;
+    const rec = s.cultivation ? s.cultivation.techniques[id] : null;
+    if (!rec || rec.unlocked !== true) return false;
+    s.cultivation.equippedTechnique = id;
+    addLog('装备功法：' + t.name);
+    QuestSystem.checkUnlockable();
+    AchievementSystem.checkAll();
+    if (typeof Effects !== 'undefined') Effects.sound('buy');
+    SaveSystem.save();
+    UI.renderAll();
+    return true;
+  },
+  /* 升级：level n → n+1，成本 = TECH_UPGRADE_COSTS[n-1]，多资源原子扣除；满级返回 null */
+  upgrade(id) {
+    const t = GameConfig.TECHNIQUES[id];
+    if (!t) return null;
+    const s = GameState.state;
+    const rec = s.cultivation ? s.cultivation.techniques[id] : null;
+    if (!rec || rec.unlocked !== true) return null;
+    if (rec.level >= GameConfig.TECH_MAX_LEVEL) return null;
+    const cost = GameConfig.TECH_UPGRADE_COSTS[rec.level - 1];
+    if (!cost) return null;
+    if (!ResourceSystem.spendCosts(cost)) return null;
+    rec.level += 1;
+    addLog(t.name + ' 升至 Lv' + rec.level, true);
+    QuestSystem.checkUnlockable();
+    AchievementSystem.checkAll();
+    if (typeof Effects !== 'undefined') Effects.sound('buy');
+    SaveSystem.save();
+    UI.renderAll();
+    return { level: rec.level, cost };
+  },
+};
+
+/* ---------------- V2：秘境历练（真实时间戳；一次一个；奖励开始即快照保存） ---------------- */
+const ExpeditionSystem = {
+  setRoute(id){
+    const s=GameState.state;
+    if(!Object.hasOwn(GameConfig.EXPLORATION_ROUTES,id)||s.expedition.active)return false;
+    s.exploration.route=id;SaveSystem.save();return true;
+  },
+  resolveEncounter(choice){
+    const s=GameState.state,e=s.exploration.encounter;
+    if(!e || !['safe','risk'].includes(choice))return false;
+    const event=GameConfig.EXPLORATION_EVENTS[e.event];
+    const bonus=s.alchemy.activeBuffs.cult;
+    const chance=GameConfig.EXPLORATION_RISK_CHANCE+(bonus && bonus.expiresAt>Date.now()?GameConfig.EXPLORATION_PILL_CHANCE:0);
+    const win=choice==='safe'||e.roll<chance,rewards=win?event[choice]:{};
+    s.exploration.encounter=null;s.exploration.resolved++;
+    for(const [k,v]of Object.entries(rewards)){if(k==='stone')addStone(v);else ResourceSystem.add(k,v);}
+    addLog(event.name+'：'+(win?'机缘有获，'+ResourceSystem.costText(rewards):'探查未果，平安归来；原历练奖励不受影响'),true);
+    QuestSystem.checkUnlockable();AchievementSystem.checkAll();SaveSystem.save();UI.renderAll();
+    return {win,rewards};
+  },
+  _rewards(id, durKey, stage, startedAt) {
+    const cfg = GameConfig;
+    const base = cfg.EXPEDITIONS[id].rewards[durKey];
+    const sc = cfg.EXPEDITION_REALM_SCALE;
+    const mult = Math.min(sc.cap, 1 + sc.perStage * stage);
+    let h = 2166136261;
+    const str = id + ':' + durKey;
+    for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    h ^= (startedAt >>> 0);
+    h = Math.imul(h, 16777619);
+    let s32 = (h | 0) || 0x9e3779b9;
+    const out = {};
+    for (const k of Object.keys(base)) {
+      s32 ^= s32 << 13; s32 ^= s32 >>> 17; s32 ^= s32 << 5; s32 |= 0;
+      const r = (s32 >>> 0) / 4294967296;
+      const jitter = 1 + (r * 2 - 1) * sc.jitter;
+      out[k] = Math.max(1, Math.round(base[k] * mult * jitter));
+    }
+    return out;
+  },
+  start(id, durKey, nowMs) {
+    if (typeof nowMs !== 'number' || !Number.isFinite(nowMs)) nowMs = Date.now();
+    const cfg = GameConfig;
+    const exp = cfg.EXPEDITIONS[id];
+    if (!exp) return false;
+    const dur = cfg.EXPEDITION_DURATIONS[durKey];
+    if (!dur) return false;
+    const s = GameState.state;
+    if (s.realm.stage < exp.unlockStage) return false;
+    if (s.expedition.active || s.exploration.encounter) return false;
+    s.expedition.active = {
+      id, durKey,
+      startedAt: nowMs,
+      endsAt: nowMs + dur * 1000,
+      rewards: this._rewards(id, durKey, s.realm.stage, nowMs),
+      claimed: false,
+    };
+    const route=cfg.EXPLORATION_ROUTES[s.exploration.route];
+    const a=s.expedition.active;
+    a.endsAt=nowMs+dur*1000*route.time;
+    for(const k of Object.keys(a.rewards))a.rewards[k]=Math.max(1,Math.floor(a.rewards[k]*(k==='stone'?route.stone:k==='fragments'?(route.fragments||route.material):route.material)));
+    addLog('进入秘境：' + exp.name+' · '+route.name, true);
+    QuestSystem.checkUnlockable();
+    AchievementSystem.checkAll();
+    if (typeof Effects !== 'undefined') Effects.sound('buy');
+    SaveSystem.save();
+    UI.renderAll();
+    return true;
+  },
+  claim(nowMs) {
+    if (typeof nowMs !== 'number' || !Number.isFinite(nowMs)) nowMs = Date.now();
+    const s = GameState.state;
+    const a = s.expedition.active;
+    if (!a || nowMs < a.endsAt) return null;
+    const exp = GameConfig.EXPEDITIONS[a.id];
+    for (const k of Object.keys(a.rewards)) {
+      const v = a.rewards[k];
+      if (k === 'stone') { s.resources.stone += v; s.stats.totalStone += v; }
+      else ResourceSystem.add(k, v);
+    }
+    s.expedition.completedCount += 1;
+    s.stats.expeditionsCompleted += 1;
+    if (s.quests && s.quests.daily) s.quests.daily.expedition += 1;
+    if(s.exploration.route!=='balanced'){
+      const seed=(Math.imul(a.startedAt|0,1664525)+1013904223)>>>0;
+      s.exploration.encounter={event:seed%GameConfig.EXPLORATION_EVENTS.length,roll:((Math.imul(seed,1664525)+1013904223)>>>0)/4294967296};
+    }
+    s.expedition.active = null;
+    addLog('领取秘境奖励：' + (exp ? exp.name : a.id), true);
+    QuestSystem.checkUnlockable();
+    AchievementSystem.checkAll();
+    if (typeof Effects !== 'undefined') Effects.sound('achv');
+    SaveSystem.save();
+    UI.renderAll();
+    return { id: a.id, rewards: a.rewards };
+  },
+  progress(nowMs) {
+    if (typeof nowMs !== 'number' || !Number.isFinite(nowMs)) nowMs = Date.now();
+    const a = GameState.state.expedition.active;
+    if (!a) return null;
+    const total = a.endsAt - a.startedAt;
+    if (total <= 0) return { done: true, remainingSec: 0, fraction: 1 };
+    const fraction = Math.max(0, Math.min(1, (nowMs - a.startedAt) / total));
+    return { done: nowMs >= a.endsAt, remainingSec: Math.max(0, Math.ceil((a.endsAt - nowMs) / 1000)), fraction };
+  },
+};
+
+/* ---------------- 存档与离线收益 ---------------- */
+const SaveSystem = {
+  load() {
+    let raw = null;
+    try {
+      const txt = localStorage.getItem(GameConfig.SAVE_KEY);
+      if (txt) raw = JSON.parse(txt);
+    } catch (e) { raw = null; }
+    GameState.state = GameState.mergeSaved(raw);
+    return GameState.state;
+  },
+  _saveFailed: false,
+  save() {
+    const s = GameState.state;
+    s.lastSaved = Date.now();
+    try {
+      localStorage.setItem(GameConfig.SAVE_KEY, JSON.stringify(s));
+      this._saveFailed = false;
+      return true;
+    } catch (e) {
+      /* 存储不可用时只提示一次，避免 toast 刷屏 */
+      if (!this._saveFailed) {
+        this._saveFailed = true;
+        if (typeof Effects !== 'undefined') Effects.toast('存档失败：存储空间不可用，进度可能丢失', 'danger');
+      }
+      return false;
+    }
+  },
+  clear() {
+    try { localStorage.removeItem(GameConfig.SAVE_KEY); } catch (e) {}
+  },
+  /* 启动时：把离线时间折算为待领取收益（沿用相同速率逻辑，上限 8h） */
+  /* nowSec 单位为秒；lastSaved 为毫秒时间戳 */
+  computeOffline(nowSec) {
+    const s = GameState.state;
+    if (typeof nowSec !== 'number' || !Number.isFinite(nowSec)) nowSec = Date.now() / 1000;
+    const now = nowSec;
+    let gap = 0;
+    if (Number.isFinite(s.lastSaved) && s.lastSaved > 0) {
+      gap = now - s.lastSaved / 1000;
+    }
+    if (!Number.isFinite(gap) || gap < 0) gap = 0;
+    gap = Math.min(gap, GameConfig.OFFLINE_CAP_SEC);
+    const pending = s.pendingOffline;
+    let seconds = (pending ? pending.seconds : 0) + gap;
+    seconds = Math.min(seconds, GameConfig.OFFLINE_CAP_SEC);
+    if (seconds < GameConfig.OFFLINE_MIN_SEC) {
+      s.pendingOffline = null;
+      return null;
+    }
+    /* V2 水灵根：+15% 仅作用于离线通道（不叠加进在线速率，避免 1.15² 双计） */
+    const offMult = Rates.rootMult('offline');
+    s.pendingOffline = {
+      seconds: seconds,
+      cult: (pending ? pending.cult : 0) + Rates.integrate('cultPerSec', now*1000-Math.max(0,seconds-(pending?pending.seconds:0))*1000, now*1000)*offMult,
+      stone: (pending ? pending.stone : 0) + Rates.integrate('stonePerSec', now*1000-Math.max(0,seconds-(pending?pending.seconds:0))*1000, now*1000)*offMult,
+    };
+    return s.pendingOffline;
+  },
+  /* 领取离线收益：一次性入账，立即清空并落盘，杜绝二次领取 */
+  claimOffline() {
+    const s = GameState.state;
+    const p = s.pendingOffline;
+    if (!p || !Number.isFinite(p.seconds) || p.seconds <= 0) return false;
+    const cult = Math.max(0, Number.isFinite(p.cult) ? p.cult : 0);
+    const stone = Math.max(0, Number.isFinite(p.stone) ? p.stone : 0);
+    s.pendingOffline = null;
+    addCult(cult);
+    addStone(stone);
+    addLog('领取离线收益：+' + NumberFormat.fmt(cult) + ' 修为，+' + NumberFormat.fmt(stone) + ' 灵石', true);
+    this.save();
+    if (typeof Effects !== 'undefined') Effects.toast('离线收益已入账', 'jade');
+    UI.renderAll();
+    return true;
+  },
+  resetAll() {
+    this.clear();
+    GameState.reset();
+  },
+};
+
+/* ---------------- 引擎：主循环 ---------------- */
+const GameEngine = {
+  timer: null,
+  autosaveTimer: null,
+  lastTick: 0,
+  hiddenAt: 0,
+  running: false,
+  start() {
+    if (this.running) return;
+    this.running = true;
+    this.lastTick = Date.now();
+    if (document.hidden) this.hiddenAt = this.lastTick;
+    this.timer = setInterval(() => this.tick(), GameConfig.TICK_MS);
+    this.autosaveTimer = setInterval(() => {
+      SaveSystem.save();
+      UI.renderPassive();
+    }, GameConfig.AUTOSAVE_MS);
+    window.addEventListener('beforeunload', () => SaveSystem.save());
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && !this.hiddenAt) this.hiddenAt = Date.now();
+    });
+  },
+  stop() {
+    this.running = false;
+    if (this.timer) { clearInterval(this.timer); this.timer = null; }
+    if (this.autosaveTimer) { clearInterval(this.autosaveTimer); this.autosaveTimer = null; }
+  },
+  tick() {
+    const now = Date.now();
+    /* 页面隐藏期间不按帧结算（浏览器对后台定时器降频，逐帧 dt 不可靠），
+       只记录隐藏起点，等页面重新可见时按真实经过时间一次性补算 */
+    if (document.hidden) {
+      if (!this.hiddenAt) this.hiddenAt = now;
+      return;
+    }
+    let dt = (now - this.lastTick) / 1000;
+    this.lastTick = now;
+    if (!Number.isFinite(dt) || dt <= 0) dt = 0;
+    const wasHidden = this.hiddenAt !== 0;
+    this.hiddenAt = 0;
+    /* 后台缺口与离线收益同规则：上限 8 小时 */
+    if (dt > GameConfig.OFFLINE_CAP_SEC) dt = GameConfig.OFFLINE_CAP_SEC;
+    if (wasHidden && dt >= 60) {
+      addLog('归山收益：补算 ' + NumberFormat.time(dt) + ' 的修炼', true);
+      Effects.toast('归山收益 ' + NumberFormat.time(dt) + ' 已入账', 'jade');
+    }
+    this.advance(dt);
+  },
+  /* 核心推进：dt 秒内的自动产出（离线结算与测试都复用此逻辑） */
+  advance(seconds) {
+    if (!Number.isFinite(seconds) || seconds <= 0) return;
+    const s = GameState.state;
+    const end=Date.now(),start=end-seconds*1000;
+    addCult(Rates.integrate('cultPerSec',start,end));
+    addStone(Rates.integrate('stonePerSec',start,end));
+    BuffSystem.update(end);
+    s.stats.playTimeSec += seconds;
+    QuestSystem.refreshDaily();
+    QuestSystem.checkUnlockable();
+    AchievementSystem.checkAll();
+    if (typeof UI !== 'undefined') UI.renderPassive();
+  },
+};
+
+/* ---------------- 修炼：吐纳与突破 ---------------- */
+const CultivationSystem = {
+  /* 手动吐纳一次 */
+  breath() {
+    const s = GameState.state;
+    const cult = Rates.breathCult();
+    const stone = Rates.breathStone();
+    addCult(cult);
+    addStone(stone);
+    s.stats.breathCount += 1;
+    s.quests.daily.breath += 1;
+    QuestSystem.checkUnlockable();
+    AchievementSystem.checkAll();
+    if (typeof Effects !== 'undefined') {
+      Effects.floatText('+' + NumberFormat.fmt(cult) + ' 修为  +' + NumberFormat.fmt(stone) + ' 灵石');
+      Effects.sound('breath');
+    }
+    UI.renderAll();
+    return { cult, stone };
+  },
+  /* 当前境界突破是否就绪 */
+  canBreak() {
+    const s = GameState.state;
+    const need = GameConfig.REALMS[s.realm.stage];
+    if (!need) return false;
+    return s.realm.cult >= need.needCult && s.resources.stone >= need.needStone;
+  },
+  isMax() {
+    return GameState.state.realm.stage >= GameConfig.REALMS.length - 1;
+  },
+  /* 确定性突破：修为与灵石同扣，奖励灵石入账 */
+  breakthrough() {
+    const s = GameState.state;
+    const stage = s.realm.stage;
+    if (this.isMax()) return null;
+    const need = GameConfig.REALMS[stage];
+    if (s.realm.cult < need.needCult || s.resources.stone < need.needStone) return null;
+    if (!spendStone(need.needStone)) return null;
+    s.realm.cult -= need.needCult;
+    const nextStage = stage + 1;
+    const rewardStone = Math.floor(need.needStone * GameConfig.BREAK_REWARD_RATIO);
+    s.realm.stage = nextStage;
+    s.stats.breakthroughCount += 1;
+    if (rewardStone > 0) addStone(rewardStone);
+    const name = GameConfig.REALMS[nextStage].name;
+    addLog('突破至「' + name + '」，获得 ' + NumberFormat.fmt(rewardStone) + ' 灵石奖励', true);
+    QuestSystem.checkUnlockable();
+    AchievementSystem.checkAll();
+    if (typeof Effects !== 'undefined') {
+      Effects.breakthroughFX(name, rewardStone);
+      Effects.sound('break');
+    }
+    SaveSystem.save();
+    UI.renderAll();
+    return { name: name, rewardStone: rewardStone };
+  },
+};
+
+/* ---------------- 洞府设施升级 ---------------- */
+const UpgradeSystem = {
+  canBuy(id) {
+    if (!GameConfig.BUILDINGS[id]) return false;
+    return GameState.state.resources.stone >= Rates.buildingCost(id);
+  },
+  buy(id) {
+    const s = GameState.state;
+    const cfg = GameConfig.BUILDINGS[id];
+    if (!cfg) return null;
+    const cost = Rates.buildingCost(id);
+    if (s.resources.stone < cost) return null;
+    if (!spendStone(cost)) return null;
+    s.buildings[id] += 1;
+    s.stats.upgradeCount += 1;
+    s.quests.daily.upgrade += 1;
+    addLog('「' + cfg.name + '」升至 ' + s.buildings[id] + ' 级', true);
+    QuestSystem.checkUnlockable();
+    AchievementSystem.checkAll();
+    if (typeof Effects !== 'undefined') Effects.sound('buy');
+    SaveSystem.save();
+    UI.renderAll();
+    return { level: s.buildings[id], cost: cost };
+  },
+  effectText(id, level) {
+    const cfg = GameConfig.BUILDINGS[id];
+    if (cfg.type === 'cult')   return NumberFormat.fmt(1 + level * cfg.perLevel) + ' 修为/秒（基础）';
+    if (cfg.type === 'stone')  return NumberFormat.fmt(0.5 + level * cfg.perLevel) + ' 灵石/秒（基础）';
+    return '吐纳 +' + Math.round(level * cfg.perLevel * 100) + '%';
+  },
+};
+
+/* ---------------- 任务系统 ---------------- */
+const QuestSystem = {
+  todayKey() {
+    const d = new Date();
+    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  },
+  /* 跨日时重置每日进度与领取标记（按本地日期） */
+  refreshDaily() {
+    const s = GameState.state;
+    const key = this.todayKey();
+    if (s.quests.dailyDate !== key) {
+      s.quests.dailyDate = key;
+      s.quests.daily = { breath: 0, cult: 0, upgrade: 0, expedition: 0, herbs: 0, craft: 0, pillUsed: 0 };
+      for (const q of GameConfig.QUESTS) {
+        if (q.cat === 'daily') delete s.quests.claimed[q.id];
+      }
+    }
+  },
+  /* 任务指标取值 */
+  metric(id) {
+    const s = GameState.state;
+    switch (id) {
+      case 'breathCount':  return s.stats.breathCount;
+      case 'totalCult':    return s.stats.totalCult;
+      case 'totalStone':   return s.stats.totalStone;
+      case 'stage':        return s.realm.stage;
+      case 'bldArray':     return s.buildings.array;
+      case 'bldVein':      return s.buildings.vein;
+      case 'dailyBreath':  return s.quests.daily.breath;
+      case 'dailyCult':    return s.quests.daily.cult;
+      case 'dailyUpgrade': return s.quests.daily.upgrade;
+      /* ---- V2 联动指标 ---- */
+      case 'rootAwakened':        return (s.cultivation && s.cultivation.rootId) ? 1 : 0;
+      case 'techniqueEquipped':   return (s.cultivation && s.cultivation.equippedTechnique) ? 1 : 0;
+      case 'encountersResolved': return s.exploration.resolved;
+      case 'expeditionCompleted': return s.stats.expeditionsCompleted;
+      case 'pillsCrafted':        return s.stats.pillsCrafted;
+      case 'dailyExpedition':     return s.quests.daily.expedition;
+      case 'dailyHerbs':          return s.quests.daily.herbs;
+      case 'dailyCraft':          return s.quests.daily.craft;
+      case 'dailyPillUsed':       return s.quests.daily.pillUsed;
+      case 'techMaxLevel': {
+        let m = 0;
+        if (s.cultivation && s.cultivation.techniques) {
+          Object.keys(s.cultivation.techniques).forEach(id => {
+            const r = s.cultivation.techniques[id];
+            if (r && r.unlocked && r.level > m) m = r.level;
+          });
+        }
+        return m;
+      }
+      case 'demonCoresTotal':     return s.stats.demonCoresTotal;
+      case 'expeditionsUnlocked': {
+        const E = GameConfig.EXPEDITIONS;
+        let n = 0;
+        Object.keys(E).forEach(id => { if (s.realm.stage >= E[id].unlockStage) n++; });
+        return n;
+      }
+      case 'techniquesUnlocked':  {
+        const T = GameConfig.TECHNIQUES;
+        if (!s.cultivation || !s.cultivation.techniques) return 0;
+        let n = 0;
+        Object.keys(T).forEach(id => {
+          const r = s.cultivation.techniques[id];
+          if (r && r.unlocked) n++;
+        });
+        return n;
+      }
+    }
+    return 0;
+  },
+  isDone(q)  { return this.metric(q.metric) >= q.target; },
+  isClaimed(q) { return !!GameState.state.quests.claimed[q.id]; },
+  stateOf(q) {
+    if (this.isClaimed(q)) return 'claimed';
+    if (this.isDone(q)) return 'done';
+    return 'todo';
+  },
+  /* 领取：校验状态后发放一次性奖励，杜绝重复领取 */
+  claim(id) {
+    const q = GameConfig.QUESTS.find(x => x.id === id);
+    if (!q) return false;
+    const s = GameState.state;
+    if (s.quests.claimed[q.id]) return false;
+    if (!this.isDone(q)) return false;
+    s.quests.claimed[q.id] = true;
+    if (q.reward.cult) addCult(q.reward.cult);
+    if (q.reward.stone) addStone(q.reward.stone);
+    addLog('领取任务「' + q.name + '」奖励', true);
+    AchievementSystem.checkAll();
+    if (typeof Effects !== 'undefined') {
+      Effects.toast('任务「' + q.name + '」奖励已领取', 'gold');
+      Effects.sound('claim');
+    }
+    SaveSystem.save();
+    UI.renderAll();
+    return true;
+  },
+  /* 供引擎每帧调用：有任务达成时点亮提示（不发奖励） */
+  checkUnlockable() { /* 领取制任务：进度变化即渲染，无需额外动作 */ },
+  badgeCount() {
+    let n = 0;
+    for (const q of GameConfig.QUESTS) if (this.stateOf(q) === 'done') n++;
+    return n;
+  },
+};
+
+/* ---------------- 成就系统 ---------------- */
+const AchievementSystem = {
+  CONDS: {
+    breath1:   s => s.stats.breathCount >= 1,
+    break1:    s => s.stats.breakthroughCount >= 1,
+    time1h:    s => s.stats.playTimeSec >= 3600,
+    cult1m:    s => s.stats.totalCult >= 1e6,
+    bld15:     s => s.buildings.array + s.buildings.vein + s.buildings.alchemy >= 15,
+    stone100k: s => s.stats.totalStone >= 1e5,
+    stage12:   s => s.realm.stage >= 12,
+    stage18:   s => s.realm.stage >= 18,
+    /* ---- V2：灵根/功法/秘境/炼丹 ---- */
+    root1:       s => !!(s.cultivation && s.cultivation.rootId),
+    tech1:       s => !!(s.cultivation && Object.keys(s.cultivation.techniques || {}).some(id => s.cultivation.techniques[id] && s.cultivation.techniques[id].unlocked)),
+    expedition1: s => s.stats.expeditionsCompleted >= 1,
+    pill1:       s => s.stats.pillsCrafted >= 1,
+    pill100:     s => s.stats.pillsCrafted >= 100,
+    demon100:    s => s.stats.demonCoresTotal >= 100,
+  },
+  isUnlocked(id) { return GameState.state.achievements.unlocked.indexOf(id) !== -1; },
+  /* 自动解锁并立即发放奖励 */
+  checkAll() {
+    const s = GameState.state;
+    let changed = false;
+    for (const a of GameConfig.ACHIEVEMENTS) {
+      if (this.isUnlocked(a.id)) continue;
+      const fn = this.CONDS[a.cond];
+      if (!fn || !fn(s)) continue;
+      s.achievements.unlocked.push(a.id);
+      if (a.reward.cult) addCult(a.reward.cult);
+      if (a.reward.stone) addStone(a.reward.stone);
+      addLog('成就达成：「' + a.name + '」', true);
+      if (typeof Effects !== 'undefined') {
+        Effects.toast('成就达成：' + a.name, 'gold');
+        Effects.sound('achv');
+      }
+      changed = true;
+    }
+    if (changed) SaveSystem.save();
+    return changed;
+  },
+};
+
+/* ---------------- 特效：音效 / 浮字 / 提示 / 突破动画 ---------------- */
+const Effects = {
+  audioCtx: null,
+  ensureCtx() {
+    if (this.audioCtx) return this.audioCtx;
+    try {
+      const AC = (typeof window !== 'undefined') && (window.AudioContext || window.webkitAudioContext);
+      if (AC) this.audioCtx = new AC();
+    } catch (e) { this.audioCtx = null; }
+    return this.audioCtx;
+  },
+  tone(freq, dur, type, gain, delay) {
+    const ctx = this.ensureCtx();
+    if (!ctx) return;
+    try {
+      if (ctx.state === 'suspended') ctx.resume().catch(function(){});
+      const t0 = ctx.currentTime + (delay || 0);
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.setValueAtTime(freq, t0);
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(gain || 0.05, t0 + 0.015);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+      osc.connect(g); g.connect(ctx.destination);
+      osc.start(t0); osc.stop(t0 + dur + 0.05);
+    } catch (e) { /* 音频失败不影响游戏 */ }
+  },
+  sound(name) {
+    const st = GameState.state;
+    if (!st || !st.settings.sound) return;
+    switch (name) {
+      case 'breath':  this.tone(520, .09, 'sine', .045, 0); this.tone(784, .1, 'sine', .035, .05); break;
+      case 'buy':     this.tone(440, .06, 'triangle', .05, 0); this.tone(660, .09, 'triangle', .04, .05); break;
+      case 'claim':   this.tone(600, .07, 'sine', .045, 0); this.tone(900, .11, 'sine', .04, .06); break;
+      case 'achv':    this.tone(523, .08, 'sine', .05, 0); this.tone(659, .08, 'sine', .05, .07); this.tone(784, .14, 'sine', .05, .14); break;
+      case 'break':   this.tone(392, .12, 'sine', .05, 0); this.tone(523, .12, 'sine', .05, .1);
+                      this.tone(659, .12, 'sine', .05, .2); this.tone(1046, .5, 'sine', .06, .3); break;
+    }
+  },
+  /* 吐纳浮字：瞬态节点，动画结束即移除（非持续创建） */
+  floatText(text, kind) {
+    if (typeof document === 'undefined') return;
+    const layer = document.getElementById('fx-layer');
+    if (!layer) return;
+    const el = document.createElement('div');
+    el.className = 'float-num ' + (kind === 'gold' ? 'g' : 'j') + ' big';
+    el.textContent = text;
+    el.style.left = (38 + Math.random() * 24) + '%';
+    el.style.top = (34 + Math.random() * 10) + '%';
+    layer.appendChild(el);
+    el.addEventListener('animationend', function(){ el.remove(); }, { once: true });
+    setTimeout(function(){ if (el.parentNode) el.remove(); }, 2600);
+  },
+  /* 按钮迸溅火花：瞬态节点 */
+  sparkBurst(btn, n) {
+    if (typeof document === 'undefined' || !btn) return;
+    for (let i = 0; i < (n || 6); i++) {
+      const sp = document.createElement('span');
+      sp.className = 'spark';
+      const a = Math.random() * Math.PI * 2, r = 30 + Math.random() * 40;
+      sp.style.setProperty('--dx', Math.cos(a) * r + 'px');
+      sp.style.setProperty('--dy', Math.sin(a) * r - 18 + 'px');
+      sp.style.left = '50%'; sp.style.top = '50%';
+      btn.appendChild(sp);
+      sp.addEventListener('animationend', function(){ sp.remove(); }, { once: true });
+      setTimeout(function(){ if (sp.parentNode) sp.remove(); }, 1200);
+    }
+  },
+  toast(title, kind) {
+    if (typeof document === 'undefined') return;
+    const box = document.getElementById('toasts');
+    if (!box) return;
+    const el = document.createElement('div');
+    el.className = 'toast ' + (kind === 'jade' ? 'jade' : kind === 'danger' ? 'danger' : '');
+    const ico = document.createElement('span');
+    ico.className = 't-ico';
+    ico.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L21 9 L12 22 L3 9 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 9 L21 9" stroke="currentColor" stroke-width="1.2"/></svg>';
+    const body = document.createElement('span');
+    body.className = 't-body';
+    const b = document.createElement('b'); b.textContent = title;
+    body.appendChild(b);
+    el.appendChild(ico); el.appendChild(body);
+    box.appendChild(el);
+    while (box.children.length > 4) box.firstChild.remove();
+    setTimeout(function(){
+      el.classList.add('out');
+      setTimeout(function(){ if (el.parentNode) el.remove(); }, 350);
+    }, 2600);
+  },
+  breakthroughFX(name, rewardStone) {
+    if (typeof document === 'undefined') return;
+    const ov = document.getElementById('break-overlay');
+    if (!ov) return;
+    document.getElementById('bo-realm').textContent = name;
+    document.getElementById('bo-reward').textContent = '突破奖励 +' + NumberFormat.fmt(rewardStone) + ' 灵石';
+    ov.classList.add('show');
+    ov.setAttribute('aria-hidden', 'false');
+  },
+  dismissBreakOverlay() {
+    const ov = document.getElementById('break-overlay');
+    if (!ov) return;
+    ov.classList.remove('show');
+    ov.setAttribute('aria-hidden', 'true');
+  },
+  /* 生成环境灵气粒子（一次性创建，之后仅靠 CSS 动画循环） */
+  makeParticles(count) {
+    if (typeof document === 'undefined') return;
+    const box = document.getElementById('particles');
+    if (!box) return;
+    for (let i = 0; i < (count || 22); i++) {
+      const sp = document.createElement('span');
+      const size = 2 + Math.random() * 4;
+      sp.style.width = size + 'px';
+      sp.style.height = size + 'px';
+      sp.style.left = (Math.random() * 100) + '%';
+      sp.style.animationDuration = (9 + Math.random() * 14) + 's';
+      sp.style.animationDelay = (-Math.random() * 20) + 's';
+      sp.style.setProperty('--sway', (Math.random() * 120 - 60) + 'px');
+      box.appendChild(sp);
+    }
+  },
+};
+
+/* ---------------- UI：渲染与交互 ---------------- */
+const UI = {
+  el: {},
+  _qsig: '', _asig: '', _lsig: '',
+  questRefs: {},
+  init() {
+    const ids = [
+      'realm-badge','res-cult','rate-cult','res-stone','rate-stone',
+      'realm-display','progress-fill','progress-text',
+      'btn-breath','breath-yield','btn-break','break-label','break-cost',
+      'st-cult-rate','st-stone-rate','st-breath','st-total-cult','st-total-stone','st-breaths','st-time',
+      'log-list','log-full',
+      'lv-array','cur-array','nxt-array','upg-array','cost-array',
+      'lv-vein','cur-vein','nxt-vein','upg-vein','cost-vein',
+      'lv-alchemy','cur-alchemy','nxt-alchemy','upg-alchemy','cost-alchemy',
+      'quest-list','quest-badge','achv-grid',
+      'modal-offline','off-time','off-cult','off-stone','off-rate','btn-off-claim',
+      'modal-settings','set-sound','btn-settings','btn-settings-close',
+      'btn-save-setting','btn-reset-setting','reset-confirm','btn-reset-cancel','btn-reset-confirm',
+      'btn-save-now','btn-reset','break-overlay',
+    ];
+    for (const id of ids) this.el[id] = document.getElementById(id);
+  },
+  /* 自动刷新与逻辑计时独立，滚动期间保留 DOM，停下后下次 tick 补绘。 */
+  _lastPassiveRender: 0,
+  _scrollUntil: 0,
+  renderPassive(now = Date.now()) {
+    if(now < this._scrollUntil || now-this._lastPassiveRender < GameConfig.UI_REFRESH_MS)return;
+    this._lastPassiveRender=now;
+    this.renderAll();
+  },
+  /* ---------- 渲染 ---------- */
+  renderAll() {
+    this.renderTopbar();
+    this.renderStage();
+    this.renderStats();
+    this.renderBuildings();
+    this.renderQuests();
+    this.renderAchv();
+    this.renderLog();
+    this.renderOffline();
+    this.renderV2();
+  },
+
+  renderRootConfirmation() {
+    const r=GameConfig.SPIRIT_ROOTS[this.pendingRoot],el=document.getElementById('v2-root');
+    if(!r || !el)return;
+    const markup='<h2>确认觉醒 · '+r.name+'</h2><p>确认后无法更换，原有进度完整保留。</p><div class="v2-grid"><article class="v2-card"><h3>'+r.direction+'</h3><p>'+r.description+'</p><button type="button" data-v2="root-confirm">确认觉醒</button><button type="button" data-v2="root-cancel">返回选择</button></article></div>';
+    if(el._v2Markup!==markup){el.innerHTML=markup;el._v2Markup=markup;}
+  },
+  renderV2() {
+    const s=GameState.state, cfg=GameConfig;
+    const label={cult:'自动修为',stone:'灵石产出',breath:'吐纳收益',offline:'离线收益',buildCost:'建筑成本降低'};
+    const button=(text,action,id,disabled=false)=>'<button type="button" data-v2="'+action+'" data-id="'+id+'" '+(disabled?'disabled':'')+'>'+text+'</button>';
+    const card=(title,body)=>'<article class="v2-card"><h3>'+title+'</h3>'+body+'</article>';
+    const draw=(id,html)=>{const el=document.getElementById(id);if(el && el._v2Markup!==html){el.innerHTML=html;el._v2Markup=html;}};
+    const bag='<p>灵草 '+s.resources.herbs+' · 妖丹 '+s.resources.demonCores+' · 残卷 '+s.resources.fragments+'</p>';
+    draw('v2-technique',card('五行仙途', '<p>灵根：'+(s.cultivation.rootId?cfg.SPIRIT_ROOTS[s.cultivation.rootId].name:'待觉醒')+'</p>'+bag)+Object.entries(cfg.TECHNIQUES).map(([id,t])=>{
+      const rec=s.cultivation.techniques[id],lv=rec?rec.level:0,equipped=s.cultivation.equippedTechnique===id;
+      const cost=lv&&lv<cfg.TECH_MAX_LEVEL?cfg.TECH_UPGRADE_COSTS[lv-1]:null;
+      return card(t.name+' · '+t.quality,'<p>'+label[t.affects]+' +'+t.bonuses[Math.max(0,lv-1)]+'% · 等级 '+lv+'/'+cfg.TECH_MAX_LEVEL+'</p><p>持续修行，精研此诀以提升收益。</p>'+(!rec?'<p>需要 '+cfg.REALMS[t.unlockStage].name+' / 残卷 '+t.unlockFragments+'</p>'+button('解锁并装备','unlock',id,s.realm.stage<t.unlockStage||s.resources.fragments<t.unlockFragments):button(equipped?'已装备':'装备','equip',id,equipped)+(cost?'<p>'+ResourceSystem.costText(cost)+'</p>'+button('升级','upgrade',id,!ResourceSystem.canAfford(cost)):'<p>功法已圆满</p>')));
+    }).join(''));
+    const active=s.expedition.active,progress=ExpeditionSystem.progress();
+    const e=s.exploration.encounter,event=e&&cfg.EXPLORATION_EVENTS[e.event];
+    const choices=card('历练策略',Object.entries(cfg.EXPLORATION_ROUTES).map(([id,r])=>'<p>'+r.name+' · '+r.desc+'</p>'+button(s.exploration.route===id?'已选择':'选择','route',id,!!active||s.exploration.route===id)).join('')+'<p>特殊路线归来后触发机缘，稳步探索保持原玩法。已解决机缘 '+s.exploration.resolved+' 次。</p>')+(event?card(event.name,'<p>'+event.desc+'</p><p>稳妥收取：'+ResourceSystem.costText(event.safe)+'</p><p>冒险探查：'+ResourceSystem.costText(event.risk)+'；成功率 '+Math.round((cfg.EXPLORATION_RISK_CHANCE+(BuffSystem.getMultiplier('cult')>1?cfg.EXPLORATION_PILL_CHANCE:0))*100)+'%。失败不扣原奖励；聚气丹生效期间提高成功率。</p>'+button('稳妥收取','encounter','safe')+button('冒险探查','encounter','risk')):'');
+    draw('v2-expedition',choices+card('行囊与历练',bag+(active?'<p>'+cfg.EXPEDITIONS[active.id].name+' · 剩余 '+progress.remainingSec+' 秒</p><progress max="1" value="'+progress.fraction+'"></progress>'+button('领取奖励','claim','',!progress.done):'<p>当前没有历练。选择秘境和时长，归来后领取材料。</p>'))+Object.entries(cfg.EXPEDITIONS).map(([id,x])=>card(x.name,'<p>需要 '+cfg.REALMS[x.unlockStage].name+'</p>'+Object.entries(cfg.EXPEDITION_DURATIONS).map(([d,sec])=>'<p>'+ResourceSystem.costText(x.rewards[d])+button(sec/60+' 分钟','start',id+':'+d,!!active||!!e||s.realm.stage<x.unlockStage)+'</p>').join(''))).join(''));
+    draw('v2-alchemy',card('丹炉与药囊',bag+'<p>同类丹药刷新持续时间，不叠加倍率。</p>')+cfg.PILL_ORDER.map(id=>{const p=cfg.PILLS[id],buff=s.alchemy.activeBuffs[p.affects];return card(p.name+' · '+p.quality,'<p>'+label[p.affects]+' +'+p.bonusPct+'% / '+p.durationMs/60000+' 分钟</p><p>'+ResourceSystem.costText(p.cost)+'</p><p>库存 '+(s.alchemy.inventory[id]||0)+(buff?' · 增益剩余 '+Math.max(0,Math.ceil((buff.expiresAt-Date.now())/1000))+' 秒':'')+'</p>'+button('炼制','craft',id,!ResourceSystem.canAfford(p.cost))+button('服用','use',id,!(s.alchemy.inventory[id]>0)));}).join(''));
+    const root=document.getElementById('v2-root');
+    if(root && this.pendingRoot && !s.cultivation.rootId){this.renderRootConfirmation();return;}
+    if(root){root.style.display=s.cultivation.rootId?'none':'block';if(!s.cultivation.rootId)draw('v2-root','<h2>五行初醒 · 叩问仙途</h2><p>觉醒不会影响已有进度。灵根确认后不可更换。</p><div class="v2-grid">'+cfg.SPIRIT_ROOT_ORDER.map((id,i)=>{const r=cfg.SPIRIT_ROOTS[id];return '<div style="--root-color:'+r.color+'">'+card(r.icon+' '+r.name,'<p>'+r.quality+'灵根 · '+label[r.affects]+' +'+r.pct+'%</p><p>推荐：'+['资源发展','自动修炼','放置发展','主动修炼','洞府建设'][i]+'</p>'+button('选择并觉醒','root',id))+'</div>';}).join('')+'</div>');}
+  },
+  renderTopbar() {
+    const s = GameState.state;
+    const e = this.el;
+    e['realm-badge'].textContent = GameConfig.REALMS[s.realm.stage].name;
+    e['res-cult'].textContent = NumberFormat.fmt(s.realm.cult);
+    e['res-cult'].title = '当前修为 ' + NumberFormat.full(s.realm.cult);
+    e['rate-cult'].textContent = NumberFormat.rate(Rates.cultPerSec()) + '/秒';
+    e['res-stone'].textContent = NumberFormat.fmt(s.resources.stone);
+    e['res-stone'].title = '灵石 ' + NumberFormat.full(s.resources.stone);
+    e['rate-stone'].textContent = NumberFormat.rate(Rates.stonePerSec()) + '/秒';
+  },
+  renderStage() {
+    const s = GameState.state;
+    const e = this.el;
+    e['realm-display'].textContent = GameConfig.REALMS[s.realm.stage].name;
+    const maxed = CultivationSystem.isMax();
+    let pct, text;
+    if (maxed) {
+      pct = 100;
+      text = '大道圆满 · 仙途之巅';
+    } else {
+      const need = GameConfig.REALMS[s.realm.stage];
+      pct = Math.min(100, (s.realm.cult / need.needCult) * 100);
+      text = '修为 ' + NumberFormat.fmt(s.realm.cult) + ' / ' + NumberFormat.fmt(need.needCult);
+    }
+    e['progress-fill'].style.width = pct.toFixed(2) + '%';
+    e['progress-text'].textContent = text;
+    const ready = !maxed && CultivationSystem.canBreak();
+    e['btn-break'].classList.toggle('ready', ready);
+    e['btn-break'].classList.toggle('maxed', maxed);
+    e['break-label'].textContent = maxed ? '大道圆满' : '突 破';
+    if (maxed) {
+      e['break-cost'].textContent = '已至化神后期';
+    } else {
+      const need = GameConfig.REALMS[s.realm.stage];
+      e['break-cost'].textContent = '需 ' + NumberFormat.fmt(need.needCult) + ' 修为 · ' + NumberFormat.fmt(need.needStone) + ' 灵石';
+    }
+    e['breath-yield'].textContent = '每次 +' + NumberFormat.fmt(Rates.breathCult()) + ' 修为 +' + NumberFormat.fmt(Rates.breathStone()) + ' 灵石';
+  },
+  renderStats() {
+    const s = GameState.state;
+    const e = this.el;
+    e['st-cult-rate'].textContent = NumberFormat.rate(Rates.cultPerSec()) + '/秒';
+    e['st-stone-rate'].textContent = NumberFormat.rate(Rates.stonePerSec()) + '/秒';
+    e['st-breath'].textContent = '+' + NumberFormat.fmt(Rates.breathCult()) + ' 修为 +' + NumberFormat.fmt(Rates.breathStone()) + ' 灵石';
+    e['st-total-cult'].textContent = NumberFormat.fmt(s.stats.totalCult);
+    e['st-total-cult'].title = NumberFormat.full(s.stats.totalCult);
+    e['st-total-stone'].textContent = NumberFormat.fmt(s.stats.totalStone);
+    e['st-total-stone'].title = NumberFormat.full(s.stats.totalStone);
+    e['st-breaths'].textContent = NumberFormat.full(s.stats.breathCount);
+    e['st-time'].textContent = NumberFormat.time(s.stats.playTimeSec);
+  },
+  renderBuildings() {
+    const s = GameState.state;
+    const e = this.el;
+    for (const id of ['array','vein','alchemy']) {
+      const lv = s.buildings[id];
+      const cost = Rates.buildingCost(id);
+      e['lv-' + id].textContent = String(lv);
+      e['cur-' + id].textContent = UpgradeSystem.effectText(id, lv);
+      e['nxt-' + id].textContent = UpgradeSystem.effectText(id, lv + 1);
+      e['cost-' + id].textContent = NumberFormat.fmt(cost);
+      e['upg-' + id].disabled = !UpgradeSystem.canBuy(id);
+    }
+  },
+  renderQuests() {
+    const s = GameState.state;
+    const e = this.el;
+    const sig = GameConfig.QUESTS.map(q => q.id + ':' + QuestSystem.stateOf(q)).join('|');
+    const rebuild = sig !== this._qsig || Object.keys(this.questRefs).length === 0;
+    if (rebuild) {
+      this._qsig = sig;
+      const box = e['quest-list'];
+      box.innerHTML = '';
+      this.questRefs = {};
+      for (const cat of GameConfig.QUEST_CATS) {
+        const group = document.createElement('div');
+        group.className = 'quest-group';
+        const gt = document.createElement('div');
+        gt.className = 'qg-title';
+        gt.textContent = cat.label;
+        group.appendChild(gt);
+        for (const q of GameConfig.QUESTS.filter(x => x.cat === cat.key)) {
+          const card = document.createElement('div');
+          card.className = 'quest-card';
+          card.dataset.qid = q.id;
+          const main = document.createElement('div');
+          main.className = 'q-main';
+          const top = document.createElement('div');
+          top.className = 'q-top';
+          const nm = document.createElement('span'); nm.className = 'q-name'; nm.textContent = q.name;
+          const desc = document.createElement('span'); desc.className = 'q-desc'; desc.textContent = q.desc;
+          top.appendChild(nm); top.appendChild(desc);
+          const prog = document.createElement('div');
+          prog.className = 'q-prog';
+          const bar = document.createElement('div');
+          bar.className = 'q-bar';
+          const fill = document.createElement('i');
+          fill.style.width = '0%';
+          bar.appendChild(fill);
+          const num = document.createElement('span');
+          num.className = 'q-num';
+          prog.appendChild(bar); prog.appendChild(num);
+          main.appendChild(top); main.appendChild(prog);
+          const rw = document.createElement('span');
+          rw.className = 'q-reward';
+          const parts = [];
+          if (q.reward.cult) parts.push(NumberFormat.fmt(q.reward.cult) + ' 修为');
+          if (q.reward.stone) parts.push(NumberFormat.fmt(q.reward.stone) + ' 灵石');
+          rw.textContent = '奖励 ' + parts.join(' · ');
+          const btn = document.createElement('button');
+          btn.type = 'button'; btn.className = 'q-btn wait';
+          btn.textContent = '未完成';
+          btn.addEventListener('click', (function(id){ return function(){ QuestSystem.claim(id); }; })(q.id));
+          card.appendChild(main); card.appendChild(rw); card.appendChild(btn);
+          group.appendChild(card);
+          this.questRefs[q.id] = { card: card, fill: fill, num: num, btn: btn };
+        }
+        box.appendChild(group);
+      }
+    }
+    for (const q of GameConfig.QUESTS) {
+      const r = this.questRefs[q.id];
+      if (!r) continue;
+      const state = QuestSystem.stateOf(q);
+      const cur = QuestSystem.metric(q.metric);
+      const pct = Math.min(100, (cur / q.target) * 100);
+      r.fill.style.width = pct.toFixed(1) + '%';
+      r.num.textContent = NumberFormat.fmt(Math.min(cur, q.target)) + ' / ' + NumberFormat.fmt(q.target);
+      r.card.classList.toggle('done', state === 'done');
+      r.card.classList.toggle('claimed-card', state === 'claimed');
+      r.btn.className = 'q-btn ' + (state === 'claimed' ? 'claimed' : state === 'done' ? 'can' : 'wait');
+      r.btn.textContent = state === 'claimed' ? '已领取' : state === 'done' ? '领 取' : '未完成';
+      r.btn.disabled = state !== 'done';
+    }
+    const n = QuestSystem.badgeCount();
+    e['quest-badge'].textContent = String(n);
+    e['quest-badge'].classList.toggle('hidden', n === 0);
+  },
+  renderAchv() {
+    const s = GameState.state;
+    const e = this.el;
+    const sig = s.achievements.unlocked.slice().sort().join(',');
+    if (sig !== this._asig) {
+      this._asig = sig;
+      const box = e['achv-grid'];
+      box.innerHTML = '';
+      for (const a of GameConfig.ACHIEVEMENTS) {
+        const ok = AchievementSystem.isUnlocked(a.id);
+        const card = document.createElement('div');
+        card.className = 'achv-card ' + (ok ? 'unlocked' : 'locked');
+        const nm = document.createElement('b'); nm.className = 'a-name'; nm.textContent = a.name;
+        const ds = document.createElement('div'); ds.className = 'a-desc'; ds.textContent = a.desc;
+        const rw = document.createElement('div'); rw.className = 'a-reward';
+        const parts = [];
+        if (a.reward.cult) parts.push(NumberFormat.fmt(a.reward.cult) + ' 修为');
+        if (a.reward.stone) parts.push(NumberFormat.fmt(a.reward.stone) + ' 灵石');
+        rw.textContent = (ok ? '已获 ' : '奖励 ') + parts.join(' · ');
+        card.appendChild(nm); card.appendChild(ds); card.appendChild(rw);
+        box.appendChild(card);
+      }
+    }
+  },
+  renderLog() {
+    const s = GameState.state;
+    const e = this.el;
+    const last = s.log.length ? s.log[s.log.length - 1] : null;
+    const sig = s.log.length + ':' + (last ? last.t + last.msg : '');
+    if (sig === this._lsig) return;
+    this._lsig = sig;
+    const mk = (list, limit) => {
+      const items = list.slice(-limit).reverse();
+      const frag = document.createDocumentFragment();
+      for (const it of items) {
+        const li = document.createElement('li');
+        li.className = 'log-item' + (it.gold ? ' gold' : '');
+        const tm = document.createElement('span'); tm.className = 'log-t'; tm.textContent = NumberFormat.clock(it.t);
+        const msg = document.createElement('span'); msg.className = 'log-m'; msg.textContent = it.msg;
+        li.appendChild(tm); li.appendChild(msg);
+        frag.appendChild(li);
+      }
+      return frag;
+    };
+    e['log-list'].innerHTML = '';
+    e['log-list'].appendChild(mk(s.log, 8));
+    e['log-full'].innerHTML = '';
+    e['log-full'].appendChild(mk(s.log, s.log.length));
+  },
+  renderOffline() {
+    const s = GameState.state;
+    const e = this.el;
+    const p = s.pendingOffline;
+    if (p) {
+      e['off-time'].textContent = '离线 ' + NumberFormat.time(p.seconds);
+      e['off-cult'].textContent = '+' + NumberFormat.fmt(p.cult);
+      e['off-cult'].title = NumberFormat.full(p.cult);
+      e['off-stone'].textContent = '+' + NumberFormat.fmt(p.stone);
+      e['off-stone'].title = NumberFormat.full(p.stone);
+      e['off-rate'].textContent = '修为 ' + NumberFormat.fmt(Rates.cultPerSec()) + '/秒 · 灵石 ' + NumberFormat.fmt(Rates.stonePerSec()) + '/秒';
+      e['modal-offline'].classList.add('show');
+    } else {
+      e['modal-offline'].classList.remove('show');
+    }
+  },
+  /* ---------- 交互 ---------- */
+  switchTab(key) {
+    const btns = document.querySelectorAll('.tab-btn');
+    for (const b of btns) b.classList.toggle('active', b.dataset.tab === key);
+    const panes = ['cave','quest','achv','log','technique','expedition','alchemy'];
+    for (const p of panes) {
+      const el = document.getElementById('pane-' + p);
+      if (el) el.classList.toggle('active', p === key);
+    }
+  },
+  bind() {
+    let scrolling=false;
+    const markScrolling=()=>{
+      this._scrollUntil=Date.now()+GameConfig.SCROLL_IDLE_MS;
+      if(!scrolling){scrolling=true;document.documentElement && document.documentElement.classList.add('is-scrolling');}
+    };
+    document.addEventListener('scroll',markScrolling,{passive:true,capture:true});
+    const renderPassive=this.renderPassive.bind(this);
+    this.renderPassive=(now=Date.now())=>{
+      if(scrolling && now>=this._scrollUntil){scrolling=false;document.documentElement && document.documentElement.classList.remove('is-scrolling');}
+      renderPassive(now);
+    };
+    document.addEventListener('click', ev => {
+      const b=ev.target.closest && ev.target.closest('[data-v2]'); if(!b || b.disabled)return;
+      const a=b.dataset.v2,id=b.dataset.id; let result;
+      if(a==='root'){this.pendingRoot=id;this.renderRootConfirmation();return;}
+      else if(a==='root-cancel'){this.pendingRoot=null;this.renderV2();return;}
+      else if(a==='root-confirm'){if(!this.pendingRoot)return;result=RootSystem.select(this.pendingRoot);this.pendingRoot=null;}
+      else if(a==='start'){const parts=id.split(':');result=ExpeditionSystem.start(parts[0],parts[1]);}
+      else if(a==='route')result=ExpeditionSystem.setRoute(id);
+      else if(a==='encounter')result=ExpeditionSystem.resolveEncounter(id);
+      else if(a==='claim')result=ExpeditionSystem.claim();
+      else if(a==='craft'||a==='use')result=AlchemySystem[a](id);
+      else result=TechniqueSystem[a](id);
+      if(result===false||result===null)Effects.toast('条件不足，请检查境界、材料或库存','danger');
+      else {QuestSystem.checkUnlockable();AchievementSystem.checkAll();SaveSystem.save();Effects.toast('仙途进展已保存','jade');}
+      this.renderAll();
+    });
+    const e = this.el;
+    const on = (id, fn) => { e[id] && e[id].addEventListener('click', fn); };
+
+    on('btn-breath', () => {
+      CultivationSystem.breath();
+      const btn = e['btn-breath'];
+      btn.classList.remove('burst');
+      void btn.offsetWidth;
+      btn.classList.add('burst');
+      setTimeout(() => btn.classList.remove('burst'), 500);
+      Effects.sparkBurst(btn, 7);
+    });
+
+    on('btn-break', () => {
+      if (!CultivationSystem.canBreak()) return;
+      const r = CultivationSystem.breakthrough();
+      if (r) {
+        Effects.breakthroughFX(r.name, r.rewardStone);
+        setTimeout(() => Effects.dismissBreakOverlay(), 2600);
+      }
+    });
+
+    for (const id of ['array','vein','alchemy']) {
+      on('upg-' + id, (function(id){ return function(){ UpgradeSystem.buy(id); }; })(id));
+    }
+
+    const tabs = document.querySelectorAll('.tab-btn');
+    for (const b of tabs) {
+      b.addEventListener('click', () => this.switchTab(b.dataset.tab));
+    }
+
+    on('btn-off-claim', () => SaveSystem.claimOffline());
+    e['modal-offline'].addEventListener('click', (ev) => {
+      if (ev.target === e['modal-offline']) SaveSystem.claimOffline();
+    });
+
+    on('btn-settings', () => {
+      this.el['reset-confirm'].classList.add('hidden');
+      e['set-sound'].checked = GameState.state.settings.sound;
+      e['modal-settings'].classList.add('show');
+    });
+    e['modal-settings'].addEventListener('click', (ev) => {
+      if (ev.target === e['modal-settings']) e['modal-settings'].classList.remove('show');
+    });
+    on('btn-settings-close', () => e['modal-settings'].classList.remove('show'));
+
+    e['set-sound'].addEventListener('change', () => {
+      GameState.state.settings.sound = e['set-sound'].checked;
+      SaveSystem.save();
+    });
+
+    on('btn-save-setting', () => {
+      GameState.state.settings.sound = e['set-sound'].checked;
+      SaveSystem.save();
+      Effects.toast('设置已保存', 'jade');
+      e['modal-settings'].classList.remove('show');
+    });
+
+    on('btn-reset-setting', () => e['reset-confirm'].classList.remove('hidden'));
+    on('btn-reset-cancel', () => e['reset-confirm'].classList.add('hidden'));
+    on('btn-reset-confirm', () => {
+      SaveSystem.resetAll();
+      this._qsig = ''; this._asig = ''; this._lsig = '';
+      e['modal-settings'].classList.remove('show');
+      e['reset-confirm'].classList.add('hidden');
+      Effects.toast('已重置，仙途重新开启', 'jade');
+      this.renderAll();
+    });
+
+    on('btn-save-now', () => {
+      SaveSystem.save();
+      Effects.toast('存档已保存', 'jade');
+    });
+
+    /* 日志页「重置」入口：复用设置页的二次确认流程 */
+    on('btn-reset', () => {
+      e['reset-confirm'].classList.remove('hidden');
+      e['modal-settings'].classList.add('show');
+    });
+
+    e['break-overlay'].addEventListener('click', () => Effects.dismissBreakOverlay());
+  },
+};
+
+/* ---------------- 游戏入口 ---------------- */
+const Game = {
+  init() {
+    SaveSystem.load();
+    QuestSystem.refreshDaily();
+    SaveSystem.computeOffline(Date.now() / 1000);
+    BuffSystem.update();
+    UI.init();
+    UI.bind();
+    UI.renderAll();
+    if (GameState.state.pendingOffline) {
+      UI.renderOffline();
+    }
+    Effects.makeParticles(24);
+    GameEngine.start();
+  },
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => Game.init());
+} else {
+  Game.init();
+}
+</script>
+</html>

@@ -52,6 +52,7 @@ menu:
   tags: /tags/
   about: /about/
   zhouyi: /zhouyi/
+  xian: /xian/
   #sitemap: /sitemap.xml
   #commonweal: /404/
 
@@ -72,6 +73,7 @@ menu_icons:
   sitemap: sitemap
   commonweal: heartbeat
   zhouyi: book
+  xian: magic
 
 
 # ---------------------------------------------------------------
